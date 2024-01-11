@@ -9,7 +9,7 @@ const BannerComponent = () => {
 
       <div className="md:relative bg-gray-100 w-5/6 h-full rounded-3xl md:py-3 px-5">
         <div className="text-right text-slate-500 text-xl md:text-3xl font-bold pt-5">
-          تشغيل اللعبة! اكتشف، العب، اربح! "
+          تشغيل اللعبة! اكتشف، العب، اربح!
         </div>
         <div className=" flex flex-row items-end ">
           {/*  TEXTS */}
