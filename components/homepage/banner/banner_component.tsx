@@ -13,7 +13,7 @@ const BannerComponent = () => {
         </div>
         <div className=" flex flex-row items-end ">
           {/*  TEXTS */}
-          <div className="md:w-1/2 h-full flex flex-col items-start rounded-3xl pb-5">
+          <div className=" md:w-1/2 h-full flex flex-col items-start rounded-3xl pb-5">
             <div className=" py-5 text-right text-neutral-400 md:text-lg text-sm">
               «انضم إلى مجتمع الألعاب لدينا، وأعد شحن ألعابك المفضلة، ورفع مستوى
               تجربة الألعاب الخاصة بك».
@@ -22,7 +22,7 @@ const BannerComponent = () => {
               className="text-white  bg-MainBlueColor shadow-sm rounded-md py-3 px-5 hover:opacity-90 hover:shadow-md"
               type="submit"
             >
-              اكتشف الان{" "}
+              اكتشف الان
             </button>
           </div>
           {/* //IMAGE BANNER */}

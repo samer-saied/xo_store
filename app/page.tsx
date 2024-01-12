@@ -1,7 +1,10 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
+
+import React from "react";
 import BannerComponent from "@/components/homepage/banner/banner_component";
 import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 import CategriesCarouselComponent from "@/components/homepage/categries_cards/categries_carousel_component";
@@ -10,9 +13,6 @@ import GamesCardsComponent from "@/components/homepage/game_cards/games_cards_co
 import MostSalesComponent from "@/components/homepage/most_sales/most_sales_component";
 import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_component";
 export default function Home() {
-  const [currentUser, setcurrentUser] = useState("");
-  const [password, setpassword] = useState("");
-  const [email, setEmail] = useState("");
 
   return (
     <>
@@ -21,11 +21,11 @@ export default function Home() {
       <CategriesCarouselComponent />
       <div className="h-6"></div>
       <GamesCardsComponent />
-      <div className="h-12"></div>
+      <div className="h-6"></div>
       <MostSalesComponent />
-      <div className="h-12"></div>
+      <div className="h-8"></div>
       <SpeedSaleComponent />
-      <div className="h-12"></div>
+      <div className="h-8"></div>
 
       <SectionMoreWidget />
     </>

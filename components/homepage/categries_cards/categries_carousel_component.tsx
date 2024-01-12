@@ -40,7 +40,7 @@ export default function CategriesCarouselComponent() {
       </div>
       {/* /////////////////   Carousel     ///////////////////////// */}
       <Carousel
-        autoPlay={true}
+        // autoPlay={true}
         swipeable={true}
         autoPlaySpeed={1000}
         responsive={responsive}

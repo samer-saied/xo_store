@@ -7,6 +7,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import GameCardWidget from "./game_card_widget";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 export default function GamesCardsComponent() {
   const [swiper, setSwiper] = useState<any | null>(null);
@@ -15,29 +18,29 @@ export default function GamesCardsComponent() {
     <div className="w-full bg-white">
       {/* /////////////////   TITLE     ///////////////////////// */}
       <div className="w-full h-14 px-12 flex flex-row justify-between  items-center ">
-        <div className="text-right text-zinc-600 text-2xl md:text-3xl font-bold leading-[48px]">
+        <div className="text-right text-zinc-600 text-xl md:text-2xl font-bold leading-[48px]">
           بطاقات الالعاب
         </div>
         <div className="justify-center items-center flex">
           <div className="button-wrapper">
             <button
-              className="button mx-2"
+              className="button"
               onClick={() => {
                 swiper.slidePrev();
               }}
             >
-              <div className="w-[52px] h-10 px-4 py-2.5 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-                <img src="/arrows/arrow-right.svg" alt="" />
+              <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
+                <FontAwesomeIcon icon={faArrowRight} />
               </div>
             </button>
             <button
-              className="button mx-2"
+              className="button mx-1"
               onClick={() => {
                 swiper.slideNext();
               }}
             >
-              <div className="w-[52px] h-10 px-4 py-2.5 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-                <img src="/arrows/arrow-back.svg" alt="" />
+              <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
+                <FontAwesomeIcon icon={faArrowLeft} />
               </div>
             </button>
           </div>
@@ -96,4 +99,3 @@ export default function GamesCardsComponent() {
     </div>
   );
 }
-
