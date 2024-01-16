@@ -20,7 +20,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={almarai.className}>
-      <body>{children}</body>
+      <head>
+        <link rel="XO Store icon" href="icons/favicon.ico" sizes="any" />
+      </head>
+      <body >{children}</body>
     </html>
   );
 }

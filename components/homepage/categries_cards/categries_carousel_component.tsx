@@ -28,9 +28,9 @@ export default function CategriesCarouselComponent() {
   return (
     <div className="w-full  bg-gradient-to-l from-white to-sky-100 pb-5">
       {/* /////////////////   TITLE     ///////////////////////// */}
-      <div className="w-full h-14 px-12 flex flex-row justify-between  items-center ">
+      <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
         <div className="text-right text-blue-950 text-2xl md:text-3xl font-bold font-['Almarai'] leading-[56px]">
-          جميع الاقسام
+        الأقسام الرئيسية
         </div>
         <div className="justify-center items-center flex">
           <div className="text-slate-600 text-base font-bold font-['Poppins']">
@@ -49,49 +49,49 @@ export default function CategriesCarouselComponent() {
         removeArrowOnDeviceType={["mobile"]}
       >
         <SectionCardWidget
-          image={"/icons/electricty.svg"}
+          image={"/cards/electricty.svg"}
           text={"شحن التطبيقات"}
           firstColor={"#4ED364"}
           secandColor={"#008000"}
         />
         <SectionCardWidget
-          image={"/icons/coins.svg"}
-          text={"بطاقات الالعاب"}
+          image={"/cards/coins.svg"}
+          text={"بطاقات التطبيقات"}
           firstColor={"#F170FF"}
           secandColor={"#70037C"}
         />
         <SectionCardWidget
-          image={"/icons/controller.svg"}
-          text={"شحن الالعاب"}
+          image={"/cards/controller.svg"}
+          text={"بطاقات الالعاب"}
           firstColor={"#3364CE"}
           secandColor={"#142B5F"}
         />
         <SectionCardWidget
-          image={"/icons/coins.svg"}
+          image={"/cards/coins.svg"}
           text={"كروت الالعاب"}
           firstColor={"#FACA00"}
           secandColor={"#C58001"}
         />
         <SectionCardWidget
-          image={"/icons/electricty.svg"}
+          image={"/cards/electricty.svg"}
           text={"شحن التطبيقات"}
           firstColor={"#4ED364"}
           secandColor={"#008000"}
         />
         <SectionCardWidget
-          image={"/icons/coins.svg"}
+          image={"/cards/coins.svg"}
           text={"بطاقات الالعاب"}
           firstColor={"#F170FF"}
           secandColor={"#70037C"}
         />
         <SectionCardWidget
-          image={"/icons/controller.svg"}
+          image={"/cards/controller.svg"}
           text={"شحن الالعاب"}
           firstColor={"#3364CE"}
           secandColor={"#142B5F"}
         />
         <SectionCardWidget
-          image={"/icons/coins.svg"}
+          image={"/cards/coins.svg"}
           text={"كروت الالعاب"}
           firstColor={"#FACA00"}
           secandColor={"#C58001"}

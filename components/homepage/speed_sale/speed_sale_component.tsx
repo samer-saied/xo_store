@@ -36,7 +36,7 @@ export default function SpeedSaleComponent() {
         <SwiperSlide>
           <div className="p-5 h-80 flex flex-col justify-evenly">
             <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-2xl text-xl text-black">
-              بيع مفاجئ
+              صفقة اليوم
             </h1>
             <h1 className=" md:text-md text-xs text-right text-slate-500 mt-2 leading-relaxed">
               احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
