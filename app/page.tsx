@@ -39,10 +39,10 @@ export default async function Home() {
 
 async function getData() {
   setTimeout(async () => {
-    const res = await fetch("https://fakestoreapi.com/products/1");
-    if (!res.ok) {
-      throw new Error("Failed to fetch data");
-    }
-    return res.json();
+    // const res = await fetch("https://fakestoreapi.com/products/1");
+    // if (!res.ok) {
+    //   throw new Error("Failed to fetch data");
+    // }
+    // return res.json();
   }, 100000);
 }

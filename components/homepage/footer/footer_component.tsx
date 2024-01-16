@@ -18,7 +18,7 @@ const FooterComponent = () => {
         <div className=" w-full h-14 pr-4 pl-2 py-2 rounded-full border border-neutral-200 justify-start items-center">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-center items-center">
-              <FontAwesomeIcon className="text-white" icon={faEnvelope} />
+              <FontAwesomeIcon className="text-white h-4" icon={faEnvelope} />
               <div className="px-2 text-center text-zinc-100 md:text-base text-sm font-normal font-['Open Sans']">
                 ادخل الايميل الخاص بك
               </div>

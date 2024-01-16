@@ -9,11 +9,11 @@ export default function CategriesCarouselComponent() {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 6,
+      items: 5,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 4.5,
+      items: 4.1,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
