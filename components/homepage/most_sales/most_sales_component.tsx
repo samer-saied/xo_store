@@ -64,10 +64,10 @@ export default function MostSalesComponent() {
         scrollbar={{ draggable: true }}
         spaceBetween={10}
         breakpoints={{
-          300: { slidesPerView: 1.7 },
-          600: { slidesPerView: 2 },
-          800: { slidesPerView: 3 },
-          1300: { slidesPerView: 4 },
+          300: { slidesPerView: 2.1 },
+          600: { slidesPerView: 3 },
+          800: { slidesPerView: 4 },
+          1300: { slidesPerView: 5 },
         }}
         // slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
