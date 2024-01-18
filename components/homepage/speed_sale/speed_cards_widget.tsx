@@ -6,7 +6,7 @@ export const SpeedSaleCardWidget = () => {
   return (
     <div className=" h-auto flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
       <img
-        className=" h-40 md:h-52 rounded-2xl"
+        className=" h-52 md:h-64 rounded-2xl"
         src="https://via.placeholder.com/244x210"
       />
       <div className="flex flex-row items-center justify-center">

@@ -1,8 +1,8 @@
 "use client";
 
-import { config } from "@fortawesome/fontawesome-svg-core";
+// import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-config.autoAddCss = false;
+// config.autoAddCss = false;
 
 import React from "react";
 import BannerComponent from "@/components/homepage/banner/banner_component";
@@ -14,6 +14,7 @@ import MostSalesComponent from "@/components/homepage/most_sales/most_sales_comp
 import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_component";
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import SpacerWidget from "@/components/common/spacer_widget";
+import MainNavBarComponent from "@/components/homepage/main_navbar/main_navbar_component";
 
 export default async function Home() {
   const data = await getData();
@@ -21,6 +22,7 @@ export default async function Home() {
   return (
     <>
       <TopBarComponent />
+      <MainNavBarComponent />
       <BannerComponent />
       <CategriesCarouselComponent />
       <SpacerWidget />

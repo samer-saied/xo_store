@@ -8,7 +8,7 @@ import { SpeedSaleCardWidget } from "./speed_cards_widget";
 
 export default function SpeedSaleComponent() {
   return (
-    <div className="w-full h-full md:py-5 bg-amber-50">
+    <div className="w-full h-full md:py-24 py-8 bg-amber-50">
       <Swiper
         onSwiper={(swiper) => {
           // setSwiper(swiper);

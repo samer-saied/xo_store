@@ -5,7 +5,7 @@ import { DefaultCardsCarouselWidget } from "./default_card_widget";
 export default function SectionMoreWidget() {
   return (
     <div className="relative w-full h-auto flex md:flex-row flex-col  bg-amber-50">
-      <div className=" md:w-6/12 w-full h-auto md:py-10 bg-MainBlueColor flex flex-col justify-center">
+      <div className=" py-8 md:py-24 md:w-6/12 w-full h-auto bg-MainBlueColor flex flex-col justify-center">
         <div className=" p-10 w-10/12 ">
           <h1 className="lg:text-5xl text-right lg:leading-relaxed leading-normal md:text-3xl text-2xl text-zinc-50">
             هناك العديد من الخيارات التي تناسبك من فئات مختلفة.

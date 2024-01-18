@@ -9,7 +9,7 @@ const FooterComponent = () => {
       <div className=" absolute -bottom-48 -right-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
       {/*----------- TEXTURE BG -------------------*/}
       <div className=" absolute bottom-0 top-0 right-0 left-0 object-cover h-full w-full flex flex-col justify-center items-center">
-        <img className=" h-full w-full" src="/most/Vector.png" alt="" />
+        <img className=" h-full w-full" src="/footer/Vector.png" alt="" />
       </div>
       {/*----------- CIRCLE BG -------------------*/}
       <div className=" absolute -top-48 -left-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />

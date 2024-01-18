@@ -8,7 +8,7 @@ export default function GameCardWidget() {
     <Link href={"/products/00"}>
       <div className=" h-auto flex flex-col mx-1">
         <img
-          className=" h-44 md:h-52 rounded-2xl "
+          className=" h-48 md:h-52 rounded-2xl "
           src="https://via.placeholder.com/244x210"
         />
         <div className="flex flex-row items-center justify-center">
