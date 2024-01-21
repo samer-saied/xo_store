@@ -15,6 +15,7 @@ import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_comp
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import SpacerWidget from "@/components/common/spacer_widget";
 import MainNavBarComponent from "@/components/homepage/main_navbar/main_navbar_component";
+import Navbar from "@/components/common/Navbar";
 
 export default async function Home() {
   const data = await getData();
@@ -22,7 +23,8 @@ export default async function Home() {
   return (
     <>
       <TopBarComponent />
-      <MainNavBarComponent />
+      <Navbar />
+      {/* <MainNavBarComponent /> */}
       <BannerComponent />
       <CategriesCarouselComponent />
       <SpacerWidget />
