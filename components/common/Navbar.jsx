@@ -11,7 +11,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <div className="flex justify-between items-center w-full h-20  border-gray-100 border-b-2 bg-white nav px-4 md:px-20">
+    <div className="flex justify-between items-center w-full h-auto border-box  border-gray-100 border-b-2 bg-white nav px-4 py-2 md:px-10 lg:px-20">
       <div>
         <h1 className="text-5xl font-signature ml-2">
           <a href="/">
