@@ -61,7 +61,7 @@ const Navbar = () => {
         </div>
         <div className="flex flex-row justify-center items-center">
           <div className="flex flex-row justify-center items-center">
-            <div className="text-center text-zinc-400 text-sm font-normal font-['Almarai']">
+            <div className="text-center text-zinc-400 text-sm font-normal ">
               Arabic
             </div>
             <TbWorld size={25} className="text-zinc-400 mx-2" />
@@ -86,7 +86,7 @@ const Navbar = () => {
       {
       // nav &&
        (
-        <ul className={nav ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-center mt-14 absolute top-0 bottom-0 left-0 z-40 w-3/4 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor opacity-95`: ` transition-all ease-in-out duration-300 delay-0 opacity-0 w-3/4 h-full absolute top-0 left-0`}>
+        <ul className={nav ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-center mt-14 absolute top-0 bottom-0 left-0 z-40 w-3/4 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor opacity-95`: ` transition-all ease-in-out duration-300 delay-0 opacity-0 w-0 h-full absolute top-0 left-0`}>
           {navBarLinks.map(({ id, link }) => (
             <li
               key={id}
