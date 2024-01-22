@@ -7,7 +7,7 @@ const BannerComponent = () => {
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
 
-      <div className="md:relative bg-gray-100 w-5/6 h-full rounded-3xl pt-3 px-5 md:py-8">
+      <div className="md:relative bg-gray-100 md:w-9/12 w-11/12 h-full rounded-3xl pt-3 px-5 md:py-8">
         <div className="text-right text-slate-500 text-xl md:text-3xl font-bold pt-8">
           تشغيل اللعبة! اكتشف، العب، اربح!
         </div>
