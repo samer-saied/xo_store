@@ -7,11 +7,14 @@ import { faHeart, faHome, faStar } from "@fortawesome/free-solid-svg-icons";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons/faCartShopping";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import Navbar from "@/components/common/Navbar";
 
 export default function Product({ params }: { params: { id: string } }) {
   return (
     <>
       <TopBarComponent />
+      <Navbar />
+
       <SpacerWidget />
 
       <DetailsProductWidget params={params} />
