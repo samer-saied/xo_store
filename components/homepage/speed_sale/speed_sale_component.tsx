@@ -1,10 +1,11 @@
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { IoIosArrowBack } from "react-icons/io";
 
 import React from "react";
 
 import { SpeedSaleCardWidget } from "./speed_cards_widget";
+
+
 
 export default function SpeedSaleComponent() {
   return (
@@ -25,9 +26,10 @@ export default function SpeedSaleComponent() {
         scrollbar={{ draggable: true }}
         spaceBetween={10}
         breakpoints={{
+          300: { slidesPerView: 1.8 },
           640: { slidesPerView: 3.1 },
           1024: { slidesPerView: 4.2 },
-          1300: { slidesPerView: 5.3 },
+          1300: { slidesPerView: 4.6 },
         }}
         slidesPerView={2.1}
         onSlideChange={() => console.log("slide change")}
@@ -35,10 +37,10 @@ export default function SpeedSaleComponent() {
         {/*--------- Welcome Message to show all Cards ------------*/}
         <SwiperSlide>
           <div className="p-5 h-80 flex flex-col justify-evenly">
-            <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-2xl text-xl text-black">
+            <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-2xl text-xl font-medium text-black">
               صفقة اليوم
             </h1>
-            <h1 className=" md:text-md text-xs text-right text-slate-500 mt-2 leading-relaxed">
+            <h1 className=" md:text-md text-md text-right text-slate-500 mt-2 leading-relaxed">
               احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
               فقط. احصل عليه بسرعة قبل بيعه!
             </h1>
@@ -46,11 +48,11 @@ export default function SpeedSaleComponent() {
               <div className="text-white md:text-base text-sm font-medium font-['Roboto'] leading-snug">
                 انظر جميع العناصر
               </div>
-              <div className="text-white text-base font-medium font-['Roboto'] leading-snug">
-                <FontAwesomeIcon icon={faAngleLeft} />
+              <div className="text-white text-base font-medium font-['Roboto'] leading-snug">                
+                <IoIosArrowBack size={25} />
               </div>
             </div>
-          </div>{" "}
+          </div>
         </SwiperSlide>
         {/*--------- Other Cards ------------*/}
         <SwiperSlide>

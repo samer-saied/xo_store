@@ -1,5 +1,4 @@
 import React from "react";
-import Carousel from "react-multi-carousel";
 import { DefaultCardsCarouselWidget } from "./default_card_widget";
 
 export default function SectionMoreWidget() {

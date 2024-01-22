@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
 
 // Import Swiper styles
 import "swiper/css";
@@ -9,7 +8,7 @@ import "swiper/css/pagination";
 import MostSalesCardWidget from "./most_sales_card_widget";
 import MostSalesCardWidget2 from "./most_sales_card_widget copy";
 import MostSalesCardWidget3 from "./most_sales_card_widget copy 2";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 export default function MostSalesComponent() {
   const [swiper, setSwiper] = useState<any | null>(null);
@@ -30,7 +29,7 @@ export default function MostSalesComponent() {
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-              <FontAwesomeIcon icon={faArrowRight} />
+              <IoIosArrowForward size={25} />
               </div>
             </button>
             <button
@@ -40,7 +39,7 @@ export default function MostSalesComponent() {
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-              <FontAwesomeIcon icon={faArrowLeft} />
+              <IoIosArrowBack size={25} />
               </div>
             </button>
           </div>

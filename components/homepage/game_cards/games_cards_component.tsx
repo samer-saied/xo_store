@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { IoIosArrowForward ,IoIosArrowBack } from "react-icons/io";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
 import GameCardWidget from "./game_card_widget";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons/faArrowRight";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
 
 export default function GamesCardsComponent() {
   const [swiper, setSwiper] = useState<any | null>(null);
@@ -29,7 +27,7 @@ export default function GamesCardsComponent() {
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-                <FontAwesomeIcon icon={faArrowRight} />
+              <IoIosArrowForward size={25} />
               </div>
             </button>
             <button
@@ -39,7 +37,8 @@ export default function GamesCardsComponent() {
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
-                <FontAwesomeIcon icon={faArrowLeft} />
+              <IoIosArrowBack size={25} />
+
               </div>
             </button>
           </div>

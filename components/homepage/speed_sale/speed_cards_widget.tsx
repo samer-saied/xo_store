@@ -1,6 +1,5 @@
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { CiShoppingBasket } from "react-icons/ci";
 
 export const SpeedSaleCardWidget = () => {
   return (
@@ -42,7 +41,7 @@ export const SpeedSaleCardWidget = () => {
       </div>
       <div className="flex flex-row items-center justify-between m-2">
         <button className=" hover:bg-blue-950 hover:text-zinc-100 bg-white rounded-md border border-blue-950 px-2 py-1">
-          <FontAwesomeIcon icon={faCartShopping} />
+        <CiShoppingBasket size={25} />
         </button>
         <div className="lg:mx-1 mx-1"></div>
         <button className="w-full py-2 bg-blue-950 hover:bg-zinc-100 hover:text-blue-950 border hover:border-blue-950 border-zinc-50 rounded text-center text-zinc-100 text-sm font-medium font-['Roboto'] leading-tight">

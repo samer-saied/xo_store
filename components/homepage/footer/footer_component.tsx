@@ -1,6 +1,5 @@
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { FaEnvelope } from "react-icons/fa6";
 
 const FooterComponent = () => {
   return (
@@ -18,7 +17,7 @@ const FooterComponent = () => {
         <div className=" w-full h-14 pr-4 pl-2 py-2 rounded-full border border-neutral-200 justify-start items-center">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-center items-center">
-              <FontAwesomeIcon className="text-white h-4" icon={faEnvelope} />
+            <FaEnvelope size={25}  className="text-white h-4"  />
               <div className="px-2 text-center text-zinc-100 md:text-base text-sm font-normal font-['Open Sans']">
                 ادخل الايميل الخاص بك
               </div>
