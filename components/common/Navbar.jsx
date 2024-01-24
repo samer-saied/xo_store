@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { navBarLinks } from "@/components/common/navbar_strings";
 import Image from "next/image";
 import { TbWorld } from "react-icons/tb";
-import { CiShoppingBasket, CiUser } from "react-icons/ci";
+import { CiBookmark, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
 
@@ -33,9 +33,7 @@ const Navbar = () => {
               key={id}
               className="nav-links px-2 lg:px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor py-2 duration-200 link-underline"
             >
-              <Link href={link}>
-                {link}
-              </Link>
+              <Link href={link}>{link}</Link>
             </li>
           ))}
         </div>
@@ -65,28 +63,80 @@ const Navbar = () => {
 
       {/*---------------------    MOBILE MENU  ------------------*/}
       {
-        // nav &&
         <ul
           className={
             nav
-              ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-center mt-14 absolute top-0 bottom-0 left-0 z-40 w-3/4 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor opacity-95`
+              ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-start mt-14 absolute top-0 bottom-0 left-0 z-40 w-2/4 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor rounded-lg opacity-95`
               : ` transition-all ease-in-out duration-300 delay-0 opacity-0 w-0 h-full absolute top-0 left-0`
           }
         >
-          {navBarLinks.map(({ id, link }) => (
-            <li
-              key={id}
-              className={
-                nav
-                  ? `px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`
-                  : `hidden`
-              }
-            >
-              <Link onClick={() => setNav(!nav)} href={link}>
-                {link}
-              </Link>
-            </li>
-          ))}
+          {nav && (
+            <div className="w-full flex flex-row justify-center items-center pb-5">
+              <Image
+                className=" hover:animate-pulse hover:scale-125 hover:ease-in-out"
+                width={100}
+                height={100}
+                src="/logo/logo.svg"
+                alt="Logo"
+              />
+            </div>
+          )}
+          {/*--------------- DYNAMIC MENU -------------------*/}
+          {nav &&
+            navBarLinks.map(({ id, link }) => (
+              <li
+                key={id}
+                className={
+                  nav
+                    ? `px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`
+                    : `hidden`
+                }
+              >
+                <Link
+                  className="flex flex-row justify-center items-center"
+                  onClick={() => setNav(!nav)}
+                  href={link}
+                >
+                  <CiBookmark size={25} className=" text-MainBlueColor mx-2" />
+                  <p> {link}</p>
+                </Link>
+              </li>
+            ))}
+          {/*--------------- DIVIDER -------------------*/}
+
+          {nav && (
+            <span className=" mx-10 w-auto h-1 my-5 px-10 bg-MainBlueColor text-MainBlueColor" />
+          )}
+          {/*--------------- STATIC MENU -------------------*/}
+          {nav && (
+            <>
+              <li
+                className={`px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`}
+              >
+                <Link
+                  className="flex flex-row justify-center items-center"
+                  href={"/login"}
+                >
+                  <CiUser size={25} className=" text-MainBlueColor mx-2" />
+                  <p>تسجيل الدخول</p>
+                </Link>
+              </li>
+              <li
+                className={`px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`}
+              >
+                <Link
+                  className="flex flex-row justify-center items-center"
+                  href={"/login"}
+                >
+                  <CiShoppingBasket
+                    size={25}
+                    className=" text-MainBlueColor mx-2"
+                  />
+                  <p>سله التسوق</p>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       }
     </div>

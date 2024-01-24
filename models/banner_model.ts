@@ -1,12 +1,13 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
-export class Category {
+export class Banner {
   constructor(
     public id: string | null,
-    public sectionId: string,
     public title: string,
     public image: string,
-    public date: Timestamp
+    public descrption: string,
+    public date: Timestamp,
+    public refProductId: string
   ) {}
 
   toString() {
@@ -16,24 +17,26 @@ export class Category {
 
 // Firestore data converter
 export const categoryConverter = {
-  toFirestore: (Category: Category) => {
+  toFirestore: (banner: Banner) => {
     return {
       //  id: Category.id ? Category.id : undefined,
-      sectionId: Category.sectionId,
-      title: Category.title,
-      image: Category.image,
-      date: Category.date,
+      title: banner.title,
+      image: banner.image,
+      descrption: banner.descrption,
+      date: banner.date,
+      refProductId: banner.refProductId,
     };
   },
 
   fromFirestore: (snapshot: QueryDocumentSnapshot, options?: any) => {
     const data = snapshot.data(options);
-    return new Category(
+    return new Banner(
       snapshot.id,
-      data.sectionId,
       data.title,
       data.image,
-      data.date
+      data.descrption,
+      data.date,
+      data.refProductId
     );
   },
 };

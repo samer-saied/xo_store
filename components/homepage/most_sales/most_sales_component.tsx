@@ -65,8 +65,9 @@ export default function MostSalesComponent() {
         breakpoints={{
           300: { slidesPerView: 2.1 },
           600: { slidesPerView: 3 },
-          800: { slidesPerView: 4 },
-          1300: { slidesPerView: 5 },
+          800: { slidesPerView: 3.2 },
+          1024: { slidesPerView: 4 },
+          1300: { slidesPerView: 4.8 },
         }}
         // slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
