@@ -8,7 +8,7 @@ import RelatedProductsWidget from "@/components/related_products/related_product
 
 import Navbar from "@/components/common/Navbar";
 
-export default function Product({ params }: { params: { id: string } }) {
+export default function ProductPage({ params }: { params: { id: string } }) {
   return (
     <>
       <TopBarComponent />

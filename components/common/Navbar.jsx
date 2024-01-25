@@ -44,12 +44,24 @@ const Navbar = () => {
             </div>
             <TbWorld size={25} className="text-zinc-400 mx-2" />
           </div>
-          {/* <FontAwesomeIcon className="px-2 text-DarkBlueColor" icon={faUser} /> */}
-          <Link href={"/login"}>
-            <CiUser size={25} className="text-zinc-400 mx-2" />
-          </Link>
 
-          <CiShoppingBasket size={25} className=" text-zinc-400 mx-2" />
+          <li className={`cursor-pointer capitalize hover:scale-105`}>
+            <Link href={"/login"}>
+              <CiUser size={25} className="text-zinc-400 mx-2" />
+            </Link>
+          </li>
+
+
+          <li className={`cursor-pointer capitalize hover:scale-105`}>
+            <Link
+              className="flex flex-row justify-center items-center"
+              href={"/cart"}
+            >
+              <CiShoppingBasket size={25} className=" text-zinc-400" />
+            </Link>
+          </li>
+
+
         </div>
       </ul>
 
@@ -66,7 +78,7 @@ const Navbar = () => {
         <ul
           className={
             nav
-              ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-start mt-14 absolute top-0 bottom-0 left-0 z-40 w-2/4 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor rounded-lg opacity-95`
+              ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-center items-start mt-14 absolute top-0 bottom-0 left-0 z-40 w-8/12 h-full bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor rounded-lg opacity-95`
               : ` transition-all ease-in-out duration-300 delay-0 opacity-0 w-0 h-full absolute top-0 left-0`
           }
         >
@@ -126,7 +138,7 @@ const Navbar = () => {
               >
                 <Link
                   className="flex flex-row justify-center items-center"
-                  href={"/login"}
+                  href={"/cart"}
                 >
                   <CiShoppingBasket
                     size={25}

@@ -11,7 +11,7 @@ import LoginFormWidget from "@/components/auth/login_form_widget";
 
 // import {Container, Row, Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
 
-const SignUp = () => {
+const SignUpPage = () => {
   const [email, setEmail] = useState("");
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
@@ -47,4 +47,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;
