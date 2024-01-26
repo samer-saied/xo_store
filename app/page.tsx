@@ -28,6 +28,7 @@ export default async function Home() {
 
       {/* --------------- Done --------------- */}
       <SectionsCarouselComponent />
+      
       <SpacerWidget />
       <GamesCardsComponent />
       <SpacerWidget />
