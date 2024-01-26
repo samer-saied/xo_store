@@ -5,7 +5,7 @@ export class Section {
     public id: string | null,
     public name: string,
     public icon: string,
-    public primraryColor: string,
+    public primaryColor: string,
     public secandColor: string
   ) {}
 
@@ -15,13 +15,13 @@ export class Section {
 }
 
 // Firestore data converter
-export const categoryConverter = {
+export const sectionConverter = {
   toFirestore: (Section: Section) => {
     return {
       //  id: Section.id ? Section.id : undefined,
       name: Section.name,
       icon: Section.icon,
-      primraryColor: Section.primraryColor,
+      primaryColor: Section.primaryColor,
       secandColor: Section.secandColor,
     };
   },
@@ -32,7 +32,7 @@ export const categoryConverter = {
       snapshot.id,
       data.name,
       data.icon,
-      data.primraryColor,
+      data.primaryColor,
       data.secandColor
     );
   },

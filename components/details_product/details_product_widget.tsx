@@ -1,7 +1,7 @@
-import { faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons/faCartShopping";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PathWidget from "./path_widget";
+import { PiStarFill } from "react-icons/pi";
+import { RiShoppingBasket2Fill } from "react-icons/ri";
+import { FaHeart } from "react-icons/fa";
 
 export default function DetailsProductWidget({
   params,
@@ -23,44 +23,53 @@ export default function DetailsProductWidget({
               <div className="text-slate-600 text-xl pb-2 font-black leading-10">
                 شحن شدات بابجي
               </div>
-              <div className="text-blue-800 text-3xl font-bold leading-loose">
-                $99
+              <div className="flex flex-row justify-center items-center">
+                <div className="flex flex-row px-2">
+                  <span className="text-slate-400 text-xl font-normal line-through tracking-tight">
+                    99.00
+                  </span>
+                  <span className="text-slate-400 text-xl font-bold  line-through tracking-tight">
+                    $
+                  </span>
+                </div>
+                <div className="text-blue-800 text-4xl font-bold leading-loose">
+                  $88
+                </div>
               </div>
             </div>
             {/*------------- Rate STARS ---------------------*/}
             <div className="pb-3 flex flex-row gap-2">
-              <FontAwesomeIcon className="text-orange-400 h-6" icon={faStar} />
-              <FontAwesomeIcon className="text-orange-400 h-6" icon={faStar} />
-              <FontAwesomeIcon className="text-orange-400 h-6" icon={faStar} />
-              <FontAwesomeIcon className="text-orange-400 h-6" icon={faStar} />
-              <FontAwesomeIcon className="text-zinc-200 h-6" icon={faStar} />
+              <PiStarFill className="text-orange-400" size={25} />
+              <PiStarFill className="text-orange-400" size={25} />
+              <PiStarFill className="text-orange-400" size={25} />
+              <PiStarFill className="text-orange-400" size={25} />
+              <PiStarFill className="text-zinc-200" size={25} />
             </div>
             <div className="w-8 h-0 bg-stone-300 border-2 border-stone-300"></div>
             <div className="text-zinc-800 text-base font-semibold leading-10">
               تفاصيل المنتج
             </div>
-            <div className="w-3/4 text-right text-slate-600 text-sm font-medium leading-10">
+            <div className="w-3/4 text-right text-slate-600 text-sm font-medium leading-10 pb-5">
               هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة
             </div>
             {/*------------- BUTTONS ---------------------*/}
             <div className="flex flex-row justify-start items-center gap-5">
               <div className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer motion-safe:animate-bounce">
-                <FontAwesomeIcon
-                  className="text-white h-4"
-                  icon={faCartShopping}
-                />
+                <RiShoppingBasket2Fill className="text-white" size={25} />
                 <div className="text-white text-base font-bold leading-loose">
-                  اضافة للعربة
+                  اضافة للسله
                 </div>
               </div>
               <div className="w-auto max-h-14 py-3 px-5 rounded-lg border border-orange-400 flex flex-row justify-start items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer">
                 <div className="text-orange-400 text-base font-bold leading-loose">
                   Wishlist
                 </div>
-                <FontAwesomeIcon
+                <FaHeart className="text-orange-400" size={25} />
+
+                {/* <FontAwesomeIcon
                   className="text-orange-400 h-4"
                   icon={faHeart}
-                />
+                /> */}
               </div>
             </div>
           </div>

@@ -2,29 +2,32 @@
 
 // config.autoAddCss = false;
 
-import React from "react";
+import React, { useEffect } from "react";
 import BannerComponent from "@/components/homepage/banner/banner_component";
 import TopBarComponent from "@/components/homepage/topbar/topbar_component";
-import CategriesCarouselComponent from "@/components/homepage/categries_cards/categries_carousel_component";
+import SectionsCarouselComponent from "@/components/homepage/sections_cards/sections_carousel_component";
 import SectionMoreWidget from "@/components/homepage/more_products/section_more_component";
 import GamesCardsComponent from "@/components/homepage/game_cards/games_cards_component";
 import MostSalesComponent from "@/components/homepage/most_sales/most_sales_component";
 import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_component";
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import SpacerWidget from "@/components/common/spacer_widget";
-import MainNavBarComponent from "@/components/homepage/main_navbar/main_navbar_component";
 import Navbar from "@/components/common/Navbar";
 
 export default async function Home() {
-  const data = await getData();
+  // const data = await getData();
 
   return (
     <>
       <TopBarComponent />
       <Navbar />
       {/* <MainNavBarComponent /> */}
+
+      {/* --------------- Done --------------- */}
       <BannerComponent />
-      <CategriesCarouselComponent />
+
+      {/* --------------- Done --------------- */}
+      <SectionsCarouselComponent />
       <SpacerWidget />
       <GamesCardsComponent />
       <SpacerWidget />

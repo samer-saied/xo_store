@@ -8,10 +8,10 @@ export default function PathWidget({ urlPaths }) {
     <div className="w-10/12 mx-auto pt-5">
       {/*------------- PATH TEXT ---------------------*/}
       <div className=" w-full h-11 pb-2 border-b border-zinc-200 justify-start items-center gap-2.5 inline-flex">
-        <div className="flex flex-row justify-start items-center px-10">
+        <div className="flex flex-row justify-start items-center">
           <TbHome className=" text-MainBlueColor" size={25} />
           <Link href={"/"} key={"home"}>
-            <div className=" px-2 text-MainBlueColor text-base font-normal leading-normal">
+            <div className=" px-2 text-MainBlueColor md:text-base text-sm font-normal leading-normal">
               الصفحة الرئيسية
             </div>
           </Link>
@@ -19,7 +19,7 @@ export default function PathWidget({ urlPaths }) {
             /
           </div>
           {/* <Link href={paths.link} key={paths.name}> */}
-            <div className=" px-2 text-amber-500 text-base font-normal leading-normal">
+            <div className=" px-2 text-amber-500 md:text-base text-sm font-normal leading-normal">
               {urlPaths.name}
             </div>
           {/* </Link> */}

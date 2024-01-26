@@ -11,7 +11,7 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   return (
-    <div className="flex justify-between items-center w-full h-full border-gray-100 border-b-2 bg-white nav px-4 py-2 md:px-10 lg:px-20">
+    <div className="flex justify-between items-center w-full border-gray-100 border-b-2 bg-white nav px-4 py-2 md:px-10 lg:px-20">
       <div>
         <h1 className="text-5xl font-signature ml-2">
           <a href="/">
@@ -42,22 +42,22 @@ const Navbar = () => {
             <div className="text-center text-zinc-400 text-sm font-normal ">
               Arabic
             </div>
-            <TbWorld size={25} className="text-zinc-400 mx-2" />
+            <TbWorld size={25} className="text-zinc-400 mx-1" />
           </div>
 
-          <li className={`cursor-pointer capitalize hover:scale-105`}>
+          <li className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}>
             <Link href={"/login"}>
-              <CiUser size={25} className="text-zinc-400 mx-2" />
+              <CiUser size={25} className=" m-2" />
             </Link>
           </li>
 
 
-          <li className={`cursor-pointer capitalize hover:scale-105`}>
+          <li className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}>
             <Link
-              className="flex flex-row justify-center items-center"
+             
               href={"/cart"}
             >
-              <CiShoppingBasket size={25} className=" text-zinc-400" />
+              <CiShoppingBasket size={25} className=" m-2" />
             </Link>
           </li>
 
@@ -83,9 +83,9 @@ const Navbar = () => {
           }
         >
           {nav && (
-            <div className="w-full flex flex-row justify-center items-center pb-5">
+            <div className="w-full flex flex-row justify-center items-center p-5">
               <Image
-                className=" hover:animate-pulse hover:scale-125 hover:ease-in-out"
+                className=" hover:animate-pulse hover:ease-in-out"
                 width={100}
                 height={100}
                 src="/logo/logo.svg"
@@ -100,7 +100,7 @@ const Navbar = () => {
                 key={id}
                 className={
                   nav
-                    ? `px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`
+                    ? `px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`
                     : `hidden`
                 }
               >
@@ -123,7 +123,7 @@ const Navbar = () => {
           {nav && (
             <>
               <li
-                className={`px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`}
+                className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
               >
                 <Link
                   className="flex flex-row justify-center items-center"
@@ -134,7 +134,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li
-                className={`px-4 cursor-pointer capitalize md:py-6 py-2 text-2xl md:text-4xl hover:scale-105`}
+                className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
               >
                 <Link
                   className="flex flex-row justify-center items-center"
@@ -149,6 +149,8 @@ const Navbar = () => {
               </li>
             </>
           )}
+     
+
         </ul>
       }
     </div>

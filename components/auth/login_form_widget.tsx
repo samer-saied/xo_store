@@ -52,7 +52,7 @@ const LoginFormWidget = () => {
   };
 
   return (
-    <div className=" my-32 w-full flex flex-col justify-center items-center">
+    <div className="w-10/12 md:my-32 my-6 mx-auto flex flex-col justify-center items-center">
       <div className="flex flex-col w-full max-w-md px-4 py-8 bg-gradient-to-t from-MainYellowColor to-white rounded-lg shadow sm:px-6 md:px-8 lg:px-10">
         <div className="self-center mb-6 text-3xl font-light text-gray-600 sm:text-2xl ">
           تسجيل الدخول
