@@ -1,4 +1,3 @@
-import React from "react";
 import { CiShoppingBasket } from "react-icons/ci";
 
 export const SpeedSaleCardWidget = () => {

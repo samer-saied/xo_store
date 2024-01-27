@@ -1,14 +1,12 @@
-import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
+
 
 import MostSalesCardWidget from "./most_sales_card_widget";
 import MostSalesCardWidget2 from "./most_sales_card_widget copy";
 import MostSalesCardWidget3 from "./most_sales_card_widget copy 2";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { useState } from "react";
 
 export default function MostSalesComponent() {
   const [swiper, setSwiper] = useState<any | null>(null);
@@ -48,10 +46,10 @@ export default function MostSalesComponent() {
       <Swiper
         // modules={[Pagination]}
         // slidesPerView={3}
-        onSwiper={(swiper) => {
+        onSwiper={(swiper:any) => {
           setSwiper(swiper);
         }}
-        onActiveIndexChange={(swiper) => {
+        onActiveIndexChange={(swiper:any) => {
           console.log("active index is", swiper.activeIndex);
         }}
         pagination={{

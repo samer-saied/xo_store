@@ -1,13 +1,14 @@
-import { FaLock } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+
 import React, { useState, useEffect } from "react";
-import {
+import { auth } from "../../db/firebase_init";
+import { MdEmail } from "react-icons/md";
+import { FaLock } from "react-icons/fa";
+import { 
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
   UserCredential,
-} from "firebase/auth";
-import { auth } from "../../db/firebase_init";
+ } from "firebase/auth";
 
 const LoginFormWidget = () => {
   const [currentUser, setcurrentUser] = useState("");
@@ -71,7 +72,8 @@ const LoginFormWidget = () => {
                   placeholder="البريد الالكتروني"
                 />
                 <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                  <MdEmail size={25} className=" text-MainBlueColor" />
+                  <MdEmail size={25}
+                   className=" text-MainBlueColor" />
                 </span>
               </div>
             </div>
@@ -87,7 +89,8 @@ const LoginFormWidget = () => {
                   placeholder="كلمه المرور"
                 />
                 <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                  <FaLock size={25} className=" text-MainBlueColor" />
+                  <FaLock size={25} 
+                   className=" text-MainBlueColor" />
                 </span>
               </div>
             </div>

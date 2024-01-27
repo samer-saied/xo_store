@@ -1,4 +1,3 @@
-import React from "react";
 import { DefaultCardsCarouselWidget } from "./default_card_widget";
 
 export default function SectionMoreWidget() {

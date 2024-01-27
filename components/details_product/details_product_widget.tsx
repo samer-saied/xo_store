@@ -1,4 +1,4 @@
-import PathWidget from "./path_widget";
+import PathWidget from "../common/path_widget";
 import { PiStarFill } from "react-icons/pi";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";

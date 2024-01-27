@@ -3,7 +3,7 @@
 import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import Navbar from "@/components/common/Navbar";
-import PathWidget from "@/components/details_product/path_widget";
+import PathWidget from "@/components/common/path_widget";
 import CartCardWidget from "@/components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/related_products/related_products_widget";
 

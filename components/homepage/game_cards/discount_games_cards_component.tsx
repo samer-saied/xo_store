@@ -1,15 +1,13 @@
-import React, { useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, Swiper } from "swiper/react";
 import { IoIosArrowForward ,IoIosArrowBack } from "react-icons/io";
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
+import { useState } from "react";
+import DiscountGameCardWidget from "./game_card_widget";
 import "swiper/css";
-import "swiper/css/pagination";
-
-import GameCardWidget from "./game_card_widget";
 
 export default function GamesCardsComponent() {
-  const [swiper, setSwiper] = useState<any | null>(null);
+   const [swiper, setSwiper] = useState<any | null>(null);
 
   return (
     <div className="w-full bg-white">
@@ -23,7 +21,7 @@ export default function GamesCardsComponent() {
             <button
               className="button"
               onClick={() => {
-                swiper.slidePrev();
+                 swiper.slidePrev();
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
@@ -33,7 +31,7 @@ export default function GamesCardsComponent() {
             <button
               className="button mx-1"
               onClick={() => {
-                swiper.slideNext();
+                 swiper.slideNext();
               }}
             >
               <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
@@ -47,10 +45,10 @@ export default function GamesCardsComponent() {
       <Swiper
         // modules={[Pagination]}
         // slidesPerView={3}
-        onSwiper={(swiper) => {
+        onSwiper={(swiper:any) => {
           setSwiper(swiper);
         }}
-        onActiveIndexChange={(swiper) => {
+        onActiveIndexChange={(swiper:any) => {
           console.log("active index is", swiper.activeIndex);
         }}
         pagination={{
@@ -62,38 +60,83 @@ export default function GamesCardsComponent() {
         scrollbar={{ draggable: true }}
         spaceBetween={10}
         breakpoints={{
-          640: { slidesPerView: 3 },
-          1024: { slidesPerView: 5 },
-          1300: { slidesPerView: 6 },
+          300: { slidesPerView: 2.1 },
+          600: { slidesPerView: 3 },
+          800: { slidesPerView: 3.2 },
+          1024: { slidesPerView: 4 },
+          1300: { slidesPerView: 4.8 },
         }}
-        slidesPerView={2.2}
+        // slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
       >
         <SwiperSlide>
-          <GameCardWidget />
+           <DiscountGameCardWidget />
         </SwiperSlide>
+
         <SwiperSlide>
-          <GameCardWidget />
+           <DiscountGameCardWidget />
         </SwiperSlide>
+
         <SwiperSlide>
-          <GameCardWidget />
+           <DiscountGameCardWidget />
         </SwiperSlide>
+
         <SwiperSlide>
-          <GameCardWidget />
+           <DiscountGameCardWidget />
         </SwiperSlide>
-        <SwiperSlide>
-          <GameCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <GameCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <GameCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <GameCardWidget />
-        </SwiperSlide>
-      </Swiper>
+
+        </Swiper>
     </div>
   );
 }
+
+
+
+
+// <Swiper
+// // modules={[Pagination]}
+// slidesPerView={3}
+// onSwiper={(swiper) => {
+//   // setSwiper(swiper);
+// }}
+// onActiveIndexChange={(swiper) => {
+//   console.log("active index is", swiper.activeIndex);
+// }}
+
+// // className="mySwiper"
+// // direction={"horizontal"}
+// // scrollbar={{ draggable: true }}
+// spaceBetween={10}
+// breakpoints={{
+//   640: { slidesPerView: 3 },
+//   1024: { slidesPerView: 5 },
+//   1300: { slidesPerView: 6 },
+// }}
+// // slidesPerView={2.2}
+// onSlideChange={() => console.log("slide change")}
+// >
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// <Swiper>
+//   <DiscountGameCardWidget />
+// </Swiper>
+// </Swiper>

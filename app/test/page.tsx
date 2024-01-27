@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import Image from "@/node_modules/next/image";
+import React, { useState, useEffect } from "@/node_modules/@types/react";
 import {
   onAuthStateChanged,
   signOut,
   signInWithEmailAndPassword,
   UserCredential,
-} from "firebase/auth";
+} from "@/node_modules/firebase/auth/dist/auth";
 import { auth } from "../../db/firebase_init";
 
 export default function Home() {

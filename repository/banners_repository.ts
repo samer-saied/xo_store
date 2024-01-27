@@ -5,7 +5,7 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Banner, bannerConverter } from "@/models/banner_model";
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "@/node_modules2/firebase/firestore/dist/firestore";
 
 const bannersModelName: String = "banners";
 

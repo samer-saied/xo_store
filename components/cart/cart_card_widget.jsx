@@ -1,4 +1,3 @@
-import { Section } from "@/models/section_model";
 import {
   AddOneSection,
   GetAllSections,

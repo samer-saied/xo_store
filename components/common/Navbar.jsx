@@ -1,11 +1,11 @@
-import Link from "next/link";
-import React, { useState } from "react";
 import { navBarLinks } from "@/components/common/navbar_strings";
-import Image from "next/image";
 import { TbWorld } from "react-icons/tb";
 import { CiBookmark, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
+import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);

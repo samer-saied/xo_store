@@ -1,6 +1,6 @@
 import { Banner } from '@/models/banner_model'
 import Image from 'next/image'
-import React from 'react'
+
 
 const BannerCardWidget = ({id,title, descrption,image, }:Banner) => {
   return (
@@ -15,7 +15,7 @@ const BannerCardWidget = ({id,title, descrption,image, }:Banner) => {
         {/*  TEXTS */}
         <div className=" md:w-1/2 h-full flex flex-col items-start rounded-3xl pb-5">
           <div className=" py-5 text-right text-neutral-400 md:text-lg text-sm">
-          {descrption}
+          {descrption.trim()}
           </div>
           <button
             className="text-white  bg-MainBlueColor shadow-sm rounded-md py-3 px-5 hover:opacity-90 hover:shadow-md"

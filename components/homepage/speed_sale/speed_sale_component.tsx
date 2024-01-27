@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
 
-import React from "react";
 
 import { SpeedSaleCardWidget } from "./speed_cards_widget";
 
@@ -11,10 +10,10 @@ export default function SpeedSaleComponent() {
   return (
     <div className="w-full h-full md:py-24 py-8 bg-amber-50">
       <Swiper
-        onSwiper={(swiper) => {
+        onSwiper={(swiper:any) => {
           // setSwiper(swiper);
         }}
-        onActiveIndexChange={(swiper) => {
+        onActiveIndexChange={(swiper:any) => {
           console.log("active index is", swiper.activeIndex);
         }}
         pagination={{

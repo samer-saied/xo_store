@@ -1,10 +1,9 @@
-import React from "react";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
 import { Section } from "@/models/section_model";
+import Carousel from "react-multi-carousel";
 
 const responsive = {
   superLargeDesktop: {

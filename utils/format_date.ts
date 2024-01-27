@@ -1,4 +1,4 @@
-import { Timestamp } from "firebase/firestore";
+import { Timestamp } from "@/node_modules2/firebase/firestore/dist/firestore";
 
 export function FormatDate(getSeconds: any, getNanoSeconds: any) {
   let convertDate = new Timestamp(getSeconds, getNanoSeconds);

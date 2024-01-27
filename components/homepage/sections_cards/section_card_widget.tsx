@@ -1,6 +1,5 @@
 import { Section } from "@/models/section_model";
 import Image from "next/image";
-import React from "react";
 
 export default function SectionCardWidget({
   id,

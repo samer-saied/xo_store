@@ -1,3 +1,4 @@
+
 import {
   collection,
   query,
@@ -9,7 +10,8 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
-} from "firebase/firestore";
+}  from "firebase/firestore";
+
 import { db } from "./firebase_init";
 
 export async function handleGetAll(

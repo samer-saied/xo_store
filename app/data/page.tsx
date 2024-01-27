@@ -1,5 +1,5 @@
 "use client";
-import { MouseEventHandler, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 
 import { Category } from "../../models/category_model";
 
