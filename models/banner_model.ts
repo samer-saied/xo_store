@@ -1,4 +1,4 @@
-import { QueryDocumentSnapshot, Timestamp } from "@/node_modules2/firebase/firestore/dist/firestore";
+import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
 export class Banner {
   constructor(
