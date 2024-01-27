@@ -27,7 +27,7 @@ const BannerCardWidget = ({id,title, descrption,image, }:Banner) => {
         {/* //IMAGE BANNER */}
         <div className=" md:absolute md:-left-16 md:bottom-0 flex flex-col justify-end drop-shadow-md ">
           <Image
-            className=" object-scale-down max-h-full drop-shadow-md rounded-md m-auto"
+            className=" object-scale-down h-auto md:max-h-72 drop-shadow-md rounded-md m-auto"
             src={image}
             alt={title}
             width={500}

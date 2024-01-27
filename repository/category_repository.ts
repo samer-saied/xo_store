@@ -5,7 +5,7 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Category, categoryConverter } from "@/models/category_model";
-import { Timestamp } from "@/node_modules2/firebase/firestore/dist/firestore";
+import { Timestamp } from "firebase/firestore";
 
 const categoriesModelName: String = "Categories";
 

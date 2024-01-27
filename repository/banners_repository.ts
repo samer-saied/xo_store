@@ -5,11 +5,11 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Banner, bannerConverter } from "@/models/banner_model";
-import { Timestamp } from "@/node_modules2/firebase/firestore/dist/firestore";
 
 const bannersModelName: String = "banners";
 
 async function GetAllBanners(): Promise<Banner[]> {
+  console.log("-----------HERE-------------------")
   try {
     const banners: Banner[] = [];
     const querySnapshot = await handleGetAll(
