@@ -65,7 +65,7 @@ const Data = () => {
           <div className="defaultClass">{index + 1} :</div>
           <div className="defaultClass">{element.id}</div>
           <div className="defaultClass">{element.image}</div>
-          <div className="defaultClass">{element.sectionId}</div>
+          {/* <div className="defaultClass">{element.sectionId}</div> */}
           <div className="defaultClass">{element.title}</div>
           <div className="defaultClass">
             {FormatDate(element.date.seconds, element.date.nanoseconds)}
