@@ -34,7 +34,7 @@ export default function CategoriesPage({ params }) {
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 md:container mx-auto px-5">
         {categories.map((category) => (
-           <SpeedSaleCardWidget />
+           <SpeedSaleCardWidget key={category.id} />
         ))}
       </div>
 
