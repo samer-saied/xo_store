@@ -5,9 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useState } from "react";
 import DiscountGameCardWidget from "./game_card_widget";
 import "swiper/css";
+import { GetAllCategories } from "@/repository/category_repository";
 
-export default function GamesCardsComponent() {
+export default async function GamesCardsComponent() {
    const [swiper, setSwiper] = useState<any | null>(null);
+//    const categories = await GetAllCategories();
+// console.log(categories)
 
   return (
     <div className="w-full bg-white">
@@ -69,6 +72,7 @@ export default function GamesCardsComponent() {
         // slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
       >
+        
         <SwiperSlide>
            <DiscountGameCardWidget />
         </SwiperSlide>

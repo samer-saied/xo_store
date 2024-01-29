@@ -1,19 +1,25 @@
+"use client";
 import { GetAllBanners } from "@/repository/banners_repository";
 import BannerCardWidget from "./banner_card_widget";
-import { Banner } from "@/models/banner_model";
 
-import SwiperCore from 'swiper';
+import SwiperCore from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Pagination,Autoplay } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
+import { useEffect, useState } from "react";
 
-const BannerComponent = async () => {
-  const banners = await GetAllBanners();
+export default function BannerComponent() {
   SwiperCore.use([Autoplay]);
+
+  const [banners, setbanners] = useState([]);
+
+  useEffect(() => {
+    GetAllBanners().then((banners) => setbanners(banners));
+  }, []);
 
   return (
     <Swiper
@@ -21,7 +27,7 @@ const BannerComponent = async () => {
         type: "bullets",
       }}
       // effect="fade"
-      modules={[ Pagination]}
+      modules={[Pagination]}
       autoplay={true}
       loop={true}
       direction={"horizontal"}
@@ -36,6 +42,4 @@ const BannerComponent = async () => {
       ))}
     </Swiper>
   );
-};
-
-export default BannerComponent;
+}

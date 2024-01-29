@@ -1,3 +1,4 @@
+import { Category } from "@/models/category_model";
 import Link from "next/link";
 
 export default function GameCardWidget() {

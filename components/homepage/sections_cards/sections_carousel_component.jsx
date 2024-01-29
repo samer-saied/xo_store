@@ -2,8 +2,8 @@ import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
-import { Section } from "@/models/section_model";
 import Carousel from "react-multi-carousel";
+import { useEffect, useState } from "react";
 
 const responsive = {
   superLargeDesktop: {
@@ -25,8 +25,17 @@ const responsive = {
   },
 };
 
-export default async function SectionsCarouselComponent() {
-  const result: Section[] = await GetAllSections();
+export default function SectionsCarouselComponent() {
+
+  const [sections, setsections] = useState([]);
+
+  useEffect(() => {
+    GetAllSections().then((sections) => setsections(sections));
+  }, []);
+
+
+
+
 
   return (
     <div className="w-full  bg-gradient-to-l from-white to-sky-100 md:py-8 py-3">
@@ -51,7 +60,7 @@ export default async function SectionsCarouselComponent() {
         // infinite={true}
         removeArrowOnDeviceType={["mobile"]}
       >
-        {result.map((section) => (
+        {sections.map((section) => (
           <SectionCardWidget
             key={section.id}
             id={section.id}

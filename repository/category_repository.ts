@@ -7,9 +7,10 @@ import {
 import { Category, categoryConverter } from "@/models/category_model";
 import { Timestamp } from "firebase/firestore";
 
-const categoriesModelName: String = "Categories";
+const categoriesModelName: String = "categories";
 
 async function GetAllCategories(): Promise<Category[]> {
+  console.log("-----------GET PRODUCTS------------------")
   try {
     const categories: Category[] = [];
     const querySnapshot = await handleGetAll(

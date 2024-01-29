@@ -13,17 +13,16 @@ import Navbar from "@/components/common/Navbar";
 import DiscountGamesCardsComponent from "@/components/homepage/game_cards/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/homepage/sections_cards/sections_carousel_component";
 import Head from "next/head";
+import { GetAllBanners } from "@/repository/banners_repository";
+import { Banner } from "@/models/banner_model";
 
 export default async function Home() {
   return (
     <>
-     <Head>
-        <link
-          rel="stylesheet"
-          href="/css/swiper-bundle.min.css"
-        />
+      <Head>
+        <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
       </Head>
-      
+
       <TopBarComponent />
       <Navbar />
 
@@ -32,11 +31,13 @@ export default async function Home() {
 
       {/* --------------- Done --------------- */}
       <SectionsCarouselComponent />
+      <SpacerWidget />
 
-      <SpacerWidget />
-      <DiscountGamesCardsComponent />
-      <SpacerWidget />
-      <MostSalesComponent />
+      {/* --------------- Done --------------- */}
+      {/* <DiscountGamesCardsComponent />
+      <SpacerWidget /> */}
+
+      {/* <MostSalesComponent /> */}
       <SpacerWidget />
       <SpeedSaleComponent />
       <SpacerWidget />
