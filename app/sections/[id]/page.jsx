@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import {  useSearchParams } from "next/navigation";
 import PathWidget from "@/components/common/path_widget";
 import GameCardWidget from "@/components/homepage/most_sales/game_card_widget";
-import LoadingPage from "@/app/loading";
+import LoadingPage from "@/components/common/loading";
 import { GetCategoriesBySections } from "@/repository/category_repository";
 import NoItemsWidget from "@/components/common/no_items_widget";
 
