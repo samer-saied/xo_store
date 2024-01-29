@@ -22,15 +22,15 @@ const Data = () => {
     setButtonClicked(!buttonClicked);
     const randomNumber = Math.floor(Math.random() * 100) + 1;
 
-    let category: Category = new Category(
-      null,
-      `Los CAiro${randomNumber * 100}`,
-      `LE ${randomNumber * 100}`,
-      `EGP ${randomNumber * 100}`,
-      Timestamp.now()
-    );
+    // let category: Category = new Category(
+    //   null,
+    //   `Los CAiro${randomNumber * 100}`,
+    //   `LE ${randomNumber * 100}`,
+    //   `EGP ${randomNumber * 100}`,
+    //   Timestamp.now()
+    // );
     // Add a new document in collection "cities"
-    await AddOneCategory(category);
+    // await AddOneCategory(category);
   };
 
   // const handleGet = async () => {
