@@ -5,7 +5,8 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Category, categoryConverter } from "@/models/category_model";
-import { Timestamp } from "firebase/firestore";
+import { sectionConverter } from "@/models/section_model";
+import { Timestamp, where } from "firebase/firestore";
 
 const categoriesModelName: String = "categories";
 
@@ -29,6 +30,29 @@ async function GetAllCategories(): Promise<Category[]> {
     throw error; // Re-throw the error for further handling
   }
 }
+
+
+async function GetCategoriesBySections(sectionId:String): Promise<Category[]> {
+  console.log(sectionId)
+  try {
+    const catrgories: Category[] = [];
+
+    const querySnapshot = await handleGetAll(
+      categoriesModelName,
+      where("sectionId","==",sectionId)
+    );
+
+    querySnapshot.forEach((doc) => {
+      const currentCategory = categoryConverter.fromFirestore(doc);
+      catrgories.push(currentCategory);
+    });
+    return catrgories;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
+
 
 async function AddOneCategory(category: Category) {
   try {
@@ -70,4 +94,5 @@ export {
   AddOneCategory,
   UpdateOneCategory,
   DeleteOneCategory,
+  GetCategoriesBySections,
 };

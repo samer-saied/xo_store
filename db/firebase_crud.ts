@@ -1,4 +1,3 @@
-
 import {
   collection,
   query,
@@ -10,7 +9,8 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
-}  from "firebase/firestore";
+  where,
+} from "firebase/firestore";
 
 import { db } from "./firebase_init";
 
@@ -22,6 +22,7 @@ export async function handleGetAll(
   const querySnapshot = await getDocs(q);
   return querySnapshot;
 }
+
 
 export async function handleGetOne(
   collectionName: String,

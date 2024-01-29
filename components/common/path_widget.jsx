@@ -3,7 +3,6 @@ import { TbHome } from "react-icons/tb";
 
 
 export default function PathWidget({ urlPaths }) {
-  console.log(urlPaths);
   return (
     <div className="w-10/12 mx-auto pt-5">
       {/*------------- PATH TEXT ---------------------*/}

@@ -4,6 +4,7 @@ import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
 import Carousel from "react-multi-carousel";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 const responsive = {
   superLargeDesktop: {
@@ -26,16 +27,11 @@ const responsive = {
 };
 
 export default function SectionsCarouselComponent() {
-
   const [sections, setsections] = useState([]);
 
   useEffect(() => {
     GetAllSections().then((sections) => setsections(sections));
   }, []);
-
-
-
-
 
   return (
     <div className="w-full  bg-gradient-to-l from-white to-sky-100 md:py-8 py-3">
@@ -45,9 +41,12 @@ export default function SectionsCarouselComponent() {
           الأقسام الرئيسية
         </div>
         <div className="justify-center items-center flex">
-          <div className="text-slate-600 text-base font-bold font-['Poppins']">
+          <Link
+            href={"/sections"}
+            className="text-slate-600 text-base font-bold "
+          >
             المزيد
-          </div>
+          </Link>
         </div>
       </div>
       {/* /////////////////   Carousel     ///////////////////////// */}
@@ -61,14 +60,7 @@ export default function SectionsCarouselComponent() {
         removeArrowOnDeviceType={["mobile"]}
       >
         {sections.map((section) => (
-          <SectionCardWidget
-            key={section.id}
-            id={section.id}
-            icon={section.icon}
-            name={section.name}
-            primaryColor={section.primaryColor}
-            secandColor={section.secandColor}
-          />
+          <SectionCardWidget key={section.id} {...section} />
         ))}
       </Carousel>
     </div>
