@@ -76,7 +76,7 @@ export default function GamesCardsComponent() {
         onSlideChange={() => console.log("slide change")}
       >
         {products.map((product) => (
-          <SwiperSlide>
+          <SwiperSlide key={product.id}>
             <DiscountGameCardWidget {...product}/>
           </SwiperSlide>
         ))}
