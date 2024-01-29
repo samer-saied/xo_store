@@ -14,8 +14,7 @@ import { GetCategoriesBySections } from "@/repository/category_repository";
 
 export default function CategoriesPage({ params }) {
   const [categories, setCategories] = useState([]);
-  console.log(params.id)
-  console.log(categories)
+
 
   useEffect(() => {
     GetCategoriesBySections(params.id).then((categories) => setCategories(categories));

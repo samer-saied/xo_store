@@ -6,12 +6,11 @@ import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 
 import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 import PathWidget from "@/components/common/path_widget";
 import GameCardWidget from "@/components/homepage/most_sales/game_card_widget";
 import LoadingPage from "@/app/loading";
 import { GetCategoriesBySections } from "@/repository/category_repository";
-import Image from "next/image";
 import NoItemsWidget from "@/components/common/no_items_widget";
 
 export default function SpecificSectionsPage({ params }) {
