@@ -1,7 +1,7 @@
 'use client'
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import MostSalesCardWidget from "./most_sales_card_widget";
+import GameCardWidget from "./game_card_widget";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { GetAllCategories } from "@/repository/category_repository";
@@ -75,7 +75,7 @@ export default function MostSalesComponent() {
       >
         {categories.map((category) => (
             <SwiperSlide key={category.id}>
-              <MostSalesCardWidget {...category}/>
+              <GameCardWidget {...category}/>
             </SwiperSlide>
         ))}
 

@@ -2,8 +2,7 @@ import "react-multi-carousel/lib/styles.css";
 import { Category } from "@/models/category_model";
 import Image from "next/image";
 
-export default function MostSalesCardWidget(category: Category) {
-  console.log(category.sectionId.id);
+export default function GameCardWidget(category: Category) {
 
 
   return (
