@@ -1,11 +1,13 @@
-import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import { DocumentReference, QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
 export class Category {
   constructor(
     public id: string | null,
-    public sectionId: string,
+    public sectionId: DocumentReference,
     public title: string,
     public image: string,
+    public primaryColor: string,
+    public secandColor: string,
     public date: Timestamp
   ) {}
 
@@ -22,6 +24,8 @@ export const categoryConverter = {
       sectionId: Category.sectionId,
       title: Category.title,
       image: Category.image,
+      primaryColor: Category.primaryColor,
+      secandColor: Category.secandColor,
       date: Category.date,
     };
   },
@@ -33,6 +37,8 @@ export const categoryConverter = {
       data.sectionId,
       data.title,
       data.image,
+      data.primaryColor,
+      data.secandColor,
       data.date
     );
   },

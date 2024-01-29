@@ -1,23 +1,27 @@
+// 'use client'
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import MostSalesCardWidget from "./most_sales_card_widget";
-import MostSalesCardWidget2 from "./most_sales_card_widget copy";
-import MostSalesCardWidget3 from "./most_sales_card_widget copy 2";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useState } from "react";
-import { GetAllCategories } from "@/repository/category_repository";
+import { useEffect, useState } from "react";
+import DiscountGameCardWidget from "./game_card_widget";
+import "swiper/css";
+import { GetAllProducts } from "@/repository/products_repository";
 
-export default async function MostSalesComponent() {
-  const [swiper, setSwiper] = useState<any | null>(null);
-  const categories = await GetAllCategories();
-  console.log(categories);
-  
+export default function GamesCardsComponent() {
+  const [swiper, setSwiper] = useState();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    GetAllProducts().then((products) => setProducts(products));
+  }, []);
+
+
   return (
     <div className="w-full bg-white">
       {/* /////////////////   TITLE     ///////////////////////// */}
       <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
         <div className="text-right text-zinc-600 text-xl md:text-2xl font-bold leading-[48px]">
-          الأكثر مبيعا
+          خصومات حصرية
         </div>
         <div className="justify-center items-center flex">
           <div className="button-wrapper">
@@ -27,7 +31,7 @@ export default async function MostSalesComponent() {
                 swiper.slidePrev();
               }}
             >
-              <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
+              <div className=" px-2 py-1 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
                 <IoIosArrowForward size={25} />
               </div>
             </button>
@@ -37,7 +41,7 @@ export default async function MostSalesComponent() {
                 swiper.slideNext();
               }}
             >
-              <div className=" px-3 py-2 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
+              <div className=" px-2 py-1 bg-white rounded-lg shadow border border-gray-300 justify-center items-center gap-2 inline-flex">
                 <IoIosArrowBack size={25} />
               </div>
             </button>
@@ -47,10 +51,10 @@ export default async function MostSalesComponent() {
       <Swiper
         // modules={[Pagination]}
         // slidesPerView={3}
-        onSwiper={(swiper: any) => {
+        onSwiper={(swiper) => {
           setSwiper(swiper);
         }}
-        onActiveIndexChange={(swiper: any) => {
+        onActiveIndexChange={(swiper) => {
           console.log("active index is", swiper.activeIndex);
         }}
         pagination={{
@@ -71,37 +75,11 @@ export default async function MostSalesComponent() {
         // slidesPerView={2.2}
         onSlideChange={() => console.log("slide change")}
       >
-        {categories.map((category) => (
-          <>
-            <SwiperSlide key={category.id}>
-              <MostSalesCardWidget3 {...category}/>
-            </SwiperSlide>
-          </>
+        {products.map((product) => (
+          <SwiperSlide>
+            <DiscountGameCardWidget {...product}/>
+          </SwiperSlide>
         ))}
-
-        {/* <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <MostSalesCardWidget2 />
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide>
-        <SwiperSlide>
-          <MostSalesCardWidget />
-        </SwiperSlide> */}
       </Swiper>
     </div>
   );

@@ -14,7 +14,7 @@ export class Product {
     public rate: number,
     public exclusive: boolean,
     public todayOffer: boolean,
-    public date: Timestamp
+    public date: String
   ) {}
 
   toString() {
@@ -23,7 +23,7 @@ export class Product {
 }
 
 // Firestore data converter
-export const categoryConverter = {
+export const productConverter = {
   toFirestore: (product: Product) => {
     return {
       //  id: Category.id ? Category.id : undefined,

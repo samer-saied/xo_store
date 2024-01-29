@@ -1,40 +1,44 @@
-import { Category } from "@/models/category_model";
+import { Product } from "@/models/product_model";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function GameCardWidget() {
+export default function GameCardWidget(product: Product) {
+
   return (
-    <Link href={"/products/00"}>
-      <div className=" h-auto flex flex-col mx-1">
-        <img
-          className=" h-50 md:h-52 rounded-2xl "
-          src="https://via.placeholder.com/244x210"
+    <Link href={"/products/" + product.id}>
+      <div className=" h-auto flex flex-col mx-1 ">
+        <Image
+          alt={product.title}
+         width={300}
+         height={300}
+          className=" h-52 md:h-52 rounded-2xl border p-5 hover:shadow-md"
+          src={product.image}
         />
-        <div className="flex flex-row items-center justify-center">
-          <div className="w-1/2 flex flex-col justify-center items-center">
+        <div className="flex flex-row items-center justify-center px-2 pt-2">
+          <div className="w-3/4 flex flex-col justify-center items-start">
             <div className="text-blue-900 md:text-base text-sm font-bold">
-              شحن يلا لودو
+              {product.title}
             </div>
-            <div className="text-stone-500 md:text-sm text-sm font-normal">
-              {" "}
-              50,000 جوهرة
+            <div className="text-stone-500 md:text-sm text-sm font-normal line-clamp-2">
+              {product.details}
             </div>
           </div>
-          <div className="w-1/2 flex flex-col justify-center items-center">
+          <div className="w-1/4 flex flex-col justify-center items-center">
             <div className="flex flex-row">
-              <span className="text-orange-400 md:text-base text-xs font-bold font-['Inter'] tracking-tight">
+              <span className="text-orange-400 md:text-base text-xs font-bold tracking-tight">
                 ج.م
               </span>
-              <span className="text-orange-400 md:text-base text-xs font-semibold font-['Inter'] tracking-tight">
-                44.00
+              <span className="text-orange-400 md:text-lg text-base font-semibold tracking-tight px-1">
+                {product.currentPrice}
               </span>
             </div>
             <div className="flex flex-row">
               <div>
-                <span className="text-slate-400 text-xs font-bold font-['Inter'] line-through tracking-tight">
+                <span className="text-slate-400 text-xs font-bold line-through tracking-tight">
                   ج.م
                 </span>
-                <span className="text-slate-400 text-xs font-normal font-['Inter'] line-through tracking-tight">
-                  88.00
+                <span className="text-slate-400 text-base font-normal line-through tracking-tight px-1">
+                  {product.prePrice}
                 </span>
               </div>
             </div>

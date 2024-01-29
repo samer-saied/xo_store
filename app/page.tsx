@@ -13,8 +13,7 @@ import Navbar from "@/components/common/Navbar";
 import DiscountGamesCardsComponent from "@/components/homepage/game_cards/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/homepage/sections_cards/sections_carousel_component";
 import Head from "next/head";
-import { GetAllBanners } from "@/repository/banners_repository";
-import { Banner } from "@/models/banner_model";
+
 
 export default async function Home() {
   return (
@@ -26,19 +25,21 @@ export default async function Home() {
       <TopBarComponent />
       <Navbar />
 
-      {/* --------------- Done --------------- */}
+      {/* --------------- Banners Models --------------- */}
       <BannerComponent />
 
-      {/* --------------- Done --------------- */}
+      {/* --------------- Sections Models --------------- */}
       <SectionsCarouselComponent />
       <SpacerWidget />
 
-      {/* --------------- Done --------------- */}
-      {/* <DiscountGamesCardsComponent />
-      <SpacerWidget /> */}
-
-      {/* <MostSalesComponent /> */}
+      {/* --------------- Products Models - Cards  --------------- */}
+      <DiscountGamesCardsComponent />
       <SpacerWidget />
+
+      {/* --------------- Categories Models - Games  --------------- */}
+      <MostSalesComponent />
+      <SpacerWidget />
+
       <SpeedSaleComponent />
       <SpacerWidget />
       <SectionMoreWidget />
