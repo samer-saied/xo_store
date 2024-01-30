@@ -66,7 +66,7 @@ export default function SpeedSaleComponent() {
           {/*--------- Other Cards ------------*/}
 
           {products.map((product) => (
-            <SwiperSlide>
+            <SwiperSlide key={product.id}>
               <SpeedSaleCardWidget product={product} />
             </SwiperSlide>
           ))}

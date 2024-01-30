@@ -62,11 +62,11 @@ export default function DetailsProductWidget({
             </div>
             {/*------------- Rate STARS ---------------------*/}
             <div className="pb-3 flex flex-row gap-2">
-              {stars.map((star) =>
+              {stars.map((star,index) =>
                 star == 1 ? (
-                  <PiStarFill className="text-orange-400" size={25} />
+                  <PiStarFill key={index} className="text-orange-400" size={25} />
                 ) : (
-                  <PiStarFill className="text-zinc-200" size={25} />
+                  <PiStarFill key={index}  className="text-zinc-200" size={25} />
                 )
               )}
             
