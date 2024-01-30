@@ -1,11 +1,13 @@
 import "react-multi-carousel/lib/styles.css";
 import { Category } from "@/models/category_model";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function GameCardWidget(category: Category) {
 
 
   return (
+    <Link href={"/categories/"+category.id}>
     <div
       style={{
         backgroundImage: `linear-gradient(to bottom,${category.primaryColor}, ${category.secandColor})`,
@@ -22,5 +24,6 @@ export default function GameCardWidget(category: Category) {
         />
       </div>
     </div>
+    </Link>
   );
 }

@@ -9,7 +9,7 @@ import RelatedProductsWidget from "@/components/related_products/related_product
 
 
 const urlPaths = 
-  { name: "سلة المشتريات", link: "/cart" };
+  [{ name: "سلة المشتريات", link: "/cart" }];
 
 const CartPage = () => {
   return (

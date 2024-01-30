@@ -9,18 +9,17 @@ import { useEffect, useState } from "react";
 import PathWidget from "@/components/common/path_widget";
 import { GetProductsByCategory } from "@/repository/products_repository";
 import { SpeedSaleCardWidget } from "@/components/homepage/speed_sale/speed_cards_widget";
-import { GetCategoriesBySections } from "@/repository/category_repository";
 
 
-export default function CategoriesPage({ params }) {
-  const [categories, setCategories] = useState([]);
+export default function CategoriesPage( params ) {
+  const [products, setCategories] = useState([]);
 
 
   useEffect(() => {
-    GetCategoriesBySections(params.id).then((categories) => setCategories(categories));
+    GetProductsByCategory(params.id).then((products) => setCategories(products));
   }, []);
 
-  const urlPaths = { name: "المنتجات الرئيسية", link: "/products/" + "product.id" };
+  const urlPaths = [{ name: "المنتجات الرئيسية", link: "/products/" + "product.id" }];
 
   return (
     <>
@@ -32,9 +31,9 @@ export default function CategoriesPage({ params }) {
       <PathWidget urlPaths={urlPaths} />
 
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-      <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-2 md:container mx-auto px-5">
-        {categories.map((category) => (
-           <SpeedSaleCardWidget key={category.id} />
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:container mx-auto px-5">
+        {products.map((product) => (
+           <SpeedSaleCardWidget key={product.id} product={product} />
         ))}
       </div>
 

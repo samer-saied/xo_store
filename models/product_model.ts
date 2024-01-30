@@ -26,7 +26,7 @@ export class Product {
 export const productConverter = {
   toFirestore: (product: Product) => {
     return {
-      //  id: Category.id ? Category.id : undefined,
+      // id: product.id ? product.id : undefined,
       categoryId: product.categoryId,
       sectionId: product.sectionId,
       title: product.title,
@@ -43,6 +43,7 @@ export const productConverter = {
   },
 
   fromFirestore: (snapshot: QueryDocumentSnapshot, options?: any) => {
+
     const data = snapshot.data(options);
     return new Product(
       snapshot.id,

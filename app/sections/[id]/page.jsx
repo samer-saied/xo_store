@@ -6,12 +6,13 @@ import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 
 import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
-import {  useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import PathWidget from "@/components/common/path_widget";
 import GameCardWidget from "@/components/homepage/most_sales/game_card_widget";
 import LoadingPage from "@/components/common/loading";
 import { GetCategoriesBySections } from "@/repository/category_repository";
 import NoItemsWidget from "@/components/common/no_items_widget";
+import loading from "@/app/loading";
 
 export default function SpecificSectionsPage({ params }) {
   const query = useSearchParams();
@@ -19,11 +20,22 @@ export default function SpecificSectionsPage({ params }) {
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    GetCategoriesBySections(params.id).then((categories) =>
-      setCategories(categories)
-    );
-    setLoading(false);
+    GetCategoriesBySections(params.id).then((categories) => {
+      setCategories(categories);
+      setLoading(false);
+    });
   }, []);
+
+  const urls = [
+    {
+      name: "الأقسام الرئيسية",
+      link: "/sections/",
+    },
+    {
+      name: query.get("name"),
+      link: "",
+    },
+  ];
 
   return (
     <>
@@ -32,28 +44,18 @@ export default function SpecificSectionsPage({ params }) {
       <SpacerWidget />
 
       {/*------------- PATH TEXT ---------------------*/}
-      <PathWidget
-        urlPaths={{
-          name: query.get("name"),
-          link: "/products/" + "product.id",
-        }}
-      />
+      <PathWidget urlPaths={urls} />
 
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-
-      {!isLoading && categories.length > 0 ? (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-2 md:container mx-auto px-5">
+      {isLoading && <LoadingPage />}
+      {!isLoading && categories.length != 0 && (
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-2 md:container mx-auto px-5">
           {categories.map((category) => (
             <GameCardWidget key={category.id} {...category} />
           ))}
         </div>
-      ) : (
-        <NoItemsWidget />
       )}
-
-      {isLoading ? <LoadingPage /> : <></>}
-
-
+      {!isLoading && categories.length == 0 && <NoItemsWidget />}
       <SpacerWidget />
       <FooterComponent />
     </>

@@ -10,7 +10,7 @@ import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_comp
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import SpacerWidget from "@/components/common/spacer_widget";
 import Navbar from "@/components/common/Navbar";
-import DiscountGamesCardsComponent from "@/components/homepage/game_cards/discount_games_cards_component";
+import DiscountGamesCardsComponent from "@/components/homepage/discounts/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/homepage/sections_cards/sections_carousel_component";
 import Head from "next/head";
 
@@ -18,9 +18,9 @@ import Head from "next/head";
 export default async function Home() {
   return (
     <>
-      <Head>
+      {/* <Head>
         <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
-      </Head>
+      </Head> */}
 
       <TopBarComponent />
       <Navbar />

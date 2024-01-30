@@ -1,10 +1,9 @@
-
-const loadingPage = () => {
+const LoadingPage = () => {
   return (
-    <div className=" w-screen h-screen flex flex-col justify-center items-center">
+    <div className=" h-96 flex flex-col justify-center items-center">
       <img className=" w-72" src="/logo/logo-animate.gif" alt="" />
     </div>
-  )
-}
+  );
+};
 
-export default loadingPage
+export default LoadingPage;

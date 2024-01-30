@@ -7,7 +7,6 @@ export default function SectionCardWidget(section: Section) {
 
   return (
     <Link
-      // as={`/sections/${section.id}`}
       href={{
         pathname: "/sections/" + section.id ,
         query: { name: section.name.toString() },
@@ -18,7 +17,7 @@ export default function SectionCardWidget(section: Section) {
         style={{
           backgroundImage: `linear-gradient(to bottom,${section.primaryColor}, ${section.secandColor})`,
         }}
-        className={`w-auto md:h-56 xl:h-64 h-44 m-2 relative rounded-3xl shadow`}
+        className={`md:w-auto min-w-44 md:h-56 xl:h-64 h-44 m-2 relative rounded-3xl shadow`}
       >
         <div className="group">
           {/* Circle Shapes */}

@@ -23,7 +23,6 @@ export async function handleGetAll(
   return querySnapshot;
 }
 
-
 export async function handleGetOne(
   collectionName: String,
   collectionId: String
@@ -31,7 +30,7 @@ export async function handleGetOne(
   const docRef = doc(db, `${collectionName}`, `${collectionId}`);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    return docSnap.data();
+    return { id: docSnap.id, data: docSnap.data() };
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");

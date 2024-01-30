@@ -3,28 +3,26 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useEffect, useState } from "react";
-import DiscountGameCardWidget from "./game_card_widget";
+import DiscountGameCardWidget from "./category_card_widget";
 import "swiper/css";
-import { GetAllProducts } from "@/repository/products_repository";
+import { GetAllProducts, GetExclusiveProducts } from "@/repository/products_repository";
 
 export default function GamesCardsComponent() {
-  const [isLoading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [swiper, setSwiper] = useState();
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    GetAllProducts().then((products) => {
-      setProducts(products);
+    GetExclusiveProducts().then((productsData) => {
+      setProducts(productsData);
       setLoading(false);
     });
   }, []);
 
   return (
     <>
-      {isLoading ? (
-        <div>Loading</div>
-      ) : (
-        <div className="w-full bg-white">
+      {!loading && (
+        <div className="w-full bg-white py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
             <div className="text-right text-zinc-600 text-xl md:text-2xl font-bold leading-[48px]">

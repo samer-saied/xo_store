@@ -12,9 +12,19 @@ export default function DetailsProductWidget({
   params: { id: string };
   product: Product;
 }) {
-  const urlPaths = { name: product.title, link: "/products/" + product.id };
-  console.log(product.image)
-  console.log(product)
+  
+  const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
+
+  let stars = [];
+  for (let index = 0; index < 5; index++) {
+    if (index < product.rate) {
+      stars.push(1);
+    } else {
+      stars.push(0);
+    }
+  }
+
+
   return (
     <>
       {/*------------- PATH TEXT ---------------------*/}
@@ -22,8 +32,14 @@ export default function DetailsProductWidget({
       <div className="w-10/12 mx-auto">
         {/*------------------- PRODUCT DETAILS -------------------*/}
         <div className="flex md:flex-row flex-col items-center justify-evenly my-6">
-          <div className="md:w-6/12 w-full h-96 bg-neutral-200 rounded-2xl" >
-            <Image width={300} height={300} src={product?.image} alt={product.title} className="h-full w-full object-cover rounded-2xl shadow-md" />
+          <div className="md:w-6/12 w-full h-96 bg-neutral-200 rounded-2xl">
+            <Image
+              width={300}
+              height={300}
+              src={product?.image}
+              alt={product.title}
+              className="h-full w-full object-contain rounded-2xl shadow-md"
+            />
           </div>
           <div className="md:w-6/12 w-full md:h-96 flex flex-col justify-around md:px-10">
             <div className="flex flex-row justify-between items-center">
@@ -40,25 +56,27 @@ export default function DetailsProductWidget({
                   </span>
                 </div>
                 <div className="text-blue-800 text-4xl font-bold leading-loose">
-                {product.currentPrice}
+                  {product.currentPrice}
                 </div>
               </div>
             </div>
             {/*------------- Rate STARS ---------------------*/}
             <div className="pb-3 flex flex-row gap-2">
-             
-              <PiStarFill className="text-orange-400" size={25} />
-              <PiStarFill className="text-orange-400" size={25} />
-              <PiStarFill className="text-orange-400" size={25} />
-              <PiStarFill className="text-orange-400" size={25} />
-              <PiStarFill className="text-zinc-200" size={25} />
+              {stars.map((star) =>
+                star == 1 ? (
+                  <PiStarFill className="text-orange-400" size={25} />
+                ) : (
+                  <PiStarFill className="text-zinc-200" size={25} />
+                )
+              )}
+            
             </div>
             <div className="w-8 h-0 bg-stone-300 border-2 border-stone-300"></div>
             <div className="text-zinc-800 text-base font-semibold leading-10">
               تفاصيل المنتج
             </div>
             <div className="w-3/4 text-right text-slate-600 text-sm font-medium leading-10 pb-5">
-            {product.details}
+              {product.details}
             </div>
             {/*------------- BUTTONS ---------------------*/}
             <div className="flex flex-row justify-start items-center gap-5">
@@ -112,8 +130,7 @@ export default function DetailsProductWidget({
           وصف المنتج
         </div>
         <div className="w-full text-right text-slate-600 text-base font-medium leading-10">
-        {product.descrption}
-
+          {product.descrption}
         </div>
       </div>
     </>

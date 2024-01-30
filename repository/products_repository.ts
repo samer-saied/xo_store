@@ -6,17 +6,14 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Product, productConverter } from "@/models/product_model";
-import { where } from "firebase/firestore";
+import { DocumentData, where } from "firebase/firestore";
 
 const productsModelName: String = "products";
 
 async function GetAllProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
-    const querySnapshot = await handleGetAll(
-      productsModelName,
-      null
-    );
+    const querySnapshot = await handleGetAll(productsModelName, null);
 
     querySnapshot.forEach((doc) => {
       const currentProduct = productConverter.fromFirestore(doc);
@@ -30,13 +27,27 @@ async function GetAllProducts(): Promise<Product[]> {
 }
 
 
+async function GetProductsByCategory(categoryId:String): Promise<Product[]> {
+  try {
+    const products: Product[] = [];
+    const querySnapshot = await handleGetAll(productsModelName, null);
 
+    querySnapshot.forEach((doc) => {
+      const currentProduct = productConverter.fromFirestore(doc);
+      products.push(currentProduct);
+    });
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
 async function GetTodayDealProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-      where("todayOffer","==","true")
+      where("todayOffer", "==", true)
     );
 
     querySnapshot.forEach((doc) => {
@@ -49,14 +60,13 @@ async function GetTodayDealProducts(): Promise<Product[]> {
     throw error; // Re-throw the error for further handling
   }
 }
-
 
 async function GetExclusiveProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-      where("exclusive","==","true")
+      where("exclusive", "==", true)
     );
 
     querySnapshot.forEach((doc) => {
@@ -72,27 +82,27 @@ async function GetExclusiveProducts(): Promise<Product[]> {
 
 async function GetOneProduct(productId: String): Promise<Product | void> {
   try {
-    const querySnapshot = await handleGetOne(
+    const querySnapshot: DocumentData | undefined = await handleGetOne(
       productsModelName,
       productId
       // where("country", ">=", "EGP 3900")
     );
     const currentProduct = new Product(
       querySnapshot?.id,
-      querySnapshot?.categoryId,
-      querySnapshot?.sectionId,
-      querySnapshot?.title,
-      querySnapshot?.image,
-      querySnapshot?.prePrice,
-      querySnapshot?.currentPrice,
-      querySnapshot?.descrption,
-      querySnapshot?.details,
-      querySnapshot?.rate,
-      querySnapshot?.exclusive,
-      querySnapshot?.todayOffer,
-      querySnapshot?.date,
+      querySnapshot?.data.categoryId,
+      querySnapshot?.data.sectionId,
+      querySnapshot?.data.title,
+      querySnapshot?.data.image,
+      querySnapshot?.data.prePrice,
+      querySnapshot?.data.currentPrice,
+      querySnapshot?.data.descrption,
+      querySnapshot?.data.details,
+      querySnapshot?.data.rate,
+      querySnapshot?.data.exclusive,
+      querySnapshot?.data.todayOffer,
+      querySnapshot?.data.date
     );
-     return currentProduct;
+    return currentProduct;
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error; // Re-throw the error for further handling
@@ -143,4 +153,7 @@ export {
   UpdateOneProduct,
   DeleteOneProduct,
   GetOneProduct,
+  GetTodayDealProducts,
+  GetExclusiveProducts,
+  GetProductsByCategory
 };

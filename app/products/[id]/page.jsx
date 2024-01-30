@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import SpacerWidget from "@/components/common/spacer_widget";
 import FooterComponent from "@/components/homepage/footer/footer_component";
@@ -8,31 +8,44 @@ import RelatedProductsWidget from "@/components/related_products/related_product
 
 import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
-import { GetOneProduct, GetAllProducts } from "@/repository/products_repository";
+import {
+  GetOneProduct,
+  GetAllProducts,
+} from "@/repository/products_repository";
+import LoadingPage from "@/components/common/loading";
 
 export default function ProductPage({ params }) {
-
+   console.log(params);
+  const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
-    GetOneProduct("e6RC3MRT0bM9Y3Vhqttb").then((productData) => setProduct(productData));
+    GetOneProduct(params.id).then((productData) => {
+      setProduct(productData);
+      setLoading(false);
+    });
   }, []);
-
 
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
+      {loading ? (
+        <LoadingPage />
+      ) : (
+        <>
+          <TopBarComponent />
+          <Navbar />
 
-      <SpacerWidget />
+          <SpacerWidget />
 
-      <DetailsProductWidget params={params} product={product} />
+          <DetailsProductWidget params={params} product={product} />
 
-      {/*-------------------- RELATED PRODUCTS ---------------*/}
-      <RelatedProductsWidget />
+          {/*-------------------- RELATED PRODUCTS ---------------*/}
+          <RelatedProductsWidget />
 
-      <SpacerWidget />
-      <FooterComponent />
+          <SpacerWidget />
+          <FooterComponent />
+        </>
+      )}
     </>
   );
   //<div>My Post: {params.id}</div>;

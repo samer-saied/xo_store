@@ -15,10 +15,14 @@ import { useEffect, useState } from "react";
 export default function BannerComponent() {
   SwiperCore.use([Autoplay]);
 
+  const [loading, setLoading] = useState(true);
   const [banners, setbanners] = useState([]);
 
   useEffect(() => {
-    GetAllBanners().then((banners) => setbanners(banners));
+    GetAllBanners().then((banners) => {
+      setbanners(banners);
+      setLoading(false);
+    });
   }, []);
 
   return (
@@ -35,7 +39,7 @@ export default function BannerComponent() {
       spaceBetween={30}
       slidesPerView={1}
     >
-      {banners.map((bannerData) => (
+      {!loading && banners.map((bannerData) => (
         <SwiperSlide key={bannerData.id}>
           <BannerCardWidget {...bannerData} />
         </SwiperSlide>
