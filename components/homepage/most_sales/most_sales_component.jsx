@@ -20,6 +20,9 @@ export default function MostSalesComponent() {
 
 
   return (
+
+
+    
     !loading && (
       <div className="w-full bg-gradient-to-r from-white to-sky-100  py-5">
         {/* /////////////////   TITLE     ///////////////////////// */}
@@ -78,7 +81,7 @@ export default function MostSalesComponent() {
         >
           {categories.map((category) => (
             <SwiperSlide key={category.id}>
-              <GameCardWidget {...category} />
+              <GameCardWidget category={category} urls={[{"name":category.title,"link":""}]} />
             </SwiperSlide>
           ))}
         </Swiper>

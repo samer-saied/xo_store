@@ -25,7 +25,7 @@ export default function SectionsCarouselComponent() {
         <div className="w-full  bg-gradient-to-l from-white to-sky-100 md:py-8 py-10">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
-            <div className="text-right text-blue-950 text-2xl md:text-3xl font-bold font-['Almarai'] leading-[56px]">
+            <div className="text-right text-blue-950 text-2xl md:text-3xl font-bold leading-[56px]">
               الأقسام الرئيسية
             </div>
             <div className="justify-center items-center flex">

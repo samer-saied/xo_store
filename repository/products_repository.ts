@@ -30,7 +30,7 @@ async function GetAllProducts(): Promise<Product[]> {
 async function GetProductsByCategory(categoryId:String): Promise<Product[]> {
   try {
     const products: Product[] = [];
-    const querySnapshot = await handleGetAll(productsModelName, null);
+    const querySnapshot = await handleGetAll(productsModelName, where("categoryId","==",categoryId));
 
     querySnapshot.forEach((doc) => {
       const currentProduct = productConverter.fromFirestore(doc);

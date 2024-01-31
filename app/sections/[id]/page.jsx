@@ -12,7 +12,6 @@ import GameCardWidget from "@/components/homepage/most_sales/game_card_widget";
 import LoadingPage from "@/components/common/loading";
 import { GetCategoriesBySections } from "@/repository/category_repository";
 import NoItemsWidget from "@/components/common/no_items_widget";
-import loading from "@/app/loading";
 
 export default function SpecificSectionsPage({ params }) {
   const query = useSearchParams();
@@ -49,9 +48,9 @@ export default function SpecificSectionsPage({ params }) {
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
       {isLoading && <LoadingPage />}
       {!isLoading && categories.length != 0 && (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-2 md:container mx-auto px-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-2 md:container px-5 md:w-9/12 mx-auto md:px-5 w-full">
           {categories.map((category) => (
-            <GameCardWidget key={category.id} {...category} />
+            <GameCardWidget key={category.id} category={category} urls={urls} />
           ))}
         </div>
       )}

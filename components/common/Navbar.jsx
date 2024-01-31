@@ -1,15 +1,24 @@
-import { navBarLinks } from "@/components/common/navbar_strings";
 import { TbWorld } from "react-icons/tb";
 import { CiBookmark, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { GetAllSections } from "@/repository/sections_repository";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [sections, setsections] = useState([]);
 
+  useEffect(() => {
+    GetAllSections().then((sections) => {
+      setsections(sections);
+      setLoading(false);
+    });
+  }, []);
+  console.log(sections);
   return (
     <div className="flex justify-between items-center w-full border-gray-100 border-b-2 bg-white nav px-4 py-2 md:px-10 lg:px-20">
       <div>
@@ -27,13 +36,13 @@ const Navbar = () => {
       </div>
 
       <ul className="hidden  md:flex md:flex-row md:justify-between w-full">
-        <div className="flex flex-row">
-          {navBarLinks.map(({ id, link }) => (
+        <div className="flex flex-row justify-center ">
+          {sections.map(( section, index ) => (
             <li
-              key={id}
-              className="nav-links px-2 lg:px-4 cursor-pointer capitalize font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor py-2 duration-200 link-underline"
+              key={section.id}
+              className="nav-links px-1 lg:px-4 cursor-pointer capitalize md:text-lg text-xs font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor py-2 duration-200 link-underline"
             >
-              <Link href={link}>{link}</Link>
+              <Link href={{pathname:"/sections/" + section.id ,query:{"name":section.name}}}>{section.name}</Link>
             </li>
           ))}
         </div>
@@ -45,23 +54,21 @@ const Navbar = () => {
             <TbWorld size={25} className="text-zinc-400 mx-1" />
           </div>
 
-          <li className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}>
+          <li
+            className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+          >
             <Link href={"/login"}>
               <CiUser size={25} className=" m-2" />
             </Link>
           </li>
 
-
-          <li className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}>
-            <Link
-             
-              href={"/cart"}
-            >
+          <li
+            className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+          >
+            <Link href={"/cart"}>
               <CiShoppingBasket size={25} className=" m-2" />
             </Link>
           </li>
-
-
         </div>
       </ul>
 
@@ -95,9 +102,9 @@ const Navbar = () => {
           )}
           {/*--------------- DYNAMIC MENU -------------------*/}
           {nav &&
-            navBarLinks.map(({ id, link }) => (
+            sections.map((section) => (
               <li
-                key={id}
+                key={section.id}
                 className={
                   nav
                     ? `px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`
@@ -107,10 +114,10 @@ const Navbar = () => {
                 <Link
                   className="flex flex-row justify-center items-center"
                   onClick={() => setNav(!nav)}
-                  href={link}
+                  href={{pathname:"/sections/" + section.id ,query:{"name":section.name}}}
                 >
                   <CiBookmark size={25} className=" text-MainBlueColor mx-2" />
-                  <p> {link}</p>
+                  <p> {section.name}</p>
                 </Link>
               </li>
             ))}
@@ -149,8 +156,6 @@ const Navbar = () => {
               </li>
             </>
           )}
-     
-
         </ul>
       }
     </div>

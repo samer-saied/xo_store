@@ -7,19 +7,17 @@ import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
 import PathWidget from "@/components/common/path_widget";
-import { GetProductsByCategory } from "@/repository/products_repository";
+import { GetTodayDealProducts } from "@/repository/products_repository";
 import { SpeedSaleCardWidget } from "@/components/homepage/speed_sale/speed_cards_widget";
 import LoadingPage from "@/components/common/loading";
 import NoItemsWidget from "@/components/common/no_items_widget";
-import { useSearchParams } from "next/navigation";
 
-export default function CategoriesPage({params}) {
+export default function TodayOffersPage() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const query = useSearchParams();
 
   useEffect(() => {
-    GetProductsByCategory(params.id).then((products) => {
+    GetTodayDealProducts().then((products) => {
       setProducts(products);
       setLoading(false);
     });
@@ -27,11 +25,8 @@ export default function CategoriesPage({params}) {
 
   const urlPaths = [
     {
-      name: "الأقسام الرئيسية",
-      link: "/sections/",
-    }, {
-      name: query.get("category"),
-      link: "/sections/",
+      name:"صفقه اليوم",
+      link: "/today",
     }, 
   ];
 

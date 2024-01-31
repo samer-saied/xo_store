@@ -4,7 +4,7 @@ import { CiShoppingBasket } from "react-icons/ci";
 export const SpeedSaleCardWidget = ({ product }) => {
   return (
     <Link href={"/products/" + product.id} >
-      <div className="border h-auto flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
+      <div className="border h-auto  flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
         <img className=" h-52 md:h-64 rounded-2xl border" src={product.image} />
         <div className="flex flex-row items-center justify-center p-2 ">
           <div className="w-9/12 flex flex-col justify-center items-start pr-1 h-12">

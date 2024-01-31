@@ -1,11 +1,13 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
-
 import { SpeedSaleCardWidget } from "./speed_cards_widget";
 import { useEffect, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
+import { useRouter } from "next/navigation";
+
 
 export default function SpeedSaleComponent() {
+  const router = useRouter()
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
@@ -53,7 +55,12 @@ export default function SpeedSaleComponent() {
                 احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
                 فقط. احصل عليه بسرعة قبل بيعه!
               </h1>
-              <div className=" h-12 bg-blue-950 rounded-lg flex flex-row justify-between px-2.5 mt-8 items-center">
+              <div onClick={(e)=>{
+                e.preventDefault();
+                router.push("/today")
+
+
+              }} className=" cursor-pointer h-12 bg-blue-950 rounded-lg flex flex-row justify-between px-2.5 mt-8 items-center">
                 <div className="text-white md:text-base text-sm font-medium font-['Roboto'] leading-snug">
                   انظر جميع العناصر
                 </div>
