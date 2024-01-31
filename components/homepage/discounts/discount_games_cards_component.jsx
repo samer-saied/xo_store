@@ -3,7 +3,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useEffect, useState } from "react";
-import DiscountGameCardWidget from "./category_card_widget";
+import ProductGameCardWidget from "./product_card_widget";
 import "swiper/css";
 import { GetAllProducts, GetExclusiveProducts } from "@/repository/products_repository";
 
@@ -80,7 +80,7 @@ export default function GamesCardsComponent() {
           >
             {products.map((product) => (
               <SwiperSlide key={product.id}>
-                <DiscountGameCardWidget {...product} />
+                <ProductGameCardWidget {...product} />
               </SwiperSlide>
             ))}
           </Swiper>

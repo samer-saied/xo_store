@@ -6,15 +6,15 @@ export default function GameCardWidget(product: Product) {
 
   return (
     <Link href={"/products/" + product.id}>
-      <div className=" h-auto flex flex-col mx-1 ">
+      <div className=" h-auto flex flex-col mx-1 min-w-44 justify-center items-center">
         <Image
           alt={product.title}
          width={300}
          height={300}
-          className=" h-52 md:h-52 rounded-2xl border p-5 hover:shadow-md"
+          className=" h-52 md:h-64 rounded-2xl border p-5 hover:shadow-md"
           src={product.image}
         />
-        <div className="flex flex-row items-center justify-center px-2 pt-2">
+        <div className="flex flex-row items-center justify-center px-2 pt-2 h-20 w-full">
           <div className="w-3/4 flex flex-col justify-center items-start">
             <div className="text-blue-900 md:text-base text-sm font-bold">
               {product.title}

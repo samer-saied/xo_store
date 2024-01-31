@@ -8,7 +8,7 @@ export default function SectionCardWidget(section: Section) {
   return (
     <Link
       href={{
-        pathname: "/sections/" + section.id ,
+        pathname: "/sections/" + section.id,
         query: { name: section.name.toString() },
       }}
     >
@@ -17,7 +17,7 @@ export default function SectionCardWidget(section: Section) {
         style={{
           backgroundImage: `linear-gradient(to bottom,${section.primaryColor}, ${section.secandColor})`,
         }}
-        className={`md:w-auto min-w-44 md:h-56 xl:h-64 h-44 m-2 relative rounded-3xl shadow`}
+        className={`md:w-auto min-w-42 md:h-56 xl:h-64 h-44 m-2 relative rounded-3xl shadow`}
       >
         <div className="group">
           {/* Circle Shapes */}
@@ -36,23 +36,23 @@ export default function SectionCardWidget(section: Section) {
           </div>
 
           {/* Text - Logo */}
-          <div className="mx-auto  md:h-64 h-44 group-hover:opacity-60 transition delay-150 duration-300 ease-in-out">
-            <div className="flex flex-col justify-center items-center h-full">
-              {/* Text */}
-              <h1 className=" h1/4 text-center text-zinc-100 text-lg md:text-3xl font-extrabold">
-                {section.name}
-              </h1>
-              {/* Icons -Logo */}
-              <div className="h-2/4 w-full flex flex-row justify-center">
-                <Image
-                  width={100}
-                  height={100}
-                  className="p-3 h-full w-auto"
-                  src={section.icon ?? "/logo/logo.png"}
-                  alt={section.name}
-                />
-              </div>
+          <div className="mx-auto md:h-64 h-44 flex flex-col justify-center group-hover:opacity-60 transition delay-150 duration-300 ease-in-out">
+            {/* <div className="flex flex-col justify-center items-center h-full"> */}
+            {/* Text */}
+            <h1 className=" text-center text-zinc-100 text-lg md:text-3xl font-extrabold ">
+              {section.name}
+            </h1>
+            {/* Icons -Logo */}
+            <div className="h-2/4 w-full flex flex-row justify-center ">
+              <Image
+                width={100}
+                height={100}
+                className="p-3 h-full w-auto"
+                src={section.icon ?? "/logo/logo.png"}
+                alt={section.name}
+              />
             </div>
+            {/* </div> */}
           </div>
 
           {/* Circle Shapes */}

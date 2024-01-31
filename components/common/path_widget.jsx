@@ -9,18 +9,18 @@ export default function PathWidget({ urlPaths }) {
         <div className="flex flex-row justify-start items-center">
           <TbHome className=" text-MainBlueColor" size={25} />
           <Link href={"/"} key={"home"}>
-            <div className=" px-2 text-MainBlueColor md:text-base text-sm font-normal leading-normal">
+            <div className=" md:px-2 px-1 text-MainBlueColor md:text-base text-xs font-normal leading-normal">
               الصفحة الرئيسية
             </div>
           </Link>
 
           {urlPaths.map((url) => (
-            <div key={url.name} className="flex flex-row justify-center">
+            <div key={url.name} className="flex flex-row justify-center items-center">
               <div className="text-blue-950 text-base font-medium leading-normal">
                 /
               </div>
               <Link href={url.link} key={url.name}>
-                <div className=" px-2 text-amber-500 md:text-base text-sm font-normal leading-normal">
+                <div className=" md:px-2 px-1 text-amber-500 md:text-base text-xs font-normal leading-normal">
                   {url.name}
                 </div>
               </Link>

@@ -2,34 +2,15 @@ import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
-import Carousel from "react-multi-carousel";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoadingPage from "@/components/common/loading";
-
-const responsive = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 5,
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 3.9,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 2.1,
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 2,
-  },
-};
+import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function SectionsCarouselComponent() {
   const [loading, setLoading] = useState(true);
   const [sections, setsections] = useState([]);
+  const [swiper, setSwiper] = useState();
 
   useEffect(() => {
     GetAllSections().then((sections) => {
@@ -57,19 +38,36 @@ export default function SectionsCarouselComponent() {
             </div>
           </div>
           {/* /////////////////   Carousel     ///////////////////////// */}
-          <Carousel
-            // autoPlay={true}
-            swipeable={true}
-            autoPlaySpeed={1000}
-            responsive={responsive}
-            transitionDuration={500}
-            // infinite={true}
-            removeArrowOnDeviceType={["mobile"]}
+          <Swiper
+            onSwiper={(swiper) => {
+              setSwiper(swiper);
+            }}
+            onActiveIndexChange={(swiper) => {
+              console.log("active index is", swiper.activeIndex);
+            }}
+            pagination={{
+              clickable: true,
+            }}
+            className="mySwiper"
+            direction={"horizontal"}
+            scrollbar={{ draggable: true }}
+            spaceBetween={10}
+            breakpoints={{
+              300: { slidesPerView: 1.8 },
+              600: { slidesPerView: 2.8 },
+              800: { slidesPerView: 3.2 },
+              1024: { slidesPerView: 3.6 },
+              1300: { slidesPerView: 4.1 },
+            }}
+            // slidesPerView={2.2}
+            onSlideChange={() => console.log("slide change")}
           >
             {sections.map((section) => (
-              <SectionCardWidget key={section.id} {...section} />
+              <SwiperSlide key={section.id}>
+                <SectionCardWidget key={section.id} {...section} />
+              </SwiperSlide>
             ))}
-          </Carousel>
+          </Swiper>
         </div>
       )}
       {loading && <LoadingPage />}

@@ -12,7 +12,7 @@ const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner)
     >
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
-      <div className="md:relative bg-gray-100 md:w-9/12 w-11/12 h-64 rounded-3xl pt-3 px-5 md:py-8 drop-shadow-md">
+      <div className="relative bg-gray-100 md:w-9/12 w-11/12 h-64 rounded-3xl pt-3 px-5 md:py-8 drop-shadow-md">
         <div className=" w-8/12">
           <div className="text-right text-slate-500 text-xl md:text-2xl font-bold md:py-8 py-5">
             {title}

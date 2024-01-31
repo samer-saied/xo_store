@@ -4,32 +4,32 @@ import { CiShoppingBasket } from "react-icons/ci";
 export const SpeedSaleCardWidget = ({ product }) => {
   return (
     <Link href={"/products/" + product.id} >
-      <div className=" h-auto flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
+      <div className="border h-auto flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
         <img className=" h-52 md:h-64 rounded-2xl border" src={product.image} />
-        <div className="flex flex-row items-center justify-center p-1">
-          <div className="w-10/12 flex flex-col justify-center items-start pr-2">
+        <div className="flex flex-row items-center justify-center p-2 ">
+          <div className="w-9/12 flex flex-col justify-center items-start pr-1 h-12">
             <div className="text-blue-900 md:text-base text-xs font-bold">
               {product.title}
             </div>
-            <div className="text-stone-500 md:text-sm text-xs font-normal line-clamp-1">
+            <div className="text-stone-500 md:text-sm text-xs font-normal line-clamp-2">
               {product.details}
             </div>
           </div>
-          <div className="w-2/12 flex flex-col justify-center items-center">
+          <div className="w-3/12 flex flex-col justify-center items-start">
             <div className="flex flex-row">
-              <span className="text-orange-400 md:text-base text-xs font-bold font-['Inter'] tracking-tight">
+              <span className="text-orange-400 px-1 md:text-base text-xs font-bold tracking-tight">
                 {product.currentPrice != 0 && "ج.م"}
               </span>
-              <span className="text-orange-400 md:text-base text-xs font-semibold font-['Inter'] tracking-tight">
+              <span className="text-orange-400 md:text-md text-base font-semibold tracking-tight">
                 {product.currentPrice}
               </span>
             </div>
             <div className="flex flex-row">
               <div>
-                <span className="text-slate-400 text-xs font-bold font-['Inter'] line-through tracking-tight">
+                <span className="text-slate-400 px-1 text-xs font-bold line-through tracking-tight">
                   {product.prePrice != 0 && "ج.م"}
                 </span>
-                <span className="text-slate-400 text-xs font-normal font-['Inter'] line-through tracking-tight">
+                <span className="text-slate-400 text-xs font-normal line-through tracking-tight">
                   {product.prePrice != 0 && product.prePrice}
                 </span>
               </div>

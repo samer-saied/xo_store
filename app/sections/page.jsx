@@ -35,7 +35,7 @@ export default function SectionsPage({ params }) {
 
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
       {!loading && sections.length > 0 ? (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2 md:container mx-auto px-5">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 md:gap-2 gap-1 md:w-9/12 mx-auto md:px-5 w-full">
           {sections.map((section) => (
             <SectionCardWidget
               key={section.id}

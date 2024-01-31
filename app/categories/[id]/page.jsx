@@ -31,7 +31,7 @@ export default function CategoriesPage( params ) {
       <PathWidget urlPaths={urlPaths} />
 
       {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:container mx-auto px-5">
+      <div className=" grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-2 md:w-9/12 px-2 mx-auto">
         {products.map((product) => (
            <SpeedSaleCardWidget key={product.id} product={product} />
         ))}
