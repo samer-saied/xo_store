@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import LoadingPage from "@/components/common/loading";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useSpring, animated } from "@react-spring/web";
 
 export default function SectionsCarouselComponent() {
   const [loading, setLoading] = useState(true);
@@ -19,6 +20,14 @@ export default function SectionsCarouselComponent() {
     });
   }, []);
 
+
+///////////// Animation   ///////////////////////
+  const props = useSpring({
+    from: { opacity: 0 , x:-1000},
+    to: { opacity: 1 , x:0},
+  });
+
+  
   return (
     <>
       {!loading && (
@@ -38,6 +47,7 @@ export default function SectionsCarouselComponent() {
             </div>
           </div>
           {/* /////////////////   Carousel     ///////////////////////// */}
+
           <Swiper
             onSwiper={(swiper) => {
               setSwiper(swiper);
@@ -64,7 +74,9 @@ export default function SectionsCarouselComponent() {
           >
             {sections.map((section) => (
               <SwiperSlide key={section.id}>
-                <SectionCardWidget key={section.id} {...section} />
+                <animated.div style={props}>
+                  <SectionCardWidget key={section.id} {...section} />
+                </animated.div>
               </SwiperSlide>
             ))}
           </Swiper>

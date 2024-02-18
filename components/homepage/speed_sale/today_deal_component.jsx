@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
-import { SpeedSaleCardWidget } from "./speed_cards_widget";
+import { TodayDealCardWidget } from "./today_deal_card_widget";
 import { useEffect, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
 import { useRouter } from "next/navigation";
@@ -74,7 +74,7 @@ export default function SpeedSaleComponent() {
 
           {products.map((product) => (
             <SwiperSlide key={product.id}>
-              <SpeedSaleCardWidget product={product} />
+              <TodayDealCardWidget product={product} />
             </SwiperSlide>
           ))}
         </Swiper>

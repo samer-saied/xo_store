@@ -78,9 +78,9 @@ export default function GamesCardsComponent() {
             // slidesPerView={2.2}
             onSlideChange={() => console.log("slide change")}
           >
-            {products.map((product) => (
+            {products.map((product , index) => (
               <SwiperSlide key={product.id}>
-                <ProductGameCardWidget {...product} />
+                <ProductGameCardWidget product={product} index={index} />
               </SwiperSlide>
             ))}
           </Swiper>

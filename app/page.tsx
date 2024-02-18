@@ -6,7 +6,7 @@ import BannerComponent from "@/components/homepage/banner/banner_component";
 import TopBarComponent from "@/components/homepage/topbar/topbar_component";
 import SectionMoreWidget from "@/components/homepage/more_products/section_more_component";
 import MostSalesComponent from "@/components/homepage/most_sales/most_sales_component";
-import SpeedSaleComponent from "@/components/homepage/speed_sale/speed_sale_component";
+import TodayDealComponent from "@/components/homepage/speed_sale/today_deal_component";
 import FooterComponent from "@/components/homepage/footer/footer_component";
 import SpacerWidget from "@/components/common/spacer_widget";
 import Navbar from "@/components/common/Navbar";
@@ -14,9 +14,10 @@ import DiscountGamesCardsComponent from "@/components/homepage/discounts/discoun
 import SectionsCarouselComponent from "@/components/homepage/sections_cards/sections_carousel_component";
 import Head from "next/head";
 
-
-export default async function Home() {
+export default function Home() {
   return (
+    // <animated.div       onLoad={handleClick}
+    // style={springs}>
     <>
       {/* <Head>
         <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
@@ -40,7 +41,7 @@ export default async function Home() {
       <MostSalesComponent />
       <SpacerWidget />
 
-      <SpeedSaleComponent />
+      <TodayDealComponent />
       <SpacerWidget />
       <SectionMoreWidget />
       <SpacerWidget />
