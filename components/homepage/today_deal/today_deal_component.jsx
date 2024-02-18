@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
 import { useRouter } from "next/navigation";
 
-
 export default function SpeedSaleComponent() {
-  const router = useRouter()
+  const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
 
@@ -47,20 +46,21 @@ export default function SpeedSaleComponent() {
         >
           {/*--------- Welcome Message to show all Cards ------------*/}
           <SwiperSlide>
-            <div className="p-5 h-80 flex flex-col justify-evenly">
-              <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-2xl text-xl font-medium text-black">
+            <div className=" h-80 flex flex-col justify-end px-2">
+              <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-3xl text-2xl font-medium text-black">
                 صفقة اليوم
               </h1>
-              <h1 className=" md:text-md text-md text-right text-slate-500 mt-2 leading-relaxed">
+              <h1 className=" md:text-md text-md text-right text-slate-500 mt-5 leading-relaxed">
                 احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
                 فقط. احصل عليه بسرعة قبل بيعه!
               </h1>
-              <div onClick={(e)=>{
-                e.preventDefault();
-                router.push("/today")
-
-
-              }} className=" cursor-pointer h-12 bg-blue-950 rounded-lg flex flex-row justify-between px-2.5 mt-8 items-center">
+              <div
+                onClick={(e) => {
+                  e.preventDefault();
+                  router.push("/today");
+                }}
+                className=" cursor-pointer h-12 bg-blue-950 rounded-lg flex flex-row justify-between px-2.5 mt-8 items-center"
+              >
                 <div className="text-white md:text-base text-sm font-medium font-['Roboto'] leading-snug">
                   انظر جميع العناصر
                 </div>
@@ -72,9 +72,9 @@ export default function SpeedSaleComponent() {
           </SwiperSlide>
           {/*--------- Other Cards ------------*/}
 
-          {products.map((product) => (
+          {products.map((product, index) => (
             <SwiperSlide key={product.id}>
-              <TodayDealCardWidget product={product} />
+              <TodayDealCardWidget product={product} index={index} />
             </SwiperSlide>
           ))}
         </Swiper>

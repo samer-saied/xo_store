@@ -33,7 +33,7 @@ export default function SectionCardWidget(section: Section) {
           style={{
             backgroundImage: `linear-gradient(to bottom,${section.primaryColor}, ${section.secandColor})`,
           }}
-          className={`md:w-auto min-w-42 md:h-56 xl:h-64 h-44 m-2 relative rounded-3xl shadow`}
+          className={`md:w-auto min-w-42 md:h-56 xl:h-56 h-40 m-2 relative rounded-3xl shadow`}
         >
           <div className="group">
             {/* Circle Shapes */}
@@ -52,10 +52,10 @@ export default function SectionCardWidget(section: Section) {
             </div>
 
             {/* Text - Logo */}
-            <div className="mx-auto md:h-64 h-44 flex flex-col justify-center group-hover:opacity-60 transition delay-150 duration-300 ease-in-out">
+            <div className="mx-auto md:h-60 h-44 flex flex-col justify-center group-hover:opacity-60 transition delay-150 duration-300 ease-in-out">
               {/* <div className="flex flex-col justify-center items-center h-full"> */}
               {/* Text */}
-              <h1 className=" text-center text-zinc-100 text-lg md:text-3xl font-extrabold ">
+              <h1 className=" text-center text-zinc-100 text-lg md:text-xl font-extrabold ">
                 {section.name}
               </h1>
               {/* Icons -Logo */}
