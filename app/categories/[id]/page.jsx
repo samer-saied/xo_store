@@ -8,7 +8,7 @@ import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
 import PathWidget from "@/components/common/path_widget";
 import { GetProductsByCategory } from "@/repository/products_repository";
-import { SpeedSaleCardWidget } from "@/components/homepage/speed_sale/speed_cards_widget";
+import { SpeedSaleCardWidget } from "@/components/homepage/today_deal/today_deal_card_widget";
 import LoadingPage from "@/components/common/loading";
 import NoItemsWidget from "@/components/common/no_items_widget";
 import { useSearchParams } from "next/navigation";
