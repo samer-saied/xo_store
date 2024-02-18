@@ -8,7 +8,7 @@ import Navbar from "@/components/common/Navbar";
 import { useEffect, useState } from "react";
 import PathWidget from "@/components/common/path_widget";
 import { GetProductsByCategory } from "@/repository/products_repository";
-import { SpeedSaleCardWidget } from "@/components/homepage/today_deal/today_deal_card_widget";
+import { TodayDealCardWidget } from "@/components/homepage/today_deal/today_deal_card_widget";
 import LoadingPage from "@/components/common/loading";
 import NoItemsWidget from "@/components/common/no_items_widget";
 import { useSearchParams } from "next/navigation";
@@ -48,7 +48,7 @@ export default function CategoriesPage({params}) {
       {!loading && products.length > 0 && (
         <div className=" grid lg:grid-cols-3 md:grid-cols-2 grid-cols-2 gap-2 md:w-9/12 px-2 mx-auto">
           {products.map((product) => (
-            <SpeedSaleCardWidget key={product.id} product={product} />
+            <TodayDealCardWidget key={product.id} product={product} />
           ))}
         </div>
       )}
