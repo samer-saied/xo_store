@@ -18,7 +18,7 @@ export default function Home() {
   return (
     // <animated.div       onLoad={handleClick}
     // style={springs}>
-    <>
+    <div className=" relative">
       {/* <Head>
         <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
       </Head> */}
@@ -46,6 +46,6 @@ export default function Home() {
       <SectionMoreWidget />
       <SpacerWidget />
       <FooterComponent />
-    </>
+    </div>
   );
 }

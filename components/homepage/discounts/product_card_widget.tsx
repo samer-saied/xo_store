@@ -11,7 +11,7 @@ export default function GameCardWidget(props: {
     () => ({
       from: {
         opacity: 0,
-        y: 100 * props.index,
+        y: 100 * (props.index + 1),
       },
       to: {
         opacity: 1,
