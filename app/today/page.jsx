@@ -1,16 +1,16 @@
 "use client";
 
-import SpacerWidget from "@/components/common/spacer_widget";
-import FooterComponent from "@/components/homepage/footer/footer_component";
-import TopBarComponent from "@/components/homepage/topbar/topbar_component";
+import SpacerWidget from "@/components/user_components/common/spacer_widget";
+import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
+import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
 
-import Navbar from "@/components/common/Navbar";
+import Navbar from "@/components/user_components/common/Navbar";
 import { useEffect, useState } from "react";
-import PathWidget from "@/components/common/path_widget";
+import PathWidget from "@/components/user_components/common/path_widget";
 import { GetTodayDealProducts } from "@/repository/products_repository";
-import { TodayDealCardWidget } from "@/components/homepage/today_deal/today_deal_card_widget";
-import LoadingPage from "@/components/common/loading";
-import NoItemsWidget from "@/components/common/no_items_widget";
+import { TodayDealCardWidget } from "@/components/user_components/homepage/today_deal/today_deal_card_widget";
+import LoadingPage from "@/components/user_components/common/loading";
+import NoItemsWidget from "@/components/user_components/common/no_items_widget";
 
 export default function TodayOffersPage() {
   const [products, setProducts] = useState([]);
