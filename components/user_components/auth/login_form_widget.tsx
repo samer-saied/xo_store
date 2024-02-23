@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from "react";
-import { auth } from "../../db/firebase_init";
+import { auth } from "../../../db/firebase_init";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { 

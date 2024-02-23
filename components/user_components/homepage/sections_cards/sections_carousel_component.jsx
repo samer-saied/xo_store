@@ -4,7 +4,7 @@ import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import LoadingPage from "@/components/common/loading";
+import LoadingPage from "@/components/user_components/common/loading";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useSpring, animated } from "@react-spring/web";
 

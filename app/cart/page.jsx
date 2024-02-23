@@ -1,11 +1,11 @@
 "use client";
 
-import TopBarComponent from "@/components/homepage/topbar/topbar_component";
-import FooterComponent from "@/components/homepage/footer/footer_component";
-import Navbar from "@/components/common/Navbar";
-import PathWidget from "@/components/common/path_widget";
-import CartCardWidget from "@/components/cart/cart_card_widget";
-import RelatedProductsWidget from "@/components/related_products/related_products_widget";
+import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
+import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
+import Navbar from "@/components/user_components/common/Navbar";
+import PathWidget from "@/components/user_components/common/path_widget";
+import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
+import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
 
 
 const urlPaths = 

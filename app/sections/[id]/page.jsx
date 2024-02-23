@@ -1,17 +1,17 @@
 "use client";
 
-import SpacerWidget from "@/components/common/spacer_widget";
-import FooterComponent from "@/components/homepage/footer/footer_component";
-import TopBarComponent from "@/components/homepage/topbar/topbar_component";
+import SpacerWidget from "@/components/user_components/common/spacer_widget";
+import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
+import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
 
-import Navbar from "@/components/common/Navbar";
+import Navbar from "@/components/user_components/common/Navbar";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import PathWidget from "@/components/common/path_widget";
-import GameCardWidget from "@/components/homepage/most_sales/game_card_widget";
-import LoadingPage from "@/components/common/loading";
+import PathWidget from "@/components/user_components/common/path_widget";
+import GameCardWidget from "@/components/user_components/homepage/most_sales/game_card_widget";
+import LoadingPage from "@/components/user_components/common/loading";
 import { GetCategoriesBySections } from "@/repository/category_repository";
-import NoItemsWidget from "@/components/common/no_items_widget";
+import NoItemsWidget from "@/components/user_components/common/no_items_widget";
 
 export default function SpecificSectionsPage({ params }) {
   const query = useSearchParams();

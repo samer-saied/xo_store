@@ -3,14 +3,14 @@ import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 export class Section {
   constructor(
     public id: string | null,
-    public name: string,
+    public title: string,
     public icon: string,
     public primaryColor: string,
     public secandColor: string
   ) {}
 
   toString() {
-    return this.name;
+    return this.title;
   }
 }
 
@@ -18,8 +18,7 @@ export class Section {
 export const sectionConverter = {
   toFirestore: (Section: Section) => {
     return {
-      //  id: Section.id ? Section.id : undefined,
-      name: Section.name,
+      title: Section.title,
       icon: Section.icon,
       primaryColor: Section.primaryColor,
       secandColor: Section.secandColor,
@@ -30,7 +29,7 @@ export const sectionConverter = {
     const data = snapshot.data(options);
     return new Section(
       snapshot.id,
-      data.name,
+      data.title,
       data.icon,
       data.primaryColor,
       data.secandColor

@@ -10,24 +10,12 @@ export default function TableComp({ data }) {
           {/* //////////////////// Page Title //////////////////// */}
           <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
             <h2 className="text-2xl leading-tight">{data["tableTitle"]}</h2>
-            <div className="text-end">
-              <form className="flex flex-col justify-center w-3/4 max-w-sm space-y-3 md:flex-row md:w-full md:space-x-3 md:space-y-0">
-                <div className=" relative ">
-                  <input
-                    type="text"
-                    id='"form-subscribe-Filter'
-                    className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-MainBlueColor-600 focus:border-transparent"
-                    placeholder="name"
-                  />
-                </div>
-                <button
-                  className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-MainBlueColor rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
-                  type="submit"
-                >
-                  Filter
-                </button>
-              </form>
-            </div>
+            <button
+              className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-MainBlueColor rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
+              type="submit"
+            >
+              Add
+            </button>
           </div>
           {/* //////////////////// Table //////////////////// */}
           <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
@@ -71,7 +59,7 @@ export default function TableComp({ data }) {
                                 width={30}
                                 height={30}
                                 alt="profil"
-                                src={data["image"]}
+                                src={data["image"]?? data["icon"]}
                                 className="mx-auto object-cover rounded-full h-10 w-10 "
                               />
                             </a>
@@ -95,7 +83,7 @@ export default function TableComp({ data }) {
                             className={
                               data["status"] == true
                                 ? "absolute inset-0 bg-green-600 rounded-full"
-                                : "absolute inset-0 bg-red-600 rounded-full"
+                                : "absolute inset-0 bg-pink-500 rounded-full"
                             }
                           ></span>
                           <span className="relative">

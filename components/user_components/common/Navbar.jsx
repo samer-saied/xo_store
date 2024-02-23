@@ -44,10 +44,10 @@ const Navbar = () => {
                 <Link
                   href={{
                     pathname: "/sections/" + section.id,
-                    query: { name: section.name },
+                    query: { name: section.title },
                   }}
                 >
-                  {section.name}
+                  {section.title}
                 </Link>
               </li>
             ))}
@@ -122,14 +122,14 @@ const Navbar = () => {
                     onClick={() => setNav(!nav)}
                     href={{
                       pathname: "/sections/" + section.id,
-                      query: { name: section.name },
+                      query: { name: section.title },
                     }}
                   >
                     <CiBookmark
                       size={25}
                       className=" text-MainBlueColor mx-2"
                     />
-                    <p> {section.name}</p>
+                    <p> {section.title}</p>
                   </Link>
                 </li>
               ))}

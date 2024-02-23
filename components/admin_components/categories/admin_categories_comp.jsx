@@ -1,13 +1,10 @@
 "use client";
 
-import TableComp from "../../../admin_components/table_comp";
-import AdminUpperNavBarComp from "../../../admin_components/admin_upper_nav_bar_comp";
-import SpacerWidget from "@/components/common/spacer_widget";
-import FooterComponent from "@/components/homepage/footer/footer_component";
+import TableComp from "../table_comp";
 import { useEffect, useState } from "react";
 import { GetAllCategories } from "@/repository/category_repository";
 
-export default function MostSalesComponent() {
+export default function AdminCategoriesComp() {
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
 
@@ -20,8 +17,7 @@ export default function MostSalesComponent() {
 
 
   return (
-    <div dir="ltr">
-      <AdminUpperNavBarComp />
+
 
       <TableComp
         data={{
@@ -31,8 +27,5 @@ export default function MostSalesComponent() {
         }}
       />
 
-      <SpacerWidget />
-      <FooterComponent />
-    </div>
   );
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useInView, animated } from "@react-spring/web";
 
 export default function SectionCardWidget(section: Section) {
+  console.log(section)
   const [ref, springs] = useInView(
     () => ({
       from: {
@@ -25,7 +26,7 @@ export default function SectionCardWidget(section: Section) {
       <Link
         href={{
           pathname: "/sections/" + section.id,
-          query: { name: section.name.toString() },
+         query: { name: section.title.toString() },
         }}
       >
         <div
@@ -56,7 +57,7 @@ export default function SectionCardWidget(section: Section) {
               {/* <div className="flex flex-col justify-center items-center h-full"> */}
               {/* Text */}
               <h1 className=" text-center text-zinc-100 text-lg md:text-xl font-extrabold ">
-                {section.name}
+                {section.title}
               </h1>
               {/* Icons -Logo */}
               <div className="h-2/4 w-full flex flex-row justify-center ">
@@ -65,7 +66,7 @@ export default function SectionCardWidget(section: Section) {
                   height={100}
                   className="p-3 h-full w-auto"
                   src={section.icon ?? "/logo/logo.png"}
-                  alt={section.name}
+                  alt={section.title}
                 />
               </div>
               {/* </div> */}

@@ -1,15 +1,15 @@
 "use client";
 
-import SpacerWidget from "@/components/common/spacer_widget";
-import FooterComponent from "@/components/homepage/footer/footer_component";
-import TopBarComponent from "@/components/homepage/topbar/topbar_component";
+import SpacerWidget from "@/components/user_components/common/spacer_widget";
+import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
+import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
 
-import Navbar from "@/components/common/Navbar";
+import Navbar from "@/components/user_components/common/Navbar";
 import { useEffect, useState } from "react";
 import { GetAllSections } from "@/repository/sections_repository";
-import SectionCardWidget from "@/components/homepage/sections_cards/section_card_widget";
-import PathWidget from "@/components/common/path_widget";
-import LoadingPage from "@/components/common/loading";
+import SectionCardWidget from "@/components/user_components/homepage/sections_cards/section_card_widget";
+import PathWidget from "@/components/user_components/common/path_widget";
+import LoadingPage from "@/components/user_components/common/loading";
 
 export default function SectionsPage({ params }) {
   const [loading, setLoading] = useState(true);
@@ -41,7 +41,7 @@ export default function SectionsPage({ params }) {
               key={section.id}
               id={section.id}
               icon={section.icon}
-              name={section.name}
+              title={section.title}
               primaryColor={section.primaryColor}
               secandColor={section.secandColor}
             />

@@ -4,10 +4,9 @@ import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
 import { auth } from "../../db/firebase_init";
-import TopBarComponent from "@/components/homepage/topbar/topbar_component";
-import FooterComponent from "@/components/homepage/footer/footer_component";
-import Navbar from "@/components/common/Navbar";
-import LoginFormWidget from "@/components/auth/login_form_widget";
+import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
+import Navbar from "@/components/user_components/common/Navbar";
+import LoginFormWidget from "@/components/user_components/auth/login_form_widget";
 
 // import {Container, Row, Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
 
