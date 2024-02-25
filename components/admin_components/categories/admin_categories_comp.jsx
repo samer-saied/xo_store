@@ -6,7 +6,7 @@ import { GetAllCategories } from "@/repository/category_repository";
 
 export default function AdminCategoriesComp() {
   const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     GetAllCategories().then((categories) => {

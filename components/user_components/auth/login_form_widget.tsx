@@ -1,52 +1,30 @@
-
 import React, { useState, useEffect } from "react";
 import { auth } from "../../../db/firebase_init";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
-import { 
-  onAuthStateChanged,
+import {
   signOut,
   signInWithEmailAndPassword,
   UserCredential,
- } from "firebase/auth";
+} from "firebase/auth";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginFormWidget = () => {
   const [currentUser, setcurrentUser] = useState("");
   const [password, setpassword] = useState("");
   const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        const uid: string = user.email ?? "";
-        // ...
-        setcurrentUser(uid);
-      } else {
-        // User is signed out
-        setcurrentUser("");
-        console.log("user is logged out");
-      }
-    });
-  }, []);
-
-  const signOutFunc = () => {
-    signOut(auth);
-  };
+  const router = useRouter();
 
   const signInFunc = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
       console.log(user);
       if (!user) return; // Check if user is valid
-      console.log(user!.user.providerData);
-
       const credential = user as UserCredential;
       const result = credential.user;
-      const token = await result?.getIdToken();
-      console.log(token);
       setcurrentUser(result?.email ?? "");
+      router.push("/");
     } catch (error) {
       console.log(error);
     }
@@ -72,8 +50,7 @@ const LoginFormWidget = () => {
                   placeholder="البريد الالكتروني"
                 />
                 <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                  <MdEmail size={25}
-                   className=" text-MainBlueColor" />
+                  <MdEmail size={25} className=" text-MainBlueColor" />
                 </span>
               </div>
             </div>
@@ -89,8 +66,7 @@ const LoginFormWidget = () => {
                   placeholder="كلمه المرور"
                 />
                 <span className="rounded-l-md inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                  <FaLock size={25} 
-                   className=" text-MainBlueColor" />
+                  <FaLock size={25} className=" text-MainBlueColor" />
                 </span>
               </div>
             </div>
@@ -119,13 +95,12 @@ const LoginFormWidget = () => {
           </form>
         </div>
         <div className="flex items-center justify-center mt-6">
-          <a
-            href="#"
-            target="_blank"
+          <Link
+            href={"/register"}
             className="inline-flex items-center text-xs font-thin text-center text-gray-500 hover:text-gray-700 "
           >
             <span className="ml-2">لا امتلك حساب تسجيل حساب جديد</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

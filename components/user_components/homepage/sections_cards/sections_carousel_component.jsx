@@ -10,7 +10,7 @@ import { useSpring, animated } from "@react-spring/web";
 
 export default function SectionsCarouselComponent() {
   const [loading, setLoading] = useState(true);
-  const [sections, setsections] = useState([]);
+  const [sections, setsections] = useState(null);
   const [swiper, setSwiper] = useState();
 
   useEffect(() => {

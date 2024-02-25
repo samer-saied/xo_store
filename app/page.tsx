@@ -12,15 +12,13 @@ import SpacerWidget from "@/components/user_components/common/spacer_widget";
 import Navbar from "@/components/user_components/common/Navbar";
 import DiscountGamesCardsComponent from "@/components/user_components/homepage/discounts/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/user_components/homepage/sections_cards/sections_carousel_component";
-import Head from "next/head";
+
 
 export default function Home() {
+ 
   return (
     <div className=" relative">
-      {/* <Head>
-        <link rel="stylesheet" href="/css/swiper-bundle.min.css" />
-      </Head> */}
-
+   
       <TopBarComponent />
       <Navbar />
 

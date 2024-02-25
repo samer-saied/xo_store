@@ -1,16 +1,37 @@
 import { TbWorld } from "react-icons/tb";
-import { CiBookmark, CiShoppingBasket, CiUser } from "react-icons/ci";
+import {
+  CiBookmark,
+  CiLogin,
+  CiLogout,
+  CiShoppingBasket,
+  CiUser,
+} from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import { IoClose } from "react-icons/io5";
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { GetAllSections } from "@/repository/sections_repository";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../../../db/firebase_init";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [loading, setLoading] = useState(true);
   const [sections, setsections] = useState([]);
+  const [currentUser, setcurrentUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.email ?? "";
+        setcurrentUser(uid);
+      } else {
+        setcurrentUser("");
+        console.log("user is logged out");
+      }
+    });
+  }, [currentUser]);
 
   useEffect(() => {
     GetAllSections().then((sections) => {
@@ -18,28 +39,28 @@ const Navbar = () => {
       setLoading(false);
     });
   }, []);
+
   return (
     <nav className=" top-0 bottom-0 left-0">
       <div className="flex justify-between items-center border-gray-100 border-b-2 bg-white nav px-4 py-2 md:px-10 lg:px-20">
-       
-          <h1 className="text-5xl font-signature ml-2">
-            <a href="/">
-              <Image
-                className=" hover:animate-pulse hover:scale-125 hover:ease-in-out"
-                width={60}
-                height={60}
-                src="/logo/logo.svg"
-                alt="Logo"
-              />
-            </a>
-          </h1>
+        <h1 className="text-5xl font-signature ml-2">
+          <a href="/">
+            <Image
+              className=" hover:animate-pulse hover:scale-125 hover:ease-in-out"
+              width={60}
+              height={60}
+              src="/logo/logo.svg"
+              alt="Logo"
+            />
+          </a>
+        </h1>
 
         <ul className="hidden md:flex md:flex-row md:justify-between w-full">
-          <div className="flex flex-row justify-center ">
+          <div className="flex flex-row justify-center items-center ">
             {sections.map((section, index) => (
               <li
                 key={section.id}
-                className="nav-links px-1 lg:px-4 cursor-pointer capitalize md:text-lg text-xs font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor py-2 duration-200 link-underline"
+                className="nav-links px-1 lg:px-4 cursor-pointer capitalize lg:text-lg md:text-lg text-xs font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor duration-200 link-underline"
               >
                 <Link
                   href={{
@@ -60,21 +81,48 @@ const Navbar = () => {
               <TbWorld size={25} className="text-zinc-400 mx-1" />
             </div>
 
-            <li
-              className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
-            >
-              <Link href={"/login"}>
-                <CiUser size={25} className=" m-2" />
+            {currentUser && (
+              <div
+                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+              >
+                {currentUser && currentUser.split("@")[0].toLocaleUpperCase()}
+                <CiUser size={25} className=" mx-1" />
+              </div>
+            )}
+            {!currentUser && (
+              <Link
+                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                href={"/login"}
+              >
+                <div className="text-center text-sm font-normal ">
+                  تسجيل دخول
+                </div>
+                <CiUser size={25} className=" mx-1" />
               </Link>
-            </li>
+            )}
 
-            <li
-              className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
-            >
-              <Link href={"/cart"}>
-                <CiShoppingBasket size={25} className=" m-2" />
-              </Link>
-            </li>
+            {currentUser && (
+              <button
+                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                onClick={(event) => {
+                  event.preventDefault();
+                  signOut(auth);
+                }}
+              >
+                <div className="text-center text-sm font-normal ">
+                  تسجيل خروج
+                </div>
+              </button>
+            )}
+            {currentUser && (
+              <li
+                className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+              >
+                <Link href={"/cart"}>
+                  <CiShoppingBasket size={25} className=" m-2" />
+                </Link>
+              </li>
+            )}
           </div>
         </ul>
 
@@ -141,31 +189,64 @@ const Navbar = () => {
             {/*--------------- STATIC MENU -------------------*/}
             {nav && (
               <div className="pb-10">
-                <li
-                  className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
-                >
-                  <Link
-                    className="flex flex-row justify-center items-center"
-                    href={"/login"}
+                {currentUser && (
+                  <li
+                    className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
                   >
-                    <CiUser size={25} className=" text-MainBlueColor mx-2" />
-                    <p>تسجيل الدخول</p>
-                  </Link>
-                </li>
-                <li
-                  className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
-                >
-                  <Link
-                    className="flex flex-row justify-center items-center"
-                    href={"/cart"}
+                    <button className="flex flex-row justify-center items-center">
+                      <CiUser size={25} className=" text-MainBlueColor mx-2" />
+                      <p>{currentUser}</p>
+                    </button>
+                  </li>
+                )}
+                {currentUser && (
+                  <li
+                    className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
                   >
-                    <CiShoppingBasket
-                      size={25}
-                      className=" text-MainBlueColor mx-2"
-                    />
-                    <p>سله التسوق</p>
-                  </Link>
-                </li>
+                    <button
+                      className="flex flex-row justify-center items-center"
+                      onClick={(event) => {
+                        event.preventDefault();
+                        signOut(auth);
+                      }}
+                    >
+                      <CiLogin size={25} className=" text-MainBlueColor mx-2" />
+                      <p>تسجيل خروج</p>
+                    </button>
+                  </li>
+                )}
+                {!currentUser && (
+                  <li
+                    className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
+                  >
+                    <Link
+                      href={"/login"}
+                      className="flex flex-row justify-center items-center"
+                    >
+                      <CiLogout
+                        size={25}
+                        className=" text-MainBlueColor mx-2"
+                      />
+                      <p>تسجيل دخول</p>
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li
+                    className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
+                  >
+                    <Link
+                      className="flex flex-row justify-start items-center"
+                      href={"/cart"}
+                    >
+                      <CiShoppingBasket
+                        size={25}
+                        className=" text-MainBlueColor mx-2"
+                      />
+                      <p>سله التسوق</p>
+                    </Link>
+                  </li>
+                )}
               </div>
             )}
           </ul>

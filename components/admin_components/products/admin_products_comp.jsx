@@ -6,7 +6,7 @@ import { GetAllProducts } from "@/repository/products_repository";
 
 export default function AdminProductsComp() {
   const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
     GetAllProducts().then((products) => {

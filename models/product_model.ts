@@ -14,6 +14,7 @@ export class Product {
     public rate: number,
     public exclusive: boolean,
     public todayOffer: boolean,
+    public status: boolean,
     public date: String
   ) {}
 
@@ -38,6 +39,7 @@ export const productConverter = {
       rate: product.rate,
       exclusive: product.exclusive,
       todayOffer: product.todayOffer,
+      status: product.status,
       date: product.date,
     };
   },
@@ -58,6 +60,7 @@ export const productConverter = {
       data.rate,
       data.exclusive,
       data.todayOffer,
+      data.status,
       data.date
     );
   },

@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 export default function AdminBannerComp() {
   const [loading, setLoading] = useState(true);
-  const [banners, setbanners] = useState([]);
+  const [banners, setbanners] = useState(null);
 
   useEffect(() => {
     GetAllBanners().then((banners) => {

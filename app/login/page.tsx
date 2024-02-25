@@ -10,31 +10,32 @@ import LoginFormWidget from "@/components/user_components/auth/login_form_widget
 
 // import {Container, Row, Col, Button, Form, FormGroup, Label, Input, Alert} from 'reactstrap';
 
-const SignUpPage = () => {
-  const [email, setEmail] = useState("");
-  const [passwordOne, setPasswordOne] = useState("");
-  const [passwordTwo, setPasswordTwo] = useState("");
-  const router = useRouter();
-  const [error, setError] = useState(null);
+const SignInPage = () => {
+  // const [email, setEmail] = useState("");
+  // const [passwordOne, setPasswordOne] = useState("");
+  // const [passwordTwo, setPasswordTwo] = useState("");
+  // const router = useRouter();
+  // const [error, setError] = useState(null);
 
-  const onSubmitFunc = (event: any) => {
-    event.preventDefault();
-    setError(null);
-    //check if passwords match. If they do, create user in Firebase
-    // and redirect to your logged in page.
-    if (passwordOne === passwordTwo)
-      createUserWithEmailAndPassword(auth, email, passwordOne)
-        .then((authUser) => {
-          console.log("Success. The user is created in Firebase");
-          router.push("/");
-        })
-        .catch((error) => {
-          // An error occurred. Set error message to be displayed to user
-          setError(error.message);
-        });
-    // setError("Password do not match")
-    else event.preventDefault();
-  };
+  // const onSubmitFunc = (event: any) => {
+  //   event.preventDefault();
+  //   setError(null);
+  //   //check if passwords match. If they do, create user in Firebase
+  //   // and redirect to your logged in page.
+  //   if (passwordOne === passwordTwo)
+  //     createUserWithEmailAndPassword(auth, email, passwordOne)
+  //       .then((authUser) => {
+  //         console.log("Success. The user is created in Firebase");
+  //         router.push("/");
+  //       })
+  //       .catch((error) => {
+  //         // An error occurred. Set error message to be displayed to user
+  //         setError(error.message);
+  //       });
+  //   // setError("Password do not match")
+  //   else event.preventDefault();
+  // };
+  
 
   return (
     <>
@@ -46,4 +47,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default SignInPage;

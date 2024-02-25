@@ -11,6 +11,17 @@ export default function AdminUpperNavBarComp({ data }) {
   const activeStyle =
     "text-MainBlueColor font-bold  block px-3 py-2 rounded-md text-base font-medium underline underline-offset-2";
 
+  const navMenuTabs = [
+    "Home",
+    "Banners",
+    "Sections",
+    "Categories",
+    "Products",
+    "Users",
+    "Transactions",
+    "Settings",
+  ];
+
   return (
     <>
       <div>
@@ -19,74 +30,30 @@ export default function AdminUpperNavBarComp({ data }) {
             <div className="flex items-center justify-between h-16">
               <div className=" flex items-center">
                 <a className="flex-shrink-0" href="/">
-                  <img
-                    className="w-8 h-8"
+                  <Image
+                    width={64}
+                    height={64}
                     src="/logo/logo.png"
-                    alt="Workflow"
+                    alt="xo-store"
                   />
                 </a>
                 <div className="hidden md:block">
-                  <div className="flex items-baseline ml-10 space-x-4">
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        data["setIndex"](0);
-                      }}
-                      className={
-                        data["index"] == 0 ? activeStyle : inActiveStyle
-                      }
-                      // href="/admin"
-                    >
-                      Home
-                    </button>
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        data["setIndex"](1);
-                      }}
-                      className={
-                        data["index"] == 1 ? activeStyle : inActiveStyle
-                      }
-                      // href="/admin/banners"
-                    >
-                      Banners
-                    </button>
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        data["setIndex"](2);
-                      }}
-                      className={
-                        data["index"] == 2 ? activeStyle : inActiveStyle
-                      }
-                      // href="/admin/categories"
-                    >
-                      Sections
-                    </button>
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        data["setIndex"](3);
-                      }}
-                      className={
-                        data["index"] == 3 ? activeStyle : inActiveStyle
-                      }
-                      // href="/admin/categories"
-                    >
-                      Categories
-                    </button>
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault();
-                        data["setIndex"](4);
-                      }}
-                      className={
-                        data["index"] == 4 ? activeStyle : inActiveStyle
-                      }
-                      // href="/admin/products"
-                    >
-                      Products
-                    </button>
+                  <div className="flex items-baseline ml-10 space-x-0">
+                    {navMenuTabs.map((menuTab, index) => (
+                      <button
+                        key={index}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          data["setIndex"](index);
+                        }}
+                        className={
+                          data["index"] == index ? activeStyle : inActiveStyle
+                        }
+                        // href="/admin"
+                      >
+                        {menuTab}
+                      </button>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -118,46 +85,22 @@ export default function AdminUpperNavBarComp({ data }) {
           {isMobile ? (
             <div className="md:hidden  ">
               <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <button
-                  onClick={(event) => {
-                    event.preventDefault();
-                    data["setIndex"](0);
-                  }}
-                  className={data["index"] == 0 ? activeStyle : inActiveStyle}
-                  // href="/admin"
-                >
-                  Home
-                </button>
-                <button
-                  onClick={(event) => {
-                    event.preventDefault();
-                    data["setIndex"](1);
-                  }}
-                  className={data["index"] == 1 ? activeStyle : inActiveStyle}
-                  // href="/admin/banners"
-                >
-                  Banners
-                </button>
-                <button
-                  onClick={(event) => {
-                    event.preventDefault();
-                    data["setIndex"](2);
-                  }}
-                  className={data["index"] == 2 ? activeStyle : inActiveStyle}
-                  // href="/admin/categories"
-                >
-                  Categories
-                </button>
-                <button
-                  onClick={(event) => {
-                    event.preventDefault();
-                    data["setIndex"](3);
-                  }}
-                  className={data["index"] == 3 ? activeStyle : inActiveStyle}
-                  // href="/admin/products"
-                >
-                  Products
-                </button>
+                {navMenuTabs.map((menuTab, index) => (
+                  <button
+                    key={index}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      data["setIndex"](index);
+                      setIsMobile(false)
+                    }}
+                    className={
+                      data["index"] == index ? activeStyle : inActiveStyle
+                    }
+                    // href="/admin"
+                  >
+                    {menuTab}
+                  </button>
+                ))}
               </div>
             </div>
           ) : (

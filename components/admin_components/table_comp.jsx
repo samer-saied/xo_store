@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import LoadingPage from "../user_components/common/loading";
 
 export default function TableComp({ data }) {
+  console.log(data);
   return (
     <>
       <div dir="ltr" className="container max-w-5xl px-4 mx-auto sm:px-8">
@@ -11,7 +13,7 @@ export default function TableComp({ data }) {
           <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
             <h2 className="text-2xl leading-tight">{data["tableTitle"]}</h2>
             <button
-              className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-MainBlueColor rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
+              className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-green-800 rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
               type="submit"
             >
               Add
@@ -49,64 +51,71 @@ export default function TableComp({ data }) {
                 </thead>
                 {/* //////////////////// TABLE BODY //////////////////// */}
                 <tbody>
-                  {data["tableData"].map((data, index) => (
-                    <tr key={index}>
-                      <td className="px-5 py-2 text-sm bg-white border-b border-gray-200">
-                        <div className="flex items-center">
-                          <div className="flex-shrink-0">
-                            <a href="#" className="relative block">
-                              <Image
-                                width={30}
-                                height={30}
-                                alt="profil"
-                                src={data["image"]?? data["icon"]}
-                                className="mx-auto object-cover rounded-full h-10 w-10 "
-                              />
-                            </a>
+                  {data["tableData"] == null && <LoadingPage />}
+
+                  {data["tableData"] != null &&
+                    data["tableData"].length == 0 && <h1>No Data </h1>}
+
+                  {data["tableData"] != null &&
+                    data["tableData"].length > 0 &&
+                    data["tableData"].map((data, index) => (
+                      <tr key={index}>
+                        <td className="px-5 py-2 text-sm bg-white border-b border-gray-200">
+                          <div className="flex items-center">
+                            <div className="flex-shrink-0">
+                              <a href="#" className="relative block">
+                                <Image
+                                  width={30}
+                                  height={30}
+                                  alt="profil"
+                                  src={data["image"] ?? data["icon"]}
+                                  className="mx-auto object-cover rounded-full h-10 w-10 "
+                                />
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {data["title"]}
-                        </p>
-                      </td>
-                      <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {data["date"]}
-                        </p>
-                      </td>
-                      <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                        <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
-                          <span
-                            aria-hidden="true"
-                            className={
-                              data["status"] == true
-                                ? "absolute inset-0 bg-green-600 rounded-full"
-                                : "absolute inset-0 bg-pink-500 rounded-full"
-                            }
-                          ></span>
-                          <span className="relative">
-                            {data["status"] == true ? "active" : "Inactive"}
+                        </td>
+                        <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {data["title"]}
+                          </p>
+                        </td>
+                        <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {data["date"]}
+                          </p>
+                        </td>
+                        <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
+                          <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
+                            <span
+                              aria-hidden="true"
+                              className={
+                                data["status"] == true
+                                  ? "absolute inset-0 bg-green-600 rounded-full"
+                                  : "absolute inset-0 bg-pink-500 rounded-full"
+                              }
+                            ></span>
+                            <span className="relative">
+                              {data["status"] == true ? "active" : "Inactive"}
+                            </span>
                           </span>
-                        </span>
-                      </td>
-                      <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                        <button
-                          href="#"
-                          className=" bg-MainBlueColor text-white hover:text-MainYellowColor rounded-md py-2 px-3 m-3"
-                        >
-                          Edit
-                        </button>
-                        <button
-                          href="#"
-                          className=" bg-red-600 text-white hover:text-MainYellowColor rounded-md py-2 px-3 m2-3"
-                        >
-                          Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
+                        </td>
+                        <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
+                          <button
+                            href="#"
+                            className=" bg-MainBlueColor text-white hover:text-MainYellowColor rounded-md py-2 px-3 m-3"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            href="#"
+                            className=" bg-red-600 text-white hover:text-MainYellowColor rounded-md py-2 px-3 m2-3"
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
               {/* //////////////////// PAGINATIONS //////////////////// */}

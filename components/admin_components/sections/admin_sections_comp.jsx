@@ -6,7 +6,7 @@ import { GetAllSections } from "@/repository/sections_repository";
 
 export default function AdminSectionsComp() {
   const [loading, setLoading] = useState(true);
-  const [sections, setSections] = useState([]);
+  const [sections, setSections] = useState(null);
 
   useEffect(() => {
     GetAllSections().then((sections) => {
