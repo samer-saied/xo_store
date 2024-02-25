@@ -100,6 +100,7 @@ async function GetOneProduct(productId: String): Promise<Product | void> {
       querySnapshot?.data.rate,
       querySnapshot?.data.exclusive,
       querySnapshot?.data.todayOffer,
+      querySnapshot?.data.status,
       querySnapshot?.data.date
     );
     return currentProduct;
