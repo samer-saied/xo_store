@@ -4,6 +4,7 @@ import TopBarComponent from "@/components/user_components/homepage/topbar/topbar
 import { IoMdMail } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
+import Image from "next/image";
 
 const ProfilePage = () => {
   return (
@@ -26,10 +27,12 @@ const ProfilePage = () => {
               <div className="px-6">
                 <div className="flex flex-wrap justify-center">
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                    <img
+                    <Image
+                    width={64}
+                    height={64}
                       alt="profile"
-                      src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg"
-                      className=" w-36 md:w-48 shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
+                      src="./logo/logo.svg"
+                      className="p-3 w-36 md:w-48 shadow-lg bg-white rounded-full h-36 md:h-48 align-middle border-none absolute -m-16 -ml-20 lg:-ml-16 max-w-150-px"
                     />
                   </div>
                   {/* ///////////////////// BUTTONS /////////////////////// */}
@@ -88,14 +91,14 @@ const ProfilePage = () => {
                     <div className="text-sm leading-normal text-gray-600 font-bold uppercase">
                       samerrr@samer.com
                     </div>
-                    <IoMdMail size={25} className=" mx-1 text-MainBlueColor" />
+                    <IoMdMail size={25} className=" mx-1 text-black" />
                   </div>
 
                   <div className="flex flex-row w-full justify-center items-center mt-10">
                     <div className=" text-gray-600">+20 10 11 12345 345</div>
                     <FaPhoneAlt
                       size={20}
-                      className=" mx-2 text-MainBlueColor"
+                      className=" mx-2 text-black"
                     />
                   </div>
 
@@ -103,7 +106,7 @@ const ProfilePage = () => {
                     <div className=" text-gray-600">Cairo, Egypt</div>
                     <MdLocationOn
                       size={20}
-                      className=" mx-2 text-MainBlueColor"
+                      className=" mx-2 text-black"
                     />
                   </div>
                 </div>
