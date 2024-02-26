@@ -19,7 +19,7 @@ const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner)
           </div>
           {/*  TEXTS */}
           <div className=" md:w-10/12 w-11/12 h-full flex flex-col items-start pb-5">
-            <div className="pb-3 text-right text-neutral-400 md:text-xl text-md line-clamp-3">
+            <div className="pb-3 text-right text-neutral-400 lg:text-lg md:text-md text-md line-clamp-3">
               {descrption.trim()}
             </div>
             <button

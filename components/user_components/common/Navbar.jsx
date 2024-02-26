@@ -33,6 +33,12 @@ const Navbar = () => {
     });
   }, [currentUser]);
 
+  ////
+  /////////
+  ////////////    REMOVE CODE AND PASS PARAMAS FROM PREVIOUS PAGE
+  //////////////////
+  ////////////////////////
+
   useEffect(() => {
     GetAllSections().then((sections) => {
       setsections(sections);
@@ -82,12 +88,13 @@ const Navbar = () => {
             </div>
 
             {currentUser && (
-              <div
-                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+              <Link
+              href={"/profile"}
+              className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
               >
-                {currentUser && currentUser.split("@")[0].toLocaleUpperCase()}
+                {currentUser && currentUser.split("@")[0].toUpperCase()}
                 <CiUser size={25} className=" mx-1" />
-              </div>
+              </Link>
             )}
             {!currentUser && (
               <Link
@@ -193,10 +200,12 @@ const Navbar = () => {
                   <li
                     className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
                   >
-                    <button className="flex flex-row justify-center items-center">
+                    <Link 
+                    href={"/profile"}
+                    className="flex flex-row justify-center items-center">
                       <CiUser size={25} className=" text-MainBlueColor mx-2" />
                       <p>{currentUser}</p>
-                    </button>
+                    </Link>
                   </li>
                 )}
                 {currentUser && (

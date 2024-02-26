@@ -1,10 +1,10 @@
- import { Almarai } from 'next/font/google';
+import { Almarai } from "next/font/google";
 import { Metadata } from "next";
 import "./globals.css";
 
 const almarai = Almarai({
   subsets: ["arabic"],
-  weight: ["300", "400", "700", "800"],
+  weight: [ "400", "700", "800"],
   display: "swap",
 });
 
@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="ar" dir="rtl" className={almarai.className}>
       <head>
         <link rel="XO Store icon" href="/icons/favicon.ico" sizes="any" />
-        </head>
+      </head>
       <body>{children}</body>
     </html>
   );

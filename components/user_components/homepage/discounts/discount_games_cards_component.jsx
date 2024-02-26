@@ -24,7 +24,7 @@ export default function GamesCardsComponent() {
       {!loading && (
         <div className="w-full bg-white py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
-          <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
+          <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
             <div className="text-right text-zinc-600 text-xl md:text-2xl font-bold leading-[48px]">
               خصومات حصرية
             </div>

@@ -13,12 +13,9 @@ import Navbar from "@/components/user_components/common/Navbar";
 import DiscountGamesCardsComponent from "@/components/user_components/homepage/discounts/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/user_components/homepage/sections_cards/sections_carousel_component";
 
-
 export default function Home() {
- 
   return (
-    <div className=" relative">
-   
+    <>
       <TopBarComponent />
       <Navbar />
 
@@ -39,9 +36,11 @@ export default function Home() {
 
       <TodayDealComponent />
       <SpacerWidget />
+
       <SectionMoreWidget />
       <SpacerWidget />
+
       <FooterComponent />
-    </div>
+    </>
   );
 }

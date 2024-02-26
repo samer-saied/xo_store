@@ -16,7 +16,7 @@ export default function MostSalesComponent() {
       setCategories(categories);
       setLoading(false);
     });
-  }, []);
+  }, [categories]);
 
 
   return (
@@ -26,7 +26,7 @@ export default function MostSalesComponent() {
     !loading && (
       <div className="w-full bg-gradient-to-r from-white to-sky-100  py-5">
         {/* /////////////////   TITLE     ///////////////////////// */}
-        <div className="w-full h-14 md:px-12 px-2 flex flex-row justify-between  items-center ">
+        <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
           <div className="text-right text-zinc-600 text-xl md:text-2xl font-bold leading-[48px]">
             الأكثر مبيعا
           </div>

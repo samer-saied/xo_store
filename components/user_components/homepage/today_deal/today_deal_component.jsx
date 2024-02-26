@@ -46,7 +46,7 @@ export default function SpeedSaleComponent() {
         >
           {/*--------- Welcome Message to show all Cards ------------*/}
           <SwiperSlide>
-            <div className=" h-80 flex flex-col justify-end px-2">
+            <div className=" h-96 flex flex-col justify-center items-start px-3">
               <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-3xl text-2xl font-medium text-black">
                 صفقة اليوم
               </h1>
