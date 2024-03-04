@@ -19,10 +19,13 @@ export default function BannerComponent() {
   const [banners, setbanners] = useState([]);
 
   useEffect(() => {
-    GetAllBanners().then((banners) => {
+    const banners =   GetAllBanners().then((banners) => {
       setbanners(banners);
       setLoading(false);
     });
+    return () => {
+      banners;
+};
   }, []);
 
   return (

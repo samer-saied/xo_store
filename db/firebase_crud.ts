@@ -30,7 +30,7 @@ export async function handleGetOne(
   const docRef = doc(db, `${collectionName}`, `${collectionId}`);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    return { id: docSnap.id, data: docSnap.data() };
+    return { id: docSnap.id, ...docSnap.data() };
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");

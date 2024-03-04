@@ -18,8 +18,9 @@ export default function AdminSectionsComp() {
   return (
     <TableComp
       data={{
-        tableTitle: "Sections",
-        tableColumns: ["title", "created", "state"],
+        tableTitle: "sections",
+        tableHeaders: ["title"],
+        tableColumns: ["title"],
         tableData: sections,
       }}
     />

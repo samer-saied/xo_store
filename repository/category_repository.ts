@@ -1,6 +1,7 @@
 import {
   handleDeleteOne,
   handleGetAll,
+  handleGetOne,
   handlePostOne,
   handleUpdateOne,
 } from "@/db/firebase_crud";
@@ -25,6 +26,24 @@ async function GetAllCategories(): Promise<Category[]> {
       categories.push(currentCategory);
     });
     return categories;
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
+
+
+async function GetOneCategory(id:string): Promise<Category> {
+  console.log("-----------GET PRODUCTS------------------")
+  try {
+    const querySnapshot = await handleGetOne(
+      categoriesModelName,
+      id
+    );
+
+      const currentCategory = categoryConverter.fromFirestore(querySnapshot!, null,true);
+    
+    return currentCategory;
   } catch (error) {
     console.error("Error fetching categories:", error);
     throw error; // Re-throw the error for further handling
@@ -91,6 +110,7 @@ async function DeleteOneCategory(category: Category) {
 
 export {
   GetAllCategories,
+  GetOneCategory,
   AddOneCategory,
   UpdateOneCategory,
   DeleteOneCategory,

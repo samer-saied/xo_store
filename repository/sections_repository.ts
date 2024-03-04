@@ -1,10 +1,12 @@
 import {
   handleDeleteOne,
   handleGetAll,
+  handleGetOne,
   handlePostOne,
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Section, sectionConverter } from "@/models/section_model";
+import { DocumentSnapshot, QueryDocumentSnapshot } from "firebase/firestore";
 
 const sectionsModelName: String = "sections";
 
@@ -22,6 +24,23 @@ async function GetAllSections(): Promise<Section[]> {
       sections.push(currentSection);
     });
     return sections;
+  } catch (error) {
+    console.error("Error fetching sections:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
+
+
+async function GetOneSection(id:string): Promise<Section> {
+  try {
+    const querySnapshot = await handleGetOne(
+      sectionsModelName,
+      id
+      // where("country", ">=", "EGP 3900")
+    );
+console.log(querySnapshot)
+   
+    return sectionConverter.fromFirestore(querySnapshot, null, true);
   } catch (error) {
     console.error("Error fetching sections:", error);
     throw error; // Re-throw the error for further handling
@@ -66,4 +85,4 @@ async function DeleteOneSection(section: Section) {
   }
 }
 
-export { GetAllSections, AddOneSection, UpdateOneSection, DeleteOneSection };
+export { GetAllSections,GetOneSection, AddOneSection, UpdateOneSection, DeleteOneSection };

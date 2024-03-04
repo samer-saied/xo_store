@@ -1,4 +1,4 @@
-import { TbWorld } from "react-icons/tb";
+import { TbLogin, TbWorld } from "react-icons/tb";
 import {
   CiBookmark,
   CiLogin,
@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { GetAllSections } from "@/repository/sections_repository";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../../db/firebase_init";
+import { FaUserPlus } from "react-icons/fa";
+import { LuUserPlus2 } from "react-icons/lu";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -60,8 +62,10 @@ const Navbar = () => {
             />
           </a>
         </h1>
+        {/*---------------------    LARGE MENU BAR  ------------------*/}
+        <ul className="hidden lg:flex lg:flex-row lg:justify-between w-full">
+          {/*---------------------    Sections  ------------------*/}
 
-        <ul className="hidden md:flex md:flex-row md:justify-between w-full">
           <div className="flex flex-row justify-center items-center ">
             {sections.map((section, index) => (
               <li
@@ -79,6 +83,8 @@ const Navbar = () => {
               </li>
             ))}
           </div>
+          {/*---------------------    Login logout user  ------------------*/}
+
           <div className="flex flex-row justify-center items-center">
             <div className="flex flex-row justify-center items-center">
               <div className="text-center text-zinc-400 text-sm font-normal ">
@@ -89,8 +95,8 @@ const Navbar = () => {
 
             {currentUser && (
               <Link
-              href={"/profile"}
-              className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                href={"/profile"}
+                className={` p-1 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
               >
                 {currentUser && currentUser.split("@")[0].toUpperCase()}
                 <CiUser size={25} className=" mx-1" />
@@ -98,19 +104,47 @@ const Navbar = () => {
             )}
             {!currentUser && (
               <Link
-                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                className={` p-1 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
                 href={"/login"}
               >
                 <div className="text-center text-sm font-normal ">
                   تسجيل دخول
                 </div>
-                <CiUser size={25} className=" mx-1" />
+                <TbLogin size={25} className=" mx-1" />
+              </Link>
+            )}
+            {!currentUser && (
+              <Link
+                className={` p-1 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                href={"/register"}
+              >
+                <div className="text-center text-sm font-normal ">
+                  مستخدم جديد
+                </div>
+                <LuUserPlus2 size={25} className=" mx-1" />
               </Link>
             )}
 
             {currentUser && (
+              <li
+                className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+              >
+                <Link href={"/cart"}>
+                  <div
+                    className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                  >
+                    <div className="text-center text-sm font-normal ">
+                      سله التسوق
+                    </div>
+                    <CiShoppingBasket size={25} className=" mx-1" />
+                  </div>
+                </Link>
+              </li>
+            )}
+
+            {currentUser && (
               <button
-                className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+                className={` p-1 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
                 onClick={(event) => {
                   event.preventDefault();
                   signOut(auth);
@@ -119,16 +153,8 @@ const Navbar = () => {
                 <div className="text-center text-sm font-normal ">
                   تسجيل خروج
                 </div>
+                <CiLogout size={25} className=" mx-1" />
               </button>
-            )}
-            {currentUser && (
-              <li
-                className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
-              >
-                <Link href={"/cart"}>
-                  <CiShoppingBasket size={25} className=" m-2" />
-                </Link>
-              </li>
             )}
           </div>
         </ul>
@@ -136,7 +162,7 @@ const Navbar = () => {
         {/*---------------------    BUTTON  ------------------*/}
         <div
           onClick={() => setNav(!nav)}
-          className="cursor-pointer pr-4 z-50 text-gray-500 md:hidden"
+          className="cursor-pointer pr-4 z-50 text-gray-500 lg:hidden"
         >
           {nav ? <IoClose size={30} /> : <RiMenu2Line size={30} />}
         </div>
@@ -146,7 +172,7 @@ const Navbar = () => {
           <ul
             className={
               nav
-                ? ` transition-all ease-in-out duration-500 delay-150 md:hidden flex flex-col justify-start items-start mt-14 absolute top-0 left-0 z-40 w-8/12 shadow-md shadow-slate-200 bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor rounded-lg opacity-95`
+                ? ` transition-all ease-in-out duration-500 delay-150 lg:hidden flex flex-col justify-start items-start mt-14 absolute top-0 left-0 z-40 w-8/12 shadow-md shadow-slate-200 bg-gradient-to-b from-MainYellowColor to-white text-MainBlueColor rounded-lg opacity-95`
                 : ` transition-all ease-in-out duration-300 delay-0 opacity-0 w-0 h-full absolute top-0 left-0`
             }
           >
@@ -200,11 +226,28 @@ const Navbar = () => {
                   <li
                     className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
                   >
-                    <Link 
-                    href={"/profile"}
-                    className="flex flex-row justify-center items-center">
+                    <Link
+                      href={"/profile"}
+                      className="flex flex-row justify-center items-center"
+                    >
                       <CiUser size={25} className=" text-MainBlueColor mx-2" />
                       <p>{currentUser}</p>
+                    </Link>
+                  </li>
+                )}
+                {currentUser && (
+                  <li
+                    className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
+                  >
+                    <Link
+                      className="flex flex-row justify-start items-center"
+                      href={"/cart"}
+                    >
+                      <CiShoppingBasket
+                        size={25}
+                        className=" text-MainBlueColor mx-2"
+                      />
+                      <p>سله التسوق</p>
                     </Link>
                   </li>
                 )}
@@ -230,17 +273,15 @@ const Navbar = () => {
                   >
                     <Link
                       href={"/login"}
-                      className="flex flex-row justify-center items-center"
+                      className="flex flex-row justify-start items-center"
                     >
-                      <CiLogout
-                        size={25}
-                        className=" text-MainBlueColor mx-2"
-                      />
+                      <TbLogin size={25} className=" text-MainBlueColor mx-2" />
                       <p>تسجيل دخول</p>
                     </Link>
                   </li>
                 )}
-                {currentUser && (
+
+                {!currentUser && (
                   <li
                     className={`px-4 cursor-pointer capitalize md:py-6 py-2 sm:text-md text-lg md:text-2xl hover:scale-105`}
                   >
@@ -248,11 +289,11 @@ const Navbar = () => {
                       className="flex flex-row justify-start items-center"
                       href={"/cart"}
                     >
-                      <CiShoppingBasket
+                      <LuUserPlus2
                         size={25}
                         className=" text-MainBlueColor mx-2"
                       />
-                      <p>سله التسوق</p>
+                      <p>مستخدم جديد</p>
                     </Link>
                   </li>
                 )}

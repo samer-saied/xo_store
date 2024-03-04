@@ -18,8 +18,9 @@ export default function AdminBannerComp() {
   return (
     <TableComp
       data={{
-        tableTitle: "Banners",
-        tableColumns: ["title", "created", "state"],
+        tableTitle: "banners",
+        tableHeaders: ["title", "created at", "state"],
+        tableColumns: ["title", "date","status" ],
         tableData: banners,
       }}
     />

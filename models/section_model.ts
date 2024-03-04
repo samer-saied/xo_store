@@ -25,8 +25,8 @@ export const sectionConverter = {
     };
   },
 
-  fromFirestore: (snapshot: QueryDocumentSnapshot, options?: any) => {
-    const data = snapshot.data(options);
+  fromFirestore: (snapshot: any, options?: any,isSingle?:boolean) => {
+    const data = isSingle == true ?snapshot :snapshot.data();
     return new Section(
       snapshot.id,
       data.title,

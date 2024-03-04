@@ -2,9 +2,13 @@
 
 import Image from "next/image";
 import LoadingPage from "../user_components/common/loading";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function TableComp({ data }) {
-  console.log(data);
+
+  const router = useRouter();
+
   return (
     <>
       <div dir="ltr" className="container max-w-5xl px-4 mx-auto sm:px-8">
@@ -35,18 +39,18 @@ export default function TableComp({ data }) {
                       >
                         {data["tableTitle"]}
                       </th>
-                      {data["tableColumns"].map((column, index) => (
+                      {data["tableHeaders"].map((header, index) => (
                         <th
                           key={index}
                           scope="col"
-                          className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase  border-b border-gray-200"
+                          className="px-5 py-3 text-sm font-normal text-center text-gray-800 uppercase  border-b border-gray-200"
                         >
-                          {column}
+                          {header}
                         </th>
                       ))}
                       <th
                         scope="col"
-                        className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase  border-b border-gray-200"
+                        className="px-5 py-3 text-sm font-normal text-center text-gray-800 uppercase  border-b border-gray-200"
                       >
                         Actions
                       </th>
@@ -57,49 +61,77 @@ export default function TableComp({ data }) {
                     {data["tableData"].length == 0 && <h1>No Data </h1>}
 
                     {data["tableData"].length > 0 &&
-                      data["tableData"].map((data, index) => (
-                        <tr key={index}>
-                          <td className="px-5 py-2 text-sm bg-white border-b border-gray-200">
+                      data["tableData"].map((tabledata, index) => (
+                        <tr
+                          key={index}
+                          className=" cursor-pointer  hover:bg-gray-200"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            router.push(
+                              "admin/" +
+                                data["tableTitle"] +
+                                "/" +
+                                tabledata["id"]
+                            );
+                          }}
+                        >
+                          <td className="px-5 py-2 text-sm border-b border-gray-100">
                             <div className="flex items-center">
                               <div className="flex-shrink-0">
-                                <a href="#" className="relative block">
+                                {tabledata["image"] == null &&
+                                tabledata["icon"] == null ? (
                                   <Image
                                     width={30}
                                     height={30}
-                                    alt="profil"
-                                    src={data["image"] ?? data["icon"]}
-                                    className="mx-auto object-cover rounded-full h-10 w-10 "
+                                    alt="profile"
+                                    src={"/logo/logo.png"}
+                                    className="mx-auto object-cover rounded-full h-10 w-10  bg-black"
                                   />
-                                </a>
+                                ) : (
+                                  <Image
+                                    width={30}
+                                    height={30}
+                                    alt="profile"
+                                    src={
+                                      tabledata["image"] ?? tabledata["icon"]
+                                    }
+                                    className="mx-auto object-cover rounded-full h-10 w-10  bg-black"
+                                  />
+                                )}
                               </div>
                             </div>
                           </td>
-                          <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {data["title"]}
-                            </p>
-                          </td>
-                          <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {data["date"]}
-                            </p>
-                          </td>
-                          <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
-                            <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
-                              <span
-                                aria-hidden="true"
-                                className={
-                                  data["status"] == true
-                                    ? "absolute inset-0 bg-green-600 rounded-full"
-                                    : "absolute inset-0 bg-pink-500 rounded-full"
-                                }
-                              ></span>
-                              <span className="relative">
-                                {data["status"] == true ? "active" : "Inactive"}
-                              </span>
-                            </span>
-                          </td>
-                          <td className="px-1 py-2 text-sm bg-white border-b border-gray-200">
+                          {data["tableColumns"].map((tableColumn, index) => (
+                            <td
+                              key={index}
+                              className="px-1 py-2 text-sm border-b border-gray-200"
+                            >
+                              {tableColumn != "status" ? (
+                                <p className="text-gray-900 whitespace-no-wrap text-center">
+                                  {tabledata[tableColumn]}
+                                </p>
+                              ) : (
+                                <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
+                                  <span
+                                    aria-hidden="true"
+                                    className={
+                                      tabledata[tableColumn] == true
+                                        ? "absolute inset-0 bg-green-600 rounded-full"
+                                        : "absolute inset-0 bg-pink-500 rounded-full"
+                                    }
+                                  ></span>
+                                  <span className="relative">
+                                    {tabledata[tableColumn] == true
+                                      ? "active"
+                                      : "Inactive"}
+                                  </span>
+                                </span>
+                              )}
+                            </td>
+                           
+                          ))}
+
+                          <td className="px-1 py-2 text-sm border-b border-gray-200 text-center">
                             <button
                               href="#"
                               className=" bg-MainBlueColor text-white hover:text-MainYellowColor rounded-md py-2 px-3 m-3"

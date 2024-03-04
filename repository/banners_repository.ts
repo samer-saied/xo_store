@@ -1,6 +1,7 @@
 import {
   handleDeleteOne,
   handleGetAll,
+  handleGetOne,
   handlePostOne,
   handleUpdateOne,
 } from "@/db/firebase_crud";
@@ -9,14 +10,9 @@ import { Banner, bannerConverter } from "@/models/banner_model";
 const bannersModelName: String = "banners";
 
 async function GetAllBanners(): Promise<Banner[]> {
-  console.log("-----------HERE-------------------")
   try {
     const banners: Banner[] = [];
-    const querySnapshot = await handleGetAll(
-      bannersModelName,
-      null
-      // where("country", ">=", "EGP 3900")
-    );
+    const querySnapshot = await handleGetAll(bannersModelName, null);
 
     querySnapshot.forEach((doc) => {
       const currentBanner = bannerConverter.fromFirestore(doc);
@@ -29,12 +25,26 @@ async function GetAllBanners(): Promise<Banner[]> {
   }
 }
 
+async function GetOneBanner(id: string): Promise<Banner> {
+  try {
+    const querySnapshot = await handleGetOne(bannersModelName, id);
+
+    const currentBanner = bannerConverter.fromFirestore(
+      querySnapshot,
+      null,
+      true
+    );
+
+    return currentBanner;
+  } catch (error) {
+    console.error("Error fetching banners:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
+
 async function AddOneBanner(banner: Banner) {
   try {
-    await handlePostOne(
-      bannersModelName,
-      bannerConverter.toFirestore(banner)
-    );
+    await handlePostOne(bannersModelName, bannerConverter.toFirestore(banner));
   } catch (error) {
     console.error("Error fetching banners:", error);
     throw error; // Re-throw the error for further handling
@@ -67,4 +77,10 @@ async function DeleteOneBanner(banner: Banner) {
   }
 }
 
-export { GetAllBanners, AddOneBanner, UpdateOneBanner, DeleteOneBanner };
+export {
+  GetAllBanners,
+  GetOneBanner,
+  AddOneBanner,
+  UpdateOneBanner,
+  DeleteOneBanner,
+};

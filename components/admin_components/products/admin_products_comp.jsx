@@ -18,8 +18,10 @@ export default function AdminProductsComp() {
   return (
     <TableComp
       data={{
-        tableTitle: "Products",
-        tableColumns: ["title", "created", "state"],
+        tableTitle: "products",
+        tableHeaders: ["title", "created at", "state", "current Price"],
+
+        tableColumns: ["title", "date", "status", "currentPrice"],
         tableData: products,
       }}
     />

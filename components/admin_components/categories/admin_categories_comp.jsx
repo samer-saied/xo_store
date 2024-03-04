@@ -21,8 +21,9 @@ export default function AdminCategoriesComp() {
 
       <TableComp
         data={{
-          tableTitle: "Categories",
-          tableColumns: ["title", "created", "state"],
+          tableTitle: "categories",
+          tableHeaders: ["title", "created At", "state"],
+          tableColumns: ["title", "date", "status"],
           tableData:categories
         }}
       />
