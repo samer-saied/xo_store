@@ -20,6 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl" className={almarai.className}>
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
       <head>
         <link rel="XO Store icon" href="/icons/favicon.ico" sizes="any" />
       </head>
