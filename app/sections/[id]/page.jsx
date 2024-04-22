@@ -38,8 +38,7 @@ export default function SpecificSectionsPage({ params }) {
 
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
+    
       <SpacerWidget />
 
       {/*------------- PATH TEXT ---------------------*/}

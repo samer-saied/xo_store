@@ -81,27 +81,31 @@ async function GetExclusiveProducts(): Promise<Product[]> {
 }
 
 async function GetOneProduct(productId: String): Promise<Product | void> {
+  console.log(productId)
+
   try {
     const querySnapshot: DocumentData | undefined = await handleGetOne(
       productsModelName,
       productId
       // where("country", ">=", "EGP 3900")
     );
+    console.log("---------///////---------------")
+    console.log(querySnapshot?.data)
     const currentProduct = new Product(
       querySnapshot?.id,
-      querySnapshot?.data.categoryId,
-      querySnapshot?.data.sectionId,
-      querySnapshot?.data.title,
-      querySnapshot?.data.image,
-      querySnapshot?.data.prePrice,
-      querySnapshot?.data.currentPrice,
-      querySnapshot?.data.descrption,
-      querySnapshot?.data.details,
-      querySnapshot?.data.rate,
-      querySnapshot?.data.exclusive,
-      querySnapshot?.data.todayOffer,
-      querySnapshot?.data.status,
-      querySnapshot?.data.date
+      querySnapshot?.categoryId,
+      querySnapshot?.sectionId,
+      querySnapshot?.title,
+      querySnapshot?.image,
+      querySnapshot?.prePrice,
+      querySnapshot?.currentPrice,
+      querySnapshot?.descrption,
+      querySnapshot?.details,
+      querySnapshot?.rate,
+      querySnapshot?.exclusive,
+      querySnapshot?.todayOffer,
+      querySnapshot?.status,
+      querySnapshot?.date
     );
     return currentProduct;
   } catch (error) {

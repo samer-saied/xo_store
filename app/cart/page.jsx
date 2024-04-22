@@ -14,8 +14,7 @@ const urlPaths =
 const CartPage = () => {
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
+ 
       <PathWidget urlPaths={urlPaths} />
 
       {/*----------------- PAGE Start --------------------*/}

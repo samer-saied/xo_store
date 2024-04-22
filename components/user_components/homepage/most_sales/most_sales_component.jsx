@@ -16,7 +16,7 @@ export default function MostSalesComponent() {
       setCategories(categories);
       setLoading(false);
     });
-  }, [categories]);
+  }, []);
 
 
   return (

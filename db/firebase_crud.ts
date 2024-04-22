@@ -10,6 +10,7 @@ import {
   deleteDoc,
   updateDoc,
   where,
+  setDoc,
 } from "firebase/firestore";
 
 import { db } from "./firebase_init";
@@ -30,6 +31,8 @@ export async function handleGetOne(
   const docRef = doc(db, `${collectionName}`, `${collectionId}`);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
+    console.log(docSnap.data());
+
     return { id: docSnap.id, ...docSnap.data() };
   } else {
     // docSnap.data() will be undefined in this case
@@ -38,8 +41,17 @@ export async function handleGetOne(
   }
 }
 
-export async function handlePostOne(collectionName: String, data: any) {
-  await addDoc(collection(db, `${collectionName}`), data);
+export async function handlePostOne(
+  collectionName: String,
+  collectionId: String | null,
+  data: any
+) {
+  if (collectionId == null) {
+    await addDoc(collection(db, `${collectionName}`), data);
+  } else {
+    const docRef = doc(collection(db, `${collectionName}`), `${collectionId}`);
+    await setDoc(docRef, data);
+  }
 }
 
 export async function handleDeleteOne(

@@ -10,6 +10,7 @@ import { GetAllSections } from "@/repository/sections_repository";
 import SectionCardWidget from "@/components/user_components/homepage/sections_cards/section_card_widget";
 import PathWidget from "@/components/user_components/common/path_widget";
 import LoadingPage from "@/components/user_components/common/loading";
+import MobileMainNavBar from "@/components/user_components/common/mobile_main_navBar";
 
 export default function SectionsPage({ params }) {
   const [loading, setLoading] = useState(true);
@@ -26,8 +27,7 @@ export default function SectionsPage({ params }) {
 
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
+
       <SpacerWidget />
 
       {/*------------- PATH TEXT ---------------------*/}
