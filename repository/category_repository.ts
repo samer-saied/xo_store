@@ -77,6 +77,7 @@ async function AddOneCategory(category: Category) {
   try {
     await handlePostOne(
       categoriesModelName,
+      null,
       categoryConverter.toFirestore(category)
     );
   } catch (error) {

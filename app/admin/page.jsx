@@ -30,7 +30,7 @@ export default function AdminHomePage() {
         router.push("/login");
       }
     });
-  }, []);
+  }, [router]);
 
   return isAdmin == false ? (
     <LoadingPage />

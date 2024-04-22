@@ -118,6 +118,7 @@ async function AddOneProduct(product: Product) {
   try {
     await handlePostOne(
       productsModelName,
+      null,
       productConverter.toFirestore(product)
     );
   } catch (error) {

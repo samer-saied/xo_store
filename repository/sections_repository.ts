@@ -51,6 +51,7 @@ async function AddOneSection(section: Section) {
   try {
     await handlePostOne(
       sectionsModelName,
+      null,
       sectionConverter.toFirestore(section)
     );
   } catch (error) {
