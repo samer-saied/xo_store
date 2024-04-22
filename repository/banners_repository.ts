@@ -44,7 +44,7 @@ async function GetOneBanner(id: string): Promise<Banner> {
 
 async function AddOneBanner(banner: Banner) {
   try {
-    await handlePostOne(bannersModelName, bannerConverter.toFirestore(banner));
+    await handlePostOne(bannersModelName,null, bannerConverter.toFirestore(banner));
   } catch (error) {
     console.error("Error fetching banners:", error);
     throw error; // Re-throw the error for further handling
