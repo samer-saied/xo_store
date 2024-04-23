@@ -34,7 +34,7 @@ async function GetOneCart(userId: string): Promise<Cart> {
       true
     );
 
-    return currentCart;
+    return currentCart!;
   } catch (error) {
     console.error("Error fetching carts:", error);
     throw error; // Re-throw the error for further handling
