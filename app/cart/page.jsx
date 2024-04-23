@@ -7,7 +7,7 @@ import CurrencySymbolComp from "@/components/user_components/common/currency_sym
 import PathWidget from "@/components/user_components/common/path_widget";
 import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
-import { GetOneCart } from "@/repository/GetOneCart";
+import { GetOneCart } from "@/repository/cart_repository";
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
