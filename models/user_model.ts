@@ -1,4 +1,5 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import { Cart } from "./cart_model";
 
 export class User {
   public id: string;
@@ -18,7 +19,7 @@ export class User {
     phone: string,
     password: string,
     createdDate: number,
-    status: boolean
+    status: boolean,
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -60,7 +61,7 @@ export const userConverter = {
       data.phone,
       data.password,
       data.createdDate,
-      data.status
+      data.status,
     );
   },
 };

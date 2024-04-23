@@ -107,7 +107,7 @@ export function MobileMainNavBar({sections}) {
                     size={25}
                     className=" text-MainBlueColor mx-2"
                   />
-                  <p>سله التسوق</p>
+                  <p>سله المشتريات</p>
                 </Link>
               </li>
             )}

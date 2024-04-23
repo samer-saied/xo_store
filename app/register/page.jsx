@@ -5,14 +5,15 @@ import Image from "next/image";
 import { AddOneUser } from "@/repository/users_repository";
 import { User } from "@/models/user_model";
 import { useForm } from "react-hook-form";
-import { UserCredential, createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import AlertDialogComp from "@/components/user_components/common/alert_msg";
 import { useRouter } from "next/navigation";
 
 const RegisterPage = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [isError, setIsError] = useState(false);
+  const [msg, setMsg] = useState("");
   const router = useRouter();
 
   const {
@@ -27,8 +28,6 @@ const RegisterPage = () => {
     const password = data["password"].toLowerCase();
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
-        console.log(result.user!.uid);
-        console.log(result.user);
         let user = new User(
           result.user.uid,
           data["firstName"],
@@ -39,23 +38,31 @@ const RegisterPage = () => {
           Date.now(),
           true
         );
-        AddOneUser(user).then((newUser) => {
-          router.push("/");
-          console.log(newUser);
-        }).catch((error)=>{
-          console.log(error);
+        AddOneUser(user)
+          .then((newUser) => {
+            setIsError(false);
+            setMsg("Account Created ....");
+            setIsOpen(true);
 
-        })
+            // router.push("/");
+            console.log(newUser);
+          })
+          .catch((error) => {
+            setIsError(true);
+            setMsg(error);
+            setIsOpen(true);
+          });
       })
       .catch((error) => {
         if (error.code === "auth/email-already-in-use") {
-          setErrorMsg("Email already in use");
+          setIsError(true);
+          setMsg("Email already in use");
           setIsOpen(true);
         } else {
-          setErrorMsg(
+          setIsError(true);
+          setMsg(
             "An error occurred during signup. Please try again later."
           );
-          setIsOpen(true);
         }
       });
   });
@@ -195,7 +202,7 @@ const RegisterPage = () => {
                       type="password"
                       {...register("confirmPassword", {
                         required: true,
-                        validate: (value: any) => {
+                        validate: (value) => {
                           return (
                             getValues("password") === value ||
                             "Passwords do not match"
@@ -234,8 +241,21 @@ const RegisterPage = () => {
             </div>
           </div>
         </div>
-        {isOpen && (
-          <AlertDialogComp errorMsg={errorMsg} setIsOpen={setIsOpen} />
+        {isOpen && isError && (
+          <AlertDialogComp
+            title={"Message"}
+            msg={msg}
+            isError={true}
+            setIsOpen={setIsOpen}
+          />
+        )}
+        {isOpen && !isError && (
+          <AlertDialogComp
+            title={"Congratulations"}
+            msg={"Account created successfully"}
+            isError={false}
+            setIsOpen={setIsOpen}
+          />
         )}
       </div>
     </>

@@ -1,22 +1,52 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
 export class Product {
+  public id: string | null;
+  public categoryId: string;
+  public sectionId: string;
+  public title: string;
+  public image: string;
+  public prePrice: number;
+  public currentPrice: number;
+  public descrption: string;
+  public details: string;
+  public rate: number;
+  public exclusive: boolean;
+  public todayOffer: boolean;
+  public status: boolean;
+  public date: String;
+
   constructor(
-    public id: string | null,
-    public categoryId: string,
-    public sectionId: string,
-    public title: string,
-    public image: string,
-    public prePrice: number,
-    public currentPrice: number,
-    public descrption: string,
-    public details: string,
-    public rate: number,
-    public exclusive: boolean,
-    public todayOffer: boolean,
-    public status: boolean,
-    public date: String
-  ) {}
+    id: string | null,
+    categoryId: string,
+    sectionId: string,
+    title: string,
+    image: string,
+    prePrice: number,
+    currentPrice: number,
+    descrption: string,
+    details: string,
+    rate: number,
+    exclusive: boolean,
+    todayOffer: boolean,
+    status: boolean,
+    date: String
+  ) {
+    this.id = id;
+    this.categoryId = categoryId;
+    this.sectionId = sectionId;
+    this.title = title;
+    this.image = image;
+    this.prePrice = prePrice;
+    this.currentPrice = currentPrice;
+    this.descrption = descrption;
+    this.details = details;
+    this.rate = rate;
+    this.exclusive = exclusive;
+    this.todayOffer = todayOffer;
+    this.status = status;
+    this.date = date;
+  }
 
   toString() {
     return this.title + ", " + this.details;
@@ -45,7 +75,6 @@ export const productConverter = {
   },
 
   fromFirestore: (snapshot: QueryDocumentSnapshot, options?: any) => {
-
     const data = snapshot.data(options);
     return new Product(
       snapshot.id,

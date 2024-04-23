@@ -139,7 +139,7 @@ const Navbar = () => {
                         className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
                       >
                         <div className="text-center text-sm font-normal ">
-                          سله التسوق
+                          سله المشتريات
                         </div>
                         <CiShoppingBasket size={25} className=" mx-1" />
                       </div>
