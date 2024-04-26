@@ -9,6 +9,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import AlertDialogComp from "@/components/user_components/common/alert_msg";
 import { useRouter } from "next/navigation";
+import styles from "react-phone-number-input/style.css"; // Import styles
+import PhoneInput from "react-phone-number-input";
 
 const RegisterPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +21,7 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
+    control,
     getValues,
     formState: { errors },
   } = useForm();
@@ -60,19 +63,18 @@ const RegisterPage = () => {
           setIsOpen(true);
         } else {
           setIsError(true);
-          setMsg(
-            "An error occurred during signup. Please try again later."
-          );
+          setMsg("An error occurred during signup. Please try again later.");
         }
       });
   });
 
   return (
     <>
-      <div className="w-screen overflow-hidden py-16 px-8">
-        <div className="lg:w-6/12 md:w-8/12 w-10/12 mx-auto py-5">
-          <div className="bg-gradient-to-r from-blue-300 to-MainBlueColor shadow-lg transform -rotate-6 rounded-3xl">
-            <div className=" bg-white p-3 transform rotate-6 shadow-lg rounded-3xl">
+      <div className="w-screen overflow-hidden py-3 ">
+        <div className="lg:w-6/12 md:w-8/12 w-11/12 mx-auto py-5">
+          <div className="relative p-5 mx-auto">
+            <div className="absolute inset-4 bg-gradient-to-r from-blue-300 to-MainBlueColor shadow-lg transform -rotate-3 rounded-3xl"></div>{" "}
+            <div className="relative p-5 bg-white shadow-lg rounded-3xl">
               {/* /////////////////////// IMAGE //////////////////// */}
               <div className=" flex flex-row w-full justify-center items-center mb-10 mt-8">
                 <Image
@@ -91,7 +93,7 @@ const RegisterPage = () => {
               {/* /////////////////////// FORM //////////////////// */}
               <form
                 onSubmit={RegisterFunc}
-                className="px-8 pt-6 pb-8 mb-4 border border-gray-50 bg-white rounded "
+                className="px-3 pt-6 pb-8 mb-4 border border-gray-50 bg-white rounded "
               >
                 <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:w-5/12 md:mb-0">
@@ -159,7 +161,23 @@ const RegisterPage = () => {
                   >
                     رقم الهاتف
                   </label>
-                  <input
+                  <PhoneInput
+                    name="phone"
+                    placeholder="Enter phone number"
+                    // value={register("phone")}
+                    // onChange={()=>{ ...register("phone") }}
+                  />
+                  {/* limitMaxLength={10}
+                  className=
+                  {styles.myClass +
+                    " w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"}
+                  control={control}
+                  rules={{ required: true }}
+                  addInternationalOption={false}
+                  defaultCountry="US" // Set a default country (optional)
+                  withCountryCallingCode={true} // Include country code in the
+                  input // className=" w-8 h-8 flex flex-row" /> */}
+                  {/* <input
                     className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                     {...register("phone", {
                       required: true,
@@ -170,7 +188,7 @@ const RegisterPage = () => {
                     <p className="text-md italic rounded text-red-500 p-1 ">
                       * Please insert correct phone number
                     </p>
-                  )}
+                  )} */}
                 </div>
                 <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:mb-0 md:w-5/12">
@@ -205,7 +223,7 @@ const RegisterPage = () => {
                         validate: (value) => {
                           return (
                             getValues("password") === value ||
-                            "Passwords do not match"
+                            "Passwords do not match - passwords should be at least eight (8) characters."
                           );
                         },
                       })}
@@ -241,6 +259,7 @@ const RegisterPage = () => {
             </div>
           </div>
         </div>
+
         {isOpen && isError && (
           <AlertDialogComp
             title={"Message"}

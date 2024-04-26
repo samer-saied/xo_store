@@ -17,7 +17,7 @@ const AlertDialogComp = ({ title, msg, setIsOpen, isError }) => {
   const router = useRouter();
   return (
     <AlertDialog
-      className=" w-full h-full absolute top-0 left-0 right-0 bottom-0"
+      className=" w-30 h-30"
       open={true}
     >
       <AlertDialogContent>

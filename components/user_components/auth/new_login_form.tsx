@@ -2,10 +2,7 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { auth } from "../../../db/firebase_init";
 
-import {
-  signInWithEmailAndPassword,
-  UserCredential,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, UserCredential } from "firebase/auth";
 
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -31,11 +28,11 @@ const NewLoginFormWidget = () => {
   };
 
   return (
-    <div className=" h-screen flex flex-col justify-center items-center">
-      <div className="w-10/12 md:w-8/12 lg:w-6/12">
+    <div className="w-screen overflow-hidden py-3 ">
+      <div className="lg:w-6/12 md:w-8/12 w-11/12 mx-auto py-5">
         <div className="relative p-5 mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-MainBlueColor shadow-lg transform -rotate-6 rounded-3xl"></div>
-          <div className="relative p-10 bg-white shadow-lg rounded-3xl">
+          <div className="absolute inset-4 bg-gradient-to-r from-blue-300 to-MainBlueColor shadow-lg transform -rotate-3 rounded-3xl"></div>
+          <div className="relative p-2 bg-white shadow-lg rounded-3xl">
             <div className=" mx-auto px-5 py-10">
               {/* /////////////////////// IMAGE //////////////////// */}
               <div className=" flex flex-row w-full justify-center items-center mb-10">
@@ -48,14 +45,14 @@ const NewLoginFormWidget = () => {
               </div>
               {/* /////////////////////// SIGN IN //////////////////// */}
               <div className=" flex flex-row justify-center items-center">
-                <h1 className="text-3xl font-semibold text-MainBlueColor">
+                <h1 className="md:text-3xl text-xl font-semibold text-MainBlueColor">
                   تسجيل الدخول
                 </h1>
               </div>
               {/* /////////////////////// MAIL & PAASWORD //////////////////// */}
               <div className="divide-y divide-gray-200">
                 <div className="py-8 space-y-4 text-gray-700 text-lg leading-7">
-                  <div className="relative pt-2 mb-10 min-w-72 w-full">
+                  <div className="relative pt-2 mb-10">
                     <input
                       onChange={(e) => {
                         setEmail(e.currentTarget.value);

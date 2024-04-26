@@ -19,7 +19,7 @@ const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner)
           </div>
           {/*  TEXTS */}
           <div className=" md:w-10/12 w-11/12 h-full flex flex-col items-start pb-5">
-            <div className="pb-3 text-right text-neutral-400 lg:text-lg md:text-md text-md line-clamp-3">
+            <div className="pb-3 text-right text-neutral-400 lg:text-lg md:text-md text-sm overflow-scroll">
               {descrption.trim()}
             </div>
             <button
@@ -27,7 +27,7 @@ const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner)
                 e.preventDefault();
                 route.push(`/products/${refProductId}`);
               }}
-              className="text-white  bg-MainBlueColor shadow-sm rounded-md py-3 px-5 hover:opacity-90 hover:shadow-md"
+              className="text-white  bg-MainBlueColor shadow-sm rounded-md md:py-3 md:px-5 py-2 px-3 hover:opacity-90 hover:shadow-md"
               type="submit"
             >
               اكتشف الان
