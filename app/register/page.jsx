@@ -9,7 +9,6 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import AlertDialogComp from "@/components/user_components/common/alert_msg";
 import { useRouter } from "next/navigation";
-import styles from "react-phone-number-input/style.css"; // Import styles
 import PhoneInput from "react-phone-number-input";
 
 const RegisterPage = () => {
@@ -21,7 +20,6 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    // control,
     setValue,
     getValues,
     formState: { errors },

@@ -8,7 +8,7 @@ import PathWidget from "@/components/user_components/common/path_widget";
 import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
 import { GetOneCart } from "@/repository/cart_repository";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
 import { GetOneProduct } from "@/repository/products_repository";
@@ -24,15 +24,12 @@ const CartPage = () => {
   const [currentUser, setcurrentUser] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log(user.uid);
         setcurrentUser(user.uid);
         let cartData = await GetOneCart(user.uid);
-        console.log(cart);
         setCart(cartData);
-        console.log("=======================");
         let tempProducts = [];
         if (cartData && cartData["products"].length > 0) {
           for (let index = 0; index < cartData["products"].length; index++) {
@@ -40,16 +37,15 @@ const CartPage = () => {
             tempProducts.push(product);
           }
         }
-
-        console.log(tempProducts);
         setProducts(tempProducts);
         setLoading(false);
       } else {
-        // setcurrentUser("");
-        // console.log("user is logged out");
+        router.push("/login");
       }
     });
-  }, [currentUser]);
+  }, []);
+
+
   return (
     <>
       {loading ? (

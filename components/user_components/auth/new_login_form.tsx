@@ -63,7 +63,7 @@ const NewLoginFormWidget = () => {
                       placeholder="البريد الالكتروني"
                     />
                     <label
-                      htmlFor="email"
+                      // htmlFor="email"
                       className="absolute right-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                     >
                       البريد الالكتروني
@@ -75,12 +75,12 @@ const NewLoginFormWidget = () => {
                         setpassword(e.currentTarget.value);
                       }}
                       type="password"
-                      id="sign-in-email"
+                      id="sign-in-password"
                       className=" rounded-lg flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base "
                       placeholder="كلمه المرور"
                     />
                     <label
-                      htmlFor="password"
+                      // htmlFor="password"
                       className="absolute right-0 -top-5 text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm"
                     >
                       كلمه المرور

@@ -5,31 +5,28 @@ import { FaPhoneAlt } from "react-icons/fa";
 import Image from "next/image";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { GetOneUser } from "@/repository/users_repository";
 import ProfielTableComp from "@/components/user_components/profile/profile_table_comp";
+import { useRouter } from "next/navigation";
 
 const ProfilePage = () => {
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState(null);
-  const [currentUser, setcurrentUser] = useState(null);
+  const router = useRouter();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user.uid);
-        setcurrentUser(user.uid);
         GetOneUser(user.uid).then((profileData) => {
           setProfile(profileData);
-          console.log(profileData);
           setLoading(false);
         });
       } else {
-        setcurrentUser("");
-        console.log("user is logged out");
+        router.push("/login");
       }
     });
-  }, [currentUser]);
+  }, []);
 
   return (
     <>
