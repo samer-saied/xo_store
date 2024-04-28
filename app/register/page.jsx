@@ -21,7 +21,8 @@ const RegisterPage = () => {
   const {
     register,
     handleSubmit,
-    control,
+    // control,
+    setValue,
     getValues,
     formState: { errors },
   } = useForm();
@@ -161,34 +162,28 @@ const RegisterPage = () => {
                   >
                     رقم الهاتف
                   </label>
-                  <PhoneInput
-                    name="phone"
-                    placeholder="Enter phone number"
-                    // value={register("phone")}
-                    // onChange={()=>{ ...register("phone") }}
-                  />
-                  {/* limitMaxLength={10}
-                  className=
-                  {styles.myClass +
-                    " w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"}
-                  control={control}
-                  rules={{ required: true }}
-                  addInternationalOption={false}
-                  defaultCountry="US" // Set a default country (optional)
-                  withCountryCallingCode={true} // Include country code in the
-                  input // className=" w-8 h-8 flex flex-row" /> */}
-                  {/* <input
-                    className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    {...register("phone", {
-                      required: true,
-                      pattern: /(0|1|2|3|4|5|6|7|8|9)\d{10}/,
-                    })}
-                  />
+                  <div className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                    <PhoneInput
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      // pattern="(0|1|2|3|4|5|6|7|8|9)\d{10}"
+                      placeholder="Enter phone number"
+                      value={getValues["phone"]}
+                      onChange={(event) => {
+                        setValue("phone", event);
+                      }}
+                      className={"input-phone-number"}
+                      rules={{ required: true }}
+                      addInternationalOption={false}
+                      defaultCountry="EG" // Set a default country (optional)
+                    />
+                  </div>
                   {errors.phone && (
                     <p className="text-md italic rounded text-red-500 p-1 ">
                       * Please insert correct phone number
                     </p>
-                  )} */}
+                  )}
                 </div>
                 <div className="mb-4 md:flex md:justify-between">
                   <div className="mb-4 md:mb-0 md:w-5/12">
