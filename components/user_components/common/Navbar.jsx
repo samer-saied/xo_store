@@ -1,8 +1,6 @@
-"use client"
+"use client";
 import { TbLogin, TbWorld } from "react-icons/tb";
 import {
-  CiBookmark,
-  CiLogin,
   CiLogout,
   CiShoppingBasket,
   CiUser,
@@ -21,10 +19,16 @@ import { GetAllSections } from "@/repository/sections_repository";
 
 const Navbar = () => {
   const [currentUser, setcurrentUser] = useState(null);
+  const [sections, setsections] = useState([]);
 
   useEffect(() => {
+    GetAllSections().then((sections) => {
+      setsections(sections);
+      // setLoading(false);
+    });
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user)
         const uid = user.email ?? "";
         setcurrentUser(uid);
       } else {
@@ -33,21 +37,6 @@ const Navbar = () => {
       }
     });
   }, [currentUser]);
-
-  ////
-  /////////
-  ////////////    REMOVE CODE AND PASS PARAMAS FROM PREVIOUS PAGE
-  //////////////////
-  ////////////////////////
-  const [sections, setsections] = useState([]);
-
-
-  useEffect(() => {
-    GetAllSections().then((sections) => {
-      setsections(sections);
-      // setLoading(false);
-    });
-  }, []);
 
   return (
     <>
@@ -74,7 +63,7 @@ const Navbar = () => {
                 {sections.map((section, index) => (
                   <li
                     key={section.id}
-                    className="nav-links px-1 lg:px-4 cursor-pointer capitalize lg:text-lg md:text-lg text-xs font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor duration-200 link-underline"
+                    className="nav-links px-1 lg:px-4 cursor-pointer capitalize lg:text-lg md:text-md text-xs font-medium text-gray-500 hover:scale-105 hover:text-MainBlueColor border-b-2 border-white hover:border-MainBlueColor duration-200 link-underline"
                   >
                     <Link
                       href={{
@@ -176,7 +165,7 @@ const Navbar = () => {
       </nav>
 
       {/*********** MOBILE NAV BAR *******************/}
-      <MobileMainNavBar sections={sections} />
+      <MobileMainNavBar sections={sections} isLogin={currentUser} />
     </>
   );
 };

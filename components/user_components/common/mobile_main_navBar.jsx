@@ -18,21 +18,8 @@ import { TbLogin } from "react-icons/tb";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
 
-export function MobileMainNavBar({sections}) {
-
-  const [currentUser, setcurrentUser] = useState(null);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.email ?? "";
-        setcurrentUser(uid);
-      } else {
-        setcurrentUser("");
-        console.log("user is logged out");
-      }
-    });
-  }, [currentUser]);
+export function MobileMainNavBar({sections , isLogin}) {
+  console.log(isLogin)
 
  
 
@@ -84,18 +71,18 @@ export function MobileMainNavBar({sections}) {
           {/*--------------- USER MENU -------------------*/}
 
           <div className="pb-10">
-            {currentUser && (
+            {isLogin && (
               <li className="px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105 hover:font-bold">
                 <Link
                   href={"/profile"}
                   className="flex flex-row justify-center items-center"
                 >
                   <CiUser size={25} className=" text-MainBlueColor mx-2" />
-                  <p>{currentUser}</p>
+                  <p>{isLogin}</p>
                 </Link>
               </li>
             )}
-            {currentUser && (
+            {isLogin && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
               >
@@ -111,7 +98,7 @@ export function MobileMainNavBar({sections}) {
                 </Link>
               </li>
             )}
-            {currentUser && (
+            {isLogin && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
               >
@@ -127,7 +114,7 @@ export function MobileMainNavBar({sections}) {
                 </button>
               </li>
             )}
-            {!currentUser && (
+            {!isLogin && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105`}
               >
@@ -140,7 +127,7 @@ export function MobileMainNavBar({sections}) {
                 </Link>
               </li>
             )}
-            {!currentUser && (
+            {!isLogin && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105`}
               >

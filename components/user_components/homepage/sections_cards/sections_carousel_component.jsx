@@ -20,14 +20,12 @@ export default function SectionsCarouselComponent() {
     });
   }, []);
 
-
-///////////// Animation   ///////////////////////
+  ///////////// Animation   ///////////////////////
   const props = useSpring({
-    from: { opacity: 0 , x:-1000},
-    to: { opacity: 1 , x:0},
+    from: { opacity: 0, x: -1000 },
+    to: { opacity: 1, x: 0 },
   });
 
-  
   return (
     <>
       {!loading && (
@@ -63,20 +61,20 @@ export default function SectionsCarouselComponent() {
             scrollbar={{ draggable: true }}
             spaceBetween={10}
             breakpoints={{
-              300: { slidesPerView: 1.8 },
-              600: { slidesPerView: 2.8 },
+              300: { slidesPerView: 2.5 },
+              600: { slidesPerView: 3.0 },
               800: { slidesPerView: 3.2 },
-              1024: { slidesPerView: 3.6 },
-              1300: { slidesPerView: 4.1 },
+              1024: { slidesPerView: 4.0 },
+              1300: { slidesPerView: 5.0 },
             }}
             // slidesPerView={2.2}
             onSlideChange={() => console.log("slide change")}
           >
             {sections.map((section) => (
               <SwiperSlide key={section.id}>
-                <animated.div style={props}>
+                {/* <animated.div style={props}> */}
                   <SectionCardWidget key={section.id} {...section} />
-                </animated.div>
+                {/* </animated.div> */}
               </SwiperSlide>
             ))}
           </Swiper>

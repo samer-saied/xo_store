@@ -9,7 +9,7 @@ export default function SectionCardWidget(section: Section) {
     () => ({
       from: {
         opacity: 0,
-        x: -100 ,
+        x: +100 ,
       },
       to: {
         opacity: 1,
@@ -34,7 +34,7 @@ export default function SectionCardWidget(section: Section) {
           style={{
             backgroundImage: `linear-gradient(to bottom,${section.primaryColor}, ${section.secandColor})`,
           }}
-          className={`md:w-auto min-w-42 md:h-56 xl:h-56 h-40 m-2 relative rounded-3xl shadow`}
+          className={`md:w-auto min-w-36 md:h-56 xl:h-56 h-40 md:m-2 m-0 relative rounded-3xl shadow`}
         >
           <div className="group">
             {/* Circle Shapes */}
