@@ -31,8 +31,7 @@ export default function TodayOffersPage() {
 
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
+
       <SpacerWidget />
 
       {/*------------- PATH TEXT ---------------------*/}
