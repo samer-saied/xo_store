@@ -1,4 +1,4 @@
-import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import { DocumentSnapshot, QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
 export class Product {
   public id: string | null;
@@ -74,10 +74,9 @@ export const productConverter = {
     };
   },
 
-  fromFirestore: (snapshot: QueryDocumentSnapshot, options?: any) => {
-    const data = snapshot.data(options);
+  fromFirestore: (data: any, id: string) => {
     return new Product(
-      snapshot.id,
+      id,
       data.categoryId,
       data.sectionId,
       data.title,

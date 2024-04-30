@@ -51,7 +51,7 @@ export default function SectionsCarouselComponent() {
               setSwiper(swiper);
             }}
             onActiveIndexChange={(swiper) => {
-              console.log("active index is", swiper.activeIndex);
+              // console.log("active index is", swiper.activeIndex);
             }}
             pagination={{
               clickable: true,
@@ -61,7 +61,7 @@ export default function SectionsCarouselComponent() {
             scrollbar={{ draggable: true }}
             spaceBetween={10}
             breakpoints={{
-              300: { slidesPerView: 2.5 },
+              300: { slidesPerView: 2.1 },
               600: { slidesPerView: 3.0 },
               800: { slidesPerView: 3.2 },
               1024: { slidesPerView: 4.0 },

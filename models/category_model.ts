@@ -1,4 +1,9 @@
-import { DocumentData, DocumentReference, QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import {
+  DocumentData,
+  DocumentReference,
+  QueryDocumentSnapshot,
+  Timestamp,
+} from "firebase/firestore";
 
 export class Category {
   constructor(
@@ -30,10 +35,9 @@ export const categoryConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any,isSingle?: boolean) => {
-    const data =isSingle ? snapshot: snapshot.data(options);
+  fromFirestore: (data: any, id: string) => {
     return new Category(
-      snapshot.id,
+      id,
       data.sectionId,
       data.title,
       data.image,

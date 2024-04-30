@@ -2,7 +2,13 @@ import { Banner } from "@/models/banner_model";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner) => {
+const BannerCardWidget = ({
+  id,
+  title,
+  descrption,
+  image,
+  refProductId,
+}: Banner) => {
   const route = useRouter();
 
   return (
@@ -13,15 +19,17 @@ const BannerCardWidget = ({ id, title, descrption, image ,refProductId}: Banner)
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
       <div className="relative bg-gray-100 md:w-10/12 w-11/12 h-60 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
-        <div className=" w-8/12">
-          <div className="text-right text-slate-500 md:text-3xl text-2xl font-bold md:py-4 py-2">
+        <div className=" w-8/12 flex flex-col h-full justify-start md:pt-5 pt-3">
+          <h1 className="text-right text-slate-500 md:text-3xl text-xl font-bold md:py-4 py-2">
             {title}
-          </div>
+          </h1>
           {/*  TEXTS */}
-          <div className=" md:w-10/12 w-11/12 h-full flex flex-col items-start pb-5">
-            <div className="pb-3 text-right text-neutral-400 lg:text-lg md:text-md text-sm overflow-scroll">
+          <div className=" md:w-10/12 w-11/12 h-auto flex flex-col items-start justify-center">
+            <h2 className="md:pb-5 pb-2 text-right text-neutral-400 lg:text-lg md:text-md text-sm">
               {descrption.trim()}
-            </div>
+            </h2>
+          </div>
+          <div className=" md:w-10/12 w-11/12 h-auto">
             <button
               onClick={(e) => {
                 e.preventDefault();

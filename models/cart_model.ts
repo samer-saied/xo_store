@@ -2,6 +2,7 @@ import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
 export class Cart {
   public id: string | null;
+  public userId: string ;
   public products: string[];
   public sales: number;
   public total: number;
@@ -11,7 +12,8 @@ export class Cart {
   public status: boolean;
 
   constructor(
-    id: string ,
+    id: string,
+    userId: string,
     products: string[],
     sales: number,
     total: number,
@@ -21,6 +23,7 @@ export class Cart {
     status: boolean
   ) {
     this.id = id;
+    this.userId = userId;
     this.products = products;
     this.sales = sales;
     this.total = total;
@@ -31,7 +34,7 @@ export class Cart {
   }
 
   toString() {
-    return this.id ;
+    return this.id;
   }
 }
 
@@ -40,7 +43,8 @@ export const cartConverter = {
   toFirestore: (cart: Cart) => {
     return {
       id: cart.id,
-      products: cart.products,
+      userId: cart.userId,
+      products: [...cart.products],
       sales: cart.sales,
       email: cart.total,
       phone: cart.netTotal,
@@ -50,22 +54,17 @@ export const cartConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any, isSingle?: boolean) => {
-    const data = isSingle == true ? snapshot : snapshot.data(options);
-    if( data){
-      return new Cart(
-        snapshot.id,
-        data.products,
-        data.sales,
-        data.total,
-        data.netTotal,
-        data.description,
-        data.createdDate,
-        data.status
-      );
-    }else{
-      return null;
-    }
-    
+  fromFirestore: (data: any, id: string) => {
+    return new Cart(
+      id,
+      data.userId,
+      data.products,
+      data.sales,
+      data.total,
+      data.netTotal,
+      data.description,
+      data.createdDate,
+      data.status
+    );
   },
 };

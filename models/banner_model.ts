@@ -30,10 +30,9 @@ export const bannerConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any, isSingle?:boolean) => {
-    const data =isSingle ==true ?snapshot : snapshot.data(options);
+  fromFirestore: (data: any, id: string) => {
     return new Banner(
-      snapshot.id,
+      id,
       data.title,
       data.image,
       data.descrption,

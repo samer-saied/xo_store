@@ -20,7 +20,8 @@ async function GetAllSections(): Promise<Section[]> {
     );
 
     querySnapshot.forEach((doc) => {
-      const currentSection = sectionConverter.fromFirestore(doc);
+      console.log(doc)
+      const currentSection = sectionConverter.fromFirestore(doc.query, doc.id);
       sections.push(currentSection);
     });
     return sections;
@@ -38,9 +39,8 @@ async function GetOneSection(id:string): Promise<Section> {
       id
       // where("country", ">=", "EGP 3900")
     );
-console.log(querySnapshot)
    
-    return sectionConverter.fromFirestore(querySnapshot, null, true);
+    return sectionConverter.fromFirestore(querySnapshot!.data(), querySnapshot!.id);
   } catch (error) {
     console.error("Error fetching sections:", error);
     throw error; // Re-throw the error for further handling

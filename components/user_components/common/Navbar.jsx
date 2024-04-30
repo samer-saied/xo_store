@@ -28,12 +28,10 @@ const Navbar = () => {
     });
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user)
         const uid = user.email ?? "";
         setcurrentUser(uid);
       } else {
         setcurrentUser("");
-        console.log("user is logged out");
       }
     });
   }, [currentUser]);

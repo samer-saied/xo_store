@@ -19,9 +19,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
 
 export function MobileMainNavBar({sections , isLogin}) {
-  console.log(isLogin)
-
- 
 
   return (
     <SheetContent side={"left"} className=" bg-gradient-to-b from-MainYellowColor to-white">

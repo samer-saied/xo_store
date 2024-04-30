@@ -43,9 +43,9 @@ const ProfilePage = () => {
                 ></span>
               </div>
             </section>
-            <section className="relative py-16 bg-MainYellowColor">
+            <section className="relative py-10 bg-MainYellowColor">
               <div className="container mx-auto px-4">
-                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-md rounded-lg -mt-64">
                   <div className="px-6 flex flex-col">
                     {/* ///////////////////// PROFILE Image /////////////////////// */}
                     <div className="w-full px-4  flex justify-center">
@@ -80,16 +80,17 @@ const ProfilePage = () => {
                       </div> */}
                     </div>
                   </div>
-
+                </div>
+                <div className=" mt-1 bg-white shadow-md rounded-lg">
                   {/* ///////////////////// DETAILS /////////////////////// */}
-                  <div className="py-5 border-t border-blueGray-200 text-center">
+                  <div className="md:pt-10 pt-5 border-t border-blueGray-200 text-center">
                     {/* ///////////////////// TRANSACTIONS /////////////////////// */}
                     <h2 className=" text-3xl font-bold lg:mt-10 text-MainBlueColor">
                       Transactions
                     </h2>
                     {/* ///////////////////// DETAILS TRANSACTIONS /////////////////////// */}
                     <div className="w-full px-4 lg:order-1">
-                      <div className="flex justify-center lg:pt-4">
+                      <div className="flex justify-center lg:pt-5 pt-3">
                         <div className="mr-4 p-3 text-center">
                           <span className="text-xl font-bold block uppercase tracking-wide text-blueGray-600">
                             2
@@ -118,7 +119,7 @@ const ProfilePage = () => {
                     </div>
                     {/* ///////////////////// TRANSACTIONS TABLE /////////////////////// */}
                     <div className="flex flex-wrap justify-end">
-                      <div className="w-full px-4">
+                      <div className="w-full">
                         <ProfielTableComp />
                       </div>
                     </div>

@@ -58,7 +58,7 @@ export default function GamesCardsComponent() {
               setSwiper(swiper);
             }}
             onActiveIndexChange={(swiper) => {
-              console.log("active index is", swiper.activeIndex);
+              // console.log("active index is", swiper.activeIndex);
             }}
             pagination={{
               clickable: true,

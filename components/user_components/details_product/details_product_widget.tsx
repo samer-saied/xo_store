@@ -4,6 +4,7 @@ import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";
 import { Product } from "@/models/product_model";
 import Image from "next/image";
+import { AddItemToCart } from "@/repository/cart_repository";
 
 export default function DetailsProductWidget({
   params,
@@ -12,7 +13,6 @@ export default function DetailsProductWidget({
   params: { id: string };
   product: Product;
 }) {
-  
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
 
   let stars = [];
@@ -23,7 +23,6 @@ export default function DetailsProductWidget({
       stars.push(0);
     }
   }
-
 
   return (
     <>
@@ -62,14 +61,17 @@ export default function DetailsProductWidget({
             </div>
             {/*------------- Rate STARS ---------------------*/}
             <div className="pb-3 flex flex-row gap-2">
-              {stars.map((star,index) =>
+              {stars.map((star, index) =>
                 star == 1 ? (
-                  <PiStarFill key={index} className="text-orange-400" size={25} />
+                  <PiStarFill
+                    key={index}
+                    className="text-orange-400"
+                    size={25}
+                  />
                 ) : (
-                  <PiStarFill key={index}  className="text-zinc-200" size={25} />
+                  <PiStarFill key={index} className="text-zinc-200" size={25} />
                 )
               )}
-            
             </div>
             <div className="w-8 h-0 bg-stone-300 border-2 border-stone-300"></div>
             <div className="text-zinc-800 text-base font-semibold leading-10">
@@ -82,28 +84,11 @@ export default function DetailsProductWidget({
             <div className="flex flex-row justify-start items-center gap-5">
               <div
                 onClick={(e) => {
-                  // e.preventDefault();
-                  // const product = new Product(
-                  //   null,
-                  //   "HW9SL1uNF8JlWVWkom9C",
-                  //   "NHJJRpGEffbJED3zAG9O",
-                  //   "شحن شدات بابجي",
-                  //   "https://github.com/samer-saied/xo_store/blob/main/public/cards/coins.png?",
-                  //   30,
-                  //   28,
-                  //   "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحةهذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أهذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحةهذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة ن يستبدل في نفس المساحة هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-                  //  "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة",
-                  //   4,
-                  //   true,
-                  //   true,
-                  //   "Timestamp"
-                  // );
-                  // AddOneProduct(product).then((result)=>{
-                  //   console.log(result)
-                  //   console.log("DONE")
-                  // });
+                  e.preventDefault();
+                  AddItemToCart(product!.id!).then(() => {});
+                  
                 }}
-                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer motion-safe:animate-bounce"
+                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:motion-safe:animate-pulse"
               >
                 <RiShoppingBasket2Fill className="text-white" size={25} />
                 <div className="text-white text-base font-bold leading-loose">

@@ -12,14 +12,14 @@ export class User {
   public status: boolean;
 
   constructor(
-    id: string ,
+    id: string,
     firstName: string,
     lastName: string,
     email: string,
     phone: string,
     password: string,
     createdDate: number,
-    status: boolean,
+    status: boolean
   ) {
     this.id = id;
     this.firstName = firstName;
@@ -51,8 +51,8 @@ export const userConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any, isSingle?: boolean) => {
-    const data = isSingle == true ? snapshot : snapshot.data(options);
+  fromFirestore: (snapshot: any, options?: any) => {
+    const data = snapshot.data(options);
     return new User(
       snapshot.id,
       data.firstName,
@@ -61,7 +61,7 @@ export const userConverter = {
       data.phone,
       data.password,
       data.createdDate,
-      data.status,
+      data.status
     );
   },
 };

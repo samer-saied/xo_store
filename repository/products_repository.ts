@@ -16,7 +16,7 @@ async function GetAllProducts(): Promise<Product[]> {
     const querySnapshot = await handleGetAll(productsModelName, null);
 
     querySnapshot.forEach((doc) => {
-      const currentProduct = productConverter.fromFirestore(doc);
+      const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
     return products;
@@ -26,14 +26,16 @@ async function GetAllProducts(): Promise<Product[]> {
   }
 }
 
-
-async function GetProductsByCategory(categoryId:String): Promise<Product[]> {
+async function GetProductsByCategory(categoryId: String): Promise<Product[]> {
   try {
     const products: Product[] = [];
-    const querySnapshot = await handleGetAll(productsModelName, where("categoryId","==",categoryId));
+    const querySnapshot = await handleGetAll(
+      productsModelName,
+      where("categoryId", "==", categoryId)
+    );
 
     querySnapshot.forEach((doc) => {
-      const currentProduct = productConverter.fromFirestore(doc);
+      const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
     return products;
@@ -51,7 +53,7 @@ async function GetTodayDealProducts(): Promise<Product[]> {
     );
 
     querySnapshot.forEach((doc) => {
-      const currentProduct = productConverter.fromFirestore(doc);
+      const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
     return products;
@@ -70,7 +72,7 @@ async function GetExclusiveProducts(): Promise<Product[]> {
     );
 
     querySnapshot.forEach((doc) => {
-      const currentProduct = productConverter.fromFirestore(doc);
+      const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
     return products;
@@ -81,33 +83,17 @@ async function GetExclusiveProducts(): Promise<Product[]> {
 }
 
 async function GetOneProduct(productId: String): Promise<Product | void> {
-  console.log(productId)
-
   try {
     const querySnapshot: DocumentData | undefined = await handleGetOne(
       productsModelName,
       productId
       // where("country", ">=", "EGP 3900")
     );
-    console.log("---------///////---------------")
-    console.log(querySnapshot?.data)
-    const currentProduct = new Product(
-      querySnapshot?.id,
-      querySnapshot?.categoryId,
-      querySnapshot?.sectionId,
-      querySnapshot?.title,
-      querySnapshot?.image,
-      querySnapshot?.prePrice,
-      querySnapshot?.currentPrice,
-      querySnapshot?.descrption,
-      querySnapshot?.details,
-      querySnapshot?.rate,
-      querySnapshot?.exclusive,
-      querySnapshot?.todayOffer,
-      querySnapshot?.status,
-      querySnapshot?.date
+
+    return productConverter.fromFirestore(
+      querySnapshot!.data(),
+      querySnapshot!.id
     );
-    return currentProduct;
   } catch (error) {
     console.error("Error fetching products:", error);
     throw error; // Re-throw the error for further handling
@@ -161,5 +147,5 @@ export {
   GetOneProduct,
   GetTodayDealProducts,
   GetExclusiveProducts,
-  GetProductsByCategory
+  GetProductsByCategory,
 };

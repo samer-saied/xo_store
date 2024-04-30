@@ -9,8 +9,9 @@ import {
   addDoc,
   deleteDoc,
   updateDoc,
-  where,
   setDoc,
+  where,
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
 
 import { db } from "./firebase_init";
@@ -18,10 +19,18 @@ import { db } from "./firebase_init";
 export async function handleGetAll(
   collectionName: String,
   filter: any | null
-): Promise<QuerySnapshot> {
+): Promise<{ id: string; query: DocumentData }[]> {
   const q = query(collection(db, `${collectionName}`), filter);
   const querySnapshot = await getDocs(q);
-  return querySnapshot;
+  let tempList = [];
+  for (var doc of querySnapshot.docs) {
+    tempList.push({
+      id: doc.id,
+      query: doc.data(),
+    });
+  }
+
+  return tempList;
 }
 
 export async function handleGetOne(
@@ -31,15 +40,35 @@ export async function handleGetOne(
   const docRef = doc(db, `${collectionName}`, `${collectionId}`);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
-    console.log(docSnap.data());
-
-    return { id: docSnap.id, ...docSnap.data() };
+    return docSnap;
   } else {
     // docSnap.data() will be undefined in this case
     console.log("No such document!");
     return docSnap.data();
   }
 }
+
+// export async function handleGetOneByfilter(
+//   collectionName: String,
+//   userId: String
+// ): Promise<DocumentData | undefined> {
+//   const q = query(
+//     collection(db, `${collectionName}`),
+//     where("userId", "==", userId)
+//   ); // Build query with equality comparison
+
+//   try {
+//     const querySnapshot = await getDocs(q);
+//     const data = querySnapshot.docs.map((doc) => ({
+//       id: doc.id,
+//       ...doc.data(),
+//     }));
+//     return data;
+//   } catch (error) {
+//     console.error("Error fetching data:", error);
+//     return []; // Handle errors gracefully, consider returning an empty array or error object
+//   }
+// }
 
 export async function handlePostOne(
   collectionName: String,

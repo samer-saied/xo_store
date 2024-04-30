@@ -13,7 +13,7 @@ import LoadingPage from "@/components/user_components/common/loading";
 import NoItemsWidget from "@/components/user_components/common/no_items_widget";
 import { useSearchParams } from "next/navigation";
 
-export default function CategoriesPage({params}) {
+export default function CategoriesPage({ params }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const query = useSearchParams();
@@ -29,18 +29,15 @@ export default function CategoriesPage({params}) {
     {
       name: "الأقسام الرئيسية",
       link: "/sections/",
-    }, {
+    },
+    {
       name: query.get("category"),
       link: "/sections/",
-    }, 
+    },
   ];
 
   return (
     <>
-      <TopBarComponent />
-      <Navbar />
-      <SpacerWidget />
-
       {/*------------- PATH TEXT ---------------------*/}
       <PathWidget urlPaths={urlPaths} />
 

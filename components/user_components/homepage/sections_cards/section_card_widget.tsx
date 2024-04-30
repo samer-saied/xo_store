@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useInView, animated } from "@react-spring/web";
 
 export default function SectionCardWidget(section: Section) {
-  console.log(section)
   const [ref, springs] = useInView(
     () => ({
       from: {

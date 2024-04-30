@@ -8,7 +8,7 @@ const LoadingPage = () => {
         height={72}
         className=" w-72 mx-auto"
         src="/logo/logo-animate.gif"
-        alt=""
+        alt="xo store logo"
       />
     </div>
   );

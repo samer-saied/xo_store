@@ -7,7 +7,7 @@ import CurrencySymbolComp from "@/components/user_components/common/currency_sym
 import PathWidget from "@/components/user_components/common/path_widget";
 import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
-import { GetOneCart } from "@/repository/cart_repository";
+import { GetCurrentUserCart } from "@/repository/cart_repository";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
@@ -28,7 +28,7 @@ const CartPage = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         setcurrentUser(user.uid);
-        let cartData = await GetOneCart(user.uid);
+        let cartData = await GetCurrentUserCart(user.uid);
         setCart(cartData);
         let tempProducts = [];
         if (cartData && cartData["products"].length > 0) {
@@ -73,10 +73,11 @@ const CartPage = () => {
                 <div className="flex lg:flex-row flex-col px-5">
                   {/*----------------- ITEMS --------------------*/}
                   <div className="flex flex-col  lg:w-1/2">
-                    {products.map((product) => (
+                    {products.map((product,index) => (
                       <CartCardWidget
-                        key={product.createdDate}
-                        product={product}
+                      key={index}
+                      samer={product.id}
+                      product={product}
                       />
                     ))}
                   </div>

@@ -25,10 +25,9 @@ export const sectionConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any,isSingle?:boolean) => {
-    const data = isSingle == true ?snapshot :snapshot.data();
+  fromFirestore: (data: any, id: any) => {
     return new Section(
-      snapshot.id,
+      id,
       data.title,
       data.icon,
       data.primaryColor,

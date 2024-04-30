@@ -1,14 +1,21 @@
 import CurrencySymbolComp from "@/components/user_components/common/currency_symbol";
+import { DeleteItemToCart } from "@/repository/cart_repository";
+import Image from "next/image";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const CartCardWidget = ({ product }) => {
-  console.log(product);
+const CartCardWidget = ({ product, samer }) => {
   return (
-    <div className=" my-2 relative h-auto bg-white rounded-3xl shadow">
+    <div
+      key={product.id}
+      className=" my-2 relative h-auto bg-white rounded-3xl shadow"
+    >
       <div
-        onClick={async () => {
-          console.log("Delete");
+        onClick={(event) => {
+          event.preventDefault();
+          DeleteItemToCart(product.id).then(() => {
+            console.log("Delete");
+          });
         }}
         className=" absolute top-0 left-0 h-auto p-3 bg-red-400 rounded-tl-3xl rounded-br-2xl justify-center items-center gap-4 inline-flex cursor-pointer hover:shadow-md"
       >
@@ -23,9 +30,12 @@ const CartCardWidget = ({ product }) => {
           <div className="flex flex-row py-3">
             {/*------------------ IMAGE ------------------*/}
             <div className=" p-2.5 rounded border border-amber-300 flex-col justify-start items-start gap-2.5 inline-flex">
-              <img
-                className=" md:w-36 md:h-36 rounded"
+              <Image
+                width={36}
+                height={36}
+                className=" max-w-36 max-h-36 md:w-36 md:h-36 w-24 h-24 rounded"
                 src={product.image ?? "/logo/logo.png"}
+                alt={product.title + " image"}
               />
             </div>
             {/*------------------ DETAILS ------------------*/}

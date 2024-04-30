@@ -47,7 +47,6 @@ const RegisterPage = () => {
             setIsOpen(true);
 
             // router.push("/");
-            console.log(newUser);
           })
           .catch((error) => {
             setIsError(true);

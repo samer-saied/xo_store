@@ -12,7 +12,6 @@ import { Timestamp, where } from "firebase/firestore";
 const categoriesModelName: String = "categories";
 
 async function GetAllCategories(): Promise<Category[]> {
-  console.log("-----------GET PRODUCTS------------------")
   try {
     const categories: Category[] = [];
     const querySnapshot = await handleGetAll(
@@ -22,7 +21,10 @@ async function GetAllCategories(): Promise<Category[]> {
     );
 
     querySnapshot.forEach((doc) => {
-      const currentCategory = categoryConverter.fromFirestore(doc);
+      const currentCategory = categoryConverter.fromFirestore(
+        doc.query,
+        doc.id
+      );
       categories.push(currentCategory);
     });
     return categories;
@@ -32,17 +34,12 @@ async function GetAllCategories(): Promise<Category[]> {
   }
 }
 
-
-async function GetOneCategory(id:string): Promise<Category> {
-  console.log("-----------GET PRODUCTS------------------")
+async function GetOneCategory(id: string): Promise<Category> {
   try {
-    const querySnapshot = await handleGetOne(
-      categoriesModelName,
-      id
-    );
+    const querySnapshot = await handleGetOne(categoriesModelName, id);
 
-      const currentCategory = categoryConverter.fromFirestore(querySnapshot!, null,true);
-    
+    const currentCategory = categoryConverter.fromFirestore(querySnapshot!, id);
+
     return currentCategory;
   } catch (error) {
     console.error("Error fetching categories:", error);
@@ -50,19 +47,20 @@ async function GetOneCategory(id:string): Promise<Category> {
   }
 }
 
-
-async function GetCategoriesBySections(sectionId:String): Promise<Category[]> {
-  console.log(sectionId)
+async function GetCategoriesBySections(sectionId: String): Promise<Category[]> {
   try {
     const catrgories: Category[] = [];
 
     const querySnapshot = await handleGetAll(
       categoriesModelName,
-      where("sectionId","==",sectionId)
+      where("sectionId", "==", sectionId)
     );
 
     querySnapshot.forEach((doc) => {
-      const currentCategory = categoryConverter.fromFirestore(doc);
+      const currentCategory = categoryConverter.fromFirestore(
+        doc.query,
+        doc.id
+      );
       catrgories.push(currentCategory);
     });
     return catrgories;
@@ -71,7 +69,6 @@ async function GetCategoriesBySections(sectionId:String): Promise<Category[]> {
     throw error; // Re-throw the error for further handling
   }
 }
-
 
 async function AddOneCategory(category: Category) {
   try {

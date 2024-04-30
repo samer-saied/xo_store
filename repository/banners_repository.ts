@@ -15,7 +15,7 @@ async function GetAllBanners(): Promise<Banner[]> {
     const querySnapshot = await handleGetAll(bannersModelName, null);
 
     querySnapshot.forEach((doc) => {
-      const currentBanner = bannerConverter.fromFirestore(doc);
+      const currentBanner = bannerConverter.fromFirestore(doc["query"], doc.id);
       banners.push(currentBanner);
     });
     return banners;
@@ -29,11 +29,7 @@ async function GetOneBanner(id: string): Promise<Banner> {
   try {
     const querySnapshot = await handleGetOne(bannersModelName, id);
 
-    const currentBanner = bannerConverter.fromFirestore(
-      querySnapshot,
-      null,
-      true
-    );
+    const currentBanner = bannerConverter.fromFirestore(querySnapshot!.data(),id);
 
     return currentBanner;
   } catch (error) {
@@ -44,7 +40,11 @@ async function GetOneBanner(id: string): Promise<Banner> {
 
 async function AddOneBanner(banner: Banner) {
   try {
-    await handlePostOne(bannersModelName,null, bannerConverter.toFirestore(banner));
+    await handlePostOne(
+      bannersModelName,
+      null,
+      bannerConverter.toFirestore(banner)
+    );
   } catch (error) {
     console.error("Error fetching banners:", error);
     throw error; // Re-throw the error for further handling

@@ -14,7 +14,7 @@ async function GetAllUsers(): Promise<User[]> {
     const users: User[] = [];
     const querySnapshot = await handleGetAll(usersModelName, null);
     querySnapshot.forEach((doc) => {
-      const currentUser = userConverter.fromFirestore(doc);
+      const currentUser = userConverter.fromFirestore(doc["query"].data());
       users.push(currentUser);
     });
     return users;
@@ -28,11 +28,7 @@ async function GetOneUser(id: string): Promise<User> {
   try {
     const querySnapshot = await handleGetOne(usersModelName, id);
 
-    const currentUser = userConverter.fromFirestore(
-      querySnapshot,
-      null,
-      true
-    );
+    const currentUser = userConverter.fromFirestore(querySnapshot);
 
     return currentUser;
   } catch (error) {
@@ -43,7 +39,11 @@ async function GetOneUser(id: string): Promise<User> {
 
 async function AddOneUser(user: User) {
   try {
-    await handlePostOne(usersModelName,user.id, userConverter.toFirestore(user));
+    await handlePostOne(
+      usersModelName,
+      user.id,
+      userConverter.toFirestore(user)
+    );
   } catch (error) {
     console.error("Error fetching users:", error);
     throw error; // Re-throw the error for further handling
@@ -76,10 +76,4 @@ async function DeleteOneUser(user: User) {
   }
 }
 
-export {
-  GetAllUsers,
-  GetOneUser,
-  AddOneUser,
-  UpdateOneUser,
-  DeleteOneUser,
-};
+export { GetAllUsers, GetOneUser, AddOneUser, UpdateOneUser, DeleteOneUser };
