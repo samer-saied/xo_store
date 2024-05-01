@@ -7,7 +7,10 @@ import CurrencySymbolComp from "@/components/user_components/common/currency_sym
 import PathWidget from "@/components/user_components/common/path_widget";
 import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
-import { GetCurrentUserCart } from "@/repository/cart_repository";
+import {
+  DeleteItemToCart,
+  GetCurrentUserCart,
+} from "@/repository/cart_repository";
 import { useEffect, useLayoutEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
@@ -24,27 +27,42 @@ const CartPage = () => {
   const [currentUser, setcurrentUser] = useState(null);
   const router = useRouter();
 
-  useLayoutEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setcurrentUser(user.uid);
-        let cartData = await GetCurrentUserCart(user.uid);
-        setCart(cartData);
+  useEffect(() => {
+    if (currentUser != null) {
+      GetCurrentUserCart(currentUser).then((cart) => {
+        setCart(cart);
         let tempProducts = [];
-        if (cartData && cartData["products"].length > 0) {
-          for (let index = 0; index < cartData["products"].length; index++) {
-            let product = await GetOneProduct(cartData["products"][index]);
-            tempProducts.push(product);
+        if (cart && cart["products"].length > 0) {
+          for (let index = 0; index < cart["products"].length; index++) {
+            GetOneProduct(cart["products"][index]).then((data) => {
+              tempProducts.push(data);
+            });
           }
         }
         setProducts(tempProducts);
         setLoading(false);
-      } else {
-        router.push("/login");
-      }
-    });
+      });
+    } else {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          setcurrentUser(user.uid);
+          let cartData = await GetCurrentUserCart(user.uid);
+          setCart(cartData);
+          let tempProducts = [];
+          if (cartData && cartData["products"].length > 0) {
+            for (let index = 0; index < cartData["products"].length; index++) {
+              let product = await GetOneProduct(cartData["products"][index]);
+              tempProducts.push(product);
+            }
+          }
+          setProducts(tempProducts);
+          setLoading(false);
+        } else {
+          router.push("/login");
+        }
+      });
+    }
   }, []);
-
 
   return (
     <>
@@ -73,11 +91,34 @@ const CartPage = () => {
                 <div className="flex lg:flex-row flex-col px-5">
                   {/*----------------- ITEMS --------------------*/}
                   <div className="flex flex-col  lg:w-1/2">
-                    {products.map((product,index) => (
+                    {products.map((product, index) => (
                       <CartCardWidget
-                      key={index}
-                      samer={product.id}
-                      product={product}
+                        key={index}
+                        product={product}
+                        samer={"sa"}
+                        clickFunc={(event) => {
+                          event.preventDefault();
+                          DeleteItemToCart(product.id).then(async () => {
+                            let cartData = await GetCurrentUserCart(
+                              currentUser
+                            );
+                            setCart(cartData);
+                            let tempProducts = [];
+                            if (cartData && cartData["products"].length > 0) {
+                              for (
+                                let index = 0;
+                                index < cartData["products"].length;
+                                index++
+                              ) {
+                                let product = await GetOneProduct(
+                                  cartData["products"][index]
+                                );
+                                tempProducts.push(product);
+                              }
+                            }
+                            setProducts(tempProducts);
+                          });
+                        }}
                       />
                     ))}
                   </div>

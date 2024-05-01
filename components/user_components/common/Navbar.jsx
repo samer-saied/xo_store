@@ -1,10 +1,6 @@
 "use client";
 import { TbLogin, TbWorld } from "react-icons/tb";
-import {
-  CiLogout,
-  CiShoppingBasket,
-  CiUser,
-} from "react-icons/ci";
+import { CiLogout, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import Link from "next/link";
 import Image from "next/image";
@@ -22,10 +18,12 @@ const Navbar = () => {
   const [sections, setsections] = useState([]);
 
   useEffect(() => {
-    GetAllSections().then((sections) => {
-      setsections(sections);
-      // setLoading(false);
-    });
+    if (sections.length == 0) {
+      GetAllSections().then((sections) => {
+        setsections(sections);
+        // setLoading(false);
+      });
+    }
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.email ?? "";
@@ -34,7 +32,7 @@ const Navbar = () => {
         setcurrentUser("");
       }
     });
-  }, [currentUser]);
+  }, []);
 
   return (
     <>

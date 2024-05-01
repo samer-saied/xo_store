@@ -73,9 +73,11 @@ async function DeleteItemToCart(productId: string) {
   try {
     onAuthStateChanged(auth, (user) => {
       GetCurrentUserCart(user!.uid).then((cart) => {
-        let filteredList = cart!.products.filter(
-          (element) => element !== productId
-        ); // Remove element with product id value
+        let index = cart?.products.findIndex(
+          (element) => element === productId
+        );
+
+        let filteredList = cart!.products.slice(index! + 1); // Remove element with product id value
         tempCart = cart;
         tempCart!.products! = filteredList;
 

@@ -6,7 +6,6 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Section, sectionConverter } from "@/models/section_model";
-import { DocumentSnapshot, QueryDocumentSnapshot } from "firebase/firestore";
 
 const sectionsModelName: String = "sections";
 

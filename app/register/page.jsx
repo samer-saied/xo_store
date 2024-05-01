@@ -10,6 +10,7 @@ import { useState } from "react";
 import AlertDialogComp from "@/components/user_components/common/alert_msg";
 import { useRouter } from "next/navigation";
 import PhoneInput from "react-phone-number-input";
+import 'react-phone-number-input/style.css'
 
 const RegisterPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -159,11 +160,12 @@ const RegisterPage = () => {
                   >
                     رقم الهاتف
                   </label>
-                  <div className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
+                  <div className="px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline">
                     <PhoneInput
                       type="tel"
                       id="phone"
                       name="phone"
+
                       // pattern="(0|1|2|3|4|5|6|7|8|9)\d{10}"
                       placeholder="Enter phone number"
                       value={getValues["phone"]}
@@ -173,7 +175,7 @@ const RegisterPage = () => {
                       className={"input-phone-number"}
                       rules={{ required: true }}
                       addInternationalOption={false}
-                      defaultCountry="EG" // Set a default country (optional)
+                      defaultCountry="OM" // Set a default country (optional)
                     />
                   </div>
                   {errors.phone && (

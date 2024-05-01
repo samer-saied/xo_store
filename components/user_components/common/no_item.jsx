@@ -17,8 +17,8 @@ const NoItemComp = () => {
       <button onClick={(event)=>{
         event.preventDefault()
         router.push("/")
-      }} className=" m-5 h-12 py-5 px-5 rounded-lg border border-black justify-center items-center inline-flex cursor-pointer scale-100 hover:scale-105 ease-in-out transition">
-        <div className="text-black text-base font-normal  leading-normal">
+      }} className=" m-5 h-12 py-5 px-5 rounded-lg border border-MainBlueColor justify-center items-center inline-flex cursor-pointer scale-100 hover:scale-105 ease-in-out transition">
+        <div className="text-MainBlueColor text-base font-normal  leading-normal">
           العودة إلى المتجر وبدا التسوق
         </div>
       </button>

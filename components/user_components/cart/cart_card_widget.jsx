@@ -1,22 +1,20 @@
 import CurrencySymbolComp from "@/components/user_components/common/currency_symbol";
 import { DeleteItemToCart } from "@/repository/cart_repository";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const CartCardWidget = ({ product, samer }) => {
+const CartCardWidget = ({ product ,samer, clickFunc}) => {
+  console.log("==========================")
+  console.log(product)
   return (
     <div
       key={product.id}
       className=" my-2 relative h-auto bg-white rounded-3xl shadow"
     >
       <div
-        onClick={(event) => {
-          event.preventDefault();
-          DeleteItemToCart(product.id).then(() => {
-            console.log("Delete");
-          });
-        }}
+        onClick={clickFunc}
         className=" absolute top-0 left-0 h-auto p-3 bg-red-400 rounded-tl-3xl rounded-br-2xl justify-center items-center gap-4 inline-flex cursor-pointer hover:shadow-md"
       >
         <RiDeleteBinLine
