@@ -4,7 +4,7 @@ import { CiLogout, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { RiMenu2Line } from "react-icons/ri";
 import Link from "next/link";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../../../db/firebase_init";
 import { LuUserPlus2 } from "react-icons/lu";
@@ -16,23 +16,28 @@ import { GetAllSections } from "@/repository/sections_repository";
 const Navbar = () => {
   const [currentUser, setcurrentUser] = useState(null);
   const [sections, setsections] = useState([]);
+  const fetchDataRef = useRef(false);
 
   useEffect(() => {
-    if (sections.length == 0) {
+    if (!fetchDataRef.current) {
       GetAllSections().then((sections) => {
         setsections(sections);
         // setLoading(false);
       });
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          const uid = user.email ?? "";
+          setcurrentUser(uid);
+        } else {
+          setcurrentUser("");
+        }
+      });
+
+      fetchDataRef.current = true;
     }
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const uid = user.email ?? "";
-        setcurrentUser(uid);
-      } else {
-        setcurrentUser("");
-      }
-    });
   }, []);
+
+
 
   return (
     <>
