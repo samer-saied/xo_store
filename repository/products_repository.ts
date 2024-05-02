@@ -6,7 +6,7 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Product, productConverter } from "@/models/product_model";
-import { DocumentData, where } from "firebase/firestore";
+import { DocumentData, limit, where } from "firebase/firestore";
 
 const productsModelName: String = "products";
 
@@ -69,6 +69,25 @@ async function GetExclusiveProducts(): Promise<Product[]> {
     const querySnapshot = await handleGetAll(
       productsModelName,
       where("exclusive", "==", true)
+    );
+
+    querySnapshot.forEach((doc) => {
+      const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
+      products.push(currentProduct);
+    });
+    return products;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error; // Re-throw the error for further handling
+  }
+}
+
+async function GetMoreProducts(): Promise<Product[]> {
+  try {
+    const products: Product[] = [];
+    const querySnapshot = await handleGetAll(
+      productsModelName,
+      limit(10)
     );
 
     querySnapshot.forEach((doc) => {
@@ -147,5 +166,6 @@ export {
   GetOneProduct,
   GetTodayDealProducts,
   GetExclusiveProducts,
+  GetMoreProducts,
   GetProductsByCategory,
 };

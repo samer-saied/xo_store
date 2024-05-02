@@ -2,33 +2,37 @@ import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
 import { GetAllSections } from "@/repository/sections_repository";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import LoadingPage from "@/components/user_components/common/loading";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useSpring, animated } from "@react-spring/web";
+// import { useSpring, animated } from "@react-spring/web";
 
-export default function SectionsCarouselComponent() {
-  const [loading, setLoading] = useState(true);
+export default async function SectionsCarouselComponent() {
+  // const [swiper, setSwiper] = useState();
   const [sections, setsections] = useState(null);
-  const [swiper, setSwiper] = useState();
+  const fetchDataRef = useRef(false);
 
   useEffect(() => {
-    GetAllSections().then((sections) => {
-      setsections(sections);
-      setLoading(false);
-    });
+    if (!fetchDataRef.current) {
+      GetAllSections().then((sections) => {
+        setsections(sections);
+      });
+      fetchDataRef.current = true;
+    }
   }, []);
 
   ///////////// Animation   ///////////////////////
-  const props = useSpring({
-    from: { opacity: 0, x: -1000 },
-    to: { opacity: 1, x: 0 },
-  });
+  // const props = useSpring({
+  //   from: { opacity: 0, x: -1000 },
+  //   to: { opacity: 1, x: 0 },
+  // });
 
   return (
     <>
-      {!loading && (
+      {sections == null ? (
+        <LoadingPage />
+      ) : (
         <div className="w-full  bg-gradient-to-l from-white to-sky-100 md:py-8 py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
@@ -47,9 +51,9 @@ export default function SectionsCarouselComponent() {
           {/* /////////////////   Carousel     ///////////////////////// */}
 
           <Swiper
-            onSwiper={(swiper) => {
-              setSwiper(swiper);
-            }}
+            // onSwiper={(swiper) => {
+            //   setSwiper(swiper);
+            // }}
             onActiveIndexChange={(swiper) => {
               // console.log("active index is", swiper.activeIndex);
             }}
@@ -73,14 +77,13 @@ export default function SectionsCarouselComponent() {
             {sections.map((section) => (
               <SwiperSlide key={section.id}>
                 {/* <animated.div style={props}> */}
-                  <SectionCardWidget key={section.id} {...section} />
+                <SectionCardWidget key={section.id} {...section} />
                 {/* </animated.div> */}
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
       )}
-      {loading && <LoadingPage />}
     </>
   );
 }

@@ -2,26 +2,31 @@
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ProductGameCardWidget from "./product_card_widget";
 import "swiper/css";
-import { GetAllProducts, GetExclusiveProducts } from "@/repository/products_repository";
+import { GetExclusiveProducts } from "@/repository/products_repository";
+import LoadingPage from "../../common/loading";
 
 export default function GamesCardsComponent() {
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [swiper, setSwiper] = useState();
   const [products, setProducts] = useState([]);
+  const fetchDataRef = useRef(false);
 
   useEffect(() => {
-    GetExclusiveProducts().then((productsData) => {
-      setProducts(productsData);
-      setLoading(false);
-    });
+    if (!fetchDataRef.current) {
+      GetExclusiveProducts().then((productsData) => {
+        console.log(productsData);
+        setProducts(productsData);
+      });
+      fetchDataRef.current = true;
+    }
   }, []);
 
   return (
     <>
-      {!loading && (
+      {products.length > 0 && (
         <div className="w-full bg-white py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
@@ -78,7 +83,7 @@ export default function GamesCardsComponent() {
             // slidesPerView={2.2}
             onSlideChange={() => console.log("slide change")}
           >
-            {products.map((product , index) => (
+            {products.map((product, index) => (
               <SwiperSlide key={product.id}>
                 <ProductGameCardWidget product={product} index={index} />
               </SwiperSlide>

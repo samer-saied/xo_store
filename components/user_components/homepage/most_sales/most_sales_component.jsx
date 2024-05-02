@@ -3,27 +3,25 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import GameCardWidget from "./game_card_widget";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GetAllCategories } from "@/repository/category_repository";
 
 export default function MostSalesComponent() {
-  const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState([]);
   const [swiper, setSwiper] = useState();
+  const fetchDataRef = useRef(false);
 
   useEffect(() => {
-    GetAllCategories().then((categories) => {
-      setCategories(categories);
-      setLoading(false);
-    });
+    if (!fetchDataRef.current) {
+      GetAllCategories().then((categories) => {
+        setCategories(categories);
+      });
+      fetchDataRef.current = true;
+    }
   }, []);
 
-
   return (
-
-
-    
-    !loading && (
+    categories.length > 0 && (
       <div className="w-full bg-gradient-to-r from-white to-sky-100  py-5">
         {/* /////////////////   TITLE     ///////////////////////// */}
         <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
@@ -81,7 +79,10 @@ export default function MostSalesComponent() {
         >
           {categories.map((category) => (
             <SwiperSlide key={category.id}>
-              <GameCardWidget category={category} urls={[{"name":category.title,"link":""}]} />
+              <GameCardWidget
+                category={category}
+                urls={[{ name: category.title, link: "" }]}
+              />
             </SwiperSlide>
           ))}
         </Swiper>

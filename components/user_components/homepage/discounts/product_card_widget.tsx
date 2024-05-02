@@ -11,7 +11,7 @@ export default function GameCardWidget(props: {
     () => ({
       from: {
         opacity: 0,
-        y: 100 * (props.index + 1),
+        y: 100 * (props.index + 0.25),
       },
       to: {
         opacity: 1,
@@ -22,6 +22,7 @@ export default function GameCardWidget(props: {
       rootMargin: "-10% 0%",
     }
   );
+
 
   return (
     <animated.div ref={ref} style={springs}>

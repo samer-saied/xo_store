@@ -1,6 +1,12 @@
+// "use server"
+import Image from "next/image";
 import { FaEnvelope } from "react-icons/fa6";
 
-const FooterComponent = () => {
+export default function FooterComponent() {
+  // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+  // const data= res.json();
+
+
   return (
     <div className=" relative w-full overflow-hidden h-auto bg-blue-950">
       {/*----------- CIRCLE BG -------------------*/}
@@ -16,7 +22,7 @@ const FooterComponent = () => {
         <div className=" w-full h-14 pr-4 pl-2 py-2 rounded-full border border-neutral-200 justify-start items-center">
           <div className="flex flex-row justify-between items-center">
             <div className="flex flex-row justify-center items-center">
-            <FaEnvelope size={25}  className="text-white h-4" />
+              <FaEnvelope size={25} className="text-white h-4" />
               <div className="px-2 text-center text-zinc-100 md:text-base text-sm font-normal font-['Open Sans']">
                 ادخل الايميل الخاص بك
               </div>
@@ -33,7 +39,9 @@ const FooterComponent = () => {
       <div className="flex flex-col lg:flex-row lg:w-3/4 lg:mx-auto">
         {/*----------- COMPANY INFO -------------------*/}
         <div className="w-3/4 mx-auto py-5">
-          <img
+          <Image
+             width ={10}
+             height={10}
             className=" w-16 z-10 opacity-100 py-5"
             src="/logo/logo.svg"
             alt=""
@@ -45,20 +53,26 @@ const FooterComponent = () => {
           </div>
           {/*----------- SOCIAL LOGOS -------------------*/}
           <div className="flex flex-row">
-            <img
+            <Image
+              width={10}
+              height={10}
               className="px-2 h-10 w-10 object-fit"
               src="/social/facebook.svg"
-              alt=""
+              alt="facebook link"
             />
-            <img
+            <Image
+              width={10}
+              height={10}
               className="px-2 h-10 w-10 object-fit"
               src="/social/whatsapp.svg"
-              alt=""
+              alt="whatsapp link"
             />
-            <img
+            <Image
+              width={10}
+              height={10}
               className="px-2 h-10 w-10 object-fit"
               src="/social/youtube.svg"
-              alt=""
+              alt="youtube link"
             />
           </div>
         </div>
@@ -100,6 +114,4 @@ const FooterComponent = () => {
       </div>
     </div>
   );
-};
-
-export default FooterComponent;
+}

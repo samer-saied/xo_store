@@ -19,7 +19,7 @@ async function GetAllSections(): Promise<Section[]> {
     );
 
     querySnapshot.forEach((doc) => {
-      console.log(doc)
+      // console.log(doc)
       const currentSection = sectionConverter.fromFirestore(doc.query, doc.id);
       sections.push(currentSection);
     });

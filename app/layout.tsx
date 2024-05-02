@@ -42,7 +42,7 @@ export default function RootLayout({
       >
         <Sheet>
           <TopBarComponent />
-          <Navbar />
+          {/* <Navbar /> */}
           {children}
         </Sheet>
       </body>

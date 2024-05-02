@@ -1,24 +1,26 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { TodayDealCardWidget } from "./today_deal_card_widget";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
 import { useRouter } from "next/navigation";
 
 export default function SpeedSaleComponent() {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
+  const fetchDataRef = useRef(false);
 
   useEffect(() => {
-    GetTodayDealProducts().then((productsData) => {
-      setProducts(productsData);
-      setLoading(false);
-    });
+    if (!fetchDataRef.current) {
+      GetTodayDealProducts().then((productsData) => {
+        setProducts(productsData);
+      });
+      fetchDataRef.current = true;
+    }
   }, []);
 
   return (
-    !loading && (
+    products.length > 0 && (
       <div className="w-full h-full md:py-10 py-5 bg-amber-50">
         <Swiper
           onSwiper={(swiper) => {

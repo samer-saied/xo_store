@@ -46,6 +46,7 @@ const BannerCardWidget = ({
         <div className="absolute md:-left-16 -left-1 bottom-0 md:-top-5  w-5/12  ">
           <div className=" w-full h-full drop-shadow-md flex flex-col justify-end ">
             <Image
+              priority={true}
               fill={false}
               className="h-full w-full origin-bottom "
               src={image}

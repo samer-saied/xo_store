@@ -1,7 +1,5 @@
 "use client";
 
-// config.autoAddCss = false;
-
 import BannerComponent from "@/components/user_components/homepage/banner/banner_component";
 import SectionMoreWidget from "@/components/user_components/homepage/more_products/section_more_component";
 import MostSalesComponent from "@/components/user_components/homepage/most_sales/most_sales_component";
