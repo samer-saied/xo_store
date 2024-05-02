@@ -6,14 +6,14 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Product, productConverter } from "@/models/product_model";
-import { DocumentData, limit, where } from "firebase/firestore";
+import { DocumentData, limit, orderBy, where } from "firebase/firestore";
 
 const productsModelName: String = "products";
 
 async function GetAllProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
-    const querySnapshot = await handleGetAll(productsModelName, null);
+    const querySnapshot = await handleGetAll(productsModelName, []);
 
     querySnapshot.forEach((doc) => {
       const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
@@ -31,7 +31,7 @@ async function GetProductsByCategory(categoryId: String): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-      where("categoryId", "==", categoryId)
+     [ where("categoryId", "==", categoryId)]
     );
 
     querySnapshot.forEach((doc) => {
@@ -49,7 +49,7 @@ async function GetTodayDealProducts(): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-      where("todayOffer", "==", true)
+    [  where("todayOffer", "==", true)]
     );
 
     querySnapshot.forEach((doc) => {
@@ -68,7 +68,7 @@ async function GetExclusiveProducts(): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-      where("exclusive", "==", true)
+     [ where("exclusive", "==", true)]
     );
 
     querySnapshot.forEach((doc) => {
@@ -85,10 +85,10 @@ async function GetExclusiveProducts(): Promise<Product[]> {
 async function GetMoreProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
-    const querySnapshot = await handleGetAll(
-      productsModelName,
-      limit(10)
-    );
+    const querySnapshot = await handleGetAll(productsModelName, [
+      orderBy("name", "desc"),
+      limit(3),
+    ]);
 
     querySnapshot.forEach((doc) => {
       const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
