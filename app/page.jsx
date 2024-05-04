@@ -1,4 +1,3 @@
-"use client";
 
 import BannerComponent from "@/components/user_components/homepage/banner/banner_component";
 import SectionMoreWidget from "@/components/user_components/homepage/more_products/section_more_component";
@@ -9,20 +8,9 @@ import SpacerWidget from "@/components/user_components/common/spacer_widget";
 import DiscountGamesCardsComponent from "@/components/user_components/homepage/discounts/discount_games_cards_component";
 import SectionsCarouselComponent from "@/components/user_components/homepage/sections_cards/sections_carousel_component";
 
-
-
-
-
-
 export default function Home() {
-
-
-
-
   return (
-    <>
-      
-
+      <>
         {/* --------------- Banners Models --------------- */}
         <BannerComponent />
 
@@ -45,6 +33,6 @@ export default function Home() {
         <SpacerWidget />
 
         <FooterComponent />
-    </>
+      </>
   );
 }

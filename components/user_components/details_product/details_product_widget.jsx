@@ -4,15 +4,9 @@ import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";
 import { Product } from "@/models/product_model";
 import Image from "next/image";
-import { AddItemToCart } from "@/repository/cart_repository";
+import { useCart, withSSR } from "cart";
 
-export default function DetailsProductWidget({
-  params,
-  product,
-}: {
-  params: { id: string };
-  product: Product;
-}) {
+export default function DetailsProductWidget({ params, product }) {
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
 
   let stars = [];
@@ -23,6 +17,7 @@ export default function DetailsProductWidget({
       stars.push(0);
     }
   }
+  const { addToCart } = useCart();
 
   return (
     <>
@@ -85,8 +80,15 @@ export default function DetailsProductWidget({
               <div
                 onClick={(e) => {
                   e.preventDefault();
-                  AddItemToCart(product!.id!).then(() => {});
-                  
+
+                  addToCart({
+                    productId: product.id,
+                    name: product.title,
+                    quantity: 1,
+                    currentPrice: product.currentPrice,
+                    prePrice: product.prePrice,
+                    imagesrc:product.image
+                  });
                 }}
                 className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:motion-safe:animate-pulse"
               >

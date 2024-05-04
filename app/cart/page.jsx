@@ -5,70 +5,58 @@ import NoItemComp from "@/components/user_components/common/no_item";
 import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
 import CurrencySymbolComp from "@/components/user_components/common/currency_symbol";
 import PathWidget from "@/components/user_components/common/path_widget";
-import CartCardWidget from "@/components/user_components/cart/cart_card_widget";
+import CartCardWidget from "../../components/user_components/cart/cart_card_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
-import {
-  DeleteItemToCart,
-  GetCurrentUserCart,
-} from "@/repository/cart_repository";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/db/firebase_init";
-import { GetOneProduct } from "@/repository/products_repository";
 import { CiShoppingBasket } from "react-icons/ci";
 import { useRouter } from "next/navigation";
+import { useCart } from "cart";
 
 const urlPaths = [{ name: "سلة المشتريات", link: "/cart" }];
 
-const CartPage = () => {
-  const [loading, setLoading] = useState(true);
-  const [cart, setCart] = useState(null);
-  const [products, setProducts] = useState([]);
-  const [currentUser, setcurrentUser] = useState(null);
+export default function CartPage() {
   const router = useRouter();
+  const { removeFromCart, cartItems, isCartOpen } = useCart();
 
-  useEffect(() => {
-    if (currentUser != null) {
-      GetCurrentUserCart(currentUser).then((cart) => {
-        setCart(cart);
-        let tempProducts = [];
-        if (cart && cart["products"].length > 0) {
-          for (let index = 0; index < cart["products"].length; index++) {
-            GetOneProduct(cart["products"][index]).then((data) => {
-              tempProducts.push(data);
-            });
-          }
-        }
-        setProducts(tempProducts);
-        setLoading(false);
-      });
-    } else {
-      onAuthStateChanged(auth, async (user) => {
-        if (user) {
-          setcurrentUser(user.uid);
-          let cartData = await GetCurrentUserCart(user.uid);
-          setCart(cartData);
-          let tempProducts = [];
-          if (cartData && cartData["products"].length > 0) {
-            for (let index = 0; index < cartData["products"].length; index++) {
-              let product = await GetOneProduct(cartData["products"][index]);
-              tempProducts.push(product);
-            }
-          }
-          setProducts(tempProducts);
-          setLoading(false);
-        } else {
-          router.push("/login");
-        }
-      });
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (currentUser != null) {
+  //     GetCurrentUserCart(currentUser).then((cart) => {
+  //       setCart(cart);
+  //       let tempProducts = [];
+  //       if (cart && cart["products"].length > 0) {
+  //         for (let index = 0; index < cart["products"].length; index++) {
+  //           GetOneProduct(cart["products"][index]).then((data) => {
+  //             tempProducts.push(data);
+  //           });
+  //         }
+  //       }
+  //       setProducts(tempProducts);
+  //       setLoading(false);
+  //     });
+  //   } else {
+  //     onAuthStateChanged(auth, async (user) => {
+  //       if (user) {
+  //         setcurrentUser(user.uid);
+  //         let cartData = await GetCurrentUserCart(user.uid);
+  //         setCart(cartData);
+  //         let tempProducts = [];
+  //         if (cartData && cartData["products"].length > 0) {
+  //           for (let index = 0; index < cartData["products"].length; index++) {
+  //             let product = await GetOneProduct(cartData["products"][index]);
+  //             tempProducts.push(product);
+  //           }
+  //         }
+  //         setProducts(tempProducts);
+  //         setLoading(false);
+  //       } else {
+  //         router.push("/login");
+  //       }
+  //     });
+  //   }
+  // }, []);
 
   return (
     <>
-      {loading ? (
-        <LoadingPage />
-      ) : (
+      {
         <>
           <PathWidget urlPaths={urlPaths} />
 
@@ -87,37 +75,37 @@ const CartPage = () => {
                 </h1>
               </div>
               {/*----------------- PAGE CONTENT --------------------*/}
-              {products.length > 0 ? (
+              {cartItems.length > 0 ? (
                 <div className="flex lg:flex-row flex-col px-5">
                   {/*----------------- ITEMS --------------------*/}
                   <div className="flex flex-col  lg:w-1/2">
-                    {products.map((product, index) => (
+                    {cartItems.map((product, index) => (
                       <CartCardWidget
                         key={index}
                         product={product}
-                        samer={"sa"}
                         clickFunc={(event) => {
                           event.preventDefault();
-                          DeleteItemToCart(product.id).then(async () => {
-                            let cartData = await GetCurrentUserCart(
-                              currentUser
-                            );
-                            setCart(cartData);
-                            let tempProducts = [];
-                            if (cartData && cartData["products"].length > 0) {
-                              for (
-                                let index = 0;
-                                index < cartData["products"].length;
-                                index++
-                              ) {
-                                let product = await GetOneProduct(
-                                  cartData["products"][index]
-                                );
-                                tempProducts.push(product);
-                              }
-                            }
-                            setProducts(tempProducts);
-                          });
+                          removeFromCart(product.productId);
+                          // DeleteItemToCart(product.id).then(async () => {
+                          //   let cartData = await GetCurrentUserCart(
+                          //     currentUser
+                          //   );
+                          //   setCart(cartData);
+                          //   let tempProducts = [];
+                          //   if (cartData && cartData["products"].length > 0) {
+                          //     for (
+                          //       let index = 0;
+                          //       index < cartData["products"].length;
+                          //       index++
+                          //     ) {
+                          //       let product = await GetOneProduct(
+                          //         cartData["products"][index]
+                          //       );
+                          //       tempProducts.push(product);
+                          //     }
+                          //   }
+                          //   setProducts(tempProducts);
+                          // });
                         }}
                       />
                     ))}
@@ -135,7 +123,7 @@ const CartPage = () => {
                           الاجمالي
                         </div>
                         <div className="text-center text-black text-base font-normal ">
-                          {cart.total}
+                          {/* {cart.total} */}
 
                           <CurrencySymbolComp />
                         </div>
@@ -145,7 +133,7 @@ const CartPage = () => {
                           الخصم
                         </div>
                         <div className="text-center text-black text-base font-normal ">
-                          {cart.sales}
+                          {/* {cart.sales} */}
                           <CurrencySymbolComp />
                         </div>
                       </div>
@@ -154,7 +142,7 @@ const CartPage = () => {
                           الاجمالي بعد الخصم
                         </div>
                         <div className="text-right text-amber-500 text-xl font-bold  leading-7">
-                          {cart.netTotal}
+                          {/* {cart.netTotal} */}
 
                           <CurrencySymbolComp />
                         </div>
@@ -192,12 +180,10 @@ const CartPage = () => {
             </div>
           </div>
 
-          {products.length > 0 && <RelatedProductsWidget />}
+          {cartItems.length > 0 && <RelatedProductsWidget />}
           <FooterComponent />
         </>
-      )}
+      }
     </>
   );
-};
-
-export default CartPage;
+}

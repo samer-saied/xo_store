@@ -1,4 +1,4 @@
-// 'use client'
+'use client'
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 

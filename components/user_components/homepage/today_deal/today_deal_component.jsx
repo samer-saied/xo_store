@@ -1,3 +1,5 @@
+"use client"
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { TodayDealCardWidget } from "./today_deal_card_widget";

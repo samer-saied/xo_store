@@ -1,3 +1,4 @@
+"use client"
 import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
@@ -8,7 +9,7 @@ import LoadingPage from "@/components/user_components/common/loading";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import { useSpring, animated } from "@react-spring/web";
 
-export default async function SectionsCarouselComponent() {
+export default function SectionsCarouselComponent() {
   // const [swiper, setSwiper] = useState();
   const [sections, setsections] = useState(null);
   const fetchDataRef = useRef(false);

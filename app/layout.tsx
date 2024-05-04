@@ -1,3 +1,4 @@
+
 import { Almarai } from "next/font/google";
 import { Metadata } from "next";
 import "./globals.css";
@@ -11,7 +12,6 @@ const almarai = Almarai({
   weight: ["400", "700", "800"],
   display: "swap",
   preload: false,
-
 });
 
 export const metadata: Metadata = {
@@ -40,11 +40,11 @@ export default function RootLayout({
           almarai.className
         )}
       >
-        <Sheet>
-          <TopBarComponent />
-          <Navbar />
-          {children}
-        </Sheet>
+          <Sheet>
+            <TopBarComponent />
+            <Navbar />
+            {children}
+          </Sheet>
       </body>
     </html>
   );

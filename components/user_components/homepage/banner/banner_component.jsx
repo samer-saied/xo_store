@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { GetAllBanners } from "@/repository/banners_repository";
 import BannerSwiperComponent from "./banner_component copy";
