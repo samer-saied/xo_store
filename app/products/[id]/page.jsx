@@ -2,7 +2,7 @@
 
 import SpacerWidget from "@/components/user_components/common/spacer_widget";
 import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
-import DetailsProductWidget from "@/components/user_components/details_product/details_product_widget";
+import DetailsProductWidget from "../../../components/user_components/details_product/details_product_widget";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
 import { GetOneProduct } from "@/repository/products_repository";
 import LoadingPage from "@/components/user_components/common/loading";

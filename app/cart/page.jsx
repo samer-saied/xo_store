@@ -17,6 +17,17 @@ export default function CartPage() {
   const router = useRouter();
   const { removeFromCart, cartItems, isCartOpen } = useCart();
 
+  const getTotalItems = () => {
+    let total = 0;
+    let sale = 0;
+    cartItems.map((cartItems) => {
+      total += cartItems.currentPrice;
+      sale += cartItems.prePrice - cartItems.currentPrice;
+      console.log(total);
+    });
+    return { total: total, sale: sale, totalWithoutSale: total + sale };
+  };
+
   // useEffect(() => {
   //   if (currentUser != null) {
   //     GetCurrentUserCart(currentUser).then((cart) => {
@@ -123,7 +134,7 @@ export default function CartPage() {
                           الاجمالي
                         </div>
                         <div className="text-center text-black text-base font-normal ">
-                          {/* {cart.total} */}
+                          {getTotalItems().totalWithoutSale}
 
                           <CurrencySymbolComp />
                         </div>
@@ -133,7 +144,7 @@ export default function CartPage() {
                           الخصم
                         </div>
                         <div className="text-center text-black text-base font-normal ">
-                          {/* {cart.sales} */}
+                          {getTotalItems().sale}
                           <CurrencySymbolComp />
                         </div>
                       </div>
@@ -142,7 +153,7 @@ export default function CartPage() {
                           الاجمالي بعد الخصم
                         </div>
                         <div className="text-right text-amber-500 text-xl font-bold  leading-7">
-                          {/* {cart.netTotal} */}
+                          {getTotalItems().total}
 
                           <CurrencySymbolComp />
                         </div>
