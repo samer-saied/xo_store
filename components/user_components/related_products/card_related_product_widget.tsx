@@ -1,8 +1,13 @@
+import Image from "next/image";
+
 export default function CardRelatedProductsWidget() {
   return (
     <>
       <div className="mx-2 h-10/12 w-auto p-5 bg-white rounded-3xl justify-center items-center gap-6 inline-flex shadow-md cursor-pointer">
-        <img
+        <Image
+          width={100}
+          height={100}
+          alt={"xo-store"}
           className="w-1/3 h-10/12"
           src="/most/pubg_man.png"
         />
@@ -15,5 +20,4 @@ export default function CardRelatedProductsWidget() {
       </div>
     </>
   );
-  //<div>My Post: {params.id}</div>;
 }
