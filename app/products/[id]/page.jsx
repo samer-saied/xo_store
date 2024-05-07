@@ -7,6 +7,8 @@ import RelatedProductsWidget from "@/components/user_components/related_products
 import { GetOneProduct } from "@/repository/products_repository";
 import LoadingPage from "@/components/user_components/common/loading";
 import { useEffect, useState } from "react";
+import { Sheet } from "@/components/ui/sheet";
+import Navbar from "@/components/user_components/common/navbar/Navbar";
 
 export default function ProductPage({ params }) {
   const [loading, setLoading] = useState(true);
@@ -25,16 +27,18 @@ export default function ProductPage({ params }) {
         <LoadingPage />
       ) : (
         <>
+          <Sheet>
+            <Navbar />
+            <SpacerWidget />
 
-          <SpacerWidget />
+            <DetailsProductWidget params={params} product={product} />
 
-          <DetailsProductWidget params={params} product={product} />
+            {/*-------------------- RELATED PRODUCTS ---------------*/}
+            <RelatedProductsWidget />
 
-          {/*-------------------- RELATED PRODUCTS ---------------*/}
-          <RelatedProductsWidget />
-
-          <SpacerWidget />
-          <FooterComponent />
+            <SpacerWidget />
+            <FooterComponent />
+          </Sheet>
         </>
       )}
     </>

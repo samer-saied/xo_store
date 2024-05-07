@@ -1,6 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+"use client";
+
 import {
   Sheet,
   SheetClose,
@@ -11,17 +10,23 @@ import {
 } from "@/components/ui/sheet";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { CiBookmark, CiLogin, CiShoppingBasket, CiUser } from "react-icons/ci";
+import { CiLogin, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { LuUserPlus2 } from "react-icons/lu";
 import { TbLogin } from "react-icons/tb";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
+import { useEffect, useRef, useState } from "react";
+import MobileSectionsNavBar from "@/components/user_components/common/navbar/mobile_navBar_sections";
+import useAuthHook from "@/hooks/auth_hook";
 
-export function MobileMainNavBar({sections , isLogin}) {
+export function MobileMainNavBar() {
+  const [currentUser] = useAuthHook();
 
   return (
-    <SheetContent side={"left"} className=" bg-gradient-to-b from-MainYellowColor to-white">
+    <SheetContent
+      side={"left"}
+      className=" bg-gradient-to-b from-MainYellowColor to-white"
+    >
       <SheetHeader>
         <SheetTitle>
           {/* ************** Image ***************/}
@@ -35,51 +40,29 @@ export function MobileMainNavBar({sections , isLogin}) {
             />
           </div>
         </SheetTitle>
-        {/* <SheetDescription>
-          Make changes to your profile here. Click save when you re done.bg-gradient-to-b from-amber-800 to-white
-        </SheetDescription> */}
       </SheetHeader>
-      <ul className="flex flex-col justify-start items-start  text-MainBlueColor">
-        {/*--------------- DYNAMIC MENU -------------------*/}
-        {sections.map((section) => (
-          <li
-            key={section.id}
-            className={`px-4 cursor-pointer capitalize  py-2 text-lg  hover:scale-105 hover:font-bold`}
-          >
-            <Link
-              className="flex flex-row justify-center items-center"
-              href={{
-                pathname: "/sections/" + section.id,
-                query: { name: section.title },
-              }}
-            >
-              <CiBookmark size={25} className=" text-MainBlueColor mx-2" />
-              <p> {section.title}</p>
-            </Link>
-          </li>
-        ))}
-        {/*--------------- DIVIDER -------------------*/}
-
-        <span className=" mx-10 w-auto h-1 my-5 px-10 bg-MainBlueColor text-MainBlueColor " />
-      </ul>
+      <MobileSectionsNavBar />
       <SheetFooter>
-        {/* <SheetClose asChild> */}
         <ul className="w-full flex flex-col justify-start items-start text-MainBlueColor ">
           {/*--------------- USER MENU -------------------*/}
 
           <div className="pb-10">
-            {isLogin && (
+            {currentUser && (
               <li className="px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105 hover:font-bold">
                 <Link
                   href={"/profile"}
                   className="flex flex-row justify-center items-center"
                 >
                   <CiUser size={25} className=" text-MainBlueColor mx-2" />
-                  <p>{isLogin}</p>
+                  <p>
+                    {currentUser &&
+                      currentUser.email.split("@")[0].toUpperCase() +
+                        "'s Profile"}
+                  </p>
                 </Link>
               </li>
             )}
-            {isLogin && (
+            {currentUser && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
               >
@@ -95,7 +78,7 @@ export function MobileMainNavBar({sections , isLogin}) {
                 </Link>
               </li>
             )}
-            {isLogin && (
+            {currentUser && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
               >
@@ -111,7 +94,7 @@ export function MobileMainNavBar({sections , isLogin}) {
                 </button>
               </li>
             )}
-            {!isLogin && (
+            {!currentUser && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105`}
               >
@@ -124,7 +107,7 @@ export function MobileMainNavBar({sections , isLogin}) {
                 </Link>
               </li>
             )}
-            {!isLogin && (
+            {!currentUser && (
               <li
                 className={`px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105`}
               >

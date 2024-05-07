@@ -3,7 +3,7 @@
 import SpacerWidget from "@/components/user_components/common/spacer_widget";
 import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
 import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
-import Navbar from "@/components/user_components/common/Navbar";
+import Navbar from "@/components/user_components/common/navbar/Navbar";
 import PathWidget from "@/components/user_components/common/path_widget";
 import { GetTodayDealProducts } from "@/repository/products_repository";
 import { TodayDealCardWidget } from "@/components/user_components/homepage/today_deal/today_deal_card_widget";

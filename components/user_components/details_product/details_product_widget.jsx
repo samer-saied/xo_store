@@ -1,10 +1,14 @@
+"use client";
+
 import PathWidget from "../common/path_widget";
 import { PiStarFill } from "react-icons/pi";
 import { RiShoppingBasket2Fill } from "react-icons/ri";
 import { FaHeart } from "react-icons/fa";
-import { Product } from "@/models/product_model";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { useCart, withSSR } from "cart";
+import { useRouter } from "next/navigation";
 
 export default function DetailsProductWidget({ params, product }) {
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
@@ -18,6 +22,8 @@ export default function DetailsProductWidget({ params, product }) {
     }
   }
   const { addToCart } = useCart();
+  const { toast } = useToast();
+  const router = useRouter();
 
   return (
     <>
@@ -87,10 +93,28 @@ export default function DetailsProductWidget({ params, product }) {
                     quantity: 1,
                     currentPrice: product.currentPrice,
                     prePrice: product.prePrice,
-                    imagesrc:product.image
+                    imagesrc: product.image,
+                  });
+                  toast({
+                    variant: "default",
+
+                    title: "حسنا",
+                    description: "تم اضافه المنتج لسله المشتريات بنجاح",
+                    action: (
+                      <>
+                        <ToastAction
+                          onClick={() => {
+                            router.push("/cart");
+                          }}
+                          altText="continue"
+                        >
+                          الذهاب للسله
+                        </ToastAction>
+                      </>
+                    ),
                   });
                 }}
-                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:motion-safe:animate-pulse"
+                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:motion-safe:animate-bounce"
               >
                 <RiShoppingBasket2Fill className="text-white" size={25} />
                 <div className="text-white text-base font-bold leading-loose">

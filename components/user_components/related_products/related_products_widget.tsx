@@ -3,7 +3,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import CardRelatedProductsWidget from "./card_related_product_widget";
-import { Swiper,SwiperSlide } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 export default function RelatedProductsWidget() {
   return (
@@ -20,12 +21,15 @@ export default function RelatedProductsWidget() {
           </div>
         </div>
         <div className=" relative w-full h-64 flex flex-col justify-center items-center bg-orange-500 bg-opacity-95 md:rounded-2xl">
-      <div className=" absolute left-10 top-0 bottom-0 opacity-10">
-      <img
-          className=" h-full w-full object-cover"
-          src="/most/pubg_man.png"
-        />
-      </div>
+          <div className=" absolute left-10 top-0 bottom-0 opacity-10">
+            <Image
+              width={200}
+              height={200}
+              className=" h-full w-full object-cover"
+              src="/most/pubg_man.png"
+              alt={"pubg_man"}
+            />
+          </div>
           <Swiper
             className="w-full "
             breakpoints={{
