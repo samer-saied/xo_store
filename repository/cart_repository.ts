@@ -7,7 +7,8 @@ import {
 } from "@/db/firebase_crud";
 import { auth } from "@/db/firebase_init";
 import { Cart, cartConverter } from "@/models/cart_model";
-import { onAuthStateChanged } from "firebase/auth";
+import { Product } from "@/models/product_model";
+import { User, UserCredential, onAuthStateChanged } from "firebase/auth";
 import { and, updateDoc, where } from "firebase/firestore";
 
 const cartsModelName: String = "carts";
@@ -27,11 +28,11 @@ const cartsModelName: String = "carts";
 //   }
 // }
 
-async function GetCurrentUserCart(userId: string): Promise<Cart | null> {
+async function GetCurrentUserCart(user: User): Promise<Cart | null> {
   try {
     const querySnapshot = await handleGetAll(
       cartsModelName,
-      and(where("userId", "==", userId), where("status", "==", false))
+      and(where("userId", "==", user.uid), where("status", "==", false))
     );
     if (querySnapshot.length > 0) {
       const currentCart = cartConverter.fromFirestore(
@@ -48,19 +49,23 @@ async function GetCurrentUserCart(userId: string): Promise<Cart | null> {
   }
 }
 
-async function AddItemToCart(productId: string) {
+async function AddItemToCart(product: Product) {
   let tempCart: Cart | null;
   try {
     onAuthStateChanged(auth, (user) => {
-      GetCurrentUserCart(user!.uid).then((cart) => {
-        tempCart = cart;
-        tempCart?.products.push(productId);
-        handleUpdateOne(
-          cartsModelName,
-          cart!.id!,
-          cartConverter.toFirestore(tempCart!)
-        );
-      });
+      if (user == null) {
+        return null;
+      } else {
+        GetCurrentUserCart(user).then((cart) => {
+          tempCart = cart;
+          tempCart?.products.push(product);
+          handleUpdateOne(
+            cartsModelName,
+            cart!.id!,
+            cartConverter.toFirestore(tempCart!)
+          );
+        });
+      }
     });
   } catch (error) {
     console.error("Error fetching carts:", error);
@@ -72,21 +77,30 @@ async function DeleteItemToCart(productId: string) {
   let tempCart: Cart | null;
   try {
     onAuthStateChanged(auth, (user) => {
-      GetCurrentUserCart(user!.uid).then((cart) => {
-        let index = cart?.products.findIndex(
-          (element) => element === productId
-        );
+      if (user == null) {
+        console.log("===========NULL============");
 
-        let filteredList = cart!.products.slice(index! + 1); // Remove element with product id value
-        tempCart = cart;
-        tempCart!.products! = filteredList;
+        return null;
+      } else {
+        GetCurrentUserCart(user).then((cart) => {
+          let index = cart?.products.findIndex(
+            (element, index) => {
+              cart?.products[index].id === productId;
+            }
+            // (element) => element['productId'] === productId
+          );
 
-        handleUpdateOne(
-          cartsModelName,
-          cart!.id!,
-          cartConverter.toFirestore(tempCart!)
-        );
-      });
+          let filteredList = cart!.products.slice(index! + 1); // Remove element with product id value
+          tempCart = cart;
+          tempCart!.products! = filteredList;
+
+          handleUpdateOne(
+            cartsModelName,
+            cart!.id!,
+            cartConverter.toFirestore(tempCart!)
+          );
+        });
+      }
     });
   } catch (error) {
     console.error("Error fetching carts:", error);

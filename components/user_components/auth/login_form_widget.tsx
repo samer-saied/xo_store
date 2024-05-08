@@ -19,7 +19,6 @@ const LoginFormWidget = () => {
   const signInFunc = async () => {
     try {
       const user = await signInWithEmailAndPassword(auth, email, password);
-      console.log(user);
       if (!user) return; // Check if user is valid
       const credential = user as UserCredential;
       const result = credential.user;

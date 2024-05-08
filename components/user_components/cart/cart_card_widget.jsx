@@ -30,13 +30,13 @@ const CartCardWidget = ({ product, clickFunc }) => {
                 height={36}
                 className=" max-w-36 max-h-36 md:w-36 md:h-36 w-24 h-24 rounded"
                 src={product.image ?? "/logo/logo.png"}
-                alt={product.name + " image"}
+                alt={product.title + " image"}
               />
             </div>
             {/*------------------ DETAILS ------------------*/}
             <div className="w-8/12 flex flex-col justify-center items-start px-2 py-5">
               <div className="md:py-5 py-2 text-MainBlueColor md:text-2xl text-lg font-bold">
-                {product.name}
+                {product.title}
               </div>
               <div className="flex flex-row justify-center items-center flex-wrap">
                 <div className="text-amber-500 md:text-xl text-lg font-bold font-['Almarai']">

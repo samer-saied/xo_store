@@ -7,8 +7,8 @@ import { FaHeart } from "react-icons/fa";
 import { ToastAction } from "@/components/ui/toast";
 import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
-import { useCart, withSSR } from "cart";
 import { useRouter } from "next/navigation";
+import { AddItemToCart } from "@/repository/cart_repository";
 
 export default function DetailsProductWidget({ params, product }) {
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
@@ -21,7 +21,6 @@ export default function DetailsProductWidget({ params, product }) {
       stars.push(0);
     }
   }
-  const { addToCart } = useCart();
   const { toast } = useToast();
   const router = useRouter();
 
@@ -87,14 +86,7 @@ export default function DetailsProductWidget({ params, product }) {
                 onClick={(e) => {
                   e.preventDefault();
 
-                  addToCart({
-                    productId: product.id,
-                    name: product.title,
-                    quantity: 1,
-                    currentPrice: product.currentPrice,
-                    prePrice: product.prePrice,
-                    imagesrc: product.image,
-                  });
+                  AddItemToCart(product);
                   toast({
                     variant: "default",
 

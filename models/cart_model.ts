@@ -1,9 +1,10 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import { Product, productConverter } from "./product_model";
 
 export class Cart {
   public id: string | null;
-  public userId: string ;
-  public products: string[];
+  public userId: string;
+  public products: Product[];
   public sales: number;
   public total: number;
   public netTotal: number;
@@ -14,7 +15,7 @@ export class Cart {
   constructor(
     id: string,
     userId: string,
-    products: string[],
+    products: Product[],
     sales: number,
     total: number,
     netTotal: number,
@@ -44,7 +45,9 @@ export const cartConverter = {
     return {
       id: cart.id,
       userId: cart.userId,
-      products: [...cart.products],
+      products: Array.from(cart.products, (product) =>
+        productConverter.toFirestore(product)
+      ),
       sales: cart.sales,
       email: cart.total,
       phone: cart.netTotal,

@@ -13,7 +13,6 @@ export default function UserLandscapeWidget() {
   const [currentUser] = useAuthHook();
 
   ////
-  console.log(currentUser)
 
   return (
     <div className="flex flex-row justify-center items-center">
