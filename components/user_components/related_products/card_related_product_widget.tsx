@@ -5,8 +5,8 @@ export default function CardRelatedProductsWidget() {
     <>
       <div className="mx-2 h-10/12 w-auto p-5 bg-white rounded-3xl justify-center items-center gap-6 inline-flex shadow-md cursor-pointer">
         <Image
-          width={100}
-          height={100}
+          width={300}
+          height={300}
           alt={"xo-store"}
           className="w-1/3 h-10/12"
           src="/most/pubg_man.png"

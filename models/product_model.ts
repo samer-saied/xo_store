@@ -57,7 +57,7 @@ export class Product {
 export const productConverter = {
   toFirestore: (product: Product) => {
     return {
-      // id: product.id ? product.id : undefined,
+      id: product.id ? product.id : null,
       categoryId: product.categoryId,
       sectionId: product.sectionId,
       title: product.title,

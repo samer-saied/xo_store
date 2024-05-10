@@ -1,13 +1,21 @@
 import CurrencySymbolComp from "@/components/user_components/common/currency_symbol";
+import { CartItem } from "@/models/cartItem_model";
 import Image from "next/image";
 import React from "react";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const CartCardWidget = ({ product, clickFunc }) => {
-
+const CartCardWidget = ({
+  index,
+  cartItem,
+  clickFunc,
+}: {
+  index: number;
+  cartItem: CartItem;
+  clickFunc: any;
+}) => {
   return (
     <div
-      key={product.id}
+      key={cartItem.productId + index}
       className=" my-2 relative h-auto bg-white rounded-3xl shadow"
     >
       <div
@@ -29,31 +37,31 @@ const CartCardWidget = ({ product, clickFunc }) => {
                 width={36}
                 height={36}
                 className=" max-w-36 max-h-36 md:w-36 md:h-36 w-24 h-24 rounded"
-                src={product.image ?? "/logo/logo.png"}
-                alt={product.title + " image"}
+                src={cartItem.productImage ?? "/logo/logo.png"}
+                alt={cartItem.productName + " image"}
               />
             </div>
             {/*------------------ DETAILS ------------------*/}
             <div className="w-8/12 flex flex-col justify-center items-start px-2 py-5">
               <div className="md:py-5 py-2 text-MainBlueColor md:text-2xl text-lg font-bold">
-                {product.title}
+                {cartItem.productName}
               </div>
               <div className="flex flex-row justify-center items-center flex-wrap">
                 <div className="text-amber-500 md:text-xl text-lg font-bold font-['Almarai']">
-                  {product.currentPrice}
+                  {cartItem.price}
                   <CurrencySymbolComp />
                 </div>
                 <div className="px-3 text-neutral-400 md:text-base text-sm font-normal font-['Almarai'] line-through">
-                  {product.prePrice}
+                  {cartItem.prePrice}
                   <CurrencySymbolComp />
                 </div>
-                {product.prePrice != product.currentPrice && (
+                {cartItem.prePrice != cartItem.price && (
                   <div className="px-2 md:text-base text-sm text-white bg-green-600 rounded-md">
                     <span>SALE </span>
 
                     {(
-                      ((product.prePrice - product.currentPrice) /
-                        product.currentPrice) *
+                      ((cartItem.prePrice - cartItem.price) /
+                      cartItem.price) *
                       100
                     ).toFixed()}
                     <span>%</span>

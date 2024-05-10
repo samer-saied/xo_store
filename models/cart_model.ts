@@ -1,10 +1,11 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 import { Product, productConverter } from "./product_model";
+import { CartItem, cartItemConverter } from "./cartItem_model";
 
 export class Cart {
-  public id: string | null;
+  public id: string | any;
   public userId: string;
-  public products: Product[];
+  public items: CartItem[];
   public sales: number;
   public total: number;
   public netTotal: number;
@@ -13,9 +14,9 @@ export class Cart {
   public status: boolean;
 
   constructor(
-    id: string,
+    id: string | any,
     userId: string,
-    products: Product[],
+    items: CartItem[],
     sales: number,
     total: number,
     netTotal: number,
@@ -25,7 +26,7 @@ export class Cart {
   ) {
     this.id = id;
     this.userId = userId;
-    this.products = products;
+    this.items = items;
     this.sales = sales;
     this.total = total;
     this.netTotal = netTotal;
@@ -43,14 +44,14 @@ export class Cart {
 export const cartConverter = {
   toFirestore: (cart: Cart) => {
     return {
-      id: cart.id,
+      // id: cart.id,
       userId: cart.userId,
-      products: Array.from(cart.products, (product) =>
-        productConverter.toFirestore(product)
+      items: Array.from(cart.items, (item) =>
+        cartItemConverter.toFirestore(item)
       ),
       sales: cart.sales,
-      email: cart.total,
-      phone: cart.netTotal,
+      total: cart.total,
+      netTotal: cart.netTotal,
       description: cart.description,
       createdDate: cart.createdDate,
       status: cart.status,
@@ -61,7 +62,7 @@ export const cartConverter = {
     return new Cart(
       id,
       data.userId,
-      data.products,
+      data.items,
       data.sales,
       data.total,
       data.netTotal,

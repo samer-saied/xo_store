@@ -6,8 +6,9 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { auth } from "@/db/firebase_init";
+import { CartItem } from "@/models/cartItem_model";
 import { Cart, cartConverter } from "@/models/cart_model";
-import { Product } from "@/models/product_model";
+import { Product, productConverter } from "@/models/product_model";
 import { User, UserCredential, onAuthStateChanged } from "firebase/auth";
 import { and, updateDoc, where } from "firebase/firestore";
 
@@ -28,7 +29,7 @@ const cartsModelName: String = "carts";
 //   }
 // }
 
-async function GetCurrentUserCart(user: User): Promise<Cart | null> {
+async function GetCurrentUserCart(user: User): Promise<Cart> {
   try {
     const querySnapshot = await handleGetAll(
       cartsModelName,
@@ -41,7 +42,24 @@ async function GetCurrentUserCart(user: User): Promise<Cart | null> {
       );
       return currentCart;
     } else {
-      return null;
+      var newCart: Cart = new Cart(
+        null,
+        user.uid,
+        [],
+        0,
+        0,
+        0,
+        "",
+        Date.now(),
+        false
+      );
+      handlePostOne(
+        cartsModelName,
+        user.uid,
+        cartConverter.toFirestore(newCart)
+      );
+
+      return newCart;
     }
   } catch (error) {
     console.error("Error fetching carts:", error);
@@ -56,10 +74,24 @@ async function AddItemToCart(product: Product) {
       if (user == null) {
         return null;
       } else {
-        GetCurrentUserCart(user).then((cart) => {
+        GetCurrentUserCart(user).then(async (cart) => {
           tempCart = cart;
-          tempCart?.products.push(product);
-          handleUpdateOne(
+          tempCart?.items.push(
+            new CartItem(
+              product.id!,
+              product.title,
+              product.image,
+              1,
+              product.currentPrice,
+              product.prePrice,
+              "Player Id"
+            )
+          );
+
+          tempCart.sales += product.prePrice - product.currentPrice;
+          tempCart.netTotal += product.currentPrice;
+          tempCart.total += product.prePrice;
+          await handleUpdateOne(
             cartsModelName,
             cart!.id!,
             cartConverter.toFirestore(tempCart!)
@@ -73,39 +105,83 @@ async function AddItemToCart(product: Product) {
   }
 }
 
-async function DeleteItemToCart(productId: string) {
-  let tempCart: Cart | null;
-  try {
-    onAuthStateChanged(auth, (user) => {
-      if (user == null) {
-        console.log("===========NULL============");
+async function DeleteItemToCart(index: number): Promise<boolean> {
+  if (auth.currentUser?.uid) {
+    let cart: Cart = await GetCurrentUserCart(auth.currentUser);
+    let newCart: Cart = cart;
+    let newItems: CartItem[] = [];
 
-        return null;
+    cart.items.forEach((item, listIndex) => {
+      if (listIndex === index) {
+        newCart.netTotal -= item.price;
+        newCart.total -= item.prePrice;
+        newCart.sales -= item.prePrice - item.price;
       } else {
-        GetCurrentUserCart(user).then((cart) => {
-          let index = cart?.products.findIndex(
-            (element, index) => {
-              cart?.products[index].id === productId;
-            }
-            // (element) => element['productId'] === productId
-          );
-
-          let filteredList = cart!.products.slice(index! + 1); // Remove element with product id value
-          tempCart = cart;
-          tempCart!.products! = filteredList;
-
-          handleUpdateOne(
-            cartsModelName,
-            cart!.id!,
-            cartConverter.toFirestore(tempCart!)
-          );
-        });
+        newItems.push(item);
       }
     });
-  } catch (error) {
-    console.error("Error fetching carts:", error);
-    throw error; // Re-throw the error for further handling
+
+    newCart = new Cart(
+      cart!.id,
+      cart!.userId,
+      newItems,
+      cart!.sales,
+      cart!.total,
+      cart!.netTotal,
+      cart!.description,
+      cart!.createdDate,
+      cart!.status
+    );
+
+    await handleUpdateOne(
+      cartsModelName,
+      cart.id,
+      cartConverter.toFirestore(newCart)
+    );
+    return true;
+  } else {
+    return false;
   }
+
+  // onAuthStateChanged(auth, async (user) => {
+  //   var cart: Cart = await GetCurrentUserCart(user!);
+
+  //   let newCart: Cart = cart;
+  //   let newItems: CartItem[] = [];
+
+  //   cart.items.forEach((item, listIndex) => {
+  //     if (listIndex === index) {
+  //       newCart.netTotal -= item.price;
+  //       newCart.total -= item.prePrice;
+  //       newCart.sales -= item.prePrice - item.price;
+  //     } else {
+  //       newItems.push(item);
+  //     }
+  //   });
+
+  //   newCart = new Cart(
+  //     cart!.id,
+  //     cart!.userId,
+  //     newItems,
+  //     cart!.sales,
+  //     cart!.total,
+  //     cart!.netTotal,
+  //     cart!.description,
+  //     cart!.createdDate,
+  //     cart!.status
+  //   );
+
+  //   handleUpdateOne(
+  //     cartsModelName,
+  //     cart.id,
+  //     cartConverter.toFirestore(newCart)
+  //   ).then(() => {
+  //     result = true;
+  //     return result;
+  //   });
+  //   return result;
+  // });
+  // return result;
 }
 
 // async function UpdateOneCart(cart: Cart) {

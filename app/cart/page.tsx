@@ -11,45 +11,49 @@ import { Sheet } from "@/components/ui/sheet";
 import Navbar from "@/components/user_components/common/navbar/Navbar";
 import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
 import { useEffect, useState } from "react";
-import { DeleteItemToCart, GetCurrentUserCart } from "@/repository/cart_repository";
-import { onAuthStateChanged } from "firebase/auth";
+import {
+  DeleteItemToCart,
+  GetCurrentUserCart,
+} from "@/repository/cart_repository";
+import { User, UserCredential, onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
 import LoadingPage from "@/components/user_components/common/loading";
+import { Cart } from "@/models/cart_model";
 
 const urlPaths = [{ name: "سلة المشتريات", link: "/cart" }];
 
 export default function CartPage() {
-  const [cart, setCart] = useState(null);
+  const [cart, setCart] = useState<Cart | null>(null);
   const router = useRouter();
 
-  // const getTotalItems = () => {
-  //   let total = 0;
-  //   let sale = 0;
-  //   cartItems.map((cartItems) => {
-  //     total += cartItems.currentPrice;
-  //     sale += cartItems.prePrice - cartItems.currentPrice;
-  //     console.log(total);
-  //   });
-  //   return { total: total, sale: sale, totalWithoutSale: total + sale };
-  // };
+  function getCart() {
+    // onAuthStateChanged(auth, (user) => {
+    //   if (user == null) {
+    //     router.push("/login");
+    //   } else {
+    //     GetCurrentUserCart(user!).then((cart) => {
+    //       setCart(cart);
+    //     });
+    //   }
+
+    return new Promise((resolve, reject) => {
+      // Simulate processing the data
+      setTimeout(() => {
+        onAuthStateChanged(auth, (user) => {
+          if (user == null) {
+            router.push("/login");
+          } else {
+            GetCurrentUserCart(user!).then((cart) => {
+              setCart(cart);
+            });
+          }
+        });
+      }, 0);
+    });
+  }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      GetCurrentUserCart(user).then((cart) => {
-        setCart(cart);
-      });
-
-      // let tempProducts = [];
-      // if (cart && cart["products"].length > 0) {
-      //   for (let index = 0; index < cart["products"].length; index++) {
-      //     GetOneProduct(cart["products"][index]).then((data) => {
-      //       tempProducts.push(data);
-      //     });
-      //   }
-      // }
-      // setProducts(tempProducts);
-      // setLoading(false);
-    });
+    getCart();
   }, []);
 
   return (
@@ -77,41 +81,23 @@ export default function CartPage() {
                 </div>
                 {/*----------------- PAGE CONTENT --------------------*/}
                 {cart == null && <LoadingPage />}
-                {cart != null && cart.products.length == 0 && <NoItemComp />}
-                {cart != null && cart.products.length > 0 && (
+                {cart != null && cart.items.length == 0 && <NoItemComp />}
+                {cart != null && cart.items.length > 0 && (
                   <div className="flex lg:flex-row flex-col px-5">
                     {/*----------------- ITEMS --------------------*/}
                     <div className="flex flex-col  lg:w-1/2">
-                      {cart.products.map((product, index) => (
+                      {cart.items.map((item, index) => (
                         <CartCardWidget
                           key={index}
-                          product={product}
-                          clickFunc={(event) => {
+                          index={index}
+                          cartItem={item}
+                          clickFunc={(event: any) => {
                             event.preventDefault();
-                            // DeleteItemToCart(product.productId).then(()=>{
-                            //   console.log("Done")
-                            // })
-                            // removeFromCart(product.productId);
-                            // DeleteItemToCart(product.id).then(async () => {
-                            //   let cartData = await GetCurrentUserCart(
-                            //     currentUser
-                            //   );
-                            //   setCart(cartData);
-                            //   let tempProducts = [];
-                            //   if (cartData && cartData["products"].length > 0) {
-                            //     for (
-                            //       let index = 0;
-                            //       index < cartData["products"].length;
-                            //       index++
-                            //     ) {
-                            //       let product = await GetOneProduct(
-                            //         cartData["products"][index]
-                            //       );
-                            //       tempProducts.push(product);
-                            //     }
-                            //   }
-                            //   setProducts(tempProducts);
-                            // });
+                            DeleteItemToCart(index).then((result) => {
+                              if (result == true) {
+                                getCart();
+                              }
+                            });
                           }}
                         />
                       ))}
@@ -129,7 +115,7 @@ export default function CartPage() {
                             الاجمالي
                           </div>
                           <div className="text-center text-black text-base font-normal ">
-                            {/* {getTotalItems().totalWithoutSale} */}
+                            {cart.total}
 
                             <CurrencySymbolComp />
                           </div>
@@ -139,7 +125,7 @@ export default function CartPage() {
                             الخصم
                           </div>
                           <div className="text-center text-black text-base font-normal ">
-                            {/* {getTotalItems().sale} */}
+                            {cart.sales}
                             <CurrencySymbolComp />
                           </div>
                         </div>
@@ -148,7 +134,7 @@ export default function CartPage() {
                             الاجمالي بعد الخصم
                           </div>
                           <div className="text-right text-amber-500 text-xl font-bold  leading-7">
-                            {/* {getTotalItems().total} */}
+                            {cart.netTotal}
 
                             <CurrencySymbolComp />
                           </div>
@@ -183,7 +169,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            {cart && cart.products.length > 0 && <RelatedProductsWidget />}
+            {cart && cart.items.length > 0 && <RelatedProductsWidget />}
             <FooterComponent />
           </>
         }

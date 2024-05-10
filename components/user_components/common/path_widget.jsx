@@ -3,7 +3,7 @@ import { TbHome } from "react-icons/tb";
 
 export default function PathWidget({ urlPaths }) {
   return (
-    <div className="w-10/12 mx-auto pt-5">
+    <div key={"paths"} className="w-10/12 mx-auto pt-5">
       {/*------------- PATH TEXT ---------------------*/}
       <div className=" w-full h-11 pb-2 border-b border-zinc-200 justify-start items-center gap-2.5 inline-flex">
         <div className="flex flex-row justify-start items-center">
@@ -14,8 +14,8 @@ export default function PathWidget({ urlPaths }) {
             </div>
           </Link>
 
-          {urlPaths.map((url) => (
-            <div key={url.name} className="flex flex-row justify-center items-center">
+          {urlPaths.map((url, index) => (
+            <div key={index} className="flex flex-row justify-center items-center">
               <div className="text-blue-950 text-base font-medium leading-normal">
                 /
               </div>

@@ -95,5 +95,12 @@ export async function handleUpdateOne(
   collectionID: any,
   updatedData: any
 ) {
-  await updateDoc(doc(db, `${collectionName}`, `${collectionID}`), updatedData);
+  try {
+    await updateDoc(
+      doc(db, `${collectionName}`, `${collectionID}`),
+      updatedData
+    );
+  } catch (error) {
+    console.log(error);
+  }
 }

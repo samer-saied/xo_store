@@ -9,18 +9,11 @@ import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AddItemToCart } from "@/repository/cart_repository";
-
+import getStarsRate from "@/utils/stars"
 export default function DetailsProductWidget({ params, product }) {
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
 
-  let stars = [];
-  for (let index = 0; index < 5; index++) {
-    if (index < product.rate) {
-      stars.push(1);
-    } else {
-      stars.push(0);
-    }
-  }
+  
   const { toast } = useToast();
   const router = useRouter();
 
@@ -61,7 +54,7 @@ export default function DetailsProductWidget({ params, product }) {
             </div>
             {/*------------- Rate STARS ---------------------*/}
             <div className="pb-3 flex flex-row gap-2">
-              {stars.map((star, index) =>
+              {getStarsRate(product).map((star, index) =>
                 star == 1 ? (
                   <PiStarFill
                     key={index}
@@ -106,7 +99,7 @@ export default function DetailsProductWidget({ params, product }) {
                     ),
                   });
                 }}
-                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:motion-safe:animate-bounce"
+                className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:transform hover:scale-110"
               >
                 <RiShoppingBasket2Fill className="text-white" size={25} />
                 <div className="text-white text-base font-bold leading-loose">
