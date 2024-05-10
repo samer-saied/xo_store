@@ -21,6 +21,7 @@ export default function MostSalesComponent() {
   }, []);
 
   return (
+    categories &&
     categories.length > 0 && (
       <div className="w-full bg-gradient-to-r from-white to-sky-100  py-5">
         {/* /////////////////   TITLE     ///////////////////////// */}
@@ -77,14 +78,15 @@ export default function MostSalesComponent() {
           // slidesPerView={2.2}
           onSlideChange={() => console.log("slide change")}
         >
-          {categories.map((category) => (
-            <SwiperSlide key={category.id}>
-              <GameCardWidget
-                category={category}
-                urls={[{ name: category.title, link: "" }]}
-              />
-            </SwiperSlide>
-          ))}
+          {categories &&
+            categories.map((category) => (
+              <SwiperSlide key={category.id}>
+                <GameCardWidget
+                  category={category}
+                  urls={[{ name: category.title, link: "" }]}
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     )

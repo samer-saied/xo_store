@@ -27,28 +27,14 @@ export default function CartPage() {
   const router = useRouter();
 
   function getCart() {
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user == null) {
-    //     router.push("/login");
-    //   } else {
-    //     GetCurrentUserCart(user!).then((cart) => {
-    //       setCart(cart);
-    //     });
-    //   }
-
-    return new Promise((resolve, reject) => {
-      // Simulate processing the data
-      setTimeout(() => {
-        onAuthStateChanged(auth, (user) => {
-          if (user == null) {
-            router.push("/login");
-          } else {
-            GetCurrentUserCart(user!).then((cart) => {
-              setCart(cart);
-            });
-          }
+    onAuthStateChanged(auth, (user) => {
+      if (user == null) {
+        router.push("/login");
+      } else {
+        GetCurrentUserCart(user!).then((cart) => {
+          setCart(cart);
         });
-      }, 0);
+      }
     });
   }
 

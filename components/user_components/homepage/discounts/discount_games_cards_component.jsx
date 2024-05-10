@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -26,7 +26,7 @@ export default function GamesCardsComponent() {
 
   return (
     <>
-      {products.length > 0 && (
+      {products && products.length > 0 && (
         <div className="w-full bg-white py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">

@@ -36,10 +36,10 @@ export default function GameCardWidget(params: any) {
         >
           <div className="w-full h-full flex flex-col justify-center items-center ">
             <Image
-              width={200}
-              height={200}
+              width={174}
+              height={240}
               alt={params.category.title}
-              className="w-3/4  h-1/2 rounded-2xl object-contain drop-shadow-md"
+              className="p-3 rounded-2xl object-contain drop-shadow-md"
               src={params.category.image}
             />
           </div>

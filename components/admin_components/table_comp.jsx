@@ -5,24 +5,14 @@ import LoadingPage from "../user_components/common/loading";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-export default function TableComp({ data }) {
-
+export default function TableComp({ data, addFunc }) {
   const router = useRouter();
 
   return (
     <>
       <div dir="ltr" className="container max-w-5xl px-4 mx-auto sm:px-8">
-        <div className="py-8">
-          {/* //////////////////// Page Title //////////////////// */}
-          <div className="flex flex-row justify-between w-full mb-1 sm:mb-0">
-            <h2 className="text-2xl leading-tight">{data["tableTitle"]}</h2>
-            <button
-              className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-MainViridianColor rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
-              type="submit"
-            >
-              Add
-            </button>
-          </div>
+        <div className="py-1">
+       
           {/* //////////////////// Table //////////////////// */}
           {data["tableData"] == null && <LoadingPage />}
 
@@ -48,12 +38,6 @@ export default function TableComp({ data }) {
                           {header}
                         </th>
                       ))}
-                      <th
-                        scope="col"
-                        className="px-5 py-3 text-sm font-normal text-center text-gray-800 uppercase  border-b border-gray-200"
-                      >
-                        Actions
-                      </th>
                     </tr>
                   </thead>
                   {/* //////////////////// TABLE BODY //////////////////// */}
@@ -128,29 +112,13 @@ export default function TableComp({ data }) {
                                 </span>
                               )}
                             </td>
-                           
                           ))}
-
-                          <td className="px-1 py-2 text-sm border-b border-gray-200 text-center">
-                            <button
-                              href="#"
-                              className=" bg-MainBlueColor text-white hover:text-MainYellowColor rounded-md py-2 px-3 m-3"
-                            >
-                              Edit
-                            </button>
-                            <button
-                              href="#"
-                              className=" bg-red-600 text-white hover:text-MainYellowColor rounded-md py-2 px-3 m2-3"
-                            >
-                              Delete
-                            </button>
-                          </td>
                         </tr>
                       ))}
                   </tbody>
                 </table>
                 {/* //////////////////// PAGINATIONS //////////////////// */}
-                <div className="flex flex-col items-center px-5 py-2 bg-white xs:flex-row xs:justify-between">
+                {/* <div className="flex flex-col items-center px-5 py-2 bg-white xs:flex-row xs:justify-between">
                   <div className="flex items-center">
                     <button
                       type="button"
@@ -207,7 +175,7 @@ export default function TableComp({ data }) {
                       </svg>
                     </button>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           )}

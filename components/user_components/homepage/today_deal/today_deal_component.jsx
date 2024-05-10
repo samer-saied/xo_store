@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoIosArrowBack } from "react-icons/io";
@@ -22,6 +22,7 @@ export default function SpeedSaleComponent() {
   }, []);
 
   return (
+    products &&
     products.length > 0 && (
       <div className="w-full h-full md:py-10 py-5 bg-amber-50">
         <Swiper
@@ -76,11 +77,12 @@ export default function SpeedSaleComponent() {
           </SwiperSlide>
           {/*--------- Other Cards ------------*/}
 
-          {products.map((product, index) => (
-            <SwiperSlide key={product.id}>
-              <TodayDealCardWidget product={product} index={index} />
-            </SwiperSlide>
-          ))}
+          {products &&
+            products.map((product, index) => (
+              <SwiperSlide key={product.id}>
+                <TodayDealCardWidget product={product} index={index} />
+              </SwiperSlide>
+            ))}
         </Swiper>
       </div>
     )

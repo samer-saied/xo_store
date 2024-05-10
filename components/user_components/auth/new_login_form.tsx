@@ -27,7 +27,7 @@ const NewLoginFormWidget = () => {
   };
 
   return (
-    <div className="w-screen overflow-hidden min-h-screen m-auto">
+    <div className="overflow-hidden h-screen flex flex-col justify-center">
       <div className="lg:w-6/12 md:w-8/12 w-11/12 mx-auto py-5">
         <div className="relative p-5 mx-auto">
           <div className="absolute inset-4 bg-gradient-to-r from-blue-300 to-MainBlueColor shadow-lg transform -rotate-3 rounded-3xl"></div>

@@ -17,9 +17,11 @@ export default function Navbar() {
           <h1 className="text-5xl font-signature ml-2">
             <a href="/">
               <Image
-                className=" hover:animate-pulse hover:scale-125 hover:ease-in-out"
-                width={60}
-                height={60}
+                priority={true}
+                className="w-8/12 h-auto hover:animate-pulse hover:ease-in-out"
+                width="0"
+                height="0"
+                sizes="50vw"
                 src="/logo/logo.svg"
                 alt="Logo"
               />

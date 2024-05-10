@@ -31,24 +31,28 @@ export default function BannerComponent() {
   SwiperCore.use([Autoplay]);
 
   return (
-    <Swiper
-      pagination={{
-        type: "bullets",
-      }}
-      // effect="fade"
-      modules={[Pagination, Autoplay]}
-      autoplay={true}
-      loop={true}
-      direction={"horizontal"}
-      scrollbar={{ draggable: true }}
-      spaceBetween={30}
-      slidesPerView={1}
-    >
-      {banners.map((bannerData) => (
-        <SwiperSlide key={bannerData.id}>
-          <BannerCardWidget {...bannerData} />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <>
+      {banners && (
+        <Swiper
+          pagination={{
+            type: "bullets",
+          }}
+          // effect="fade"
+          modules={[Pagination, Autoplay]}
+          autoplay={true}
+          loop={true}
+          direction={"horizontal"}
+          scrollbar={{ draggable: true }}
+          spaceBetween={30}
+          slidesPerView={1}
+        >
+          {banners.map((bannerData) => (
+            <SwiperSlide key={bannerData.id}>
+              <BannerCardWidget {...bannerData} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
+    </>
   );
 }

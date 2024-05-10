@@ -6,6 +6,7 @@ import AdminBannerComponent from "../../components/admin_components/banners/admi
 import AdminCategoriesComponent from "../../components/admin_components/categories/admin_categories_comp";
 import AdminProductsComponent from "../../components/admin_components/products/admin_products_comp";
 import AdminSectionsComponent from "../../components/admin_components/sections/admin_sections_comp";
+import AdminAddBannerComp from "../../components/admin_components/banners/admin_add_banner_comp";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
@@ -39,11 +40,32 @@ export default function AdminHomePage() {
       <AdminUpperNavBarComp
         data={{ index: indexActive, setIndex: setIndexActive }}
       />
-      {indexActive == 0 ? <></> : <></>}
-      {indexActive == 1 ? <AdminBannerComponent /> : <></>}
-      {indexActive == 2 ? <AdminSectionsComponent /> : <></>}
-      {indexActive == 3 ? <AdminCategoriesComponent /> : <></>}
-      {indexActive == 4 ? <AdminProductsComponent /> : <></>}
+      {indexActive == 0 && <>Reports</>}
+      {indexActive == 1 && (
+        <AdminBannerComponent
+          data={{ index: indexActive, setIndex: setIndexActive }}
+        />
+      )}
+      {indexActive == 2 && (
+        <AdminSectionsComponent
+          data={{ index: indexActive, setIndex: setIndexActive }}
+        />
+      )}
+      {indexActive == 3 && (
+        <AdminCategoriesComponent
+          data={{ index: indexActive, setIndex: setIndexActive }}
+        />
+      )}
+      {indexActive == 4 && (
+        <AdminProductsComponent
+          data={{ index: indexActive, setIndex: setIndexActive }}
+        />
+      )}
+      {indexActive == 11 && (
+        <AdminAddBannerComp
+          data={{ index: indexActive, setIndex: setIndexActive }}
+        />
+      )}
     </div>
   );
 }
