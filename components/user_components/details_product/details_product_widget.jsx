@@ -9,11 +9,11 @@ import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { AddItemToCart } from "@/repository/cart_repository";
-import getStarsRate from "@/utils/stars"
+import getStarsRate from "@/utils/stars";
+
 export default function DetailsProductWidget({ params, product }) {
   const urlPaths = [{ name: product.title, link: "/products/" + product.id }];
 
-  
   const { toast } = useToast();
   const router = useRouter();
 
@@ -120,7 +120,6 @@ export default function DetailsProductWidget({ params, product }) {
             </div>
           </div>
         </div>
-
         {/*------------- DESCRIPTION ---------------------*/}
         <div className="text-zinc-800 text-xl font-bold  capitalize leading-8 pb-4">
           وصف المنتج

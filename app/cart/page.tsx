@@ -61,7 +61,7 @@ export default function CartPage() {
       <Sheet>
         <TopBarComponent />
         <Navbar />
-        {
+        {cart && (
           <>
             <PathWidget urlPaths={urlPaths} />
 
@@ -80,7 +80,6 @@ export default function CartPage() {
                   </h1>
                 </div>
                 {/*----------------- PAGE CONTENT --------------------*/}
-                {cart == null && <LoadingPage />}
                 {cart != null && cart.items.length == 0 && <NoItemComp />}
                 {cart != null && cart.items.length > 0 && (
                   <div className="flex lg:flex-row flex-col px-5">
@@ -172,7 +171,7 @@ export default function CartPage() {
             {cart && cart.items.length > 0 && <RelatedProductsWidget />}
             <FooterComponent />
           </>
-        }
+        )}
       </Sheet>
     </>
   );
