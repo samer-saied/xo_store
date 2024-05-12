@@ -22,6 +22,10 @@ export default function AdminUpperNavBarComp({ data }) {
     "Settings",
   ];
 
+
+  console.log("=================")
+  console.log(data["index"]["id"].toString().charAt(0))
+
   return (
     <>
       <div>
@@ -44,10 +48,12 @@ export default function AdminUpperNavBarComp({ data }) {
                         key={index}
                         onClick={(event) => {
                           event.preventDefault();
-                          data["setIndex"](index);
+                          console.log(data)
+                          data["setIndex"]({id:index,navId:null});
+
                         }}
                         className={
-                          data["index"] == index ? activeStyle : inActiveStyle
+                          data["index"]["id"].toString().charAt(0) == index ? activeStyle : inActiveStyle
                         }
                         // href="/admin"
                       >
@@ -90,11 +96,11 @@ export default function AdminUpperNavBarComp({ data }) {
                     key={index}
                     onClick={(event) => {
                       event.preventDefault();
-                      data["setIndex"](index);
+                      data["setIndex"]({id:index,navId:null});
                       setIsMobile(false)
                     }}
                     className={
-                      data["index"] == index ? activeStyle : inActiveStyle
+                      data["index"]["id"].toString().charAt(0) == index ? activeStyle : inActiveStyle
                     }
                     // href="/admin"
                   >

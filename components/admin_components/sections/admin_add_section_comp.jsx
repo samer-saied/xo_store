@@ -4,12 +4,12 @@ import { useForm } from "react-hook-form";
 import { TbCircleArrowLeft } from "react-icons/tb";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { AddOneBanner } from "@/repository/banners_repository";
-import { Banner } from "@/models/banner_model";
-import CheckBoxComp from "@/components/admin_components/banners/checkbox_comp";
+import { AddOneSection } from "@/repository/sections_repository";
+import { Section } from "@/models/section_model";
+import CheckBoxComp from "@/components/admin_components/sections/checkbox_comp";
 import { GetAllProducts } from "@/repository/products_repository";
 
-export default function AdminAddBannerComp({ data }) {
+export default function AdminAddSectionComp({ data }) {
   const [products, setProducts] = useState([]);
 
   const {
@@ -27,8 +27,8 @@ export default function AdminAddBannerComp({ data }) {
   }, []);
 
   const AddFunc = handleSubmit((data) => {
-    AddOneBanner(
-      new Banner(
+    AddOneSection(
+      new Section(
         null,
         data["title"],
         "https://images.unsplash.com/photo-1712439449183-9fd0bb892a37?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -45,13 +45,13 @@ export default function AdminAddBannerComp({ data }) {
       <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
-            data["setIndex"]({ id: 1, navId: null });
+            data["setIndex"]({ id: 2, navId: null });
           }}
           className=" cursor-pointer p-3 flex flex-row justify-start items-center"
         >
           <TbCircleArrowLeft className="text-black" size={40} />
         </div>
-        <h2 className="text-2xl md:text-4xl leading-tight">{"Banners"}</h2>
+        <h2 className="text-2xl md:text-4xl leading-tight">{"Sections"}</h2>
       </div>
 
       <form
@@ -79,7 +79,7 @@ export default function AdminAddBannerComp({ data }) {
               id="title"
               className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               placeholder="title"
-              // value={banner!.title}
+              // value={section!.title}
             />
           </div>
           <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
@@ -91,7 +91,7 @@ export default function AdminAddBannerComp({ data }) {
               id="descrption"
               className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               placeholder="descrption"
-              // value={banner!.descrption}
+              // value={section!.descrption}
             />
           </div>
           {/* products */}
@@ -103,7 +103,7 @@ export default function AdminAddBannerComp({ data }) {
               id="reference"
               className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               placeholder="reference id"
-              // value={banner!.refProductId}
+              // value={section!.refProductId}
             />
           </div> */}
 
@@ -116,7 +116,7 @@ export default function AdminAddBannerComp({ data }) {
               id="reference"
               className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
               placeholder="reference id"
-              // value={banner!.refProductId}
+              // value={section!.refProductId}
             >
               {products.map((product) => (
                 <option key={product.id} value={product.id}>

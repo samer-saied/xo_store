@@ -2,21 +2,18 @@
 
 import Image from "next/image";
 import LoadingPage from "../user_components/common/loading";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 
-export default function TableComp({ data, addFunc }) {
-  const router = useRouter();
+export default function TableComp({ tableData, addFunc }) {
+ 
 
   return (
     <>
       <div dir="ltr" className="container max-w-5xl px-4 mx-auto sm:px-8">
         <div className="py-1">
-       
           {/* //////////////////// Table //////////////////// */}
-          {data["tableData"] == null && <LoadingPage />}
+          {tableData["data"] == null && <LoadingPage />}
 
-          {data["tableData"] != null && (
+          {tableData["data"] != null && (
             <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
               <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
                 <table className=" min-w-full leading-normal text-red">
@@ -27,9 +24,9 @@ export default function TableComp({ data, addFunc }) {
                         scope="col"
                         className="px-5 py-3 text-sm font-normal text-left text-gray-800 uppercase  border-b border-gray-200"
                       >
-                        {data["tableTitle"]}
+                        {tableData["tableTitle"]}
                       </th>
-                      {data["tableHeaders"].map((header, index) => (
+                      {tableData["tableHeaders"].map((header, index) => (
                         <th
                           key={index}
                           scope="col"
@@ -42,28 +39,22 @@ export default function TableComp({ data, addFunc }) {
                   </thead>
                   {/* //////////////////// TABLE BODY //////////////////// */}
                   <tbody>
-                    {data["tableData"].length == 0 && <h1>No Data </h1>}
+                    {tableData["data"].length == 0 && <h1>No Data </h1>}
 
-                    {data["tableData"].length > 0 &&
-                      data["tableData"].map((tabledata, index) => (
+                    {tableData["data"].length > 0 &&
+                      tableData["data"].map((oneRow, index) => (
                         <tr
                           key={index}
                           className=" cursor-pointer  hover:bg-gray-200"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            router.push(
-                              "admin/" +
-                                data["tableTitle"] +
-                                "/" +
-                                tabledata["id"]
-                            );
+                          onClick={() => {
+                            addFunc({ id: 12, navId: oneRow.id });
                           }}
                         >
                           <td className="px-5 py-2 text-sm border-b border-gray-100">
                             <div className="flex items-center">
                               <div className="flex-shrink-0">
-                                {tabledata["image"] == null &&
-                                tabledata["icon"] == null ? (
+                                {oneRow["image"] == null &&
+                                oneRow["icon"] == null ? (
                                   <Image
                                     width={30}
                                     height={30}
@@ -76,43 +67,52 @@ export default function TableComp({ data, addFunc }) {
                                     width={30}
                                     height={30}
                                     alt="profile"
-                                    src={
-                                      tabledata["image"] ?? tabledata["icon"]
-                                    }
+                                    src={oneRow["image"] ?? oneRow["icon"]}
                                     className="mx-auto object-cover rounded-full h-10 w-10  bg-black"
                                   />
                                 )}
                               </div>
                             </div>
                           </td>
-                          {data["tableColumns"].map((tableColumn, index) => (
-                            <td
-                              key={index}
-                              className="px-1 py-2 text-sm border-b border-gray-200"
-                            >
-                              {tableColumn != "status" ? (
-                                <p className="text-gray-900 whitespace-no-wrap text-center">
-                                  {tabledata[tableColumn]}
-                                </p>
-                              ) : (
-                                <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
-                                  <span
-                                    aria-hidden="true"
-                                    className={
-                                      tabledata[tableColumn] == true
-                                        ? "absolute inset-0 bg-green-600 rounded-full"
-                                        : "absolute inset-0 bg-pink-500 rounded-full"
-                                    }
-                                  ></span>
-                                  <span className="relative">
-                                    {tabledata[tableColumn] == true
-                                      ? "active"
-                                      : "Inactive"}
+                          {tableData["tableColumns"].map(
+                            (tableColumn, index) => (
+                              <td
+                                key={index}
+                                className="px-1 py-2 text-sm border-b border-gray-200"
+                              >
+                                {tableColumn != "status" &&
+                                  tableColumn != "date" && (
+                                    <p className="text-gray-900 whitespace-no-wrap text-center">
+                                      {oneRow[tableColumn]}
+                                    </p>
+                                  )}
+                                {tableColumn == "status" && (
+                                  <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
+                                    <span
+                                      aria-hidden="true"
+                                      className={
+                                        oneRow[tableColumn] == true
+                                          ? "absolute inset-0 bg-green-600 rounded-full"
+                                          : "absolute inset-0 bg-pink-500 rounded-full"
+                                      }
+                                    ></span>
+                                    <span className="relative">
+                                      {oneRow[tableColumn] == true
+                                        ? "active"
+                                        : "Inactive"}
+                                    </span>
                                   </span>
-                                </span>
-                              )}
-                            </td>
-                          ))}
+                                )}
+                                {tableColumn == "date" && (
+                                  <p className="text-gray-900 whitespace-no-wrap text-center">
+                                    {new Date(
+                                      oneRow[tableColumn]
+                                    ).toLocaleString()}
+                                  </p>
+                                )}
+                              </td>
+                            )
+                          )}
                         </tr>
                       ))}
                   </tbody>

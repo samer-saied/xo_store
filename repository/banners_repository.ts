@@ -6,13 +6,14 @@ import {
   handleUpdateOne,
 } from "@/db/firebase_crud";
 import { Banner, bannerConverter } from "@/models/banner_model";
+import { orderBy } from "firebase/firestore";
 
 const bannersModelName: String = "banners";
 
 async function GetAllBanners(): Promise<Banner[]> {
   try {
     const banners: Banner[] = [];
-    const querySnapshot = await handleGetAll(bannersModelName, null);
+    const querySnapshot = await handleGetAll(bannersModelName,  orderBy("date","desc"));
 
     querySnapshot.forEach((doc) => {
       const currentBanner = bannerConverter.fromFirestore(doc["query"], doc.id);

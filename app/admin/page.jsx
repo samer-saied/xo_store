@@ -5,15 +5,18 @@ import AdminUpperNavBarComp from "../../components/admin_components/admin_upper_
 import AdminBannerComponent from "../../components/admin_components/banners/admin_banner_comp";
 import AdminCategoriesComponent from "../../components/admin_components/categories/admin_categories_comp";
 import AdminProductsComponent from "../../components/admin_components/products/admin_products_comp";
-import AdminSectionsComponent from "../../components/admin_components/sections/admin_sections_comp";
+import AdminSectionsComponent from "../../components/admin_components/sections/admin_section_comp";
 import AdminAddBannerComp from "../../components/admin_components/banners/admin_add_banner_comp";
+import AdminEditBannerComp from "../../components/admin_components/banners/admin_edit_banner";
+import AdminAddSectionComp from "../../components/admin_components/sections/admin_add_section_comp";
+import AdminEditSectionComp from "../../components/admin_components/sections/admin_edit_section";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/components/user_components/common/loading";
 
 export default function AdminHomePage() {
-  const [indexActive, setIndexActive] = useState(0);
+  const [index, setIndex] = useState({ id: 0, navId: "samer" });
   const [isAdmin, setIsAdmin] = useState(false);
   const router = useRouter();
 
@@ -37,33 +40,38 @@ export default function AdminHomePage() {
     <LoadingPage />
   ) : (
     <div dir="ltr">
-      <AdminUpperNavBarComp
-        data={{ index: indexActive, setIndex: setIndexActive }}
-      />
-      {indexActive == 0 && <>Reports</>}
-      {indexActive == 1 && (
-        <AdminBannerComponent
-          data={{ index: indexActive, setIndex: setIndexActive }}
-        />
+      <AdminUpperNavBarComp data={{ index: index, setIndex: setIndex }} />
+      {index.id == 0 && <>Reports</>}
+
+      {/* //////// Banners  ///////////// */}
+      {index.id == 1 && (
+        <AdminBannerComponent data={{ index: index, setIndex: setIndex }} />
       )}
-      {indexActive == 2 && (
-        <AdminSectionsComponent
-          data={{ index: indexActive, setIndex: setIndexActive }}
-        />
+      {index.id == 11 && (
+        <AdminAddBannerComp data={{ index: index, setIndex: setIndex }} />
       )}
-      {indexActive == 3 && (
-        <AdminCategoriesComponent
-          data={{ index: indexActive, setIndex: setIndexActive }}
-        />
+      {index.id == 12 && (
+        <AdminEditBannerComp data={{ index: index, setIndex: setIndex }} />
       )}
-      {indexActive == 4 && (
+
+      {/* //////// Sections  ///////////// */}
+      {index.id == 2 && (
+        <AdminSectionsComponent data={{ index: index, setIndex: setIndex }} />
+      )}
+      {index.id == 21 && (
+        <AdminAddSectionComp data={{ index: index, setIndex: setIndex }} />
+      )}
+      {index.id == 22 && (
+        <AdminEditSectionComp data={{ index: index, setIndex: setIndex }} />
+      )}
+
+      {/* //////// Categories  ///////////// */}
+      {index.id == 3 && (
+        <AdminCategoriesComponent data={{ index: index, setIndex: setIndex }} />
+      )}
+      {index.id == 4 && (
         <AdminProductsComponent
-          data={{ index: indexActive, setIndex: setIndexActive }}
-        />
-      )}
-      {indexActive == 11 && (
-        <AdminAddBannerComp
-          data={{ index: indexActive, setIndex: setIndexActive }}
+          data={{ index: index, setIndex: setIndexActive }}
         />
       )}
     </div>
