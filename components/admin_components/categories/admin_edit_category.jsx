@@ -1,19 +1,19 @@
 "use client";
-
-import CheckBoxComp from "@/components/user_components/common/checkbox_comp";
 import LoadingPage from "@/components/user_components/common/loading";
-import { GetOneBanner } from "@/repository/banners_repository";
+import { GetOneCategory } from "../../../repository/category_repository";
 import Image from "next/image";
+
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
 
-export default function AdminEditBannersComp({ navData }) {
-  const [banner, setBanner] = useState(null);
+export default function AdminEditCategorysComp({ navData }) {
+  const [category, setCategory] = useState(null);
   const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
-    GetOneBanner(navData["index"]["navId"]).then((Banner) => {
-      setBanner(Banner);
+    GetOneCategory(navData["index"]["navId"]).then((Category) => {
+
+      setCategory(Category);
       setLoading(false);
     });
   }, [navData]);
@@ -23,13 +23,13 @@ export default function AdminEditBannersComp({ navData }) {
       <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
-            navData["setIndex"]({ id: 1, navId: null });
+            navData["setIndex"]({ id: 3, navId: null });
           }}
           className=" cursor-pointer p-3 flex flex-row justify-start items-center"
         >
           <TbCircleArrowLeft className="text-black" size={40} />
         </div>
-        <h2 className="text-2xl md:text-4xl leading-tight">{"Edit Banner"}</h2>
+        <h2 className="text-2xl md:text-4xl leading-tight">{"Edit Category"}</h2>
       </div>
 
       {isLoading == true || isLoading == null ? (
@@ -45,8 +45,8 @@ export default function AdminEditBannersComp({ navData }) {
                 width={120}
                 height={120}
                 alt="icon"
-                src={banner.image}
-                className="mx-auto object-cover rounded-full h-32 w-32  bg-black"
+                src={category.image}
+                className="mx-auto object-contain rounded-full h-32 w-32  bg-black"
               />
             </div>
             <div className="space-y-4 bg-white">
@@ -57,45 +57,46 @@ export default function AdminEditBannersComp({ navData }) {
                   type="text"
                   id="title"
                   className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  value={banner.title}
+                  placeholder="title"
+                  value={category.title}
                   onChange={(event) => {
-                    setBanner({ ...banner, title: event.target.value });
+                    ///////
+                    setCategory({ ...category, title: event.target.value });
+                    ///////
                   }}
                 />
               </div>
+              {/* ******************* Color ******************* */}
               <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-                <h2 className="max-w-sm md:w-3/12 uppercase">descrption</h2>
-
-                <textarea
-                  // type="textarea"
-                  id="descrption"
-                  onChange={(event) => {
-                    setBanner({ ...banner, descrption: event.target.value });
-                  }}
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  value={banner.descrption}
-                />
-              </div>
-              <hr />
-
-              <CheckBoxComp val={banner} setVal={setBanner} />
-
-              <hr />
-
-              <div className="flex flex-row items-center justify-center w-full p-2 text-gray-500">
-                <h2 className="max-w-sm uppercase md:w-3/12 px-2">Refrence</h2>
+                <h2 className="max-w-sm md:w-3/12 uppercase">First Color</h2>
                 <input
-                  type="text"
-                  id="title"
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
-                  value={banner.refProductId}
+                  type="color"
+                  className=" rounded-lg border-gery border border-gray-300  md:flex-1 shadow-sm w-full px-3"
+                  id="firstColor"
                   onChange={(event) => {
-                    setBanner({ ...banner, refProductId: event.target.value });
+                    setCategory({
+                      ...category,
+                      firstColor: event.target.value,
+                    });
                   }}
+                  value={category.primaryColor}
+                />
+                <h2 className="max-w-sm md:w-3/12 uppercase px-5">
+                  Secand Color
+                </h2>
+                <input
+                  type="color"
+                  className=" rounded-lg border-gery border border-gray-300  md:flex-1 shadow-sm w-full px-3"
+                  id="secandColor"
+                  onChange={(event) => {
+                    setCategory({
+                      ...category,
+                      secandColor: event.target.value,
+                    });
+                  }}
+                  value={category.secandColor}
                 />
               </div>
-              <hr />
-
               <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
                 <button
                   type="submit"

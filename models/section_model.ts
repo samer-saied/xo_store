@@ -6,7 +6,8 @@ export class Section {
     public title: string,
     public icon: string,
     public primaryColor: string,
-    public secandColor: string
+    public secandColor: string,
+    public date: number
   ) {}
 
   toString() {
@@ -22,6 +23,7 @@ export const sectionConverter = {
       icon: Section.icon,
       primaryColor: Section.primaryColor,
       secandColor: Section.secandColor,
+      date: Section.date,
     };
   },
 
@@ -31,7 +33,8 @@ export const sectionConverter = {
       data.title,
       data.icon,
       data.primaryColor,
-      data.secandColor
+      data.secandColor,
+      data.date
     );
   },
 };

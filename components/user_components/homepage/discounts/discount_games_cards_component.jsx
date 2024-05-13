@@ -17,7 +17,6 @@ export default function GamesCardsComponent() {
   useEffect(() => {
     if (!fetchDataRef.current) {
       GetExclusiveProducts().then((productsData) => {
-        console.log(productsData);
         setProducts(productsData);
       });
       fetchDataRef.current = true;
@@ -62,9 +61,9 @@ export default function GamesCardsComponent() {
             onSwiper={(swiper) => {
               setSwiper(swiper);
             }}
-            onActiveIndexChange={(swiper) => {
-              // console.log("active index is", swiper.activeIndex);
-            }}
+            // onActiveIndexChange={(swiper) => {
+            //   // console.log("active index is", swiper.activeIndex);
+            // }}
             pagination={{
               clickable: true,
               // el: ".swiper-custom-pagination",
@@ -81,7 +80,7 @@ export default function GamesCardsComponent() {
               1300: { slidesPerView: 4.8 },
             }}
             // slidesPerView={2.2}
-            onSlideChange={() => console.log("slide change")}
+            // onSlideChange={() => console.log("slide change")}
           >
             {products.map((product, index) => (
               <SwiperSlide key={product.id}>

@@ -47,7 +47,7 @@ export default function SpeedSaleComponent() {
             1300: { slidesPerView: 4.6 },
           }}
           slidesPerView={2.1}
-          onSlideChange={() => console.log("slide change")}
+          // onSlideChange={() => console.log("slide change")}
         >
           {/*--------- Welcome Message to show all Cards ------------*/}
           <SwiperSlide>

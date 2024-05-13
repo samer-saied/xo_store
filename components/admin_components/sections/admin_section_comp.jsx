@@ -1,12 +1,11 @@
 "use client";
 
 import { GetAllSections } from "@/repository/sections_repository";
-import TableComp from "../table_comp";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import TableComp from "../sections/table_comp";
 
-export default function AdminSectionComp({ data }) {
-  console.log(data);
+export default function AdminSectionComp({ navData }) {
   const [loading, setLoading] = useState(true);
   const [sections, setsections] = useState(null);
 
@@ -26,7 +25,7 @@ export default function AdminSectionComp({ data }) {
         <h2 className="text-2xl md:text-4xl leading-tight">{"Sections"}</h2>
         <button
           onClick={() => {
-            data["setIndex"]({ id: 21, navId: "samer" });
+            navData["setIndex"]({ id: 21, navId: "samer" });
           }}
           className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-MainViridianColor rounded-lg shadow-md hover:bg-MainBlueColor-700 focus:outline-none focus:ring-2 focus:ring-MainBlueColor-500 focus:ring-offset-2 focus:ring-offset-MainBlueColor-200"
           type="submit"
@@ -37,11 +36,11 @@ export default function AdminSectionComp({ data }) {
       <TableComp
         tableData={{
           tableTitle: "sections",
-          tableHeaders: ["title", "created at", "state"],
-          tableColumns: ["title", "date", "status"],
+          tableHeaders: ["title", "created at"],
+          tableColumns: ["title", "date"],
           data: sections,
         }}
-        addFunc={data["setIndex"]}
+        addFunc={navData["setIndex"]}
       />
     </>
   );

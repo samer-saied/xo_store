@@ -17,7 +17,7 @@ export default function Navbar() {
           <h1 className="text-5xl font-signature ml-2">
             <a href="/">
               <Image
-                priority={true}
+                priority
                 className="w-8/12 h-auto hover:animate-pulse hover:ease-in-out"
                 width="0"
                 height="0"

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
@@ -55,9 +55,9 @@ export default function SectionsCarouselComponent() {
             // onSwiper={(swiper) => {
             //   setSwiper(swiper);
             // }}
-            onActiveIndexChange={(swiper) => {
-              // console.log("active index is", swiper.activeIndex);
-            }}
+            // onActiveIndexChange={(swiper) => {
+            //   // console.log("active index is", swiper.activeIndex);
+            // }}
             pagination={{
               clickable: true,
             }}
@@ -73,7 +73,7 @@ export default function SectionsCarouselComponent() {
               1300: { slidesPerView: 5.0 },
             }}
             // slidesPerView={2.2}
-            onSlideChange={() => console.log("slide change")}
+            // onSlideChange={() => console.log("slide change")}
           >
             {sections.map((section) => (
               <SwiperSlide key={section.id}>

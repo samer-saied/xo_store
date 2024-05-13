@@ -102,7 +102,6 @@ export const DefaultCardsCarouselWidget = () => {
   useEffect(() => {
     if (!fetchDataRef.current) {
       GetMoreProducts().then((productsData) => {
-        console.log(productsData);
         setProducts(productsData);
       });
       fetchDataRef.current = true;

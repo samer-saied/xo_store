@@ -1,11 +1,9 @@
 "use client";
 
+import LoadingPage from "@/components/user_components/common/loading";
 import Image from "next/image";
-import LoadingPage from "../user_components/common/loading";
 
 export default function TableComp({ tableData, addFunc }) {
- 
-
   return (
     <>
       <div dir="ltr" className="container max-w-5xl px-4 mx-auto sm:px-8">
@@ -47,7 +45,11 @@ export default function TableComp({ tableData, addFunc }) {
                           key={index}
                           className=" cursor-pointer  hover:bg-gray-200"
                           onClick={() => {
-                            addFunc({ id: 12, navId: oneRow.id });
+                            addFunc({
+                              id: 22,
+                              navSection: "sections",
+                              navId: oneRow.id,
+                            });
                           }}
                         >
                           <td className="px-5 py-2 text-sm border-b border-gray-100">

@@ -29,7 +29,6 @@ async function GetAllCategories(): Promise<Category[]> {
     });
     return categories;
   } catch (error) {
-    console.error("Error fetching categories:", error);
     throw error; // Re-throw the error for further handling
   }
 }
@@ -37,12 +36,11 @@ async function GetAllCategories(): Promise<Category[]> {
 async function GetOneCategory(id: string): Promise<Category> {
   try {
     const querySnapshot = await handleGetOne(categoriesModelName, id);
+ 
 
     const currentCategory = categoryConverter.fromFirestore(querySnapshot!, id);
-
     return currentCategory;
   } catch (error) {
-    console.error("Error fetching categories:", error);
     throw error; // Re-throw the error for further handling
   }
 }

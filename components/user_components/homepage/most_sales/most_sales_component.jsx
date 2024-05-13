@@ -58,9 +58,6 @@ export default function MostSalesComponent() {
           onSwiper={(swiper) => {
             setSwiper(swiper);
           }}
-          onActiveIndexChange={(swiper) => {
-            // console.log("active index is", swiper.activeIndex);
-          }}
           pagination={{
             clickable: true,
           }}
@@ -75,8 +72,6 @@ export default function MostSalesComponent() {
             1024: { slidesPerView: 4 },
             1300: { slidesPerView: 4.8 },
           }}
-          // slidesPerView={2.2}
-          onSlideChange={() => console.log("slide change")}
         >
           {categories &&
             categories.map((category) => (

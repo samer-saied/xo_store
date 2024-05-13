@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 
-export default function AdminUpperNavBarComp({ data }) {
+export default function AdminUpperNavBarComp({ navData }) {
   const [isMobile, setIsMobile] = useState(false);
 
   const inActiveStyle =
@@ -22,19 +22,16 @@ export default function AdminUpperNavBarComp({ data }) {
     "Settings",
   ];
 
-
-  console.log("=================")
-  console.log(data["index"]["id"].toString().charAt(0))
-
   return (
     <>
       <div>
         <nav className="bg-white shadow ">
           <div className="px-8 mx-auto max-w-7xl">
-            <div className="flex items-center justify-between h-16">
+            <div className="flex items-center justify-between ">
               <div className=" flex items-center">
                 <a className="flex-shrink-0" href="/">
                   <Image
+                    priority
                     width={64}
                     height={64}
                     src="/logo/logo.png"
@@ -48,12 +45,13 @@ export default function AdminUpperNavBarComp({ data }) {
                         key={index}
                         onClick={(event) => {
                           event.preventDefault();
-                          console.log(data)
-                          data["setIndex"]({id:index,navId:null});
-
+                          console.log(navData);
+                          navData["setIndex"]({ id: index, navId: null });
                         }}
                         className={
-                          data["index"]["id"].toString().charAt(0) == index ? activeStyle : inActiveStyle
+                          navData["index"]["id"].toString().charAt(0) == index
+                            ? activeStyle
+                            : inActiveStyle
                         }
                         // href="/admin"
                       >
@@ -96,11 +94,13 @@ export default function AdminUpperNavBarComp({ data }) {
                     key={index}
                     onClick={(event) => {
                       event.preventDefault();
-                      data["setIndex"]({id:index,navId:null});
-                      setIsMobile(false)
+                      navData["setIndex"]({ id: index, navId: null });
+                      setIsMobile(false);
                     }}
                     className={
-                      data["index"]["id"].toString().charAt(0) == index ? activeStyle : inActiveStyle
+                      navData["index"]["id"].toString().charAt(0) == index
+                        ? activeStyle
+                        : inActiveStyle
                     }
                     // href="/admin"
                   >

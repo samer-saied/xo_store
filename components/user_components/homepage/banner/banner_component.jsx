@@ -21,7 +21,7 @@ export default function BannerComponent() {
   useEffect(() => {
     if (!fetchDataRef.current) {
       GetAllBanners().then((banners) => {
-        console.log(banners);
+
         setbanners(banners);
       });
       fetchDataRef.current = true;
@@ -32,7 +32,7 @@ export default function BannerComponent() {
 
   return (
     <>
-      {banners && (
+      {banners.length > 0 && (
         <Swiper
           pagination={{
             type: "bullets",
