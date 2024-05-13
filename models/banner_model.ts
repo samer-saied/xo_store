@@ -8,7 +8,7 @@ export class Banner {
     public descrption: string,
     public date: Timestamp,
     public refProductId: string,
-    public status: boolean
+    public state: boolean
   ) {}
 
   toString() {
@@ -26,7 +26,7 @@ export const bannerConverter = {
       descrption: banner.descrption,
       date: banner.date,
       refProductId: banner.refProductId,
-      status: banner.status,
+      status: banner.state,
     };
   },
 
@@ -38,7 +38,7 @@ export const bannerConverter = {
       data.descrption,
       data.date,
       data.refProductId,
-      data.status
+      data.state
     );
   },
 };

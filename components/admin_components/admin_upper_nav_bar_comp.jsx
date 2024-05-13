@@ -26,7 +26,7 @@ export default function AdminUpperNavBarComp({ navData }) {
     <>
       <div>
         <nav className="bg-white shadow ">
-          <div className="px-8 mx-auto max-w-7xl">
+          <div className="px-8 mx-auto max-w-7xl p-2">
             <div className="flex items-center justify-between ">
               <div className=" flex items-center">
                 <a className="flex-shrink-0" href="/">

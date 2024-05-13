@@ -1,12 +1,8 @@
 "use client";
 
-import AdminUpperNavBarComp from "@/components/admin_components/admin_upper_nav_bar_comp";
 import LoadingPage from "@/components/user_components/common/loading";
-import { Section } from "@/models/section_model";
 import { GetOneSection } from "@/repository/sections_repository";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
 
@@ -59,7 +55,7 @@ export default function AdminEditSectionsComp({ navData }) {
                 <input
                   type="text"
                   id="title"
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
                   placeholder="title"
                   value={section.title}
                   onChange={(event) => {

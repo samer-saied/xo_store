@@ -36,11 +36,10 @@ async function GetAllCategories(): Promise<Category[]> {
 async function GetOneCategory(id: string): Promise<Category> {
   try {
     const querySnapshot = await handleGetOne(categoriesModelName, id);
- 
 
-    const currentCategory = categoryConverter.fromFirestore(querySnapshot!, id);
-    return currentCategory;
+    return categoryConverter.fromFirestore(querySnapshot!.data(), id);
   } catch (error) {
+    console.error("Error fetching banners:", error);
     throw error; // Re-throw the error for further handling
   }
 }

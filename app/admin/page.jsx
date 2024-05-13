@@ -2,20 +2,27 @@
 
 import { useEffect, useState } from "react";
 import AdminUpperNavBarComp from "../../components/admin_components/admin_upper_nav_bar_comp";
+
+import AdminReportComp from "@/components/admin_components/reports/admin_report_comp";
+
 import AdminBannerComponent from "../../components/admin_components/banners/admin_banner_comp";
-import AdminCategoryComponent from "../../components/admin_components/categories/admin_category_comp";
-import AdminProductsComponent from "../../components/admin_components/products/admin_products_comp";
-import AdminSectionsComponent from "../../components/admin_components/sections/admin_section_comp";
 import AdminAddBannerComp from "../../components/admin_components/banners/admin_add_banner_comp";
 import AdminEditBannerComp from "../../components/admin_components/banners/admin_edit_banner";
+
+import AdminCategoryComponent from "../../components/admin_components/categories/admin_category_comp";
+import AdminEditCategorysComp from "../../components/admin_components/categories/admin_edit_category";
+import AdminAddCategoryComp from "../../components/admin_components/categories/admin_add_category_comp";
+
+import AdminSectionsComponent from "../../components/admin_components/sections/admin_section_comp";
 import AdminAddSectionComp from "../../components/admin_components/sections/admin_add_section_comp";
 import AdminEditSectionComp from "../../components/admin_components/sections/admin_edit_section";
+
+import AdminProductsComponent from "../../components/admin_components/products/admin_products_comp";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/components/user_components/common/loading";
-import AdminEditCategorysComp from "../../components/admin_components/categories/admin_edit_category";
-import AdminAddCategoryComp from "../../components/admin_components/categories/admin_add_category_comp";
 
 export default function AdminHomePage() {
   const [index, setIndex] = useState({
@@ -47,7 +54,11 @@ export default function AdminHomePage() {
   ) : (
     <div dir="ltr">
       <AdminUpperNavBarComp navData={{ index: index, setIndex: setIndex }} />
-      {index.id == 0 && <>Reports</>}
+
+      {/* ////////  REPORT - ADMIN HOMEPAGE  ///////////// */}
+      {index.id == 0 && (
+        <AdminReportComp navData={{ index: index, setIndex: setIndex }} />
+      )}
 
       {/* //////// Banners  ///////////// */}
       {index.id == 1 && (

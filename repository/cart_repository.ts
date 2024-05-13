@@ -184,31 +184,7 @@ async function DeleteItemToCart(index: number): Promise<boolean> {
   // return result;
 }
 
-// async function UpdateOneCart(cart: Cart) {
-//   let editedCart: Cart = {
-//     ...cart,
-//     //, date: Timestamp.now()
-//   };
-//   try {
-//     await handleUpdateOne(
-//       cartsModelName,
-//       cart.id!,
-//       cartConverter.toFirestore(editedCart)
-//     );
-//   } catch (error) {
-//     console.error("Error fetching carts:", error);
-//     throw error; // Re-throw the error for further handling
-//   }
-// }
 
-// async function DeleteOneCart(cart: Cart) {
-//   try {
-//     await handleDeleteOne(cartsModelName, cart.id!);
-//   } catch (error) {
-//     console.error("Error fetching carts:", error);
-//     throw error; // Re-throw the error for further handling
-//   }
-// }
 
 export {
   // GetAllCarts,

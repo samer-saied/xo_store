@@ -92,7 +92,7 @@ export default function AdminAddCategoryComp({ navData }) {
               {...register("title", { required: true })}
               type="text"
               id="title"
-              className=" rounded-lg border-gery flex-1 shadow-sm appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              className=" rounded-lg border-gery flex-1 shadow-sm appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
               placeholder="title"
               // value={category!.title}
             />
@@ -130,7 +130,7 @@ export default function AdminAddCategoryComp({ navData }) {
                 setValue("reference", val.target.value);
               }}
               id="reference"
-              className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+              className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
               placeholder="reference id"
               // value={banner!.refProductId}
             >

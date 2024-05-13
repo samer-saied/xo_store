@@ -35,7 +35,6 @@ async function GetOneSection(id:string): Promise<Section> {
     const querySnapshot = await handleGetOne(
       sectionsModelName,
       id
-      // where("country", ">=", "EGP 3900")
     );
    
     return sectionConverter.fromFirestore(querySnapshot!.data(), querySnapshot!.id);

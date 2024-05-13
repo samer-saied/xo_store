@@ -56,7 +56,7 @@ export default function AdminEditBannersComp({ navData }) {
                 <input
                   type="text"
                   id="title"
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
                   value={banner.title}
                   onChange={(event) => {
                     setBanner({ ...banner, title: event.target.value });
@@ -72,7 +72,7 @@ export default function AdminEditBannersComp({ navData }) {
                   onChange={(event) => {
                     setBanner({ ...banner, descrption: event.target.value });
                   }}
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
                   value={banner.descrption}
                 />
               </div>
@@ -87,7 +87,7 @@ export default function AdminEditBannersComp({ navData }) {
                 <input
                   type="text"
                   id="title"
-                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
                   value={banner.refProductId}
                   onChange={(event) => {
                     setBanner({ ...banner, refProductId: event.target.value });
