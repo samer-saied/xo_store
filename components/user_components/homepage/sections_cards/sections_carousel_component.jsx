@@ -70,13 +70,13 @@ export default function SectionsCarouselComponent() {
               600: { slidesPerView: 3.0 },
               800: { slidesPerView: 3.2 },
               1024: { slidesPerView: 4.0 },
-              1300: { slidesPerView: 5.0 },
+              1300: { slidesPerView: 4.5 },
             }}
             // slidesPerView={2.2}
             // onSlideChange={() => console.log("slide change")}
           >
             {sections.map((section) => (
-              <SwiperSlide key={section.id}>
+              <SwiperSlide key={section.id} >
                 {/* <animated.div style={props}> */}
                 <SectionCardWidget key={section.id} {...section} />
                 {/* </animated.div> */}
