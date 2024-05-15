@@ -80,15 +80,15 @@ export default function TableComp({ tableData, addFunc }) {
                             (tableColumn, index) => (
                               <td
                                 key={index}
-                                className="px-1 py-2 text-sm border-b border-gray-200"
+                                className=" px-1 py-2 text-sm border-b border-gray-200"
                               >
-                                {tableColumn != "status" &&
+                                {tableColumn != "state" &&
                                   tableColumn != "date" && (
                                     <p className="text-gray-900 whitespace-no-wrap text-center">
                                       {oneRow[tableColumn]}
                                     </p>
                                   )}
-                                {tableColumn == "status" && (
+                                {tableColumn == "state" && (
                                   <span className="relative inline-block px-3 py-1 font-semibold leading-tight text-white">
                                     <span
                                       aria-hidden="true"

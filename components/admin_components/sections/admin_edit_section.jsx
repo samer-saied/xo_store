@@ -1,14 +1,19 @@
 "use client";
 
 import LoadingPage from "@/components/user_components/common/loading";
-import { GetOneSection } from "@/repository/sections_repository";
+import {
+  GetOneSection,
+  UpdateOneSection,
+} from "@/repository/sections_repository";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminEditSectionsComp({ navData }) {
   const [section, setSection] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const { toast } = useToast();
 
   useEffect(() => {
     GetOneSection(navData["index"]["navId"]).then((Section) => {
@@ -94,6 +99,17 @@ export default function AdminEditSectionsComp({ navData }) {
               </div>
               <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
                 <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    UpdateOneSection(section).then(() => {
+                      toast({
+                        variant: "default",
+                        title: "حسنا",
+                        description: "تم التعديل بنجاح",
+                      });
+                      navData["setIndex"]({ id: 2, navId: null });
+                    });
+                  }}
                   type="submit"
                   className="py-2 px-4  bg-gray-600 hover:bg-black focus:ring-black focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                 >

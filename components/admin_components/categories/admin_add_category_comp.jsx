@@ -1,6 +1,6 @@
 "use client";
 
-import { set, useForm } from "react-hook-form";
+import {  useForm } from "react-hook-form";
 import { TbCircleArrowLeft } from "react-icons/tb";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -32,10 +32,20 @@ export default function AdminAddCategoryComp({ navData }) {
   } = useForm();
 
   const AddFunc = handleSubmit((data) => {
+    // let newCate = new Category(
+    //   null,
+    //   data["reference"] ?? sections[0].id,
+    //   data["title"],
+    //   "https://cdn.pixabay.com/photo/2016/11/15/23/51/controller-1827840_1280.png",
+    //   colors["firstColor"].toString(),
+    //   colors["secandColor"].toString(),
+    //   Date.now()
+    // );
+    // console.log(newCate);
     AddOneCategory(
       new Category(
         null,
-        data["reference"],
+        data["reference"] ?? sections[0].id,
         data["title"],
         "https://cdn.pixabay.com/photo/2016/11/15/23/51/controller-1827840_1280.png",
         colors["firstColor"].toString(),
@@ -48,8 +58,8 @@ export default function AdminAddCategoryComp({ navData }) {
         title: "حسنا",
         description: "تم الاضافه بنجاح",
       });
+      navData["setIndex"]({ id: 3, navId: null });
     });
-    navData["setIndex"]({ id: 3, navId: null });
   });
 
   return (
@@ -97,6 +107,7 @@ export default function AdminAddCategoryComp({ navData }) {
               // value={category!.title}
             />
           </div>
+
           {/* ******************* Color ******************* */}
           <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
             <h2 className="max-w-sm md:w-3/12 uppercase">First Color</h2>
@@ -123,6 +134,7 @@ export default function AdminAddCategoryComp({ navData }) {
             />
           </div>
 
+          {/* ******************* reference ******************* */}
           <div className="flex flex-row items-center w-full p-2  text-gray-500">
             <h2 className="max-w-sm uppercase md:w-3/12 px-2">Reference</h2>
             <select
@@ -142,6 +154,7 @@ export default function AdminAddCategoryComp({ navData }) {
             </select>
           </div>
 
+          {/* ******************* BUTTON ******************* */}
           <div className="mt-5 w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
             <button
               type="submit"

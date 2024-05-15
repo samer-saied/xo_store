@@ -1,20 +1,29 @@
 "use client";
 import LoadingPage from "@/components/user_components/common/loading";
-import { GetOneCategory } from "../../../repository/category_repository";
+import {
+  GetOneCategory,
+  UpdateOneCategory,
+} from "../../../repository/category_repository";
 import Image from "next/image";
 
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
+import { GetAllSections } from "@/repository/sections_repository";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function AdminEditCategorysComp({ navData }) {
   const [category, setCategory] = useState(null);
   const [isLoading, setLoading] = useState(true);
+  const [sections, setSections] = useState([]);
+  const { toast } = useToast();
 
   useEffect(() => {
     GetOneCategory(navData["index"]["navId"]).then((Category) => {
-
       setCategory(Category);
       setLoading(false);
+    });
+    GetAllSections().then((sections) => {
+      setSections(sections);
     });
   }, [navData]);
 
@@ -29,7 +38,9 @@ export default function AdminEditCategorysComp({ navData }) {
         >
           <TbCircleArrowLeft className="text-black" size={40} />
         </div>
-        <h2 className="text-2xl md:text-4xl leading-tight">{"Edit Category"}</h2>
+        <h2 className="text-2xl md:text-4xl leading-tight">
+          {"Edit Category"}
+        </h2>
       </div>
 
       {isLoading == true || isLoading == null ? (
@@ -97,8 +108,40 @@ export default function AdminEditCategorysComp({ navData }) {
                   value={category.secandColor}
                 />
               </div>
+
+              {/* ******************* reference ******************* */}
+              <div className="flex flex-row items-center w-full p-2  text-gray-500">
+                <h2 className="max-w-sm uppercase md:w-3/12 px-2">Reference</h2>
+                <select
+                  onChange={(val) => {
+                    setCategory({ ...category, sectionId: val.target.value });
+                  }}
+                  id="categoryId"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
+                  placeholder="category id"
+                  value={category.sectionId}
+                >
+                  {sections.map((section) => (
+                    <option key={section.id} value={section.id}>
+                      {section.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               <div className="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
                 <button
+                  onClick={(event) => {
+                    event.preventDefault();
+                    UpdateOneCategory(category).then(() => {
+                      toast({
+                        variant: "default",
+                        title: "حسنا",
+                        description: "تم التعديل بنجاح",
+                      });
+                      navData["setIndex"]({ id: 3, navId: null });
+                    });
+                  }}
                   type="submit"
                   className="py-2 px-4  bg-gray-600 hover:bg-black focus:ring-black focus:ring-offset-gray-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
                 >

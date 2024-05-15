@@ -77,8 +77,8 @@ export default function AdminAddProductComp({ navData }) {
         title: "حسنا",
         description: "تم الاضافه بنجاح",
       });
+      navData["setIndex"]({ id: 4, navId: null });
     });
-    navData["setIndex"]({ id: 4, navId: null });
   });
 
   return (

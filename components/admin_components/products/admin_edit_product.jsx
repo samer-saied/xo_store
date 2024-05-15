@@ -1,11 +1,14 @@
 "use client";
 import { TbCircleArrowLeft } from "react-icons/tb";
 import { PiStarFill } from "react-icons/pi";
-import { GetOneProduct } from "../../../repository/products_repository";
+import {
+  GetOneProduct,
+  UpdateOneProduct,
+} from "../../../repository/products_repository";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { FaMinusCircle, FaPlusCircle } from "react-icons/fa";
-import { Description } from "@radix-ui/react-toast";
+import { useToast } from "@/components/ui/use-toast";
 import { GetAllSections } from "@/repository/sections_repository";
 import { GetCategoriesBySections } from "@/repository/category_repository";
 
@@ -14,30 +17,27 @@ export default function AdminEditProductsComp({ navData }) {
   const [isLoading, setLoading] = useState(true);
   const [sections, setSections] = useState([]);
   const [categories, setCategories] = useState([]);
-  // const [selectedSection, setSelectedSection] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     GetOneProduct(navData["index"]["navId"]).then((Product) => {
       console.log(Product);
       setProduct(Product);
-      setLoading(false);
+      setSelectedSection(Product.sectionId);
     });
-  }, [navData]);
-
-  useEffect(() => {
     GetAllSections().then((sections) => {
       setSections(sections);
     });
-  }, []);
+
+    setLoading(false);
+  }, [navData]);
 
   useEffect(() => {
-    if (product != null) {
-      GetCategoriesBySections(product.categoryId).then((categories) => {
-        console.log(categories);
-        setCategories(categories);
-      });
-    }
-  }, []);
+    GetCategoriesBySections(selectedSection).then((categories) => {
+      setCategories(categories);
+    });
+  }, [selectedSection]);
 
   const createStars = (num) => {
     const stars = [];
@@ -62,9 +62,18 @@ export default function AdminEditProductsComp({ navData }) {
         </div>
         <h2 className="text-2xl md:text-4xl leading-tight">{"Edit Product"}</h2>
       </div>
-      {!isLoading && (
+      {!isLoading && product && (
         <form
-          // onSubmit={AddFunc}
+          onSubmit={() => {
+            UpdateOneProduct(product).then(() => {
+              toast({
+                variant: "default",
+                title: "حسنا",
+                description: "تم التعديل بنجاح",
+              });
+            });
+            navData["setIndex"]({ id: 4, navId: null });
+          }}
           className=" shadow-lg max-w-5xl mx-auto rounded-lg bg-gray-100"
         >
           <div className="p-3 flex flex-row justify-center items-center bg-gray-100 ">
@@ -166,8 +175,12 @@ export default function AdminEditProductsComp({ navData }) {
               <h2 className="max-w-sm uppercase md:w-3/12">Section</h2>
               <select
                 onChange={(val) => {
-                  // setSelectedSection(val.target.value);
-                  setProduct({ ...product, sectionId: val.target.value });
+                  setSelectedSection(val.target.value);
+                  setProduct({
+                    ...product,
+                    sectionId: val.target.value,
+                  });
+
                   // setSelectedSection()
                 }}
                 id="sectionId"
@@ -186,21 +199,27 @@ export default function AdminEditProductsComp({ navData }) {
             {/* ******************* Category ******************* */}
             <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
               <h2 className="max-w-sm uppercase md:w-3/12">Category</h2>
-              <select
-                onChange={(val) => {
-                  setProduct({ ...product, categoryId: val.target.value });
-                }}
-                id="categoryId"
-                className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
-                placeholder="category id"
-                value={product.categoryId}
-              >
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.title}
-                  </option>
-                ))}
-              </select>
+              {categories.length > 0 ? (
+                <select
+                  onChange={(val) => {
+                    console.log(val.target.value);
+                    setProduct({ ...product, categoryId: val.target.value });
+                  }}
+                  id="categoryId"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
+                  placeholder="category id"
+                  // value={product.categoryId}
+                >
+                  <option key={-1}>Select Category</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.title}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <p>No Items Found</p>
+              )}
             </div>
 
             {/* ******************* isToday ******************* */}

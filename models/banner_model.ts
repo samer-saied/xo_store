@@ -26,7 +26,7 @@ export const bannerConverter = {
       descrption: banner.descrption,
       date: banner.date,
       refProductId: banner.refProductId,
-      status: banner.state,
+      state: banner.state,
     };
   },
 

@@ -37,7 +37,7 @@ export default function AdminBannerComp({ navData }) {
         tableData={{
           tableTitle: "banners",
           tableHeaders: ["title", "created at", "state"],
-          tableColumns: ["title", "date", "status"],
+          tableColumns: ["title", "date", "state"],
           data: banners,
         }}
         addFunc={navData["setIndex"]}
