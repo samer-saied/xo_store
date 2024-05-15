@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Sheet,
-  SheetClose,
   SheetContent,
   SheetFooter,
   SheetHeader,
@@ -13,9 +11,8 @@ import Link from "next/link";
 import { CiLogin, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { LuUserPlus2 } from "react-icons/lu";
 import { TbLogin } from "react-icons/tb";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import {  signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
-import { useEffect, useRef, useState } from "react";
 import MobileSectionsNavBar from "@/components/user_components/common/navbar/mobile_navBar_sections";
 import useAuthHook from "@/hooks/auth_hook";
 

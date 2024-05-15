@@ -8,7 +8,7 @@ export default function SectionCardWidget(section: Section) {
     () => ({
       from: {
         opacity: 0,
-        x: +100 ,
+        x: +100,
       },
       to: {
         opacity: 1,
@@ -25,7 +25,7 @@ export default function SectionCardWidget(section: Section) {
       <Link
         href={{
           pathname: "/sections/" + section.id,
-         query: { name: section.title.toString() },
+          query: { name: section.title.toString() },
         }}
       >
         <div
@@ -61,6 +61,7 @@ export default function SectionCardWidget(section: Section) {
               {/* Icons -Logo */}
               <div className="h-2/4 w-full flex flex-row justify-center ">
                 <Image
+                  priority={true}
                   width={100}
                   height={100}
                   className="p-3 h-full w-auto"

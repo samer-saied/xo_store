@@ -69,7 +69,7 @@
 //   );
 // }
 
-"use client"
+"use client";
 import { GetMoreProducts } from "@/repository/products_repository";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
@@ -125,9 +125,10 @@ export const DefaultCardsCarouselWidget = () => {
               className=" bg-gray-300 h-full mx-2 xl:mx-5 lg:mx-5  rounded-2xl overflow-hidden flex flex-col justify-center items-center"
             >
               <Image
+                priority={true}
                 width={64}
                 height={64}
-                className=" object-fit h-full w-full"
+                className=" object-contain h-full w-full"
                 src={product.image}
                 alt={product.title}
               />

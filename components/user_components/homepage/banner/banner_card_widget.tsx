@@ -19,7 +19,7 @@ const BannerCardWidget = ({
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
       <div className="relative bg-gray-100 md:w-10/12 w-11/12 h-60 md:h-72 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
-        <div className=" w-8/12 flex flex-col h-full justify-start md:pt-5 pt-3">
+        <div className="w-8/12 flex flex-col h-full justify-start md:pt-5 pt-3">
           <h1 className="text-right text-slate-500 md:text-3xl text-xl font-bold md:py-4 py-2">
             {title}
           </h1>
@@ -43,7 +43,7 @@ const BannerCardWidget = ({
           </div>
         </div>
         {/* //IMAGE BANNER */}
-        <div className="absolute md:-left-16 -left-1 bottom-0 md:-top-5  w-5/12  ">
+        <div className="absolute md:-left-16 -left-5 bottom-0 md:-top-5  w-5/12  ">
           <div className=" w-full h-full drop-shadow-md flex flex-col justify-end ">
             <Image
               priority={true}

@@ -36,6 +36,7 @@ export default function GameCardWidget(params: any) {
         >
           <div className="w-full h-full flex flex-col justify-center items-center ">
             <Image
+              priority={true}
               width={174}
               height={240}
               alt={params.category.title}
