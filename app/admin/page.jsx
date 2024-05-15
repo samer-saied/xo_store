@@ -17,7 +17,9 @@ import AdminSectionsComponent from "../../components/admin_components/sections/a
 import AdminAddSectionComp from "../../components/admin_components/sections/admin_add_section_comp";
 import AdminEditSectionComp from "../../components/admin_components/sections/admin_edit_section";
 
-import AdminProductsComponent from "../../components/admin_components/products/admin_products_comp";
+import AdminProductsComponent from "../../components/admin_components/products/admin_product_comp";
+import AdminEditProductsComp from "../../components/admin_components/products/admin_edit_product";
+import AdminAddProductComp from "../../components/admin_components/products/admin_add_product_comp";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
@@ -104,6 +106,14 @@ export default function AdminHomePage() {
         <AdminProductsComponent
           navData={{ index: index, setIndex: setIndex }}
         />
+      )}
+
+      {index.id == 41 && (
+        <AdminAddProductComp navData={{ index: index, setIndex: setIndex }} />
+      )}
+
+      {index.id == 42 && (
+        <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
       )}
     </div>
   );

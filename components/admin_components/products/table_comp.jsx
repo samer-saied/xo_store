@@ -3,6 +3,7 @@
 import LoadingPage from "@/components/user_components/common/loading";
 import Image from "next/image";
 import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 
 export default function TableComp({ tableData, addFunc }) {
   return (
@@ -47,8 +48,8 @@ export default function TableComp({ tableData, addFunc }) {
                           className=" cursor-pointer  hover:bg-gray-200"
                           onClick={() => {
                             addFunc({
-                              id: 32,
-                              navCategory: "categorys",
+                              id: 42,
+                              navCategory: "products",
                               navId: oneRow.id,
                             });
                           }}
@@ -81,32 +82,33 @@ export default function TableComp({ tableData, addFunc }) {
                             (tableColumn, index) => (
                               <td
                                 key={index}
-                                className="px-1 py-2 text-sm border-b border-gray-200"
+                                className="px-1 py-2 text-sm border-b border-gray-200 text-center"
                               >
-                                {tableColumn != "status" &&
+                                {tableColumn != "exclusive" &&
+                                  tableColumn != "todayOffer" &&
                                   tableColumn != "date" && (
                                     <p className="text-gray-900 whitespace-no-wrap text-center">
                                       {oneRow[tableColumn]}
                                     </p>
                                   )}
-                                {tableColumn == "state" && (
-                                  <span className="relative flex flex-row justify-center items-center px-3 py-1 font-semibold leading-tight text-white">
-                                    <span
+                                {(tableColumn == "exclusive" ||
+                                  tableColumn == "todayOffer") && (
+                                  <div className="w-full flex flex-row justify-center items-center">
+                                    <div
                                       aria-hidden="true"
                                       className={
                                         oneRow[tableColumn] == true
-                                          ? "absolute inset-0 bg-green-600 rounded-full"
-                                          : "absolute inset-0 bg-pink-500 rounded-full"
+                                          ? " bg-green-600 rounded-full w-6 h-6 flex flex-row justify-center items-center"
+                                          : " bg-pink-500 rounded-full w-6 h-6 flex flex-row justify-center items-center"
                                       }
-                                    ></span>
-                                    <span className="relative">
+                                    >
                                       {oneRow[tableColumn] == true ? (
-                                        <FaCheck />
+                                        <FaCheck className=" text-white" />
                                       ) : (
-                                        "Inactive"
+                                        <ImCross className=" text-white" />
                                       )}
-                                    </span>
-                                  </span>
+                                    </div>
+                                  </div>
                                 )}
                                 {tableColumn == "date" && (
                                   <p className="text-gray-900 whitespace-no-wrap text-center">
