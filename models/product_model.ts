@@ -14,7 +14,7 @@ export class Product {
   public exclusive: boolean;
   public todayOffer: boolean;
   public status: boolean;
-  public date: String;
+  public date: number;
 
   constructor(
     id: string | null,
@@ -30,7 +30,7 @@ export class Product {
     exclusive: boolean,
     todayOffer: boolean,
     status: boolean,
-    date: String
+    date: number
   ) {
     this.id = id;
     this.categoryId = categoryId;
