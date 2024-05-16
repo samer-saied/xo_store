@@ -90,7 +90,7 @@ export default function AdminAddCategoryComp({ navData }) {
             src={
               "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*syZ3KTsac88AQr9usrPV8Q.png"
             }
-            className="mx-auto object-cover rounded-full h-32 w-32  bg-black"
+            className="mx-auto object-contain rounded-full h-32 w-32  bg-black"
           />
         </div>
         <div className=" bg-white rounded-lg">

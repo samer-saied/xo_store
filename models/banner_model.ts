@@ -17,7 +17,7 @@ export class Banner {
 }
 
 // Firestore data converter
-export const bannerConverter = {
+export const bannerConverter: any = {
   toFirestore: (banner: Banner) => {
     return {
       //  id: Category.id ? Category.id : undefined,

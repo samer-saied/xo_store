@@ -21,6 +21,8 @@ import AdminProductsComponent from "../../components/admin_components/products/a
 import AdminEditProductsComp from "../../components/admin_components/products/admin_edit_product";
 import AdminAddProductComp from "../../components/admin_components/products/admin_add_product_comp";
 
+import AdminSettingsComp from "../../components/admin_components/settings/admin_settings_comp"
+
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
@@ -115,6 +117,26 @@ export default function AdminHomePage() {
       {index.id == 42 && (
         <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
       )}
+
+
+     {/* //////// Settings  ///////////// */}
+     {index.id == 7 && (
+        <AdminSettingsComp
+          navData={{ index: index, setIndex: setIndex }}
+        />
+      )}
+
+      {/* {index.id == 41 && (
+        <AdminAddProductComp navData={{ index: index, setIndex: setIndex }} />
+      )}
+
+      {index.id == 42 && (
+        <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
+      )} */}
+
+
+
+
     </div>
   );
 }
