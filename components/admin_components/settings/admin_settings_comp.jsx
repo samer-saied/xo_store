@@ -3,10 +3,8 @@ import {
   UpdateStoreInfo,
 } from "@/repository/settings_repository";
 import React, { useEffect, useState } from "react";
-import { SetingsInfo } from "../../../models/settingsInfo_model";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useToast } from "@/components/ui/use-toast";
-
 
 const AdminSettingsComp = ({ navData }) => {
   const [infoData, setInfoData] = useState();
@@ -14,7 +12,6 @@ const AdminSettingsComp = ({ navData }) => {
 
   useEffect(() => {
     GetOneSetingsInfo("storeinformation").then((infoData) => {
-      console.log(infoData);
       setInfoData(infoData);
     });
   }, []);
@@ -219,6 +216,9 @@ const AdminSettingsComp = ({ navData }) => {
             </dl>
           </div>
         </div>
+      )}
+      {infoData == null && (
+        <p>No Infomartions Found , Contact Technical Support</p>
       )}
       {/*========================= STORE INFORMATION =========================*/}
 
