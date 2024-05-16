@@ -43,7 +43,7 @@ export default function TableComp({ tableData, addFunc }) {
                       tableData["data"].map((oneRow, index) => (
                         <tr
                           key={index}
-                          className=" cursor-pointer  hover:bg-gray-200"
+                          className=" cursor-pointer  hover:bg-blue-100"
                           onClick={() => {
                             addFunc({
                               id: 22,

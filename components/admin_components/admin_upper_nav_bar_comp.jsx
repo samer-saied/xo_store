@@ -2,14 +2,15 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { GoDotFill } from "react-icons/go";
 
 export default function AdminUpperNavBarComp({ navData }) {
   const [isMobile, setIsMobile] = useState(false);
 
   const inActiveStyle =
-    "text-gray-500 hover:text-gray-800  block px-3 py-2 rounded-md text-base font-medium";
+    "text-gray-500 hover:text-gray-800  block px-3 py-2 rounded-md text-md font-medium";
   const activeStyle =
-    "text-MainBlueColor font-bold  block px-3 py-2 rounded-md text-base font-medium underline underline-offset-2";
+    "text-MainBlueColor font-bold  block px-3 py-2 rounded-md text-md font-medium p-2  bg-MainBlueColor text-white";
 
   const navMenuTabs = [
     "Home",
@@ -25,9 +26,9 @@ export default function AdminUpperNavBarComp({ navData }) {
   return (
     <>
       <div>
-        <nav className="bg-white shadow ">
+        <nav className="bg-white shadow  ">
           <div className="px-8 mx-auto max-w-7xl p-2">
-            <div className="flex items-center justify-between ">
+            <div className="flex items-center justify-between">
               <div className=" flex items-center">
                 <a className="flex-shrink-0" href="/">
                   <Image
@@ -78,7 +79,6 @@ export default function AdminUpperNavBarComp({ navData }) {
                     fill="currentColor"
                     className="w-8 h-8"
                     viewBox="0 0 1792 1792"
-                    xmlns="http://www.w3.org/2000/svg"
                   >
                     <path d="M1664 1344v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45zm0-512v128q0 26-19 45t-45 19h-1408q-26 0-45-19t-19-45v-128q0-26 19-45t45-19h1408q26 0 45 19t19 45z"></path>
                   </svg>
@@ -102,9 +102,11 @@ export default function AdminUpperNavBarComp({ navData }) {
                         ? activeStyle
                         : inActiveStyle
                     }
-                    // href="/admin"
                   >
-                    {menuTab}
+                    <div className="flex flex-row justify-center items-center">
+                      <GoDotFill className=" mx-1" />
+                      {menuTab}
+                    </div>
                   </button>
                 ))}
               </div>

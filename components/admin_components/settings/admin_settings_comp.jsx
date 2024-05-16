@@ -5,6 +5,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
 import { useToast } from "@/components/ui/use-toast";
+import LoadingPage from "@/components/user_components/common/loading";
 
 const AdminSettingsComp = ({ navData }) => {
   const [infoData, setInfoData] = useState();
@@ -217,9 +218,7 @@ const AdminSettingsComp = ({ navData }) => {
           </div>
         </div>
       )}
-      {infoData == null && (
-        <p>No Infomartions Found , Contact Technical Support</p>
-      )}
+      {infoData == null && <LoadingPage />}
       {/*========================= STORE INFORMATION =========================*/}
 
       <div className="my-5 w-full overflow-hidden bg-white shadow sm:rounded-lg">

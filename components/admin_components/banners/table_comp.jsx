@@ -16,7 +16,7 @@ export default function TableComp({ tableData, addFunc }) {
               <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
                 <table className=" min-w-full leading-normal text-red">
                   {/* //////////////////// TABLE HEAD //////////////////// */}
-                  <thead className=" bg-gray-300 text-red">
+                  <thead className=" bg-gray-300 text-white">
                     <tr>
                       <th
                         scope="col"
@@ -43,7 +43,7 @@ export default function TableComp({ tableData, addFunc }) {
                       tableData["data"].map((oneRow, index) => (
                         <tr
                           key={index}
-                          className=" cursor-pointer  hover:bg-gray-200"
+                          className=" cursor-pointer  hover:bg-blue-100"
                           onClick={() => {
                             addFunc({
                               id: 12,
