@@ -1,13 +1,14 @@
 import Link from "next/link";
 import { CiShoppingBasket } from "react-icons/ci";
-import { useInView, animated } from '@react-spring/web'
+import { useInView, animated } from "@react-spring/web";
+import Image from "next/image";
 
-export const TodayDealCardWidget = ({ product,index }) => {
+export const TodayDealCardWidget = ({ product, index }) => {
   const [ref, springs] = useInView(
     () => ({
       from: {
         opacity: 0,
-        x: -100*index,
+        x: -100 * index,
       },
       to: {
         opacity: 1,
@@ -23,10 +24,15 @@ export const TodayDealCardWidget = ({ product,index }) => {
     <animated.div ref={ref} style={springs}>
       <Link href={"/products/" + product.id}>
         <div className="border h-auto p-2 flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
-          <img
-            className=" h-48 md:h-60"
-            src={product.image}
-          />
+          <div className=" flex flex-row justify-center items-center">
+            <Image
+              width={200}
+              height={200}
+              className=" h-48 md:h-60 object-contain"
+              src={product.image}
+              alt={product.title + " image"}
+            />
+          </div>
           <div className="flex flex-row items-center justify-center p-2 ">
             <div className="w-9/12 flex flex-col justify-center items-start pr-1 h-12">
               <div className="text-blue-900 md:text-base text-xs font-bold">

@@ -9,14 +9,18 @@ const useAuthHook = () => {
     const fetchDataRef = useRef(false);
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setcurrentUser(user);
-            } else {
-                setcurrentUser(null);
-            }
-        });
-        fetchDataRef.current = true;
+        if (!fetchDataRef.current) {
+            console.log("========HERE==================")
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    setcurrentUser(user);
+                } else {
+                    setcurrentUser(null);
+                }
+            });
+            fetchDataRef.current = true;
+
+        }
     }, []);
 
     return [currentUser];

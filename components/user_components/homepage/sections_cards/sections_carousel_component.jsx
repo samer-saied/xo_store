@@ -64,7 +64,7 @@ export default function SectionsCarouselComponent() {
             className="mySwiper"
             direction={"horizontal"}
             scrollbar={{ draggable: true }}
-            spaceBetween={10}
+            spaceBetween={7}
             breakpoints={{
               300: { slidesPerView: 2.1 },
               600: { slidesPerView: 3.0 },

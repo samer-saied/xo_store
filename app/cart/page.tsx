@@ -24,15 +24,18 @@ const urlPaths = [{ name: "سلة المشتريات", link: "/cart" }];
 
 export default function CartPage() {
   const [cart, setCart] = useState<Cart | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
 
   function getCart() {
     onAuthStateChanged(auth, (user) => {
-      if (user == null) {
+      if (user == null || !user) {
         router.push("/login");
       } else {
         GetCurrentUserCart(user!).then((cart) => {
+          console.log(cart);
           setCart(cart);
+          setIsLoading(true);
         });
       }
     });
@@ -47,7 +50,7 @@ export default function CartPage() {
       <Sheet>
         <TopBarComponent />
         <Navbar />
-        {cart && (
+        {!isLoading && (
           <>
             <PathWidget urlPaths={urlPaths} />
 
@@ -66,8 +69,8 @@ export default function CartPage() {
                   </h1>
                 </div>
                 {/*----------------- PAGE CONTENT --------------------*/}
-                {cart != null && cart.items.length == 0 && <NoItemComp />}
-                {cart != null && cart.items.length > 0 && (
+                {cart && cart.items.length == 0 && <NoItemComp />}
+                {cart && cart.items.length > 0 && (
                   <div className="flex lg:flex-row flex-col px-5">
                     {/*----------------- ITEMS --------------------*/}
                     <div className="flex flex-col  lg:w-1/2">
@@ -154,7 +157,7 @@ export default function CartPage() {
               </div>
             </div>
 
-            {cart && cart.items.length > 0 && <RelatedProductsWidget />}
+            {cart!.items.length > 0 && <RelatedProductsWidget />}
             <FooterComponent />
           </>
         )}

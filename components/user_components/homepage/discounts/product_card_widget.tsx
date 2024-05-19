@@ -30,9 +30,9 @@ export default function GameCardWidget(props: {
         <div className=" xl:p-5 h-auto w-auto mx-auto flex flex-col min-w-44 justify-center items-center">
           <Image
             alt={props.product.title}
-            width={300}
-            height={300}
-            className=" h-52 md:h-64 w-full rounded-2xl border p-5 hover:shadow-md"
+            width={100}
+            height={100}
+            className=" h-44 object-contain  md:h-64 w-full rounded-2xl border p-5 hover:shadow-md"
             src={props.product.image}
           />
           <div className="flex flex-row items-center justify-center px-2 pt-1 h-20 w-full">

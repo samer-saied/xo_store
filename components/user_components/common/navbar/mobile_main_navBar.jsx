@@ -22,7 +22,7 @@ export function MobileMainNavBar() {
   return (
     <SheetContent
       side={"left"}
-      className=" bg-gradient-to-b from-MainYellowColor to-white"
+      className=" overflow-x-auto bg-gradient-to-b from-MainYellowColor to-white"
     >
       <SheetHeader>
         <SheetTitle>
