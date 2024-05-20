@@ -37,7 +37,7 @@ export default function SpecificSectionsPage({ params }) {
         <PathWidget urlPaths={urls} />
 
         {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-        {categories.isLoading && <LoadingPage />}
+        {/* {categories.isLoading && <LoadingPage />} */}
 
         {!categories.isLoading && categories.categories.length == 0 && (
           <NoItemsWidget infoMsg={"لا يوجد فئات"} />

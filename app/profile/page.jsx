@@ -1,4 +1,3 @@
-"use client";
 import { Sheet } from "@/components/ui/sheet";
 import Navbar from "@/components/user_components/common/navbar/Navbar";
 import { AuthContextProvider } from "../../hooks/AuthContext";

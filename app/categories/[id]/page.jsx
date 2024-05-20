@@ -15,12 +15,18 @@ import Navbar from "@/components/user_components/common/navbar/Navbar";
 export default function CategoriesPage({ params }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+
   const query = useSearchParams();
 
   useEffect(() => {
     GetProductsByCategory(params.id).then((products) => {
       setProducts(products);
       setLoading(false);
+      console.log("=====================params.id==================");
+      console.log(params.id);
+      console.log("=====================PRODUCTS.id==================");
+
+      console.log(products);
     });
   }, []);
 
@@ -51,10 +57,9 @@ export default function CategoriesPage({ params }) {
           </div>
         )}
         {!loading && products.length == 0 && <NoItemsWidget />}
-        {loading && <LoadingPage />}
 
         <SpacerWidget />
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </Sheet>
     </>
   );
