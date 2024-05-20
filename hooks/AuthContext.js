@@ -1,3 +1,4 @@
+"use client"
 import { auth } from '@/db/firebase_init';
 import { onAuthStateChanged } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
