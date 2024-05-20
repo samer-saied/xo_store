@@ -48,7 +48,7 @@ const BannerCardWidget = ({
             <Image
               priority={true}
               fill={false}
-              className="h-full w-full origin-bottom "
+              className="h-full w-full object-contain origin-bottom "
               src={image}
               alt={title}
               width={300}

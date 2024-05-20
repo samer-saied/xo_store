@@ -16,28 +16,21 @@ export default function Home() {
       <Sheet>
         <TopBarComponent />
         <Navbar />
-
         {/* --------------- Banners Models --------------- */}
         <BannerComponent />
-
         {/* --------------- Sections Models --------------- */}
         <SectionsCarouselComponent />
         <SpacerWidget />
-
         {/* --------------- Products Models - Cards  --------------- */}
         <DiscountGamesCardsComponent />
         <SpacerWidget />
-
         {/* --------------- Categories Models - Games  --------------- */}
         <MostSalesComponent />
         <SpacerWidget />
-
         <TodayDealComponent />
         <SpacerWidget />
-
         <SectionMoreWidget />
         <SpacerWidget />
-
         <FooterComponent />
       </Sheet>
     </>

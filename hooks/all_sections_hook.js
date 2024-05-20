@@ -1,24 +1,33 @@
 
-import { GetAllSections } from "@/repository/sections_repository";
-import { useEffect, useRef, useState } from "react";
+import { GetAllSections } from '@/repository/sections_repository';
+import { useState, useEffect, useRef } from 'react';
 
-const useGetSectionsHook = () => {
+const useGetSections = () => {
+  const [sections, setSections] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [error, setError] = useState(null); // Add error state
+  const isGetData = useRef(false)
 
-    const [sections, setsections] = useState(null);
-    const fetchDataRef = useRef(false);
+  useEffect(() => {
+    if (!isGetData.current) {
+      GetAllSections()
+        .then((sectionsData) => {
+          setSections(sectionsData);
+          setIsLoading(false); // Set loading state to false after fetch (success or error)
 
-    useEffect(() => {
-        if (!fetchDataRef.current) {
-            GetAllSections().then((sections) => {
-                setsections(sections);
-            });
-            fetchDataRef.current = true;
-        }
-    }, []);
-    return [sections];
+        })
+        .catch((error) => {
+          console.error('Error fetching sections:', error);
+          setError(error);           // Store error for handling
+          setIsLoading(false); // Set loading state to false after fetch (success or error)
+        })
 
-}
+      isGetData.current = true
+    }
 
-export default useGetSectionsHook;
+  }, []);
 
+  return { sections, isLoading, error }; // Return all relevant data
+};
 
+export default useGetSections;

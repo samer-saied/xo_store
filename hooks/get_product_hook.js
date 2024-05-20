@@ -1,7 +1,8 @@
 
-import { GetAllSections } from "@/repository/sections_repository";
 import { useEffect, useRef, useState } from "react";
 import { GetOneProduct } from "../repository/products_repository"
+
+
 const useGetOneProductHook = (productId) => {
 
     const [product, setProduct] = useState(null);

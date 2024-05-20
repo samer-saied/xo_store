@@ -2,26 +2,16 @@
 import "react-multi-carousel/lib/styles.css";
 
 import SectionCardWidget from "./section_card_widget";
-import { GetAllSections } from "@/repository/sections_repository";
-import { useEffect, useRef, useState } from "react";
+
 import Link from "next/link";
 import LoadingPage from "@/components/user_components/common/loading";
 import { Swiper, SwiperSlide } from "swiper/react";
+import useGetSections from "@/hooks/all_sections_hook";
+import NoItemsWidget from "../../common/no_items_widget";
 // import { useSpring, animated } from "@react-spring/web";
 
 export default function SectionsCarouselComponent() {
-  // const [swiper, setSwiper] = useState();
-  const [sections, setsections] = useState(null);
-  const fetchDataRef = useRef(false);
-
-  useEffect(() => {
-    if (!fetchDataRef.current) {
-      GetAllSections().then((sections) => {
-        setsections(sections);
-      });
-      fetchDataRef.current = true;
-    }
-  }, []);
+  const sections = useGetSections();
 
   ///////////// Animation   ///////////////////////
   // const props = useSpring({
@@ -31,9 +21,13 @@ export default function SectionsCarouselComponent() {
 
   return (
     <>
-      {sections == null ? (
-        <LoadingPage />
-      ) : (
+      {sections.isLoading && <LoadingPage />}
+
+      {!sections.isLoading && !sections.sections && sections.error && (
+        <NoItemsWidget infoMsg={sections.error} />
+      )}
+
+      {sections.sections && (
         <div className="w-full  bg-gradient-to-l from-white to-sky-100 md:py-8 py-5">
           {/* /////////////////   TITLE     ///////////////////////// */}
           <div className="w-full h-14 md:px-12 px-5 flex flex-row justify-between  items-center ">
@@ -75,8 +69,8 @@ export default function SectionsCarouselComponent() {
             // slidesPerView={2.2}
             // onSlideChange={() => console.log("slide change")}
           >
-            {sections.map((section) => (
-              <SwiperSlide key={section.id} >
+            {sections.sections.map((section) => (
+              <SwiperSlide key={section.id}>
                 {/* <animated.div style={props}> */}
                 <SectionCardWidget key={section.id} {...section} />
                 {/* </animated.div> */}

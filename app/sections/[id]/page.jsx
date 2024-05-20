@@ -7,23 +7,13 @@ import { useSearchParams } from "next/navigation";
 import PathWidget from "@/components/user_components/common/path_widget";
 import GameCardWidget from "@/components/user_components/homepage/most_sales/game_card_widget";
 import LoadingPage from "@/components/user_components/common/loading";
-import { GetCategoriesBySections } from "@/repository/category_repository";
+import useGetOneSection from "../../../hooks/one_section_hook";
 import NoItemsWidget from "@/components/user_components/common/no_items_widget";
 import { Sheet } from "@/components/ui/sheet";
 import Navbar from "@/components/user_components/common/navbar/Navbar";
 
 export default function SpecificSectionsPage({ params }) {
   const query = useSearchParams();
-  const [categories, setCategories] = useState([]);
-  const [isLoading, setLoading] = useState(true);
-
-  useEffect(() => {
-    GetCategoriesBySections(params.id).then((categories) => {
-      setCategories(categories);
-      setLoading(false);
-    });
-  }, []);
-
   const urls = [
     {
       name: "الأقسام الرئيسية",
@@ -35,6 +25,8 @@ export default function SpecificSectionsPage({ params }) {
     },
   ];
 
+  const categories = useGetOneSection(params.id);
+  console.log(categories);
   return (
     <>
       <Sheet>
@@ -45,10 +37,15 @@ export default function SpecificSectionsPage({ params }) {
         <PathWidget urlPaths={urls} />
 
         {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-        {isLoading && <LoadingPage />}
-        {!isLoading && categories.length != 0 && (
+        {categories.isLoading && <LoadingPage />}
+
+        {!categories.isLoading && categories.categories.length == 0 && (
+          <NoItemsWidget infoMsg={"لا يوجد فئات"} />
+        )}
+
+        {!categories.isLoading && categories.categories != null && (
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-2 md:container px-5 md:w-9/12 mx-auto md:px-5 w-full">
-            {categories.map((category) => (
+            {categories.categories.map((category) => (
               <GameCardWidget
                 key={category.id}
                 category={category}
@@ -57,9 +54,9 @@ export default function SpecificSectionsPage({ params }) {
             ))}
           </div>
         )}
-        {!isLoading && categories.length == 0 && <NoItemsWidget />}
+
         <SpacerWidget />
-        <FooterComponent />
+        {/* <FooterComponent /> */}
       </Sheet>
     </>
   );

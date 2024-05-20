@@ -29,15 +29,14 @@ async function GetAllSections(): Promise<Section[]> {
   }
 }
 
-
-async function GetOneSection(id:string): Promise<Section> {
+async function GetOneSection(id: string): Promise<Section> {
   try {
-    const querySnapshot = await handleGetOne(
-      sectionsModelName,
-      id
+    const querySnapshot = await handleGetOne(sectionsModelName, id);
+
+    return sectionConverter.fromFirestore(
+      querySnapshot!.data(),
+      querySnapshot!.id
     );
-   
-    return sectionConverter.fromFirestore(querySnapshot!.data(), querySnapshot!.id);
   } catch (error) {
     console.error("Error fetching sections:", error);
     throw error; // Re-throw the error for further handling
@@ -83,4 +82,10 @@ async function DeleteOneSection(section: Section) {
   }
 }
 
-export { GetAllSections,GetOneSection, AddOneSection, UpdateOneSection, DeleteOneSection };
+export {
+  GetAllSections,
+  GetOneSection,
+  AddOneSection,
+  UpdateOneSection,
+  DeleteOneSection,
+};

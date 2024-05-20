@@ -2,7 +2,7 @@ import { Almarai } from "next/font/google";
 import { Metadata } from "next";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster"
+import { Toaster } from "@/components/ui/toaster";
 
 const almarai = Almarai({
   subsets: ["arabic"],
@@ -37,6 +37,7 @@ export default function RootLayout({
           almarai.className
         )}
       >
+        
         {children}
         <Toaster />
       </body>

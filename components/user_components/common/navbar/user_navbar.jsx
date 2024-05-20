@@ -3,15 +3,14 @@ import { TbLogin, TbWorld } from "react-icons/tb";
 import { CiLogout, CiShoppingBasket, CiUser } from "react-icons/ci";
 import Link from "next/link";
 import { LuUserPlus2 } from "react-icons/lu";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "@/db/firebase_init";
-import useAuthHook from "@/hooks/auth_hook";
+import { useAuth } from "@/hooks/AuthContext";
 
 export default function UserLandscapeWidget() {
   ////
 
-  const [currentUser] = useAuthHook();
-
+  const { currentUser, loading } = useAuth();
   ////
 
   return (

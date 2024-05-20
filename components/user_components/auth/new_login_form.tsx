@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { auth } from "../../../db/firebase_init";
@@ -15,6 +16,8 @@ const NewLoginFormWidget = () => {
 
   const signInFunc = async () => {
     try {
+      console.log(email);
+      console.log(password);
       const user = await signInWithEmailAndPassword(auth, email, password);
       if (!user) return; // Check if user is valid
       const credential = user as UserCredential;
@@ -54,6 +57,7 @@ const NewLoginFormWidget = () => {
                   <div className="relative pt-2 mb-10">
                     <input
                       onChange={(e) => {
+                        e.preventDefault();
                         setEmail(e.currentTarget.value);
                       }}
                       type="text"
@@ -71,6 +75,7 @@ const NewLoginFormWidget = () => {
                   <div className="relative pt-2">
                     <input
                       onChange={(e) => {
+                        e.preventDefault();
                         setpassword(e.currentTarget.value);
                       }}
                       type="password"

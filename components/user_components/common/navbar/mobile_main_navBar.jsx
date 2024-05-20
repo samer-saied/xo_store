@@ -11,19 +11,20 @@ import Link from "next/link";
 import { CiLogin, CiShoppingBasket, CiUser } from "react-icons/ci";
 import { LuUserPlus2 } from "react-icons/lu";
 import { TbLogin } from "react-icons/tb";
-import {  signOut } from "firebase/auth";
-import { auth } from "@/db/firebase_init";
+import { signOut } from "firebase/auth";
 import MobileSectionsNavBar from "@/components/user_components/common/navbar/mobile_navBar_sections";
-import useAuthHook from "@/hooks/auth_hook";
+import { auth } from "@/db/firebase_init";
+import { useAuth } from "../../../../hooks/AuthContext";
 
 export function MobileMainNavBar() {
-  const [currentUser] = useAuthHook();
+  const { currentUser, loading } = useAuth();
 
   return (
     <SheetContent
       side={"left"}
       className=" overflow-x-auto bg-gradient-to-b from-MainYellowColor to-white"
     >
+      {/* ////////////////////// SHOW SECTIONS ////////////////////// */}
       <SheetHeader>
         <SheetTitle>
           {/* ************** Image ***************/}
@@ -38,7 +39,11 @@ export function MobileMainNavBar() {
           </div>
         </SheetTitle>
       </SheetHeader>
+
+      {/* ////////////////////// MOBILE SECTION ////////////////////// */}
       <MobileSectionsNavBar />
+
+      {/* ////////////////////// USER ////////////////////// */}
       <SheetFooter>
         <ul className="w-full flex flex-col justify-start items-start text-MainBlueColor ">
           {/*--------------- USER MENU -------------------*/}
@@ -119,7 +124,6 @@ export function MobileMainNavBar() {
             )}
           </div>
         </ul>
-        {/* </SheetClose> */}
       </SheetFooter>
     </SheetContent>
   );
