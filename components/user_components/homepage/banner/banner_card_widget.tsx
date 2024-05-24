@@ -1,6 +1,6 @@
 import { Banner } from "@/models/banner_model";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const BannerCardWidget = ({
   id,
@@ -9,7 +9,6 @@ const BannerCardWidget = ({
   image,
   refProductId,
 }: Banner) => {
-  const route = useRouter();
 
   return (
     <div
@@ -25,21 +24,18 @@ const BannerCardWidget = ({
           </h1>
           {/*  TEXTS */}
           <div className=" md:w-10/12 w-11/12 h-auto flex flex-col items-start justify-center">
-            <h2 className="md:pb-5 pb-2 line-clamp-3 overflow-hidden text-right text-neutral-400 lg:text-lg md:text-md text-md">
+            <h2 className="md:pb-5 pb-2 line-clamp-3 overflow-scroll text-right text-neutral-400 lg:text-lg md:text-md text-md">
               {descrption.trim()}
             </h2>
           </div>
           <div className=" md:w-10/12 w-11/12 h-auto">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                route.push(`/products/${refProductId}`);
-              }}
+            <Link
+              href={`/products/${refProductId}`}
               className="text-white  bg-MainBlueColor shadow-sm rounded-md md:py-3 md:px-5 py-2 px-3 hover:opacity-90 hover:shadow-md"
               type="submit"
             >
               اكتشف الان
-            </button>
+            </Link>
           </div>
         </div>
         {/* //IMAGE BANNER */}

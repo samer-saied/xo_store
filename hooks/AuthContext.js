@@ -28,7 +28,7 @@ export const AuthContextProvider = ({ children }) => {
                 console.log("No user is signed in");
                 setCurrentUser(null); // Or set a default state for logged-out users
                 setLoading(false);
-                router.push("/login")
+                // router.push("/login")
                 // Or handle loading state appropriately
             }
         });

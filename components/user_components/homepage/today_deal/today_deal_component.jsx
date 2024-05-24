@@ -6,6 +6,7 @@ import { TodayDealCardWidget } from "./today_deal_card_widget";
 import { useEffect, useRef, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function SpeedSaleComponent() {
   const router = useRouter();
@@ -59,11 +60,8 @@ export default function SpeedSaleComponent() {
                 احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
                 فقط. احصل عليه بسرعة قبل بيعه!
               </h1>
-              <div
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/today");
-                }}
+              <Link
+                href={"/today"}
                 className=" cursor-pointer h-12 bg-blue-950 rounded-lg flex flex-row justify-between px-2.5 mt-8 items-center"
               >
                 <div className="text-white md:text-base text-sm font-medium font-['Roboto'] leading-snug">
@@ -72,7 +70,7 @@ export default function SpeedSaleComponent() {
                 <div className="text-white text-base font-medium font-['Roboto'] leading-snug">
                   <IoIosArrowBack size={25} />
                 </div>
-              </div>
+              </Link>
             </div>
           </SwiperSlide>
           {/*--------- Other Cards ------------*/}
