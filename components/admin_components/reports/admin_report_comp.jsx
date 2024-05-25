@@ -9,7 +9,7 @@ export default function AdminReportComp({ navData }) {
           {"Transactions"}
         </h2>
         <div className="flex flex-row items-center justify-between">
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-2/6 dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-black rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -24,7 +24,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-2/6 dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-red-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -39,7 +39,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-2/6 dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-green-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -57,7 +57,7 @@ export default function AdminReportComp({ navData }) {
 
         <h2 className="text-2xl md:text-4xl leading-tight my-5">{"Reports"}</h2>
         <div className="flex flex-row items-center justify-between">
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-red-600 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -72,7 +72,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-orange-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -87,7 +87,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-yellow-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -104,7 +104,7 @@ export default function AdminReportComp({ navData }) {
         </div>
 
         <div className="flex flex-row items-center justify-between mt-5">
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-green-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -119,7 +119,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 bg-white shadow-lg rounded-2xl w-full dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-blue-500 rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">
@@ -134,7 +134,7 @@ export default function AdminReportComp({ navData }) {
             </div>
           </div>
 
-          <div className="m-4 p-4 w-full bg-white shadow-lg rounded-2xl dark:bg-gray-800 hover:scale-110 duration-500">
+          <div className="m-1 md:m-4 p-4 w-full bg-white shadow-lg rounded-2xl dark:bg-gray-800 hover:scale-105 duration-500">
             <div className="flex items-center">
               <span className="relative w-4 h-4 p-2 bg-black rounded-full"></span>
               <p className="ml-2 text-gray-700 text-md dark:text-gray-50">

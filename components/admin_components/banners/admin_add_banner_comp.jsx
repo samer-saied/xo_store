@@ -6,12 +6,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AddOneBanner } from "@/repository/banners_repository";
 import { Banner } from "@/models/banner_model";
-import CheckBoxComp from "@/components/user_components/common/checkbox_comp";
+import { CldUploadWidget } from "next-cloudinary";
 import { GetAllProducts } from "@/repository/products_repository";
 import { useToast } from "@/components/ui/use-toast";
+import { GoUpload } from "react-icons/go";
 
 export default function AdminAddBannerComp({ navData }) {
   const [products, setProducts] = useState([]);
+  const [imageUrl, setImageUrl] = useState("/assets/no-image.png");
 
   const {
     register,
@@ -30,21 +32,11 @@ export default function AdminAddBannerComp({ navData }) {
   }, []);
 
   const AddFunc = handleSubmit((data) => {
-    // let bannner = new Banner(
-    //   null,
-    //   data["title"],
-    //   "https://images.unsplash.com/photo-1712439449183-9fd0bb892a37?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-    //   data["descrption"],
-    //   Date.now(),
-    //   getValues()["reference"] ?? products[0].id,
-    //   getValues()["state"] ?? false
-    // );
-    // console.log(bannner);
     AddOneBanner(
       new Banner(
         null,
         data["title"],
-        "https://images.unsplash.com/photo-1712439449183-9fd0bb892a37?q=80&w=2787&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        imageUrl,
         data["descrption"],
         Date.now(),
         getValues()["reference"] ?? products[0].id,
@@ -80,17 +72,47 @@ export default function AdminAddBannerComp({ navData }) {
         onSubmit={AddFunc}
         className=" shadow-lg max-w-5xl mx-auto rounded-lg bg-gray-100"
       >
-        <div className="p-3 flex flex-row justify-center items-center bg-gray-100 ">
+        <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
           <Image
-            width={120}
-            height={120}
+            width={256}
+            height={256}
             alt="icon"
-            src={
-              "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*syZ3KTsac88AQr9usrPV8Q.png"
-            }
-            className="mx-auto object-cover rounded-full h-32 w-32  bg-black"
+            src={imageUrl}
+            className=" md:w-1/4 object-contain rounded-md h-64 border-2 m-3 bg-white"
           />
+
+          <CldUploadWidget
+            onSuccess={(results) => {
+              // setValue("image", results.info.secure_url);
+              console.log(results.info.secure_url);
+              setImageUrl(results.info.secure_url);
+              // set("image", results.info.secure_url);
+            }}
+            uploadPreset="nbx2boqc"
+          >
+            {({ open }) => {
+              return (
+                <button
+                  className={
+                    " w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                  }
+                  onClick={() => open()}
+                >
+                  <GoUpload className=" inline font-black" />
+                  <span className=" inline px-1 font-bold">
+                    Upload an Image
+                  </span>
+                </button>
+              );
+            }}
+          </CldUploadWidget>
         </div>
+        {/* <CloudImageComp
+          getImage={getValues()["image"]}
+          setImage={(url) => {
+            setValue("image", url);
+          }}
+        /> */}
         <div className=" bg-white rounded-lg">
           <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
             <h2 className="max-w-sm md:w-3/12 uppercase">Title</h2>

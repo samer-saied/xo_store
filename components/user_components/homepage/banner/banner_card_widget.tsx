@@ -9,7 +9,6 @@ const BannerCardWidget = ({
   image,
   refProductId,
 }: Banner) => {
-
   return (
     <div
       key={id}
@@ -17,7 +16,7 @@ const BannerCardWidget = ({
     >
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
-      <div className="relative bg-gray-100 md:w-10/12 w-11/12 py-5 md:h-72 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
+      <div className="relative bg-gray-100 md:w-10/12 w-11/12 py-5 md:h-72 min-h-44 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
         <div className="w-8/12 flex flex-col h-full justify-start md:pt-5 pt-3 md:pl-10">
           <h1 className="text-right text-slate-500 md:text-3xl text-xl font-bold md:py-4 py-2">
             {title}
@@ -39,12 +38,12 @@ const BannerCardWidget = ({
           </div>
         </div>
         {/* //IMAGE BANNER */}
-        <div className="absolute md:-left-16 -left-5 bottom-0 md:-top-5  w-5/12  ">
-          <div className=" w-full h-full drop-shadow-md flex flex-col justify-end ">
+        <div className="absolute left-0  bottom-0 md:-top-5 top-0  w-5/12 ">
+          <div className=" w-full h-full drop-shadow-md flex flex-col justify-end">
             <Image
               priority={true}
               fill={false}
-              className="h-full w-full object-contain origin-bottom "
+              className="h-auto sm:h-full w-full md:object-left-bottom object-contain origin-bottom"
               src={image}
               alt={title}
               width={300}

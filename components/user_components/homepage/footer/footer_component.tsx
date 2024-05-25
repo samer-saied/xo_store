@@ -11,7 +11,10 @@ export default async function FooterComponent() {
   return (
     <div className=" relative w-full bg-blue-950 overflow-hidden max-h-full">
       {/*----------- TEXTURE BG -------------------*/}
-      <img
+      <Image
+        width={512}
+        height={512}
+        priority={true}
         className=" h-screen w-full object-cover my-24 md:my-5"
         src="/footer/Vector.png"
         alt=""

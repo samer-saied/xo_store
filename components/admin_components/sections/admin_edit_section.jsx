@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
 import { useToast } from "@/components/ui/use-toast";
+import { CldUploadWidget } from "next-cloudinary";
+import { GoUpload } from "react-icons/go";
 
 export default function AdminEditSectionsComp({ navData }) {
   const [section, setSection] = useState(null);
@@ -44,14 +46,42 @@ export default function AdminEditSectionsComp({ navData }) {
           className=" container max-w-5xl px-4 mx-auto sm:px-8 rounded-lg mb-6"
         >
           <form className=" mx-auto shadow-md ">
-            <div className=" flex flex-row justify-center items-center p-3 bg-gray-100 ">
+            <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
               <Image
-                width={120}
-                height={120}
+                width={256}
+                height={256}
                 alt="icon"
                 src={section.icon}
-                className="mx-auto object-contain rounded-full h-32 w-32  bg-black"
+                className=" md:w-1/4 object-contain rounded-md h-64 border-2 m-3 bg-white"
               />
+
+              <CldUploadWidget
+                onSuccess={(results) => {
+                  setSection({ ...section, icon: results.info.secure_url });
+                  // setValue("image", results.info.secure_url);
+                  // setImage("image", results.info.secure_url);
+                }}
+                uploadPreset="nbx2boqc"
+              >
+                {({ open }) => {
+                  return (
+                    <button
+                      className={
+                        " md:w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                      }
+                      onClick={(event) => {
+                        event.preventDefault();
+                        open();
+                      }}
+                    >
+                      <GoUpload className=" inline font-black" />
+                      <span className=" inline px-1 font-bold">
+                        Upload an Image
+                      </span>
+                    </button>
+                  );
+                }}
+              </CldUploadWidget>
             </div>
             <div className="space-y-4 bg-white">
               <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">

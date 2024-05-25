@@ -1,6 +1,6 @@
 "use client";
 
-import {  useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { TbCircleArrowLeft } from "react-icons/tb";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -8,9 +8,12 @@ import { useToast } from "@/components/ui/use-toast";
 import { GetAllSections } from "@/repository/sections_repository";
 import { Category } from "@/models/category_model";
 import { AddOneCategory } from "@/repository/category_repository";
+import { CldUploadWidget } from "next-cloudinary";
+import { GoUpload } from "react-icons/go";
 
 export default function AdminAddCategoryComp({ navData }) {
   const [sections, setSections] = useState([]);
+  const [imageUrl, setImageUrl] = useState("/assets/no-image.png");
 
   useEffect(() => {
     GetAllSections().then((sections) => {
@@ -47,7 +50,7 @@ export default function AdminAddCategoryComp({ navData }) {
         null,
         data["reference"] ?? sections[0].id,
         data["title"],
-        "https://cdn.pixabay.com/photo/2016/11/15/23/51/controller-1827840_1280.png",
+        imageUrl,
         colors["firstColor"].toString(),
         colors["secandColor"].toString(),
         Date.now()
@@ -82,16 +85,37 @@ export default function AdminAddCategoryComp({ navData }) {
         onSubmit={AddFunc}
         className=" shadow-lg max-w-5xl mx-auto rounded-lg bg-gray-100"
       >
-        <div className="p-3 flex flex-row justify-center items-center bg-gray-100 ">
+        <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
           <Image
-            width={120}
-            height={120}
+            width={256}
+            height={256}
             alt="icon"
-            src={
-              "https://miro.medium.com/v2/resize:fit:1400/format:webp/1*syZ3KTsac88AQr9usrPV8Q.png"
-            }
-            className="mx-auto object-contain rounded-full h-32 w-32  bg-black"
+            src={imageUrl}
+            className=" md:w-1/4 object-contain rounded-md h-64 border-2 m-3 bg-white"
           />
+
+          <CldUploadWidget
+            onSuccess={(results) => {
+              setImageUrl(results.info.secure_url);
+            }}
+            uploadPreset="nbx2boqc"
+          >
+            {({ open }) => {
+              return (
+                <button
+                  className={
+                    " w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                  }
+                  onClick={() => open()}
+                >
+                  <GoUpload className=" inline font-black" />
+                  <span className=" inline px-1 font-bold">
+                    Upload an Image
+                  </span>
+                </button>
+              );
+            }}
+          </CldUploadWidget>
         </div>
         <div className=" bg-white rounded-lg">
           {/* ******************* TITLE ******************* */}
