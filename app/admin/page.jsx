@@ -21,7 +21,7 @@ import AdminProductsComponent from "../../components/admin_components/products/a
 import AdminEditProductsComp from "../../components/admin_components/products/admin_edit_product";
 import AdminAddProductComp from "../../components/admin_components/products/admin_add_product_comp";
 
-import AdminSettingsComp from "../../components/admin_components/settings/admin_settings_comp"
+import AdminSettingsComp from "../../components/admin_components/settings/admin_settings_comp";
 
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
@@ -40,7 +40,7 @@ export default function AdminHomePage() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        if (user.email == "samer@samer.com") {
+        if (user.email == process.env.ADMIN_USER) {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
@@ -118,12 +118,9 @@ export default function AdminHomePage() {
         <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
       )}
 
-
-     {/* //////// Settings  ///////////// */}
-     {index.id == 7 && (
-        <AdminSettingsComp
-          navData={{ index: index, setIndex: setIndex }}
-        />
+      {/* //////// Settings  ///////////// */}
+      {index.id == 7 && (
+        <AdminSettingsComp navData={{ index: index, setIndex: setIndex }} />
       )}
 
       {/* {index.id == 41 && (
@@ -133,10 +130,6 @@ export default function AdminHomePage() {
       {index.id == 42 && (
         <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
       )} */}
-
-
-
-
     </div>
   );
 }
