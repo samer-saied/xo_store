@@ -14,9 +14,9 @@ export default function TableComp({ tableData, addFunc }) {
           {tableData["data"] != null && (
             <div className="px-4 py-4 -mx-4 overflow-x-auto sm:-mx-8 sm:px-8">
               <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
-                <table className=" min-w-full leading-normal text-red">
+                <table className=" min-w-full leading-normal ">
                   {/* //////////////////// TABLE HEAD //////////////////// */}
-                  <thead className=" bg-gray-300 text-red">
+                  <thead className=" bg-gray-300 ">
                     <tr>
                       <th
                         scope="col"

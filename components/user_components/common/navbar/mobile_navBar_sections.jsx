@@ -2,14 +2,12 @@ import useGetSections from "@/hooks/all_sections_hook";
 import Link from "next/link";
 import { CiBookmark } from "react-icons/ci";
 
-export default function MobileSectionsNavBar() {
-  const sections = useGetSections();
-
+export default function MobileSectionsNavBar({ sections }) {
   return (
     <ul className="flex flex-col justify-start items-start  text-MainBlueColor">
       {/*--------------- DYNAMIC MENU - SECTIONS -------------------*/}
       {sections.sections &&
-        sections.sections.map((section) => (
+        sections.sections.map((section) => ( 
           <li
             key={section.id}
             className={`px-4 cursor-pointer capitalize  py-2 text-lg  hover:scale-105 hover:font-bold`}

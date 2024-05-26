@@ -1,8 +1,11 @@
 "use client";
 
-import CloudImageComp from "../../admin_components/cloud_image";
 import LoadingPage from "@/components/user_components/common/loading";
-import { GetOneBanner, UpdateOneBanner } from "@/repository/banners_repository";
+import {
+  DeleteOneBanner,
+  GetOneBanner,
+  UpdateOneBanner,
+} from "@/repository/banners_repository";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { TbCircleArrowLeft } from "react-icons/tb";
@@ -10,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { GetAllProducts } from "@/repository/products_repository";
 import { CldUploadWidget } from "next-cloudinary";
 import { GoUpload } from "react-icons/go";
+import { ImCross } from "react-icons/im";
 
 export default function AdminEditBannersComp({ navData }) {
   const [banner, setBanner] = useState(null);
@@ -29,7 +33,7 @@ export default function AdminEditBannersComp({ navData }) {
 
   return (
     <>
-      <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
+      <div className=" overflow-scroll container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
             navData["setIndex"]({ id: 1, navId: null });
@@ -48,6 +52,26 @@ export default function AdminEditBannersComp({ navData }) {
           dir="ltr"
           className=" container max-w-5xl px-4 mx-auto sm:px-8 rounded-lg mb-6"
         >
+          <div className=" container w-full flex flex-row justify-end items-center">
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                DeleteOneBanner(banner).then(() => {
+                  navData["setIndex"]({ id: 1, navId: null });
+                  toast({
+                    variant: "destructive",
+                    title: "حسنا",
+                    description: "تم الحذف بنجاح",
+                  });
+                });
+              }}
+              className=" text-red-500 bg-gray-100 flex flex-row justify-center items-center rounded-t-md p-2 cursor-pointer hover:scale-105"
+            >
+              <ImCross />
+              <p className="px-1 font-medium"> Delete</p>
+            </button>
+          </div>
+
           <form className=" mx-auto shadow-md ">
             {/* <div className=" flex flex-row justify-center items-center p-3 bg-gray-100 ">
               <Image
@@ -193,3 +217,4 @@ export default function AdminEditBannersComp({ navData }) {
     </>
   );
 }
+// DeleteOneBanner

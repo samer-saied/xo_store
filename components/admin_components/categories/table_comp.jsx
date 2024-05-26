@@ -17,7 +17,7 @@ export default function TableComp({ tableData, addFunc }) {
               <div className="inline-block min-w-full overflow-hidden rounded-lg shadow">
                 <table className=" min-w-full leading-normal text-red">
                   {/* //////////////////// TABLE HEAD //////////////////// */}
-                  <thead className=" bg-gray-300 text-red">
+                  <thead className=" bg-gray-300">
                     <tr>
                       <th
                         scope="col"

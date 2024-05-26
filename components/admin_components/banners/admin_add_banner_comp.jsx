@@ -54,7 +54,7 @@ export default function AdminAddBannerComp({ navData }) {
 
   return (
     <>
-      <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
+      <div className="overflow-scroll container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
             navData["setIndex"]({ id: 1, navId: null });
@@ -94,7 +94,7 @@ export default function AdminAddBannerComp({ navData }) {
               return (
                 <button
                   className={
-                    " w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                    " w-3/4 md:w-fit h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
                   }
                   onClick={() => open()}
                 >

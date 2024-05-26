@@ -82,8 +82,8 @@ async function AddItemToCart(product: Product) {
               product.title,
               product.image,
               1,
-              product.currentPrice,
-              product.prePrice,
+              +product.currentPrice,
+              +product.prePrice,
               "Player Id"
             )
           );
@@ -113,9 +113,9 @@ async function DeleteItemToCart(index: number): Promise<boolean> {
 
     cart.items.forEach((item, listIndex) => {
       if (listIndex === index) {
-        newCart.netTotal -= item.price;
-        newCart.total -= item.prePrice;
-        newCart.sales -= item.prePrice - item.price;
+        newCart.netTotal -= +item.price;
+        newCart.total -= +item.prePrice;
+        newCart.sales -= +item.prePrice - +item.price;
       } else {
         newItems.push(item);
       }
@@ -125,8 +125,8 @@ async function DeleteItemToCart(index: number): Promise<boolean> {
       cart!.id,
       cart!.userId,
       newItems,
-      cart!.sales,
-      cart!.total,
+      +cart!.sales,
+      +cart!.total,
       cart!.netTotal,
       cart!.description,
       cart!.createdDate,
@@ -142,49 +142,7 @@ async function DeleteItemToCart(index: number): Promise<boolean> {
   } else {
     return false;
   }
-
-  // onAuthStateChanged(auth, async (user) => {
-  //   var cart: Cart = await GetCurrentUserCart(user!);
-
-  //   let newCart: Cart = cart;
-  //   let newItems: CartItem[] = [];
-
-  //   cart.items.forEach((item, listIndex) => {
-  //     if (listIndex === index) {
-  //       newCart.netTotal -= item.price;
-  //       newCart.total -= item.prePrice;
-  //       newCart.sales -= item.prePrice - item.price;
-  //     } else {
-  //       newItems.push(item);
-  //     }
-  //   });
-
-  //   newCart = new Cart(
-  //     cart!.id,
-  //     cart!.userId,
-  //     newItems,
-  //     cart!.sales,
-  //     cart!.total,
-  //     cart!.netTotal,
-  //     cart!.description,
-  //     cart!.createdDate,
-  //     cart!.status
-  //   );
-
-  //   handleUpdateOne(
-  //     cartsModelName,
-  //     cart.id,
-  //     cartConverter.toFirestore(newCart)
-  //   ).then(() => {
-  //     result = true;
-  //     return result;
-  //   });
-  //   return result;
-  // });
-  // return result;
 }
-
-
 
 export {
   // GetAllCarts,

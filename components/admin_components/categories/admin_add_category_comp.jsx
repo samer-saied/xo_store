@@ -67,7 +67,7 @@ export default function AdminAddCategoryComp({ navData }) {
 
   return (
     <>
-      <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
+      <div className="overflow-scroll container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
             navData["setIndex"]({ id: 3, navId: null });
@@ -96,7 +96,10 @@ export default function AdminAddCategoryComp({ navData }) {
 
           <CldUploadWidget
             onSuccess={(results) => {
+              // setValue("image", results.info.secure_url);
+              console.log(results.info.secure_url);
               setImageUrl(results.info.secure_url);
+              // set("image", results.info.secure_url);
             }}
             uploadPreset="nbx2boqc"
           >
@@ -104,7 +107,7 @@ export default function AdminAddCategoryComp({ navData }) {
               return (
                 <button
                   className={
-                    " w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                    " w-3/4 md:w-fit h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
                   }
                   onClick={() => open()}
                 >

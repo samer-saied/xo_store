@@ -16,18 +16,18 @@ const BannerCardWidget = ({
     >
       {/* //GRAY BACKGROUND AND TEXTS AND IMAGE */}
       {/*  GRAY BACKGROUND */}
-      <div className="relative bg-gray-100 md:w-10/12 w-11/12 py-5 md:h-72 min-h-44 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
+      <div className="relative bg-gray-100 md:w-10/12 w-11/12 py-5 md:h-72 min-h-52 rounded-3xl pt-3 px-5 md:py-5 drop-shadow-md">
         <div className="w-8/12 flex flex-col h-full justify-start md:pt-5 pt-3 md:pl-10">
           <h1 className="text-right text-slate-500 md:text-3xl text-xl font-bold md:py-4 py-2">
             {title}
           </h1>
           {/*  TEXTS */}
           <div className=" md:w-10/12 w-11/12 h-auto flex flex-col items-start justify-center">
-            <h2 className="md:pb-5 pb-2 line-clamp-3 overflow-scroll text-right text-neutral-400 lg:text-lg md:text-md text-md">
+            <h2 className="md:pb-5 pb-2 line-clamp-3 overflow-hidden text-right text-neutral-400 lg:text-lg md:text-md text-md">
               {descrption.trim()}
             </h2>
           </div>
-          <div className=" md:w-10/12 w-11/12 h-auto">
+          <div className=" z-10 md:w-10/12 w-11/12 h-auto mt-1">
             <Link
               href={`/products/${refProductId}`}
               className="text-white  bg-MainBlueColor shadow-sm rounded-md md:py-3 md:px-5 py-2 px-3 hover:opacity-90 hover:shadow-md"

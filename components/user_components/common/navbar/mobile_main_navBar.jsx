@@ -16,7 +16,7 @@ import MobileSectionsNavBar from "@/components/user_components/common/navbar/mob
 import { auth } from "@/db/firebase_init";
 import { useAuth } from "../../../../hooks/AuthContext";
 
-export function MobileMainNavBar() {
+export function MobileMainNavBar({sections}) {
   const { currentUser, loading } = useAuth();
 
   return (
@@ -41,7 +41,7 @@ export function MobileMainNavBar() {
       </SheetHeader>
 
       {/* ////////////////////// MOBILE SECTION ////////////////////// */}
-      <MobileSectionsNavBar />
+      <MobileSectionsNavBar sections={sections} />
 
       {/* ////////////////////// USER ////////////////////// */}
       <SheetFooter>

@@ -8,7 +8,18 @@
   box-shadow: none !important;
 }
 
-
 body {
   zoom: 0.85; /* Adjust the value (0.8 for 20% zoom out) to your preference */
+}
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
 }

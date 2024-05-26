@@ -95,11 +95,10 @@ export default function DetailsProductWidget({ params }) {
                       AddItemToCart(product);
                       toast({
                         variant: "default",
-
+                      
                         title: "حسنا",
                         description: "تم اضافه المنتج لسله المشتريات بنجاح",
                         action: (
-                          <>
                             <ToastAction
                               onClick={() => {
                                 router.push("/cart");
@@ -108,7 +107,6 @@ export default function DetailsProductWidget({ params }) {
                             >
                               الذهاب للسله
                             </ToastAction>
-                          </>
                         ),
                       });
                     }}

@@ -12,6 +12,7 @@ import {
   GetCurrentUserCart,
 } from "@/repository/cart_repository";
 import { useAuth } from "@/hooks/AuthContext";
+import Link from "next/link";
 
 const urlPaths = [{ name: "سلة المشتريات", link: "/cart" }];
 
@@ -123,16 +124,14 @@ const CartMainComp = () => {
                           الاستمرار في الدفع
                         </div>
                       </div>
-                      <button
-                        onClick={() => {
-                          router.push("/");
-                        }}
+                      <Link
+                        href={"/"}
                         className="w-full h-12 md:px-5 md:py-2 rounded-lg border border-blue-950 justify-center items-center inline-flex cursor-pointer scale-100 hover:scale-105 ease-in-out transition"
                       >
                         <div className="text-slate-600 text-base font-normal  leading-normal">
                           العودة إلى المتجر
                         </div>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

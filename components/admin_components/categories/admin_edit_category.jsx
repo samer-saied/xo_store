@@ -1,6 +1,7 @@
 "use client";
 import LoadingPage from "@/components/user_components/common/loading";
 import {
+  DeleteOneCategory,
   GetOneCategory,
   UpdateOneCategory,
 } from "../../../repository/category_repository";
@@ -12,6 +13,7 @@ import { GetAllSections } from "@/repository/sections_repository";
 import { useToast } from "@/components/ui/use-toast";
 import { CldUploadWidget } from "next-cloudinary";
 import { GoUpload } from "react-icons/go";
+import { ImCross } from "react-icons/im";
 
 export default function AdminEditCategorysComp({ navData }) {
   const [category, setCategory] = useState(null);
@@ -31,7 +33,7 @@ export default function AdminEditCategorysComp({ navData }) {
 
   return (
     <>
-      <div className=" container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
+      <div className="overflow-scroll container max-w-5xl px-4 mx-auto sm:px-8 flex flex-row justify-start items-center pt-5">
         <div
           onClick={() => {
             navData["setIndex"]({ id: 3, navId: null });
@@ -52,6 +54,25 @@ export default function AdminEditCategorysComp({ navData }) {
           dir="ltr"
           className=" container max-w-5xl px-4 mx-auto sm:px-8 rounded-lg mb-6"
         >
+          <div className=" container w-full flex flex-row justify-end items-center">
+            <button
+              onClick={(event) => {
+                event.preventDefault();
+                DeleteOneCategory(category).then(() => {
+                  navData["setIndex"]({ id: 3, navId: null });
+                  toast({
+                    variant: "destructive",
+                    title: "حسنا",
+                    description: "تم الحذف بنجاح",
+                  });
+                });
+              }}
+              className=" text-red-500 bg-gray-100 flex flex-row justify-center items-center rounded-t-md p-2 cursor-pointer hover:scale-105"
+            >
+              <ImCross />
+              <p className="px-1 font-medium"> Delete</p>
+            </button>
+          </div>
           <form className=" mx-auto shadow-md ">
             <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
               <Image
