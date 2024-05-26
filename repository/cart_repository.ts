@@ -110,28 +110,41 @@ async function DeleteItemToCart(index: number): Promise<boolean> {
     let cart: Cart = await GetCurrentUserCart(auth.currentUser);
     let newCart: Cart = cart;
     let newItems: CartItem[] = [];
+    if (cart.items.length == 0) {
+      newCart = new Cart(
+        cart!.id,
+        cart!.userId,
+        newItems,
+        0,
+        0,
+        0,
+        cart!.description,
+        cart!.createdDate,
+        cart!.status
+      );
+    } else {
+      cart.items.forEach((item, listIndex) => {
+        if (listIndex === index) {
+          newCart.netTotal -= +item.price;
+          newCart.total -= +item.prePrice;
+          newCart.sales -= +item.prePrice - +item.price;
+        } else {
+          newItems.push(item);
+        }
+      });
 
-    cart.items.forEach((item, listIndex) => {
-      if (listIndex === index) {
-        newCart.netTotal -= +item.price;
-        newCart.total -= +item.prePrice;
-        newCart.sales -= +item.prePrice - +item.price;
-      } else {
-        newItems.push(item);
-      }
-    });
-
-    newCart = new Cart(
-      cart!.id,
-      cart!.userId,
-      newItems,
-      +cart!.sales,
-      +cart!.total,
-      cart!.netTotal,
-      cart!.description,
-      cart!.createdDate,
-      cart!.status
-    );
+      newCart = new Cart(
+        cart!.id,
+        cart!.userId,
+        newItems,
+        +cart!.sales,
+        +cart!.total,
+        cart!.netTotal,
+        cart!.description,
+        cart!.createdDate,
+        cart!.status
+      );
+    }
 
     await handleUpdateOne(
       cartsModelName,
