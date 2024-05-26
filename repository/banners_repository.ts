@@ -13,7 +13,10 @@ const bannersModelName: String = "banners";
 async function GetAllBanners(): Promise<Banner[]> {
   try {
     const banners: Banner[] = [];
-    const querySnapshot = await handleGetAll(bannersModelName,  orderBy("date","desc"));
+    const querySnapshot = await handleGetAll(
+      bannersModelName,
+      orderBy("date", "desc")
+    );
 
     querySnapshot.forEach((doc) => {
       const currentBanner = bannerConverter.fromFirestore(doc["query"], doc.id);
@@ -30,7 +33,10 @@ async function GetOneBanner(id: string): Promise<Banner> {
   try {
     const querySnapshot = await handleGetOne(bannersModelName, id);
 
-    const currentBanner = bannerConverter.fromFirestore(querySnapshot!.data(),id);
+    const currentBanner = bannerConverter.fromFirestore(
+      querySnapshot!.data(),
+      id
+    );
 
     return currentBanner;
   } catch (error) {

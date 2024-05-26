@@ -57,31 +57,41 @@ export default function AdminAddProductComp({ navData }) {
   };
 
   const AddFunc = handleSubmit((data) => {
-    AddOneProduct(
-      new Product(
-        null,
-        getValues()["categoryId"],
-        getValues()["sectionId"],
-        data["title"],
-        imageUrl,
-        data["prePrice"],
-        data["currentPrice"],
-        data["descrption"],
-        data["details"],
-        rating,
-        isExclusive,
-        isToday,
-        true,
-        Date.now()
-      )
-    ).then(() => {
-      toast({
-        variant: "default",
-        title: "حسنا",
-        description: "تم الاضافه بنجاح",
-      });
-      navData["setIndex"]({ id: 4, navId: null });
+if(data["prePrice"] > data["currentPrice"]){
+  AddOneProduct(
+    new Product(
+      null,
+      getValues()["categoryId"],
+      getValues()["sectionId"],
+      data["title"],
+      imageUrl,
+      data["prePrice"],
+      data["currentPrice"],
+      data["descrption"],
+      data["details"],
+      rating,
+      isExclusive,
+      isToday,
+      true,
+      Date.now()
+    )
+  ).then(() => {
+    toast({
+      variant: "default",
+      title: "حسنا",
+      description: "تم الاضافه بنجاح",
     });
+    navData["setIndex"]({ id: 4, navId: null });
+  });
+}else{
+  toast({
+    variant: "destructive",
+    title: "خطا",
+    description: "يجب ان يكون السعر الحالي اقل من السعر السابق",
+  });
+}
+
+ 
   });
 
   return (

@@ -21,7 +21,7 @@ export default function SectionsCarouselComponent() {
 
   return (
     <>
-      {/* {sections.isLoading && <LoadingPage />} */}
+      {sections.isLoading && <LoadingPage />}
 
       {!sections.isLoading && !sections.sections && sections.error && (
         <NoItemsWidget infoMsg={sections.error} />

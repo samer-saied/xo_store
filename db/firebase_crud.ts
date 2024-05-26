@@ -12,6 +12,7 @@ import {
   setDoc,
   where,
   QueryDocumentSnapshot,
+  getCountFromServer,
 } from "firebase/firestore";
 
 import { db } from "./firebase_init";
@@ -50,28 +51,6 @@ export async function handleGetOne(
   }
 }
 
-// export async function handleGetOneByfilter(
-//   collectionName: String,
-//   userId: String
-// ): Promise<DocumentData | undefined> {
-//   const q = query(
-//     collection(db, `${collectionName}`),
-//     where("userId", "==", userId)
-//   ); // Build query with equality comparison
-
-//   try {
-//     const querySnapshot = await getDocs(q);
-//     const data = querySnapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     }));
-//     return data;
-//   } catch (error) {
-//     console.error("Error fetching data:", error);
-//     return []; // Handle errors gracefully, consider returning an empty array or error object
-//   }
-// }
-
 export async function handlePostOne(
   collectionName: String,
   collectionId: String | null,
@@ -104,5 +83,34 @@ export async function handleUpdateOne(
     );
   } catch (error) {
     console.log(error);
+  }
+}
+
+export interface CollectionCount {
+  collectionTitle: String;
+  count: number;
+}
+
+export async function CountInfo(collectionsName: String[]) {
+  let counts: Array<CollectionCount> = [];
+  try {
+    collectionsName.forEach((oneCollectionName: String, index: number) => {
+      const collectionRef = collection(db, `${oneCollectionName}`);
+      getCountFromServer(collectionRef) // Optional: Add filters or other query criteria
+        .then((snapshot) => {
+          counts.push({
+            collectionTitle: oneCollectionName,
+            count: snapshot.data().count,
+          });
+        });
+    });
+    return counts;
+    // const collectionRef = collection(db, `${collectionName}`);
+    // const q = query(collectionRef); // Optional: Add filters or other query criteria
+    // const snapshot = await getDocs(q);
+    // return snapshot.size; // Get the count directly from the snapshot
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 }

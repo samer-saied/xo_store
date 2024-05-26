@@ -27,6 +27,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/components/user_components/common/loading";
+import { CountInfo } from "@/db/firebase_crud";
 
 export default function AdminHomePage() {
   const [index, setIndex] = useState({
@@ -40,7 +41,10 @@ export default function AdminHomePage() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        if (user.email == process.env.ADMIN_USER || "samer@samer.com") {
+        if (
+          user.email == "samer@samer.com"
+          //   process.env.ADMIN_USER
+        ) {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
@@ -61,7 +65,9 @@ export default function AdminHomePage() {
 
       {/* ////////  REPORT - ADMIN HOMEPAGE  ///////////// */}
       {index.id == 0 && (
-        <AdminReportComp navData={{ index: index, setIndex: setIndex }} />
+        <AdminReportComp
+        // navData={{ index: index, setIndex: setIndex }}
+        />
       )}
 
       {/* //////// Banners  ///////////// */}

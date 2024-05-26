@@ -3,22 +3,23 @@ import { SetingsInfo } from "@/models/settingsInfo_model";
 import { GetOneSetingsInfo } from "@/repository/settings_repository";
 import { GetSocialIcon } from "@/utils/social_icon";
 import Image from "next/image";
+import Link from "next/link";
 import { FaEnvelope } from "react-icons/fa6";
 
 export default async function FooterComponent() {
   const infoData: SetingsInfo = await GetOneSetingsInfo("storeinformation");
 
   return (
-    <div className=" relative w-full bg-blue-950 overflow-hidden max-h-full">
+    <div className=" bg-[url('/footer/Vector.png')] h-full relative w-full bg-blue-950 overflow-hidden max-h-full">
       {/*----------- TEXTURE BG -------------------*/}
-      <Image
+      {/* <Image
         width={512}
         height={512}
         priority={true}
         className=" h-screen w-full object-cover my-24 md:my-5"
         src="/footer/Vector.png"
         alt=""
-      />
+      /> */}
 
       {/*----------- CIRCLE BG -------------------*/}
       <div className=" absolute -bottom-48 -right-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
@@ -26,7 +27,7 @@ export default async function FooterComponent() {
       {/*----------- CIRCLE BG -------------------*/}
       <div className=" absolute -top-48 -left-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
 
-      <div className=" absolute top-0 bottom-0 left-0 right-0">
+      <div className=" w-full h-full">
         {/*----------- EMAIL SUBSCRIBE -------------------*/}
         <div className=" py-12 mx-auto sm:w-3/4 px-5 flex flex-col justify-center items-center">
           <div className=" w-full h-14 pr-4 pl-2 py-2 rounded-full border border-neutral-200 justify-start items-center">
@@ -46,7 +47,7 @@ export default async function FooterComponent() {
           </div>
         </div>
         <div className=" w-full mx-auto h-0 border border-neutral-200 mb-5"></div>
-        <div className="flex flex-col lg:flex-row lg:w-3/4 lg:mx-auto">
+        <div className="flex flex-col lg:flex-row lg:w-3/4 lg:mx-auto pb-16">
           {/*----------- COMPANY INFO -------------------*/}
           <div className="w-3/4 mx-auto py-5">
             <Image
@@ -81,16 +82,34 @@ export default async function FooterComponent() {
             </div>
           </div>
           {/*----------- IMPORTNT LINKS -------------------*/}
-          <div className="w-3/4 mx-auto py-5 lg:flex lg:flex-col lg:justify-start lg:items-center">
+          <div className="w-3/4 mx-auto py-5 flex flex-col ">
             <div className="mb-3 text-zinc-100 text-lg font-bold font-['Open Sans'] capitalize">
               الروابط المهمة
             </div>
-            <a
+            <Link
               href="/about"
-              className=" cursor-pointer py-3 text-zinc-100 text-sm font-normal font-['Open Sans']"
+              className=" inline cursor-pointer py-3 text-zinc-100 text-sm font-normal font-['Open Sans']"
             >
-              عن الشركة
-            </a>
+              عن الشركه
+            </Link>
+            <Link
+              href="/sections"
+              className=" inline cursor-pointer py-3 text-zinc-100 text-sm font-normal font-['Open Sans']"
+            >
+              جميع الاقسام
+            </Link>
+            <Link
+              href="/"
+              className=" inline cursor-pointer py-3 text-zinc-100 text-sm font-normal font-['Open Sans']"
+            >
+              خصومات حصريه
+            </Link>
+            <Link
+              href="/today"
+              className=" inline cursor-pointer py-3 text-zinc-100 text-sm font-normal font-['Open Sans']"
+            >
+              صفقات اليوم
+            </Link>
           </div>
           {/*----------- Emails LINKS -------------------*/}
           <div className="w-3/4 mx-auto py-5 flex flex-col justify-center">
@@ -120,7 +139,7 @@ export default async function FooterComponent() {
           </div>
         </div>
         {/*----------- CopyRigths-------------------*/}
-        <div className=" absolute bottom-5 left-0 right-0 flex flex-row justify-center items-center py-5">
+        <div className=" absolute bottom-1 left-0 right-0 flex flex-row justify-center items-center py-5">
           <p className="text-zinc-100 text-sm font-normal font-['Open Sans']">
             © 2024 - 2025 , All Rights Reserved
           </p>
