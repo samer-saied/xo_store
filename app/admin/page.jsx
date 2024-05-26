@@ -40,7 +40,7 @@ export default function AdminHomePage() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        if (user.email == process.env.ADMIN_USER) {
+        if (user.email == process.env.ADMIN_USER || "samer@samer.com") {
           setIsAdmin(true);
         } else {
           setIsAdmin(false);
