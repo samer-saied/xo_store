@@ -5,21 +5,24 @@ import { Sheet } from "@/components/ui/sheet";
 import Navbar from "@/components/user_components/common/navbar/Navbar";
 import FooterComponent from "@/components/user_components/homepage/footer/footer_component";
 import RelatedProductsWidget from "@/components/user_components/related_products/related_products_widget";
+import { GetOneProduct } from "@/repository/products_repository";
 
-export default function ProductPage({ params }) {
-  // const product = useGetOneProductHook(params.id);
+export default async function ProductPage({ params }) {
+  const product = await GetOneProduct(params.id);
+
   return (
     <>
       <Sheet>
         <Navbar />
         <SpacerWidget />
 
-        <DetailsProductWidget params={params} />
+        <DetailsProductWidget product={product} />
 
         {/*-------------------- RELATED PRODUCTS ---------------*/}
-        <RelatedProductsWidget />
-
+        <RelatedProductsWidget categoryId={product.categoryId} />
         <SpacerWidget />
+
+        {/*-------------------- FOOTER ---------------*/}
         <FooterComponent />
       </Sheet>
     </>

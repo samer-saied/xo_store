@@ -1,24 +1,12 @@
-"use client";
-
 import PathWidget from "../common/path_widget";
 import { PiStarFill } from "react-icons/pi";
-import { RiShoppingBasket2Fill } from "react-icons/ri";
-import { FaHeart } from "react-icons/fa";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { AddItemToCart } from "@/repository/cart_repository";
 import getStarsRate from "@/utils/stars";
-import useGetOneProductHook from "@/hooks/get_product_hook";
 import LoadingPage from "../common/loading";
+import CurrencySymbolComp from "../common/currency_symbol";
+import AddToCartComp from "../common/addtoCart";
 
-export default function DetailsProductWidget({ params }) {
-  const product = useGetOneProductHook(params.id);
-
-  const { toast } = useToast();
-  const router = useRouter();
-
+export default async function DetailsProductWidget({ product }) {
   return (
     <>
       {product && (
@@ -43,21 +31,20 @@ export default function DetailsProductWidget({ params }) {
                 />
               </div>
               <div className="md:w-6/12 w-full md:h-96 flex flex-col justify-around md:px-10">
-                <div className="flex flex-row justify-between items-center">
+                <div className="flex flex-wrap justify-between items-center mt-3">
                   <div className="text-slate-600 text-xl pb-2 font-black leading-10">
                     {product?.title}
                   </div>
                   <div className="flex flex-row justify-center items-center">
                     <div className="flex flex-row px-2">
-                      <span className="text-slate-400 text-xl font-normal line-through tracking-tight">
+                      <span className="text-slate-400 md:text-xl text-lg font-normal line-through tracking-tight">
                         {product.prePrice}
-                      </span>
-                      <span className="text-slate-400 text-xl font-bold  line-through tracking-tight">
-                        $
+                        <CurrencySymbolComp />
                       </span>
                     </div>
-                    <div className="text-blue-800 text-4xl font-bold leading-loose">
+                    <div className="text-blue-800 md:text-3xl text-2xl font-bold leading-loose">
                       {product.currentPrice}
+                      <CurrencySymbolComp />
                     </div>
                   </div>
                 </div>
@@ -88,46 +75,15 @@ export default function DetailsProductWidget({ params }) {
                 </div>
                 {/*------------- BUTTONS ---------------------*/}
                 <div className="flex flex-row justify-start items-center gap-5">
-                  <div
-                    onClick={(e) => {
-                      e.preventDefault();
-
-                      AddItemToCart(product);
-                      toast({
-                        variant: "default",
-                      
-                        title: "حسنا",
-                        description: "تم اضافه المنتج لسله المشتريات بنجاح",
-                        action: (
-                            <ToastAction
-                              onClick={() => {
-                                router.push("/cart");
-                              }}
-                              altText="continue"
-                            >
-                              الذهاب للسله
-                            </ToastAction>
-                        ),
-                      });
-                    }}
-                    className="w-auto max-h-14 py-3 px-5 bg-orange-400 rounded-lg flex flex-row justify-center items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer hover:transform hover:scale-110"
-                  >
-                    <RiShoppingBasket2Fill className="text-white" size={25} />
-                    <div className="text-white text-base font-bold leading-loose">
-                      اضافة للسله
-                    </div>
-                  </div>
-                  <div className="w-auto max-h-14 py-3 px-5 rounded-lg border border-orange-400 flex flex-row justify-start items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer">
+                  <AddToCartComp
+                    product={JSON.parse(JSON.stringify(product))}
+                  />
+                  {/* <div className="w-auto max-h-14 py-3 px-5 rounded-lg border border-orange-400 flex flex-row justify-start items-center gap-2.5 hover:shadow-md shadow-sm cursor-pointer">
                     <div className="text-orange-400 text-base font-bold leading-loose">
                       Wishlist
                     </div>
                     <FaHeart className="text-orange-400" size={25} />
-
-                    {/* <FontAwesomeIcon
-                  className="text-orange-400 h-4"
-                  icon={faHeart}
-                /> */}
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

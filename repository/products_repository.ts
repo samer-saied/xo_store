@@ -31,7 +31,7 @@ async function GetProductsByCategory(categoryId: String): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-     [ where("categoryId", "==", categoryId)]
+      where("categoryId", "==", categoryId)
     );
 
     querySnapshot.forEach((doc) => {
@@ -49,13 +49,14 @@ async function GetTodayDealProducts(): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-    [  where("todayOffer", "==", true)]
+      where("todayOffer", "==", true)
     );
 
     querySnapshot.forEach((doc) => {
       const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
+    console.log(products);
     return products;
   } catch (error) {
     console.error("Error fetching products:", error);
@@ -68,7 +69,7 @@ async function GetExclusiveProducts(): Promise<Product[]> {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(
       productsModelName,
-     [ where("exclusive", "==", true)]
+      where("exclusive", "==", true)
     );
 
     querySnapshot.forEach((doc) => {
@@ -86,8 +87,8 @@ async function GetMoreProducts(): Promise<Product[]> {
   try {
     const products: Product[] = [];
     const querySnapshot = await handleGetAll(productsModelName, [
-      orderBy("name", "desc"),
-      limit(3),
+      orderBy("date", "desc"),
+      limit(5),
     ]);
 
     querySnapshot.forEach((doc) => {
