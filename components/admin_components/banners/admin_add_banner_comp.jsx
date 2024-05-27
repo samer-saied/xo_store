@@ -138,6 +138,17 @@ export default function AdminAddBannerComp({ navData }) {
               // value={banner!.descrption}
             />
           </div>
+          <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
+            <h2 className="max-w-sm md:w-3/12 uppercase">Button Text</h2>
+
+            <input
+              {...register("btnTxt", { required: true })}
+              type="text"
+              id="btnTxt"
+              className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
+              placeholder="btnTxt"
+            />
+          </div>
 
           <div className="flex flex-row items-center w-full p-2  text-gray-500">
             <h2 className="max-w-sm uppercase md:w-3/12 px-2">Reference</h2>

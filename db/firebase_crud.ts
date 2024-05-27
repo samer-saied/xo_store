@@ -92,25 +92,18 @@ export interface CollectionCount {
 }
 
 export async function CountInfo(collectionsName: String[]) {
-  let counts: Array<CollectionCount> = [];
+  var counts: Array<CollectionCount> = [];
   try {
-    collectionsName.forEach((oneCollectionName: String, index: number) => {
-      const collectionRef = collection(db, `${oneCollectionName}`);
-      getCountFromServer(collectionRef) // Optional: Add filters or other query criteria
-        .then((snapshot) => {
-          counts.push({
-            collectionTitle: oneCollectionName,
-            count: snapshot.data().count,
-          });
-        });
-    });
+    for (let index = 0; index < collectionsName.length; index++) {
+      const collectionRef = collection(db, `${collectionsName[index]}`);
+      const snapshot = await getCountFromServer(collectionRef); // Optional: Add filters or other query criteria
+      counts.push({
+        collectionTitle: collectionsName[index],
+        count: snapshot.data().count,
+      });
+    }
     return counts;
-    // const collectionRef = collection(db, `${collectionName}`);
-    // const q = query(collectionRef); // Optional: Add filters or other query criteria
-    // const snapshot = await getDocs(q);
-    // return snapshot.size; // Get the count directly from the snapshot
   } catch (error) {
     console.log(error);
-    return [];
   }
 }

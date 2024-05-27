@@ -6,6 +6,7 @@ const BannerCardWidget = ({
   id,
   title,
   descrption,
+  btnTxt,
   image,
   refProductId,
 }: Banner) => {
@@ -33,7 +34,7 @@ const BannerCardWidget = ({
               className="text-white  bg-MainBlueColor shadow-sm rounded-md md:py-3 md:px-5 py-2 px-3 hover:opacity-90 hover:shadow-md"
               type="submit"
             >
-              اكتشف الان
+            {btnTxt ?? "اكتشف الان"} 
             </Link>
           </div>
         </div>

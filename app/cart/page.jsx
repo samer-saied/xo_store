@@ -12,7 +12,7 @@ export default function CartPage() {
     <>
       <AuthContextProvider>
         <Sheet>
-          <TopBarComponent />
+          {/* <TopBarComponent /> */}
           <Navbar />
           <CartMainComp />
         </Sheet>

@@ -48,9 +48,9 @@ export function MobileMainNavBar({sections}) {
         <ul className="w-full flex flex-col justify-start items-start text-MainBlueColor ">
           {/*--------------- USER MENU -------------------*/}
 
-          <div className="pb-10">
+          <div className="pb-10 ">
             {currentUser && (
-              <li className="px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105 hover:font-bold">
+              <li className="px-4 cursor-pointer capitalize py-2 text-md text-lg duration-500  hover:scale-110 hover:font-bold">
                 <Link
                   href={"/profile"}
                   className="flex flex-row justify-center items-center"
@@ -66,7 +66,7 @@ export function MobileMainNavBar({sections}) {
             )}
             {currentUser && (
               <li
-                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
+                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg duration-500  hover:scale-110 hover:font-bold`}
               >
                 <Link
                   className="flex flex-row justify-start items-center"
@@ -82,7 +82,7 @@ export function MobileMainNavBar({sections}) {
             )}
             {currentUser && (
               <li
-                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105 hover:font-bold`}
+                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg duration-500  hover:scale-110 hover:font-bold`}
               >
                 <button
                   className="flex flex-row justify-center items-center hover:text-MainCoralColor"
@@ -98,7 +98,7 @@ export function MobileMainNavBar({sections}) {
             )}
             {!currentUser && (
               <li
-                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg hover:scale-105`}
+                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg duration-500  hover:scale-110`}
               >
                 <Link
                   href={"/login"}
@@ -111,7 +111,7 @@ export function MobileMainNavBar({sections}) {
             )}
             {!currentUser && (
               <li
-                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg  hover:scale-105`}
+                className={`px-4 cursor-pointer capitalize py-2 text-md text-lg  duration-500  hover:scale-110`}
               >
                 <Link
                   className="flex flex-row justify-start items-center"

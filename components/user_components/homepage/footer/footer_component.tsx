@@ -11,23 +11,13 @@ export default async function FooterComponent() {
 
   return (
     <div className=" bg-[url('/footer/Vector.png')] h-full relative w-full bg-blue-950 overflow-hidden max-h-full">
-      {/*----------- TEXTURE BG -------------------*/}
-      {/* <Image
-        width={512}
-        height={512}
-        priority={true}
-        className=" h-screen w-full object-cover my-24 md:my-5"
-        src="/footer/Vector.png"
-        alt=""
-      /> */}
+      {/*----------- CIRCLE BG -------------------*/}
+      <div className=" z-0 absolute  w-48 h-48 -bottom-20 -right-20  md:-bottom-48 md:-right-48  md:w-96 md:h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
 
       {/*----------- CIRCLE BG -------------------*/}
-      <div className=" absolute -bottom-48 -right-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
+      <div className=" z-0 absolute  w-48 h-48 -top-24 -left-20  md:-top-48 md:-left-48  md:w-96 md:h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
 
-      {/*----------- CIRCLE BG -------------------*/}
-      <div className=" absolute -top-48 -left-48 w-96 h-96 opacity-30 bg-sky-500 rounded-full blur-3xl" />
-
-      <div className=" w-full h-full">
+      <div className=" z-50 w-full h-full">
         {/*----------- EMAIL SUBSCRIBE -------------------*/}
         <div className=" py-12 mx-auto sm:w-3/4 px-5 flex flex-col justify-center items-center">
           <div className=" w-full h-14 pr-4 pl-2 py-2 rounded-full border border-neutral-200 justify-start items-center">
@@ -112,7 +102,7 @@ export default async function FooterComponent() {
             </Link>
           </div>
           {/*----------- Emails LINKS -------------------*/}
-          <div className="w-3/4 mx-auto py-5 flex flex-col justify-center">
+          <div className="w-3/4 mx-auto py-5 mb-5 flex flex-col justify-center">
             <div className="text-zinc-100 text-lg font-bold font-['Open Sans'] capitalize">
               الدعم الفني
             </div>
@@ -130,7 +120,7 @@ export default async function FooterComponent() {
                 <a
                   key={index}
                   href={"tel:" + phone}
-                  className="hover:scale-125 duration-500 py-3 text-zinc-100 text-sm font-normal font-['Open Sans'] cursor-pointer"
+                  className=" bg-transparent hover:scale-125 duration-500 py-3 text-zinc-100 text-sm font-normal font-['Open Sans'] cursor-pointer"
                 >
                   {phone}
                 </a>

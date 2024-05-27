@@ -73,15 +73,6 @@ export default function AdminEditBannersComp({ navData }) {
           </div>
 
           <form className=" mx-auto shadow-md ">
-            {/* <div className=" flex flex-row justify-center items-center p-3 bg-gray-100 ">
-              <Image
-                width={120}
-                height={120}
-                alt="icon"
-                src={banner.image}
-                className="mx-auto object-cover rounded-full h-32 w-32  bg-black"
-              />
-            </div> */}
             <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
               <Image
                 width={256}
@@ -144,6 +135,19 @@ export default function AdminEditBannersComp({ navData }) {
                   }}
                   className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
                   value={banner.descrption}
+                />
+              </div>
+              <div className="items-center w-full p-4 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
+                <h2 className="max-w-sm md:w-3/12 uppercase">Button Text</h2>
+
+                <input
+                  type="text"
+                  id="btnTxt"
+                  className=" rounded-lg border-gery flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-black-600 focus:border-transparent"
+                  value={banner.btnTxt}
+                  onChange={(event) => {
+                    setBanner({ ...banner, btnTxt: event.target.value });
+                  }}
                 />
               </div>
               <hr />

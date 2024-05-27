@@ -9,12 +9,15 @@ import SectionsCarouselComponent from "@/components/user_components/homepage/sec
 import { Sheet } from "@/components/ui/sheet";
 import Navbar from "@/components/user_components/common/navbar/Navbar";
 import TopBarComponent from "@/components/user_components/homepage/topbar/topbar_component";
+import { GetOneSetingsUI } from "@/repository/ui_repository";
 
-export default function Home() {
+export default async function Home() {
+  const uiData = await GetOneSetingsUI("storeui");
+
   return (
     <>
       <Sheet>
-        <TopBarComponent />
+        <TopBarComponent uiData={uiData} />
         <Navbar />
         {/* --------------- Banners Models --------------- */}
         <BannerComponent />
@@ -27,9 +30,9 @@ export default function Home() {
         {/* --------------- Categories Models - Games  --------------- */}
         <MostSalesComponent />
         <SpacerWidget />
-        <TodayDealComponent />
+        <TodayDealComponent uiData={JSON.parse(JSON.stringify(uiData))} />
         <SpacerWidget />
-        <SectionMoreWidget />
+        <SectionMoreWidget uiData={uiData} />
         <SpacerWidget />
         <FooterComponent />
       </Sheet>

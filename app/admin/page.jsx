@@ -66,7 +66,7 @@ export default function AdminHomePage() {
       {/* ////////  REPORT - ADMIN HOMEPAGE  ///////////// */}
       {index.id == 0 && (
         <AdminReportComp
-        // navData={{ index: index, setIndex: setIndex }}
+        navData={{ index: index, setIndex: setIndex }}
         />
       )}
 

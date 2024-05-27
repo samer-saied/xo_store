@@ -7,13 +7,13 @@ export default function MobileSectionsNavBar({ sections }) {
     <ul className="flex flex-col justify-start items-start  text-MainBlueColor">
       {/*--------------- DYNAMIC MENU - SECTIONS -------------------*/}
       {sections.sections &&
-        sections.sections.map((section) => ( 
+        sections.sections.map((section) => (
           <li
             key={section.id}
-            className={`px-4 cursor-pointer capitalize  py-2 text-lg  hover:scale-105 hover:font-bold`}
+            className={`px-4 cursor-pointer capitalize  py-2 text-lg duration-500  hover:scale-110 hover:font-bold`}
           >
             <Link
-              className="flex flex-row justify-center items-center"
+              className="flex flex-row justify-center items-center "
               href={{
                 pathname: "/sections/" + section.id,
                 query: { name: section.title },

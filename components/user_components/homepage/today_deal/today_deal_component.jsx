@@ -5,11 +5,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import { TodayDealCardWidget } from "./today_deal_card_widget";
 import { useEffect, useRef, useState } from "react";
 import { GetTodayDealProducts } from "@/repository/products_repository";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
-export default function SpeedSaleComponent() {
-  const router = useRouter();
+export default function SpeedSaleComponent({ uiData }) {
+  // const products = await GetTodayDealProducts();
+
   const [products, setProducts] = useState([]);
   const fetchDataRef = useRef(false);
 
@@ -27,12 +27,6 @@ export default function SpeedSaleComponent() {
     products.length > 0 && (
       <div className="w-full h-full md:py-10 py-5 bg-amber-50">
         <Swiper
-          onSwiper={(swiper) => {
-            // setSwiper(swiper);
-          }}
-          onActiveIndexChange={(swiper) => {
-            // console.log("active index is", swiper.activeIndex);
-          }}
           pagination={{
             clickable: true,
             // el: ".swiper-custom-pagination",
@@ -54,11 +48,10 @@ export default function SpeedSaleComponent() {
           <SwiperSlide>
             <div className=" h-96 flex flex-col justify-center items-start px-3">
               <h1 className="lg:text-2xl text-right lg:leading-relaxed leading-normal  md:text-3xl text-2xl font-medium text-black">
-                صفقة اليوم
+                {uiData.todayTxt ?? "صفقة اليوم"}
               </h1>
               <h1 className=" md:text-md text-md text-right text-slate-500 mt-5 leading-relaxed">
-                احصل على العناصر المفضلة لديك هنا. جميع العناصر مخصومة ومحدودة
-                فقط. احصل عليه بسرعة قبل بيعه!
+                {uiData.todayDesc ?? "لا يوجد نص"}
               </h1>
               <Link
                 href={"/today"}

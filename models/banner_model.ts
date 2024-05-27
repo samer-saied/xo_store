@@ -6,6 +6,7 @@ export class Banner {
     public title: string,
     public image: string,
     public descrption: string,
+    public btnTxt: string,
     public date: Timestamp,
     public refProductId: string,
     public state: boolean
@@ -24,6 +25,7 @@ export const bannerConverter: any = {
       title: banner.title,
       image: banner.image,
       descrption: banner.descrption,
+      btnTxt: banner.btnTxt,
       date: banner.date,
       refProductId: banner.refProductId,
       state: banner.state,
@@ -36,6 +38,7 @@ export const bannerConverter: any = {
       data.title,
       data.image,
       data.descrption,
+      data.btnTxt,
       data.date,
       data.refProductId,
       data.state

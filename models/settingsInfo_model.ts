@@ -1,12 +1,17 @@
 import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
 
+export interface socialModel {
+  title?: string;
+  value?: string;
+}
+
 export class SetingsInfo {
   constructor(
     public id: string | null,
     public name: string,
     public about: string,
     public emails: string[],
-    public socials: Map<string, string>[],
+    public socials: socialModel[],
     public telephone: string[]
   ) {
     this.id = id;

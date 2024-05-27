@@ -3,25 +3,15 @@
 import Image from "next/image";
 import { useState } from "react";
 import { GoDotFill } from "react-icons/go";
+import { colors, navMenuTabs } from "@/utils/colors";
 
 export default function AdminUpperNavBarComp({ navData }) {
   const [isMobile, setIsMobile] = useState(false);
 
   const inActiveStyle =
-    "text-gray-500 hover:text-gray-800  block px-3 py-2 rounded-md text-md font-medium";
+    "text-gray-500 hover:text-gray-800  block px-3 py-2 rounded-md text-md font-medium ";
   const activeStyle =
-    "text-MainBlueColor font-bold  block px-3 py-2 rounded-md text-md font-medium p-2  bg-MainBlueColor text-white";
-
-  const navMenuTabs = [
-    "Home",
-    "Banners",
-    "Sections",
-    "Categories",
-    "Products",
-    "Users",
-    "Transactions",
-    "Settings",
-  ];
+    "text-MainBlueColor font-bold  block px-3 py-2 rounded-md text-md font-medium p-2 text-white ";
 
   return (
     <>
@@ -51,10 +41,10 @@ export default function AdminUpperNavBarComp({ navData }) {
                         }}
                         className={
                           navData["index"]["id"].toString().charAt(0) == index
-                            ? activeStyle
+                            ? activeStyle +
+                              (index == 0 ? "bg-black" : colors[index - 1])
                             : inActiveStyle
                         }
-                        // href="/admin"
                       >
                         {menuTab}
                       </button>
@@ -99,7 +89,8 @@ export default function AdminUpperNavBarComp({ navData }) {
                     }}
                     className={
                       navData["index"]["id"].toString().charAt(0) == index
-                        ? activeStyle
+                        ? activeStyle +
+                          (index == 0 ? "bg-black" : colors[index - 1])
                         : inActiveStyle
                     }
                   >
