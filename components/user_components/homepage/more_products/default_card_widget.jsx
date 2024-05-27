@@ -38,21 +38,18 @@ export const DefaultCardsCarouselWidget = ({ products }) => {
       {products &&
         products.map((product) => {
           return (
-            <div
-              key={product.id}
-              className=" h-52 w-auto bg-gray-300  mx-2 xl:mx-5 lg:mx-5  rounded-2xl overflow-hidden flex flex-col justify-center items-center"
-            >
-              <Link href={"products/" + product.id}>
+            <Link key={product.id} href={"products/" + product.id}>
+              <div className=" h-52 md:h-64 w-auto bg-gray-300  mx-2 xl:mx-5 lg:mx-5  rounded-2xl overflow-hidden flex flex-col justify-center items-center">
                 <Image
                   priority={true}
                   width={256}
                   height={256}
-                  className=" object-cover h-full w-full"
+                  className=" object-contain h-full w-full"
                   src={product.image}
                   alt={product.title}
                 />
-              </Link>
-            </div>
+              </div>
+            </Link>
           );
         })}
     </Carousel>
