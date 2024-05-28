@@ -3,7 +3,9 @@ import {
   UpdateStoreInfo,
 } from "@/repository/settings_repository";
 import React, { useEffect, useState } from "react";
-import { FaPlusCircle, FaMinusCircle } from "react-icons/fa";
+import { FaPlusCircle, FaMinusCircle, FaEnvelope } from "react-icons/fa";
+import { IoToday } from "react-icons/io5";
+import { TfiLayoutSlider } from "react-icons/tfi";
 import { useToast } from "@/components/ui/use-toast";
 import LoadingPage from "@/components/user_components/common/loading";
 import { GetOneSetingsUI, UpdateStoreUI } from "@/repository/ui_repository";
@@ -250,8 +252,9 @@ const AdminSettingsComp = ({ navData }) => {
           <div className="border-t border-gray-200">
             <dl>
               <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                <dt className="text-sm font-bold text-gray-900">
-                  Notification Bar
+                <dt className="text-sm font-bold text-gray-900 flex flex-row">
+                  <FaEnvelope className="mx-2 w-5 h-5 text-black" />
+                  <p> Notification Bar</p>
                 </dt>
                 <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                   <input
@@ -270,6 +273,12 @@ const AdminSettingsComp = ({ navData }) => {
                     }}
                   />
                 </dd>
+              </div>
+              <div className="px-4 py-5 sm:px-6 bg-gray-300 rounded-t-md flex flex-row">
+                <IoToday className="mx-2 w-5 h-5 text-black" />
+                <h3 className="text-lg font-bold leading-6 text-gray-900">
+                  Today Section
+                </h3>
               </div>
               <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-bold text-gray-900">
@@ -315,6 +324,13 @@ const AdminSettingsComp = ({ navData }) => {
                   />
                 </dd>
               </div>
+              <div className="px-4 py-5 sm:px-6 bg-gray-300 rounded-t-md flex flex-row">
+                <TfiLayoutSlider className="mx-2 w-5 h-5 text-black" />
+
+                <h3 className="text-lg font-bold leading-6 text-gray-900">
+                  Additional Section
+                </h3>
+              </div>
               <div className="px-4 py-5 bg-white sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-bold text-gray-900">
                   Additional Section title
@@ -337,7 +353,6 @@ const AdminSettingsComp = ({ navData }) => {
                   />
                 </dd>
               </div>
-              
               <div className="px-4 py-5 bg-gray-50 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <dt className="text-sm font-bold text-gray-900">
                   Additional Section Description
@@ -360,6 +375,7 @@ const AdminSettingsComp = ({ navData }) => {
                   />
                 </dd>
               </div>
+              {/* ==================== BUTTON ============== */}
               <div className="w-full p-4 ml-auto text-gray-500 md:w-1/3">
                 <button
                   onClick={(event) => {

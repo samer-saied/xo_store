@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import AdminUpperNavBarComp from "../../components/admin_components/admin_upper_nav_bar_comp";
 
+import AdminTransactionsComp from "../../components/admin_components/transactions/admin_transactions_comp";
+
+import AdminUsersComp from "@/components/admin_components/users/admin_users_comp";
+import AdminUserShowComp from "@/components/admin_components/users/admin_user_data_comp";
+
 import AdminReportComp from "@/components/admin_components/reports/admin_report_comp";
 
 import AdminBannerComponent from "../../components/admin_components/banners/admin_banner_comp";
@@ -27,7 +32,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../db/firebase_init";
 import { useRouter } from "next/navigation";
 import LoadingPage from "@/components/user_components/common/loading";
-import { CountInfo } from "@/db/firebase_crud";
 
 export default function AdminHomePage() {
   const [index, setIndex] = useState({
@@ -65,9 +69,7 @@ export default function AdminHomePage() {
 
       {/* ////////  REPORT - ADMIN HOMEPAGE  ///////////// */}
       {index.id == 0 && (
-        <AdminReportComp
-        navData={{ index: index, setIndex: setIndex }}
-        />
+        <AdminReportComp navData={{ index: index, setIndex: setIndex }} />
       )}
 
       {/* //////// Banners  ///////////// */}
@@ -122,6 +124,19 @@ export default function AdminHomePage() {
 
       {index.id == 42 && (
         <AdminEditProductsComp navData={{ index: index, setIndex: setIndex }} />
+      )}
+
+      {/* //////// USERS  ///////////// */}
+      {index.id == 5 && (
+        <AdminUsersComp navData={{ index: index, setIndex: setIndex }} />
+      )}
+      {index.id == 51 && (
+        <AdminUserShowComp navData={{ index: index, setIndex: setIndex }} />
+      )}
+
+      {/* //////// Transactions  ///////////// */}
+      {index.id == 6 && (
+        <AdminTransactionsComp navData={{ index: index, setIndex: setIndex }} />
       )}
 
       {/* //////// Settings  ///////////// */}

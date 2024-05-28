@@ -36,7 +36,6 @@ export default function AdminUpperNavBarComp({ navData }) {
                         key={index}
                         onClick={(event) => {
                           event.preventDefault();
-                          console.log(navData);
                           navData["setIndex"]({ id: index, navId: null });
                         }}
                         className={

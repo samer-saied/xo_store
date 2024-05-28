@@ -1,4 +1,8 @@
-import { QueryDocumentSnapshot, Timestamp } from "firebase/firestore";
+import {
+  DocumentData,
+  QueryDocumentSnapshot,
+  Timestamp,
+} from "firebase/firestore";
 import { Cart } from "./cart_model";
 
 export class User {
@@ -51,10 +55,9 @@ export const userConverter = {
     };
   },
 
-  fromFirestore: (snapshot: any, options?: any) => {
-    const data = snapshot.data(options);
+  fromFirestore: (data: any, id: string) => {
     return new User(
-      snapshot.id,
+      id,
       data.firstName,
       data.lastName,
       data.email,
