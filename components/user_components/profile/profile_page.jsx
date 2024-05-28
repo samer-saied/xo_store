@@ -7,7 +7,7 @@ import Image from "next/image";
 import { useAuth } from "@/hooks/AuthContext";
 import ProfielTableComp from "@/components/user_components/profile/profile_table_comp";
 import { useEffect, useState } from "react";
-import { GetOneUser } from "@/repository/users_repository";
+import { GetOneUserData } from "@/repository/users_repository";
 import LoadingPage from "../common/loading";
 // import { useRouter } from "next/router";
 
@@ -17,7 +17,7 @@ export default function ProfilePageComp() {
 
   useEffect(() => {
     if (currentUser != null) {
-      GetOneUser(currentUser.uid).then((profileData) => {
+      GetOneUserData(currentUser.uid).then((profileData) => {
         setProfile(profileData);
       });
     }
