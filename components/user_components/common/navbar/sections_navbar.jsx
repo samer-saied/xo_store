@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function SectionsLandscapeWidget({ sections }) {
   return (
-    <>
-      <div className=" mx-3 flex flex-row justify-start no-scrollbar items-center overflow-auto">
+    <div className="w-8/12">
+      <div className="hidden mx-3 lg:flex lg:flex-row lg:items-start lg:justify-start list-none no-scrollbar overflow-auto">
         {sections.sections &&
           sections.sections.map((section, index) => (
             <li
@@ -21,6 +21,6 @@ export default function SectionsLandscapeWidget({ sections }) {
             </li>
           ))}
       </div>
-    </>
+    </div>
   );
 }

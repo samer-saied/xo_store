@@ -14,7 +14,7 @@ export default function UserLandscapeWidget() {
   ////
 
   return (
-    <div className="flex flex-row justify-center items-center">
+    <div className="lg:flex lg:flex-row lg:justify-center lg:items-center hidden">
       <div className="flex flex-row justify-center items-center">
         <div className="text-center text-zinc-400 text-sm font-normal ">
           Arabic
@@ -32,7 +32,7 @@ export default function UserLandscapeWidget() {
       )}
       {!currentUser && (
         <Link
-          className={` p-1 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+          className={` p-1 mx-1 flex flex-row cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
           href={"/login"}
         >
           <div className="text-center text-sm font-normal ">تسجيل دخول</div>
@@ -49,20 +49,21 @@ export default function UserLandscapeWidget() {
         </Link>
       )}
       {currentUser && (
-        <li
+        // <li
+        //   className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+        // >
+        <Link
           className={`cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:bg-MainYellowColor  rounded-full`}
+          href={"/cart"}
         >
-          <Link href={"/cart"}>
-            <div
-              className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
-            >
-              <div className="text-center text-sm font-normal ">
-                سله المشتريات
-              </div>
-              <CiShoppingBasket size={25} className=" mx-1" />
-            </div>
-          </Link>
-        </li>
+          <div
+            className={` p-2 mx-1 flex flex-row justify-center items-center cursor-pointer capitalize text-zinc-400 hover:text-MainBlueColor hover:scale-105 hover:shadow-sm hover:bg-MainYellowColor rounded-full`}
+          >
+            <p className="text-center text-sm font-normal block ">سله المشتريات</p>
+            <CiShoppingBasket size={25} className=" mx-1" />
+          </div>
+        </Link>
+        // </li>
       )}
       {currentUser && (
         <button

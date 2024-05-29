@@ -6,7 +6,7 @@ const SignInPage = () => {
   return (
     <>
       <Sheet>
-        <Navbar></Navbar>
+        <Navbar />
         <NewLoginFormWidget />
       </Sheet>
     </>
