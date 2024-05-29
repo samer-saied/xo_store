@@ -44,7 +44,7 @@ export const DefaultCardsCarouselWidget = ({ products }) => {
                   priority={true}
                   width={256}
                   height={256}
-                  className=" object-contain h-full w-full"
+                  className=" object-fit h-full w-full"
                   src={product.image}
                   alt={product.title}
                 />

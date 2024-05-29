@@ -63,7 +63,7 @@ export default function TableComp({ tableData, addFunc }) {
                                     height={30}
                                     alt="profile"
                                     src={"/logo/logo.png"}
-                                    className="mx-auto border-2 object-contain rounded-md h-10 w-10  bg-black"
+                                    className="mx-auto border-2 object-contain rounded-md h-10 w-10  bg-white"
                                   />
                                 ) : (
                                   <Image
@@ -71,7 +71,7 @@ export default function TableComp({ tableData, addFunc }) {
                                     height={30}
                                     alt="profile"
                                     src={oneRow["image"] ?? oneRow["icon"]}
-                                    className="mx-auto border-2 object-contain rounded-md h-10 w-10  bg-black"
+                                    className="mx-auto border-2 object-contain rounded-md h-10 w-10 bg-gradient-to-b from-white to-gray-500"
                                   />
                                 )}
                               </div>

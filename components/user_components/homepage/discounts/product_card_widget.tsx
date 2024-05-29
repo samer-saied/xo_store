@@ -11,7 +11,7 @@ export default function GameCardWidget(props: {
     () => ({
       from: {
         opacity: 0,
-        y: 100 * (props.index + 0.25),
+        y: 50 * (props.index + 0.15),
       },
       to: {
         opacity: 1,
@@ -23,7 +23,6 @@ export default function GameCardWidget(props: {
     }
   );
 
-
   return (
     <animated.div ref={ref} style={springs}>
       <Link href={"/products/" + props.product.id}>
@@ -32,7 +31,7 @@ export default function GameCardWidget(props: {
             alt={props.product.title}
             width={100}
             height={100}
-            className=" h-44 object-contain  md:h-64 w-full rounded-2xl border p-5 hover:shadow-md"
+            className=" h-44 object-fit md:h-64 w-full rounded-2xl border p-3 hover:shadow-md"
             src={props.product.image}
           />
           <div className="flex flex-row items-center justify-center px-2 pt-1 h-20 w-full">

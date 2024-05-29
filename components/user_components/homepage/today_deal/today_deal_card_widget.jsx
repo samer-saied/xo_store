@@ -9,9 +9,9 @@ export const TodayDealCardWidget = ({ product, index }) => {
       <div className="border h-auto p-2 flex flex-col mx-1 my-5 bg-white rounded-2xl shadow-sm hover:shadow-md hover:scale-105 transition delay-150 duration-300 ease-in-out">
         <div className=" flex flex-row justify-center items-center">
           <Image
-            width={200}
-            height={200}
-            className=" h-48 md:h-60 object-contain"
+            width={235}
+            height={175}
+            className=" h-48 md:h-60 w-full rounded-md object-cover"
             src={product.image}
             alt={product.title + " image"}
           />
@@ -47,13 +47,11 @@ export const TodayDealCardWidget = ({ product, index }) => {
           </div>
         </div>
         <div className="flex flex-row items-center justify-between m-2">
-          <button className=" hover:bg-blue-950 hover:text-zinc-100 bg-white rounded-md border border-blue-950 px-2 py-1">
-            <CiShoppingBasket size={25} />
-          </button>
           <div className="lg:mx-1 mx-1"></div>
-          <button className="w-full py-2 bg-blue-950 hover:bg-zinc-100 hover:text-blue-950 border hover:border-blue-950 border-zinc-50 rounded text-center text-zinc-100 text-sm font-medium font-['Roboto'] leading-tight">
-            اشترى الان
-          </button>
+          <div className="w-full flex flex-row justify-center items-center py-2 bg-blue-950 hover:bg-zinc-100 hover:text-blue-950 border hover:border-blue-950 border-zinc-50 rounded text-center text-zinc-100 text-sm font-medium font-['Roboto'] leading-tight">
+            <CiShoppingBasket size={25} />
+            <p className=" px-2">اشترى الان</p>
+          </div>
         </div>
       </div>
     </Link>

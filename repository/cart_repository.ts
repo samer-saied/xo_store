@@ -67,37 +67,32 @@ async function GetCurrentUserCart(user: User): Promise<Cart> {
   }
 }
 
-async function AddItemToCart(product: Product) {
+async function AddItemToCart(product: Product, user: User) {
   let tempCart: Cart | null;
   try {
-    onAuthStateChanged(auth, (user) => {
-      if (user == null) {
-        return null;
-      } else {
-        GetCurrentUserCart(user).then(async (cart) => {
-          tempCart = cart;
-          tempCart?.items.push(
-            new CartItem(
-              product.id!,
-              product.title,
-              product.image,
-              1,
-              +product.currentPrice,
-              +product.prePrice,
-              "Player Id"
-            )
-          );
+    GetCurrentUserCart(user!).then(async (cart) => {
+      tempCart = cart;
+      tempCart?.items.push(
+        new CartItem(
+          product.id!,
+          product.title,
+          product.image,
+          1,
+          +product.currentPrice,
+          +product.prePrice,
+          "Player Id"
+        )
+      );
 
-          tempCart.sales += product.prePrice - product.currentPrice;
-          tempCart.netTotal += product.currentPrice;
-          tempCart.total += product.prePrice;
-          await handleUpdateOne(
-            cartsModelName,
-            cart!.id!,
-            cartConverter.toFirestore(tempCart!)
-          );
-        });
-      }
+      tempCart.sales += +product.prePrice - +product.currentPrice;
+      tempCart.netTotal += +product.currentPrice;
+      tempCart.total += +product.prePrice;
+      await handleUpdateOne(
+        cartsModelName,
+        cart!.id!,
+        cartConverter.toFirestore(tempCart!)
+      );
+      return true;
     });
   } catch (error) {
     console.error("Error fetching carts:", error);

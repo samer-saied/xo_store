@@ -57,41 +57,39 @@ export default function AdminAddProductComp({ navData }) {
   };
 
   const AddFunc = handleSubmit((data) => {
-if(data["prePrice"] > data["currentPrice"]){
-  AddOneProduct(
-    new Product(
-      null,
-      getValues()["categoryId"],
-      getValues()["sectionId"],
-      data["title"],
-      imageUrl,
-      data["prePrice"],
-      data["currentPrice"],
-      data["descrption"],
-      data["details"],
-      rating,
-      isExclusive,
-      isToday,
-      true,
-      Date.now()
-    )
-  ).then(() => {
-    toast({
-      variant: "default",
-      title: "حسنا",
-      description: "تم الاضافه بنجاح",
-    });
-    navData["setIndex"]({ id: 4, navId: null });
-  });
-}else{
-  toast({
-    variant: "destructive",
-    title: "خطا",
-    description: "يجب ان يكون السعر الحالي اقل من السعر السابق",
-  });
-}
-
- 
+    if (data["prePrice"] > data["currentPrice"]) {
+      AddOneProduct(
+        new Product(
+          null,
+          getValues()["categoryId"],
+          getValues()["sectionId"],
+          data["title"],
+          imageUrl,
+          data["prePrice"],
+          data["currentPrice"],
+          data["descrption"],
+          data["details"],
+          rating,
+          isExclusive,
+          isToday,
+          true,
+          Date.now()
+        )
+      ).then(() => {
+        toast({
+          variant: "default",
+          title: "حسنا",
+          description: "تم الاضافه بنجاح",
+        });
+        navData["setIndex"]({ id: 4, navId: null });
+      });
+    } else {
+      toast({
+        variant: "destructive",
+        title: "خطا",
+        description: "يجب ان يكون السعر الحالي اقل من السعر السابق",
+      });
+    }
   });
 
   return (
@@ -198,7 +196,7 @@ if(data["prePrice"] > data["currentPrice"]){
             <h2 className="max-w-sm md:w-3/12 uppercase">Previous Price</h2>
 
             <input
-              {...register("prePrice", { required: true })}
+              {...register("prePrice", { required: true, valueAsNumber: true })}
               type="number"
               min="0"
               step="0.01"
@@ -214,7 +212,10 @@ if(data["prePrice"] > data["currentPrice"]){
             <h2 className="max-w-sm md:w-3/12 uppercase">Current Price</h2>
 
             <input
-              {...register("currentPrice", { required: true })}
+              {...register("currentPrice", {
+                required: true,
+                valueAsNumber: true,
+              })}
               type="number"
               min="0"
               step="0.01"

@@ -13,6 +13,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { GetAllSections } from "@/repository/sections_repository";
 import { GetCategoriesBySections } from "@/repository/category_repository";
 import { ImCross } from "react-icons/im";
+import { GoUpload } from "react-icons/go";
+import { CldUploadWidget } from "next-cloudinary";
 
 export default function AdminEditProductsComp({ navData }) {
   const [product, setProduct] = useState(null);
@@ -102,14 +104,42 @@ export default function AdminEditProductsComp({ navData }) {
             }}
             className=" shadow-lg max-w-5xl mx-auto rounded-lg bg-gray-100"
           >
-            <div className="p-3 flex flex-row justify-center items-center bg-gray-100 ">
+             <div className=" w-full p-3 flex flex-col md:flex-row items-center justify-evenly bg-gray-100 ">
               <Image
-                width={120}
-                height={120}
+                width={256}
+                height={256}
                 alt="icon"
                 src={product.image}
-                className="mx-auto object-contain rounded-full h-32 w-32  bg-black"
+                className=" md:w-1/4 object-contain rounded-md h-64 border-2 m-3 bg-white"
               />
+
+              <CldUploadWidget
+                onSuccess={(results) => {
+                  setProduct({ ...product, image: results.info.secure_url });
+                  // setValue("image", results.info.secure_url);
+                  // setImage("image", results.info.secure_url);
+                }}
+                uploadPreset="nbx2boqc"
+              >
+                {({ open }) => {
+                  return (
+                    <button
+                      className={
+                        " md:w-1/4 h-full bg-MainBlueColor px-5 py-3 rounded-md text-white"
+                      }
+                      onClick={(event) => {
+                        event.preventDefault();
+                        open();
+                      }}
+                    >
+                      <GoUpload className=" inline font-black" />
+                      <span className=" inline px-1 font-bold">
+                        Upload an Image
+                      </span>
+                    </button>
+                  );
+                }}
+              </CldUploadWidget>
             </div>
             <div className=" bg-white rounded-lg">
               {/* ******************* TITLE ******************* */}

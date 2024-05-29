@@ -21,16 +21,16 @@ export default async function DetailsProductWidget({ product }) {
           {/*------------------- PRODUCT DETAILS -------------------*/}
           <div className="w-10/12 mx-auto">
             <div className="flex md:flex-row flex-col items-center justify-evenly my-6">
-              <div className="md:w-6/12 w-full h-96 bg-neutral-200 rounded-2xl">
+              <div className="md:w-auto w-full h-96 bg-neutral-200 rounded-2xl p-2">
                 <Image
-                  width={300}
-                  height={300}
+                  width={940}
+                  height={700}
                   src={product?.image}
                   alt={product.title}
-                  className="h-full w-full object-contain rounded-2xl shadow-md"
+                  className="h-full w-full object-cover rounded-2xl shadow-md"
                 />
               </div>
-              <div className="md:w-6/12 w-full md:h-96 flex flex-col justify-around md:px-10">
+              <div className="md:w-7/12 w-full md:h-96 flex flex-col justify-around md:px-10">
                 <div className="flex flex-wrap justify-between items-center mt-3">
                   <div className="text-slate-600 text-xl pb-2 font-black leading-10">
                     {product?.title}
