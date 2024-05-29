@@ -8,7 +8,6 @@ export default async function FooterComponent() {
   // const res = await fetch(`https://jsonplaceholder.typicode.com/posts`);
   // const data= res.json();
   const infoData: SetingsInfo = await GetOneSetingsInfo("storeinformation");
-  console.log(infoData);
 
   return (
     <div className=" relative w-full overflow-hidden bg-blue-950 h-screen">

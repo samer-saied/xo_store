@@ -22,11 +22,6 @@ export default function CategoriesPage({ params }) {
     GetProductsByCategory(params.id).then((products) => {
       setProducts(products);
       setLoading(false);
-      console.log("=====================params.id==================");
-      console.log(params.id);
-      console.log("=====================PRODUCTS.id==================");
-
-      console.log(products);
     });
   }, []);
 

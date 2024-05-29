@@ -3,7 +3,6 @@ import { auth } from "../../../db/firebase_init";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import {
-  signOut,
   signInWithEmailAndPassword,
   UserCredential,
 } from "firebase/auth";

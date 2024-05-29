@@ -10,8 +10,7 @@ const useGetOneSection = (id) => {
 
   useEffect(() => {
     if (!isGetData.current) {
-      console.log("=======================")
-      console.log(id)
+  
       GetCategoriesBySections(id)
         .then((categoriesData) => {
           setCategories(categoriesData);

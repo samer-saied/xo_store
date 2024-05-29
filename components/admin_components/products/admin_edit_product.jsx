@@ -26,7 +26,6 @@ export default function AdminEditProductsComp({ navData }) {
 
   useEffect(() => {
     GetOneProduct(navData["index"]["navId"]).then((Product) => {
-      console.log(Product);
       setProduct(Product);
       setSelectedSection(Product.sectionId);
     });
@@ -261,7 +260,6 @@ export default function AdminEditProductsComp({ navData }) {
                 {categories.length > 0 ? (
                   <select
                     onChange={(val) => {
-                      console.log(val.target.value);
                       setProduct({ ...product, categoryId: val.target.value });
                     }}
                     id="categoryId"

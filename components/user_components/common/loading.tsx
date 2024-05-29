@@ -4,6 +4,8 @@ const LoadingPage = () => {
   return (
     <div className="h-screen flex flex-row justify-center items-center">
       <Image
+        unoptimized={true}
+        priority={true}
         width={72}
         height={72}
         className=" w-72 mx-auto"

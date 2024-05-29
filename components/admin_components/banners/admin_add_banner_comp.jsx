@@ -84,7 +84,6 @@ export default function AdminAddBannerComp({ navData }) {
           <CldUploadWidget
             onSuccess={(results) => {
               // setValue("image", results.info.secure_url);
-              console.log(results.info.secure_url);
               setImageUrl(results.info.secure_url);
               // set("image", results.info.secure_url);
             }}

@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const NoItemsWidget = ({ infoMsg }: { infoMsg: string }) => {
-  console.log(infoMsg);
   return (
     <div className="w-screen h-96 flex flex-row justify-center items-center mx-auto">
       <div className=" flex flex-col justify-center items-center">

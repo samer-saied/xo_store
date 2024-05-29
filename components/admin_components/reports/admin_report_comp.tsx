@@ -11,7 +11,6 @@ export default function AdminReportComp({ navData }: any) {
   useEffect(() => {
     CountInfo(["banners", "sections", "categories", "products", "users"]).then(
       (results) => {
-        console.log(results);
         setcounts(results!);
         setIsLoading(false);
       }

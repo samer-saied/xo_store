@@ -24,7 +24,6 @@ async function GetOneUserData(id: string): Promise<User> {
     const querySnapshot = await handleGetOne(usersModelName, id);
 
     const userData = userConverter.fromFirestore(querySnapshot!.data(), id);
-    console.log(userData);
     return userData;
   } catch (error) {
     console.error("Error fetching users:", error);

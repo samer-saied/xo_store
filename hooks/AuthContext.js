@@ -21,11 +21,9 @@ export const AuthContextProvider = ({ children }) => {
 
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             if (currentUser) {
-                console.log("User is signed in:");
                 setCurrentUser(currentUser); // Update your user state
                 setLoading(false); // Update your loading state
             } else {
-                console.log("No user is signed in");
                 setCurrentUser(null); // Or set a default state for logged-out users
                 setLoading(false);
                 // router.push("/login")

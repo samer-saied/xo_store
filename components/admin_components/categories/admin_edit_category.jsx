@@ -141,7 +141,6 @@ export default function AdminEditCategorysComp({ navData }) {
                       firstColor: event.target.value,
                     });
 
-                    console.log(event.target.value);
                   }}
                   value={category.firstColor}
                 />
@@ -157,7 +156,6 @@ export default function AdminEditCategorysComp({ navData }) {
                       ...category,
                       secandColor: event.target.value,
                     });
-                    console.log(event.target.value);
                   }}
                   value={category.secandColor}
                 />

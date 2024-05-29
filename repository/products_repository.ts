@@ -56,7 +56,6 @@ async function GetTodayDealProducts(): Promise<Product[]> {
       const currentProduct = productConverter.fromFirestore(doc.query, doc.id);
       products.push(currentProduct);
     });
-    console.log(products);
     return products;
   } catch (error) {
     console.error("Error fetching products:", error);
