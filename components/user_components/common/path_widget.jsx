@@ -3,7 +3,6 @@ import { MdOutlineArrowBack } from "react-icons/md";
 import { TbHome } from "react-icons/tb";
 
 export default function PathWidget({ urlPaths }) {
-
   return (
     <div key={"paths"} className="w-10/12 mx-auto pt-5">
       {/*------------- PATH TEXT ---------------------*/}{" "}
