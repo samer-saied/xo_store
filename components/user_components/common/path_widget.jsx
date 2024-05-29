@@ -3,7 +3,7 @@ import { MdOutlineArrowBack } from "react-icons/md";
 import { TbHome } from "react-icons/tb";
 
 export default function PathWidget({ urlPaths }) {
-  // console.log(urlPaths);
+
   return (
     <div key={"paths"} className="w-10/12 mx-auto pt-5">
       {/*------------- PATH TEXT ---------------------*/}{" "}
@@ -34,8 +34,8 @@ export default function PathWidget({ urlPaths }) {
             ))}
           </div>
         </div>
-        <Link
-          href={urlPaths.length > 1 ? urlPaths[0].link : "/"}
+        {/* <Link
+          href={urlPaths.length > 1 ? urlPaths[1].link : "/"}
           className=" flex flex-row justify-start items-center "
         >
           <p className=" px-1 text-MainBlueColor font-base hidden md:flex">
@@ -45,7 +45,7 @@ export default function PathWidget({ urlPaths }) {
             className=" text-MainBlueColor font-bold"
             size={25}
           />
-        </Link>
+        </Link> */}
       </div>
     </div>
   );

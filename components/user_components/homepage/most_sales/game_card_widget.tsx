@@ -1,9 +1,11 @@
+"use client"
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
 import Link from "next/link";
 import { useInView, animated } from "@react-spring/web";
 
 export default function GameCardWidget(params: any) {
+
   const [ref, springs] = useInView(
     () => ({
       from: {
@@ -25,7 +27,7 @@ export default function GameCardWidget(params: any) {
       <Link
         href={{
           pathname: "/categories/" + params.category?.id,
-          query: { category: params.urls[0].name },
+          query: params.urls[1],
         }}
       >
         <div

@@ -1,3 +1,4 @@
+"use client";
 import { Section } from "@/models/section_model";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +26,7 @@ export default function SectionCardWidget(section: Section) {
       <Link
         href={{
           pathname: "/sections/" + section.id,
-          query: { name: section.title.toString() },
+          query: { section: section.title.toString() },
         }}
       >
         <div
@@ -93,8 +94,6 @@ export default function SectionCardWidget(section: Section) {
                 </div>
               </div>
             </div>
-
-            
           </div>
         </div>
       </Link>
