@@ -13,7 +13,7 @@ export default function SectionsLandscapeWidget({ sections }) {
               <Link
                 href={{
                   pathname: "/sections/" + section.id,
-                  query: { name: section.title },
+                  query: { section: section.title },
                 }}
               >
                 {section.title}
