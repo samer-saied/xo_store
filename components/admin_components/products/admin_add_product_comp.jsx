@@ -241,6 +241,9 @@ export default function AdminAddProductComp({ navData }) {
               placeholder="Section ID"
               // value={banner!.refProductId}
             >
+              <option key={0} value={0}>
+                X - No Selected
+              </option>
               {sections.map((section) => (
                 <option key={section.id} value={section.id}>
                   {section.title}
@@ -262,6 +265,9 @@ export default function AdminAddProductComp({ navData }) {
                 placeholder="category id"
                 // value={banner!.refProductId}
               >
+                <option key={0} value={0}>
+                  X - No Selected
+                </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.title}
