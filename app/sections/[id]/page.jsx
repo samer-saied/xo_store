@@ -30,7 +30,7 @@ export default async function SpecificSectionsPage(context) {
         <PathWidget urlPaths={urls} />
 
         {/* /////////////////   GRID SECTIONS CARDS     ///////////////////////// */}
-        {!categories && <NoItemsWidget infoMsg={"لا يوجد فئات"} />}
+        {categories.length == 0 && <NoItemsWidget infoMsg={"لا يوجد فئات"} />}
 
         {categories && categories.length > 0 && (
           <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-2 grid-cols-2 gap-2 md:container px-5 md:w-9/12 mx-auto md:px-5 w-full">
